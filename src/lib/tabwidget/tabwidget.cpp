@@ -195,7 +195,7 @@ void TabWidget::loadSettings()
     settings.endGroup();
 
     settings.beginGroup("Web-URL-Settings");
-    m_urlOnNewTab = settings.value("newTabUrl", "qupzilla:speeddial").toUrl();
+    m_urlOnNewTab = settings.value("newTabUrl", "about:blank").toUrl();
     settings.endGroup();
 
     m_tabBar->loadSettings();

@@ -65,6 +65,12 @@ WebView::WebView(QWidget* parent)
     connect(this, &QWebEngineView::urlChanged, this, &WebView::slotUrlChanged);
     connect(this, &QWebEngineView::titleChanged, this, &WebView::slotTitleChanged);
 
+    Q_INIT_RESOURCE(html);
+
+    QFile f(":/html/setupViewport.js");
+    if (f.open(QIODevice::ReadOnly))
+        m_viewportScript = QString::fromUtf8(f.readAll());
+
     m_currentZoomLevel = zoomLevels().indexOf(100);
 
     setAcceptDrops(true);
@@ -404,6 +410,9 @@ void WebView::slotLoadStarted()
 void WebView::slotLoadProgress(int progress)
 {
     m_progress = progress;
+
+    // Fix the viewport of the app
+    page()->runJavaScript(m_viewportScript);
 }
 
 void WebView::slotLoadFinished(bool ok)

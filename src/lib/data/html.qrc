@@ -11,6 +11,7 @@
         <file>html/speeddial.html</file>
         <file>html/jquery.js</file>
         <file>html/jquery-ui.js</file>
+        <file>html/setupViewport.js</file>
         <file>html/plus.png</file>
         <file>html/loading.gif</file>
         <file>html/reload.png</file>

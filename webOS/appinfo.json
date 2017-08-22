@@ -1,0 +1,13 @@
+{
+	"title": "QupZilla",
+	"id": "com.nizovn.qupzilla",
+	"version": "2.1.2",
+	"release_date": "22-August-2017",
+	"vendor": "Nikolay Nizov",
+	"vendor_email": "nizovn@gmail.com",
+	"type": "pdk",
+	"main": "runtime/qt5/libexec/qupzilla",
+	"icon": "qupzilla.png",
+	"keywords": ["browser"],
+	"requiredMemory": 150
+}

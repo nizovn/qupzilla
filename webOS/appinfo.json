@@ -1,8 +1,8 @@
 {
 	"title": "QupZilla",
 	"id": "com.nizovn.qupzilla",
-	"version": "2.1.2",
-	"release_date": "22-August-2017",
+	"version": "1.0.1",
+	"release_date": "12-November-2017",
 	"vendor": "Nikolay Nizov",
 	"vendor_email": "nizovn@gmail.com",
 	"type": "pdk",

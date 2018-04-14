@@ -30,10 +30,6 @@
 #include <QDateTime>
 #include <QTextStream>
 #include <QWebEnginePage>
-#include <QStorageInfo>
-#include <QProcess>
-
-#define APP_RUNDIR "/media/cryptofs/apps/usr/palm/applications/com.nizovn.qupzilla/runtime"
 
 void qupzilla_signal_handler(int s)
 {
@@ -147,32 +143,6 @@ int main(int argc, char* argv[])
         QString stylecmd = QL1S("-style=") + style;
         args[argc++] = qstrdup(stylecmd.toUtf8().constData());
         argv = args;
-    }
-
-    if (!qEnvironmentVariableIsSet("QT_QPA_FONTDIR"))
-        qputenv("QT_QPA_FONTDIR", "/usr/share/fonts");
-
-    qputenv("QML2_IMPORT_PATH", APP_RUNDIR "/qt5/qml");
-
-    qputenv("QT_PLUGIN_PATH", APP_RUNDIR "/qt5/plugins");
-
-    if (!qEnvironmentVariableIsSet("QMLSCENE_DEVICE"))
-        qputenv("QMLSCENE_DEVICE", "softwarecontext");
-
-    if (!qEnvironmentVariableIsSet("SSL_CERT_FILE"))
-        qputenv("SSL_CERT_FILE", APP_RUNDIR "/ssl/cacert.pem");
-
-    if (!qEnvironmentVariableIsSet("QT_QPA_PLATFORM_PLUGIN_PATH"))
-        qputenv("QT_QPA_PLATFORM_PLUGIN_PATH", APP_RUNDIR "/qt5/plugins/platforms");
-
-    qputenv("QT_QPA_PLATFORM", "webos");
-
-    QStorageInfo storage("/dev/shm");
-    if (storage.fileSystemType() == "tmpfs") {
-        if (storage.bytesTotal() < 64*1024*1024) {
-            QString cmd = QString("mount -o remount,size=65M ") + storage.rootPath();
-            qDebug() << "Executing" << cmd << "result:" << QProcess::execute(cmd);
-        }
     }
 
     QSslConfiguration _sslConf = QSslConfiguration::defaultConfiguration();

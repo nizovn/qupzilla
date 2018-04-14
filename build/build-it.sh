@@ -1,4 +1,4 @@
-APP_RUNPATH="/media/cryptofs/apps/usr/palm/applications/com.nizovn/qupzilla/runtime/qt5/libexec"
+APP_RUNPATH="/media/cryptofs/apps/usr/palm/applications/com.nizovn.qupzilla"
 
 export PORTABLE_BUILD="true"
 export NO_X11="true"

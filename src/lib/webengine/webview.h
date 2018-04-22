@@ -192,8 +192,6 @@ private:
     QPointer<QWidget> m_rwhvqt;
     WheelHelper m_wheelHelper;
 
-    QString m_viewportScript;
-
     static bool s_forceContextMenuOnMouseRelease;
 };
 

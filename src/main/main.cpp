@@ -145,10 +145,6 @@ int main(int argc, char* argv[])
         argv = args;
     }
 
-    QSslConfiguration _sslConf = QSslConfiguration::defaultConfiguration();
-    _sslConf.setCaCertificates(QSslCertificate::fromPath(qgetenv("SSL_CERT_FILE")));
-    QSslConfiguration::setDefaultConfiguration(_sslConf);
-
     MainApplication app(argc, argv);
 
     if (app.isClosing())

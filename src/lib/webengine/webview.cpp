@@ -51,7 +51,7 @@
 #include <QPrinter>
 #include <QQuickWidget>
 
-bool WebView::s_forceContextMenuOnMouseRelease = false;
+bool WebView::s_forceContextMenuOnMouseRelease = true;
 
 WebView::WebView(QWidget* parent)
     : QWebEngineView(parent)

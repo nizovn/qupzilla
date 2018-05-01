@@ -1,5 +1,13 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS language="cs_CZ" version="2.1">
 <context>
+    <name>FCM_Button</name>
+    <message>
+        <location filename="../fcm_plugin.cpp" line="58"/>
+        <source>Flash Cookie Manager button</source>
+        <translation>Tlačítko správce cookies pro Flash</translation>
+    </message>
+</context>
+<context>
     <name>FCM_Dialog</name>
     <message>
         <location filename="../fcm_dialog.ui" line="14"/>
@@ -27,7 +35,7 @@
         <location filename="../fcm_dialog.cpp" line="153"/>
         <location filename="../fcm_dialog.cpp" line="154"/>
         <source>&lt;flash cookie not selected&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;flash cookie not selected&gt;</translation>
     </message>
     <message>
         <location filename="../fcm_dialog.ui" line="83"/>
@@ -205,7 +213,7 @@
         <location filename="../fcm_dialog.cpp" line="289"/>
         <location filename="../fcm_dialog.cpp" line="317"/>
         <source>Already whitelisted!</source>
-        <translation type="unfinished"/>
+        <translation>Již na seznamu povolených!</translation>
     </message>
     <message>
         <location filename="../fcm_dialog.cpp" line="289"/>
@@ -250,24 +258,25 @@
 <context>
     <name>FCM_Plugin</name>
     <message>
-        <location filename="../fcm_plugin.cpp" line="129"/>
+        <location filename="../fcm_plugin.cpp" line="147"/>
+        <location filename="../fcm_plugin.cpp" line="377"/>
         <source>Flash Cookie Manager</source>
-        <translation type="unfinished"/>
+        <translation>Správce cookies pro Flash</translation>
     </message>
     <message>
-        <location filename="../fcm_plugin.cpp" line="357"/>
+        <location filename="../fcm_plugin.cpp" line="378"/>
         <source>Show Flash Cookie Manager</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit správce cookies pro Flash</translation>
     </message>
     <message>
-        <location filename="../fcm_plugin.cpp" line="439"/>
+        <location filename="../fcm_plugin.cpp" line="459"/>
         <source>!default</source>
-        <translation type="unfinished"/>
+        <translation>!výchozí</translation>
     </message>
     <message>
-        <location filename="../fcm_plugin.cpp" line="451"/>
+        <location filename="../fcm_plugin.cpp" line="471"/>
         <source>!other</source>
-        <translation type="unfinished"/>
+        <translation>!ostatní</translation>
     </message>
 </context>
 </TS>

@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -102,6 +102,10 @@ public:
     bool matchScript(const QWebEngineUrlRequestInfo &request) const;
     bool matchStyleSheet(const QWebEngineUrlRequestInfo &request) const;
     bool matchObjectSubrequest(const QWebEngineUrlRequestInfo &request) const;
+    bool matchPing(const QWebEngineUrlRequestInfo &request) const;
+    bool matchMedia(const QWebEngineUrlRequestInfo &request) const;
+    bool matchFont(const QWebEngineUrlRequestInfo &request) const;
+    bool matchOther(const QWebEngineUrlRequestInfo &request) const;
 
 protected:
     bool stringMatch(const QString &domain, const QString &encodedUrl) const;
@@ -116,10 +120,12 @@ private:
         RegExpMatchRule = 2,
         StringEndsMatchRule = 3,
         StringContainsMatchRule = 4,
-        Invalid = 5
+        MatchAllUrlsRule = 5,
+        Invalid = 6
     };
 
     enum RuleOption {
+        NoOption = 0,
         DomainRestrictedOption = 1,
         ThirdPartyOption = 2,
         ObjectOption = 4,
@@ -129,10 +135,14 @@ private:
         ScriptOption = 64,
         StyleSheetOption = 128,
         ObjectSubrequestOption = 256,
+        PingOption = 512,
+        MediaOption = 1024,
+        FontOption = 2048,
+        OtherOption = 4096,
 
         // Exception only options
-        DocumentOption = 1024,
-        ElementHideOption = 2048
+        DocumentOption = 8192,
+        ElementHideOption = 16384
     };
 
     Q_DECLARE_FLAGS(RuleOptions, RuleOption)

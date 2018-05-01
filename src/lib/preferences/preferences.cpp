@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,6 @@
 #include "networkmanager.h"
 #include "desktopnotificationsfactory.h"
 #include "desktopnotification.h"
-#include "navigationbar.h"
 #include "thememanager.h"
 #include "acceptlanguage.h"
 #include "qztools.h"
@@ -93,12 +92,11 @@ static QString createLanguageItem(const QString &lang)
 }
 
 Preferences::Preferences(BrowserWindow* window)
-    : QWidget()
+    : QDialog(window)
     , ui(new Ui::Preferences)
     , m_window(window)
     , m_autoFillManager(0)
     , m_pluginsList(0)
-    , m_autoFillEnabled(false)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -216,11 +214,6 @@ Preferences::Preferences(BrowserWindow* window)
     connect(ui->instantBookmarksToolbar, SIGNAL(toggled(bool)), ui->showBookmarksToolbar, SLOT(setDisabled(bool)));
     connect(ui->showBookmarksToolbar, SIGNAL(toggled(bool)), ui->instantBookmarksToolbar, SLOT(setDisabled(bool)));
     ui->showNavigationToolbar->setChecked(settings.value("showNavigationToolbar", true).toBool());
-    ui->showHome->setChecked(settings.value("showHomeButton", true).toBool());
-    ui->showBackForward->setChecked(settings.value("showBackForwardButtons", true).toBool());
-    ui->showAddTabButton->setChecked(settings.value("showAddTabButton", false).toBool());
-    ui->showReloadStopButtons->setChecked(settings.value("showReloadButton", true).toBool());
-    ui->showWebSearchBar->setChecked(settings.value("showWebSearchBar", true).toBool());
     int currentSettingsPage = settings.value("settingsDialogPage", 0).toInt(0);
     settings.endGroup();
 
@@ -265,6 +258,8 @@ Preferences::Preferences(BrowserWindow* window)
     ui->searchFromAddressBar->setChecked(searchFromAB);
     ui->searchWithDefaultEngine->setEnabled(searchFromAB);
     ui->searchWithDefaultEngine->setChecked(settings.value("SearchWithDefaultEngine", false).toBool());
+    ui->showABSearchSuggestions->setEnabled(searchFromAB);
+    ui->showABSearchSuggestions->setChecked(settings.value("showSearchSuggestions", true).toBool());
     connect(ui->searchFromAddressBar, SIGNAL(toggled(bool)), this, SLOT(searchFromAddressBarChanged(bool)));
     settings.endGroup();
 
@@ -277,6 +272,7 @@ Preferences::Preferences(BrowserWindow* window)
     ui->animateScrolling->setChecked(settings.value("AnimateScrolling", true).toBool());
     ui->wheelScroll->setValue(settings.value("wheelScrollLines", qApp->wheelScrollLines()).toInt());
     ui->xssAuditing->setChecked(settings.value("XSSAuditing", false).toBool());
+    ui->printEBackground->setChecked(settings.value("PrintElementBackground", true).toBool());
     ui->useNativeScrollbars->setChecked(settings.value("UseNativeScrollbars", false).toBool());
 
     foreach (int level, WebView::zoomLevels()) {
@@ -296,9 +292,7 @@ Preferences::Preferences(BrowserWindow* window)
 
     //PASSWORD MANAGER
     ui->allowPassManager->setChecked(settings.value("SavePasswordsOnSites", true).toBool());
-    connect(ui->allowPassManager, SIGNAL(toggled(bool)), this, SLOT(showPassManager(bool)));
-
-    showPassManager(ui->allowPassManager->isChecked());
+    ui->autoCompletePasswords->setChecked(settings.value("AutoCompletePasswords", true).toBool());
 
     //PRIVACY
     //Web storage
@@ -347,7 +341,7 @@ Preferences::Preferences(BrowserWindow* window)
 
     //FONTS
     settings.beginGroup("Browser-Fonts");
-    QWebEngineSettings* webSettings = QWebEngineSettings::defaultSettings();
+    QWebEngineSettings* webSettings = mApp->webSettings();
     auto defaultFont = [&](QWebEngineSettings::FontFamily font) -> const QString {
         const QString family = webSettings->fontFamily(font);
         if (!family.isEmpty())
@@ -404,7 +398,6 @@ Preferences::Preferences(BrowserWindow* window)
     m_notifPosition = settings.value("Position", QPoint(10, 10)).toPoint();
     settings.endGroup();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     //SPELLCHECK
     settings.beginGroup(QSL("SpellCheck"));
     ui->spellcheckEnabled->setChecked(settings.value(QSL("Enabled"), false).toBool());
@@ -420,8 +413,8 @@ Preferences::Preferences(BrowserWindow* window)
 
     QStringList dictionariesDirs = {
 #ifdef Q_OS_OSX
-        QDir::cleanPath(QCoreApplication::applicationDirPath() + QL1S("/../Contents/Resources/qtwebengine_dictionaries")),
-        QDir::cleanPath(QCoreApplication::applicationDirPath() + QL1S("/../Contents/Frameworks/QtWebEngineCore.framework/Resources/qtwebengine_dictionaries"))
+        QDir::cleanPath(QCoreApplication::applicationDirPath() + QL1S("/../Resources/qtwebengine_dictionaries")),
+        QDir::cleanPath(QCoreApplication::applicationDirPath() + QL1S("/../Frameworks/QtWebEngineCore.framework/Resources/qtwebengine_dictionaries"))
 #else
         QDir::cleanPath(QCoreApplication::applicationDirPath() + QL1S("/qtwebengine_dictionaries")),
         QDir::cleanPath(QLibraryInfo::location(QLibraryInfo::DataPath) + QL1S("/qtwebengine_dictionaries"))
@@ -464,10 +457,6 @@ Preferences::Preferences(BrowserWindow* window)
     } else {
         ui->spellcheckNoLanguages->hide();
     }
-#else
-    delete ui->listWidget->item(11);
-    delete ui->stackedWidget->widget(11);
-#endif
 
     //OTHER
     //Languages
@@ -502,15 +491,17 @@ Preferences::Preferences(BrowserWindow* window)
 
     // Proxy Configuration
     settings.beginGroup("Web-Proxy");
-    QNetworkProxy::ProxyType proxyType = QNetworkProxy::ProxyType(settings.value("ProxyType", QNetworkProxy::NoProxy).toInt());
-
-    ui->systemProxy->setChecked(proxyType == QNetworkProxy::NoProxy);
-    ui->manualProxy->setChecked(proxyType != QNetworkProxy::NoProxy);
-    if (proxyType == QNetworkProxy::Socks5Proxy) {
-        ui->proxyType->setCurrentIndex(1);
-    }
-    else {
+    int proxyType = settings.value("ProxyType", 2).toInt();
+    if (proxyType == 0) {
+        ui->noProxy->setChecked(true);
+    } else if (proxyType == 2) {
+        ui->systemProxy->setChecked(true);
+    } else if (proxyType == 3) {
+        ui->manualProxy->setChecked(true);
         ui->proxyType->setCurrentIndex(0);
+    } else {
+        ui->manualProxy->setChecked(true);
+        ui->proxyType->setCurrentIndex(1);
     }
 
     ui->proxyServer->setText(settings.value("HostName", "").toString());
@@ -519,8 +510,7 @@ Preferences::Preferences(BrowserWindow* window)
     ui->proxyPassword->setText(settings.value("Password", "").toString());
     settings.endGroup();
 
-    setManualProxyConfigurationEnabled(proxyType != QNetworkProxy::NoProxy);
-
+    setManualProxyConfigurationEnabled(ui->manualProxy->isChecked());
     connect(ui->manualProxy, SIGNAL(toggled(bool)), this, SLOT(setManualProxyConfigurationEnabled(bool)));
 
     //CONNECTS
@@ -588,7 +578,6 @@ void Preferences::showStackedPage(QListWidgetItem* item)
     if (index == 7 && !m_autoFillManager) {
         m_autoFillManager = new AutoFillManager(this);
         ui->autoFillFrame->addWidget(m_autoFillManager);
-        m_autoFillManager->setVisible(m_autoFillEnabled);
     }
 }
 
@@ -615,9 +604,11 @@ void Preferences::makeQupZillaDefault()
 {
 #if defined(Q_OS_WIN) && !defined(Q_OS_OS2)
     disconnect(ui->checkNowDefaultBrowser, SIGNAL(clicked()), this, SLOT(makeQupZillaDefault()));
-    mApp->associationManager()->registerAllAssociation();
     ui->checkNowDefaultBrowser->setText(tr("Default"));
     ui->checkNowDefaultBrowser->setEnabled(false);
+
+    if (!mApp->associationManager()->showNativeDefaultAppSettingsUi())
+        mApp->associationManager()->registerAllAssociation();
 #endif
 }
 
@@ -702,6 +693,7 @@ void Preferences::setManualProxyConfigurationEnabled(bool state)
 void Preferences::searchFromAddressBarChanged(bool stat)
 {
     ui->searchWithDefaultEngine->setEnabled(stat);
+    ui->showABSearchSuggestions->setEnabled(stat);
 }
 
 void Preferences::saveHistoryChanged(bool stat)
@@ -716,7 +708,7 @@ void Preferences::allowHtml5storageChanged(bool stat)
 
 void Preferences::showCookieManager()
 {
-    CookieManager* dialog = new CookieManager();
+    CookieManager* dialog = new CookieManager(this);
     dialog->show();
 }
 
@@ -758,7 +750,7 @@ void Preferences::newTabChanged(int value)
 
 void Preferences::afterLaunchChanged(int value)
 {
-    ui->dontLoadTabsUntilSelected->setEnabled(value == 3);
+    ui->dontLoadTabsUntilSelected->setEnabled(value == 3 || value == 4);
 }
 
 void Preferences::changeCachePathClicked()
@@ -769,16 +761,6 @@ void Preferences::changeCachePathClicked()
     }
 
     ui->cachePath->setText(path);
-}
-
-void Preferences::showPassManager(bool state)
-{
-    if (m_autoFillManager) {
-        m_autoFillManager->setVisible(state);
-    }
-    else {
-        m_autoFillEnabled = state;
-    }
 }
 
 void Preferences::buttonClicked(QAbstractButton* button)
@@ -904,11 +886,6 @@ void Preferences::saveSettings()
     settings.setValue("instantBookmarksToolbar", ui->instantBookmarksToolbar->isChecked());
     settings.setValue("showBookmarksToolbar", ui->showBookmarksToolbar->isChecked());
     settings.setValue("showNavigationToolbar", ui->showNavigationToolbar->isChecked());
-    settings.setValue("showHomeButton", ui->showHome->isChecked());
-    settings.setValue("showBackForwardButtons", ui->showBackForward->isChecked());
-    settings.setValue("showWebSearchBar", ui->showWebSearchBar->isChecked());
-    settings.setValue("showAddTabButton", ui->showAddTabButton->isChecked());
-    settings.setValue("showReloadButton", ui->showReloadStopButtons->isChecked());
     settings.endGroup();
 
     //TABS
@@ -976,6 +953,7 @@ void Preferences::saveSettings()
     settings.setValue("LoadTabsOnActivation", ui->dontLoadTabsUntilSelected->isChecked());
     settings.setValue("DefaultZoomLevel", ui->defaultZoomLevel->currentIndex());
     settings.setValue("XSSAuditing", ui->xssAuditing->isChecked());
+    settings.setValue("PrintElementBackground", ui->printEBackground->isChecked());
     settings.setValue("closeAppWithCtrlQ", ui->closeAppWithCtrlQ->isChecked());
     settings.setValue("UseNativeScrollbars", ui->useNativeScrollbars->isChecked());
 #ifdef Q_OS_WIN
@@ -991,6 +969,7 @@ void Preferences::saveSettings()
 
     //PASSWORD MANAGER
     settings.setValue("SavePasswordsOnSites", ui->allowPassManager->isChecked());
+    settings.setValue("AutoCompletePasswords", ui->autoCompletePasswords->isChecked());
 
     //PRIVACY
     //Web storage
@@ -1008,7 +987,6 @@ void Preferences::saveSettings()
     settings.setValue("Position", m_notification.data() ? m_notification.data()->pos() : m_notifPosition);
     settings.endGroup();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     //SPELLCHECK
     settings.beginGroup(QSL("SpellCheck"));
     settings.setValue("Enabled", ui->spellcheckEnabled->isChecked());
@@ -1021,7 +999,6 @@ void Preferences::saveSettings()
     }
     settings.setValue("Languages", languages);
     settings.endGroup();
-#endif
 
     //OTHER
     //AddressBar
@@ -1041,6 +1018,7 @@ void Preferences::saveSettings()
     settings.beginGroup("SearchEngines");
     settings.setValue("SearchFromAddressBar", ui->searchFromAddressBar->isChecked());
     settings.setValue("SearchWithDefaultEngine", ui->searchWithDefaultEngine->isChecked());
+    settings.setValue("showSearchSuggestions", ui->showABSearchSuggestions->isChecked());
     settings.endGroup();
 
     //Languages
@@ -1049,15 +1027,15 @@ void Preferences::saveSettings()
     settings.endGroup();
 
     //Proxy Configuration
-    QNetworkProxy::ProxyType proxyType;
-    if (ui->systemProxy->isChecked()) {
-        proxyType = QNetworkProxy::NoProxy;
-    }
-    else if (ui->proxyType->currentIndex() == 0) {
-        proxyType = QNetworkProxy::HttpProxy;
-    }
-    else {
-        proxyType = QNetworkProxy::Socks5Proxy;
+    int proxyType;
+    if (ui->noProxy->isChecked()) {
+        proxyType = 0;
+    } else if (ui->systemProxy->isChecked()) {
+        proxyType = 2;
+    } else if (ui->proxyType->currentIndex() == 0) { // Http
+        proxyType = 3;
+    } else { // Socks5
+        proxyType = 4;
     }
 
     settings.beginGroup("Web-Proxy");
@@ -1075,7 +1053,6 @@ void Preferences::saveSettings()
     mApp->cookieJar()->loadSettings();
     mApp->history()->loadSettings();
     mApp->reloadSettings();
-    mApp->plugins()->c2f_saveSettings();
     mApp->desktopNotifications()->loadSettings();
     mApp->autoFill()->loadSettings();
     mApp->networkManager()->loadSettings();

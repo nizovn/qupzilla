@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2016 David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,10 +18,9 @@
 #ifndef TABBAR_H
 #define TABBAR_H
 
+#include <QPointer>
+
 #include "combotabbar.h"
-
-#include <QRect>
-
 #include "qzcommon.h"
 
 class BrowserWindow;
@@ -40,42 +39,16 @@ public:
     void setVisible(bool visible);
     void setForceHidden(bool hidden);
 
-    void overrideTabTextColor(int index, QColor color);
-    void restoreTabTextColor(int index);
-
     void setTabText(int index, const QString &text);
-    void updatePinnedTabCloseButton(int index);
 
     void wheelEvent(QWheelEvent* event);
 
 signals:
-    void reloadTab(int index);
-    void stopTab(int index);
-    void closeAllButCurrent(int index);
-    void closeToRight(int index);
-    void closeToLeft(int index);
-    void duplicateTab(int index);
-    void detachTab(int index);
-
     void moveAddTabButton(int posX);
 
 private slots:
     void currentTabChanged(int index);
     void overflowChanged(bool overflowed);
-
-    void reloadTab() { emit reloadTab(m_clickedTab); }
-    void stopTab() { emit stopTab(m_clickedTab); }
-    void closeTab() { emit tabCloseRequested(m_clickedTab); }
-    void duplicateTab() { emit duplicateTab(m_clickedTab); }
-    void detachTab() { emit detachTab(m_clickedTab); }
-
-    void pinTab();
-    void muteTab();
-
-    void closeCurrentTab();
-    void closeAllButCurrent();
-    void closeToRight();
-    void closeToLeft();
     void closeTabFromButton();
 
 private:
@@ -86,6 +59,7 @@ private:
 
     void hideCloseButton(int index);
     void showCloseButton(int index);
+    void updatePinnedTabCloseButton(int index);
 
     void contextMenuEvent(QContextMenuEvent* event);
     void mouseDoubleClickEvent(QMouseEvent* event);
@@ -94,6 +68,8 @@ private:
     void mouseReleaseEvent(QMouseEvent* event);
 
     void dragEnterEvent(QDragEnterEvent* event);
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dragLeaveEvent(QDragLeaveEvent *event);
     void dropEvent(QDropEvent* event);
 
     QSize tabSizeHint(int index, bool fast) const;
@@ -106,15 +82,14 @@ private:
     bool m_hideTabBarWithOneTab;
 
     int m_showCloseOnInactive;
-    int m_clickedTab;
 
     mutable int m_normalTabWidth;
     mutable int m_activeTabWidth;
 
-    QColor m_originalTabTextColor;
     QPoint m_dragStartPosition;
 
     bool m_forceHidden;
+    QPointer<WebTab> m_lastTab;
 };
 
 #endif // TABBAR_H

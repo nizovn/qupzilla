@@ -7,42 +7,42 @@
         <translation>O QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.ui" line="54"/>
+        <location filename="../src/lib/other/aboutdialog.ui" line="60"/>
         <source>Authors</source>
         <translation>Autori</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="71"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="56"/>
         <source>Authors and Contributors</source>
         <translation>Autori i doprinositelji</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="74"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="59"/>
         <source>&lt;p&gt;&lt;b&gt;Application version %1&lt;/b&gt;&lt;br/&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Inačica aplikacije %1&lt;/b&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="81"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="66"/>
         <source>&lt;b&gt;QtWebEngine version %1&lt;/b&gt;&lt;/p&gt;</source>
         <translation>&lt;b&gt;QtWebEngine inačica %1&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="93"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="78"/>
         <source>&lt; About QupZilla</source>
         <translation>&lt; O QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="96"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="81"/>
         <source>&lt;p&gt;&lt;b&gt;Main developer:&lt;/b&gt;&lt;br/&gt;%1 &amp;lt;%2&amp;gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Glavni razvijatelj:&lt;/b&gt;&lt;br/&gt;%1 &amp;lt;%2&amp;gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="97"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="82"/>
         <source>&lt;p&gt;&lt;b&gt;Contributors:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Doprinositelji:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="109"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="94"/>
         <source>&lt;p&gt;&lt;b&gt;Translators:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Prevoditelji:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</translation>
     </message>
@@ -104,7 +104,7 @@
         <translation>Dodaj novu pretplatu u AdBlock:</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockaddsubscriptiondialog.cpp" line="47"/>
+        <location filename="../src/lib/adblock/adblockaddsubscriptiondialog.cpp" line="44"/>
         <source>Other...</source>
         <translation>Ostalo...</translation>
     </message>
@@ -112,7 +112,7 @@
 <context>
     <name>AdBlockCustomList</name>
     <message>
-        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="298"/>
+        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="284"/>
         <source>Custom Rules</source>
         <translation>Prilagođena pravila</translation>
     </message>
@@ -135,47 +135,42 @@
         <translation>Pretraži...</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="68"/>
+        <location filename="../src/lib/adblock/adblockdialog.ui" line="77"/>
         <source>Options</source>
         <translation>Mogućnosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="98"/>
+        <location filename="../src/lib/adblock/adblockdialog.ui" line="107"/>
         <source>AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="122"/>
-        <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>Koristi samo osnovni dio EasyList (samo zbog performansi)</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="50"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="49"/>
         <source>Add Rule</source>
         <translation>Dodaj pravilo</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="51"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="50"/>
         <source>Remove Rule</source>
         <translation>Ukloni pravilo</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="53"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="52"/>
         <source>Add Subscription</source>
         <translation>Dodaj pretplatu</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="54"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="53"/>
         <source>Remove Subscription</source>
         <translation>Ukloni pretplatu</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="55"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="54"/>
         <source>Update Subscriptions</source>
         <translation>Ažuriraj pretplatu</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="57"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="56"/>
         <source>Learn about writing rules...</source>
         <translation>Saznajte više o pisnju pravila....</translation>
     </message>
@@ -183,65 +178,60 @@
 <context>
     <name>AdBlockIcon</name>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="42"/>
-        <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation>AdBlock vam omogućuje blokiranje neželjenog sadržaja na web stranicama</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="71"/>
-        <source>Blocked popup window</source>
-        <translation>Blokirani skočni prozori</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="71"/>
-        <source>AdBlock blocked unwanted popup window.</source>
-        <translation>AdBlock je blokirao neželjni skočni prozor.</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="90"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="35"/>
         <source>AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="117"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="53"/>
+        <source>AdBlock Icon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="87"/>
+        <source>AdBlock is disabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="93"/>
+        <source>AdBlock is disabled on this site </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="99"/>
+        <source>AdBlock is active</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="146"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>Prikaži AdBlock &amp;postavke</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="125"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="154"/>
         <source>Disable on %1</source>
         <translation>Onemogući na %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="131"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="160"/>
         <source>Disable only on this page</source>
         <translation>Onemogući samo na ovoj stranici</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="141"/>
-        <source>Blocked Popup Windows</source>
-        <translation>Blokirani skočni prozori</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="146"/>
-        <source>%1 with (%2)</source>
-        <translation>%1 sa (%2)</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="166"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="184"/>
         <source>Do you want to add &lt;b&gt;%1&lt;/b&gt; subscription?</source>
         <translation>Želite li dodati &lt;b&gt;%1&lt;/b&gt; pretplatu?</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="168"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="186"/>
         <source>AdBlock Subscription</source>
         <translation>AdBlock pretplata</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="297"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="316"/>
         <source>EasyList</source>
         <translation>EasyList</translation>
     </message>
@@ -249,7 +239,7 @@
 <context>
     <name>AdBlockSubscription</name>
     <message>
-        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="170"/>
+        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="171"/>
         <source>Cannot load subscription!</source>
         <translation>Nemoguće učitavanje pretplate!</translation>
     </message>
@@ -288,6 +278,19 @@
     </message>
 </context>
 <context>
+    <name>AdBlockUrlInterceptor</name>
+    <message>
+        <location filename="../src/lib/adblock/adblockurlinterceptor.cpp" line="44"/>
+        <source>Blocked content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockurlinterceptor.cpp" line="45"/>
+        <source>Blocked by &lt;i&gt;%1 (%2)&lt;/i&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AddAcceptLanguage</name>
     <message>
         <location filename="../src/lib/preferences/addacceptlanguage.ui" line="14"/>
@@ -308,12 +311,12 @@
 <context>
     <name>AesInterface</name>
     <message>
-        <location filename="../src/lib/tools/aesinterface.cpp" line="143"/>
+        <location filename="../src/lib/tools/aesinterface.cpp" line="147"/>
         <source>Warning!</source>
         <translation>Upozorenje!</translation>
     </message>
     <message>
-        <location filename="../src/lib/tools/aesinterface.cpp" line="143"/>
+        <location filename="../src/lib/tools/aesinterface.cpp" line="147"/>
         <source>Data has been encrypted with a newer version of QupZilla.
 Please install latest version of QupZilla.</source>
         <translation>Podaci su šifrirani s novijom inačicom QupZille.
@@ -323,32 +326,32 @@ Instalirajte najnoviju inačicu QupZille.</translation>
 <context>
     <name>AutoFill</name>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="243"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="258"/>
         <source>Database (encrypted)</source>
         <translation>Baza podataka (šifrirana)</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="568"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="579"/>
         <source>Warning!</source>
         <translation>Upozorenje!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="569"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="580"/>
         <source>This backend needs a master password to be set! QupZilla just switches to its default backend</source>
         <translation>Ova pozadina treba glavnu lozinku za postavljanje! QupZilla se upravo prebacila na zadanu pozadinu</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="659"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="670"/>
         <source>Enter Master Password</source>
         <translation>Upiši glavnu lozinku</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="663"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="674"/>
         <source>Permission is required, please enter Master Password:</source>
         <translation>Potrebna je dozvola, upišite glavnu lozinku:</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="669"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="680"/>
         <source>Entered password is wrong!</source>
         <translation>Upisana lozinka je pogrešna!</translation>
     </message>
@@ -622,52 +625,62 @@ Instalirajte najnoviju inačicu QupZille.</translation>
         <translation>Sve ostale zabilješke</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="151"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="152"/>
         <source>Choose name and location of this bookmark.</source>
         <translation>Odaberi naziv i lokaciju ove zabilješke</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="155"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="156"/>
         <source>Add New Bookmark</source>
         <translation>Dodaj novu zabilješku</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="195"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="196"/>
         <source>Choose folder for bookmarks:</source>
         <translation>Odaberi mapu za zabilješke:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="196"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="197"/>
         <source>Bookmark All Tabs</source>
         <translation>Zabilježi sve kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="236"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="237"/>
         <source>Title:</source>
         <translation>Naslov:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="239"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="240"/>
         <source>Address:</source>
         <translation>Adresa:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="241"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="242"/>
         <source>Keyword:</source>
         <translation>Ključna riječ:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="244"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="245"/>
         <source>Description:</source>
         <translation>Opis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="249"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="250"/>
         <source>Edit Bookmark</source>
         <translation>Uredi zabilješku</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="415"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="340"/>
+        <source>Confirmation</source>
+        <translation>Potvrda</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="341"/>
+        <source>Are you sure you want to open all bookmarks from &apos;%1&apos; folder in tabs?</source>
+        <translation>Jeste li sigurni da želite otvoriti sve zabilješke iz &apos;%1&apos; mape u karticama?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="435"/>
         <source>Empty</source>
         <translation>Prazno</translation>
     </message>
@@ -736,7 +749,7 @@ Instalirajte najnoviju inačicu QupZille.</translation>
 <context>
     <name>BookmarksFoldersMenu</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="75"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="76"/>
         <source>Choose %1</source>
         <translation>Odaberi %1</translation>
     </message>
@@ -990,12 +1003,12 @@ Instalirajte najnoviju inačicu QupZille.</translation>
 <context>
     <name>BookmarksModel</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="147"/>
+        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="148"/>
         <source>Title</source>
         <translation>Naslov</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="149"/>
+        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="150"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
@@ -1034,37 +1047,37 @@ Instalirajte najnoviju inačicu QupZille.</translation>
 <context>
     <name>BookmarksToolbar</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="73"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="72"/>
         <source>Open in new tab</source>
         <translation>Otvori u novoj kartici</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="74"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="73"/>
         <source>Open in new window</source>
         <translation>Otvori u novom prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="75"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="74"/>
         <source>Open in new private window</source>
         <translation>Otvori u novom privatnom prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="77"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="76"/>
         <source>Edit</source>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="78"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="77"/>
         <source>Delete</source>
         <translation>Obriši</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="80"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="79"/>
         <source>Show Only Icons</source>
         <translation>Prikaži samo ikone</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="84"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="83"/>
         <source>Show Only Text</source>
         <translation>Pokaži samo tekst</translation>
     </message>
@@ -1074,7 +1087,7 @@ Instalirajte najnoviju inačicu QupZille.</translation>
     <message>
         <location filename="../src/lib/bookmarks/bookmarkswidget.ui" line="20"/>
         <source>Add to Bookmarks</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj u zabilješke</translation>
     </message>
     <message>
         <location filename="../src/lib/bookmarks/bookmarkswidget.ui" line="33"/>
@@ -1101,82 +1114,78 @@ Instalirajte najnoviju inačicu QupZille.</translation>
 <context>
     <name>BrowserWindow</name>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="113"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="199"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="968"/>
         <source>QupZilla</source>
         <translation>QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="332"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="383"/>
         <source>IP Address of current page</source>
         <translation>IP adresa trenutne stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="597"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="718"/>
         <source> (Private Browsing)</source>
         <translation>(Privatno pregledavanje)</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="626"/>
-        <source>QupZilla %1 (%2)</source>
-        <translation>QupZilla %1 (%2)</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="874"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="970"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="930"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1034"/>
         <source>&amp;Menu Bar</source>
         <translation>&amp;Traka izbornika</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="935"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1039"/>
         <source>&amp;Navigation Toolbar</source>
         <translation>&amp;Navigacijska traka</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="939"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1043"/>
         <source>&amp;Bookmarks Toolbar</source>
         <translation>&amp;Traka zabilješki</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="945"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1049"/>
         <source>&amp;Tabs on Top</source>
         <translation>&amp;Kartice na vrhu</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1001"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1103"/>
         <source>Other</source>
         <translation>Ostalo</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>HTML files</source>
         <translation>HTML datoteke</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>Image files</source>
         <translation>Datoteke slika</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>Text files</source>
         <translation>Tekstovne datoteke</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>All files</source>
         <translation>Sve datoteke</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1040"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1142"/>
         <source>Open file...</source>
         <translation>Otvori datoteku...</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/app/browserwindow.cpp" line="1373"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1481"/>
         <source>There are still %n open tabs and your session won't be stored. 
 Are you sure you want to close this window?</source>
         <translation><numerusform>Još uvijek je %n otvorenih kartica i vaša sesija neće biti spremljena.
@@ -1185,17 +1194,17 @@ Jeste li sigurni da želite zatvoriti ovaj prozor?</numerusform><numerusform>Jo�
 Jeste li sigurni da želite zatvoriti ovaj prozor?</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1374"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1482"/>
         <source>Don&apos;t ask again</source>
         <translation>Ne pitaj ponovno</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1375"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1483"/>
         <source>There are still open tabs</source>
         <translation>Još uvijek ima otvorenih kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="66"/>
+        <location filename="../src/lib/tabwidget/tabbar.cpp" line="111"/>
         <source>Close Tab</source>
         <translation>Zatvori karticu</translation>
     </message>
@@ -1297,92 +1306,92 @@ Jeste li sigurni da želite zatvoriti ovaj prozor?</numerusform></translation>
         <translation>Obriši nedavnu povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="36"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="20"/>
         <source>&lt;b&gt;Clear Recent History&lt;/b&gt;</source>
         <translation>&lt;b&gt;Obriši nedavnu povijest&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="43"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="27"/>
         <source>Edit cookies</source>
         <translation>Uredi kolačiće</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="54"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="38"/>
         <source>Earlier Today</source>
         <translation>Ranije danas</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="59"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="43"/>
         <source>Week</source>
         <translation>Tjedan</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="64"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="48"/>
         <source>Month</source>
         <translation>Mjesec</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="69"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="53"/>
         <source>All</source>
         <translation>Sve</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="77"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="61"/>
         <source>Visited pages history from:</source>
         <translation>Povijest posjećenih stranica od:</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="87"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="71"/>
         <source>Checked items will be cleared upon clicking the Clear button.</source>
         <translation>Odabrane stavke biti će obrisane klikom na tipku &apos;Obriši&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="94"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="78"/>
         <source>Local storage</source>
         <translation>Lokalna pohrana</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="110"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="94"/>
         <source>Clear</source>
         <translation>Obriši</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="130"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="114"/>
         <source>Web databases</source>
         <translation>Web baza podataka</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="140"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="124"/>
         <source>Cache</source>
         <translation>Predmemorija</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="150"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="134"/>
         <source>Optimize database</source>
         <translation>Optimiziraj bazu podataka</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="157"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="141"/>
         <source>Cookies</source>
         <translation>Kolačići</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="174"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="158"/>
         <source>Database</source>
         <translation>Baze podataka</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="155"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="154"/>
         <source>Done</source>
         <translation>Završeno</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="173"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="172"/>
         <source>Database Optimized</source>
         <translation>Baza podataka je optimizirana</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="173"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="172"/>
         <source>Database successfully optimized.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Database Size Before: &lt;/b&gt;%1&lt;br/&gt;&lt;b&gt;Database Size After: &lt;/b&gt;%2</source>
         <translation>Baza podataka je uspješno optimizirana.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Veličina baze podataka prije: &lt;/b&gt;%1&lt;br/&gt;&lt;b&gt;Veličina baze podataka poslije: &lt;/b&gt;%2</translation>
     </message>
@@ -1543,7 +1552,7 @@ Jeste li sigurni da želite zatvoriti ovaj prozor?</numerusform></translation>
     <message>
         <location filename="../src/lib/cookies/cookiemanager.ui" line="432"/>
         <source>Delete cookies on close</source>
-        <translation type="unfinished"/>
+        <translation>Obriši kolačiće pri zatvaranju</translation>
     </message>
     <message>
         <location filename="../src/lib/cookies/cookiemanager.cpp" line="81"/>
@@ -1609,6 +1618,14 @@ Jeste li sigurni da želite zatvoriti ovaj prozor?</numerusform></translation>
         <location filename="../src/lib/cookies/cookiemanager.cpp" line="208"/>
         <source>The server &quot;%1&quot; is already in whitelist, please remove it first.</source>
         <translation>Poslužitelj &quot;%1&quot; je već na dopuštenom popisu, molim najprije ga uklonite.</translation>
+    </message>
+</context>
+<context>
+    <name>DesktopNotificationsFactory</name>
+    <message>
+        <location filename="../src/lib/notifications/desktopnotificationsfactory.cpp" line="109"/>
+        <source>Preview</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1745,12 +1762,12 @@ nije pronađena!</translation>
     <message>
         <location filename="../src/lib/downloads/downloadmanager.ui" line="20"/>
         <location filename="../src/lib/downloads/downloadmanager.cpp" line="177"/>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="395"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="408"/>
         <source>Download Manager</source>
         <translation>Upravitelj preuzimanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.ui" line="85"/>
+        <location filename="../src/lib/downloads/downloadmanager.ui" line="69"/>
         <source>Clear</source>
         <translation>Obriši</translation>
     </message>
@@ -1765,47 +1782,47 @@ nije pronađena!</translation>
         <translation>%1% - Upravitelj preuzimanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="298"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="293"/>
         <source>Save file as...</source>
         <translation>Spremi datoteku kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="308"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="303"/>
         <source>MIME HTML Archive (*.mhtml)</source>
         <translation>MIME HTML arhiva (*.mhtml)</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="309"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="304"/>
         <source>HTML Page, single (*.html)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="310"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="305"/>
         <source>HTML Page, complete (*.html)</source>
         <translation>HTML stranica, kompletna (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="314"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="309"/>
         <source>Save page as...</source>
         <translation>Spremi stranicu kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="388"/>
-        <source>Download Finished</source>
-        <translation>Preuzimanje završeno</translation>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="401"/>
+        <source>QupZilla: Download Finished</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="388"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="401"/>
         <source>All files have been successfully downloaded.</source>
         <translation>Sve datoteke su uspješno preuzete.</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="456"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="469"/>
         <source>Warning</source>
         <translation>Upozorenje</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="457"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="470"/>
         <source>Are you sure you want to quit? All uncompleted downloads will be cancelled!</source>
         <translation>Sigurno želite zatvoriti? Sva nedovršena preuzimanja će biti prekinuta!</translation>
     </message>
@@ -1835,7 +1852,7 @@ nije pronađena!</translation>
     <message>
         <location filename="../src/lib/downloads/downloadoptionsdialog.ui" line="165"/>
         <source>which is:</source>
-        <translation type="unfinished"/>
+        <translation>koji je:</translation>
     </message>
     <message>
         <location filename="../src/lib/downloads/downloadoptionsdialog.ui" line="215"/>
@@ -1858,9 +1875,23 @@ nije pronađena!</translation>
         <translation>Preuzimanje %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadoptionsdialog.cpp" line="111"/>
+        <location filename="../src/lib/downloads/downloadoptionsdialog.cpp" line="112"/>
         <source>Download link copied.</source>
         <translation>Poveznica preuzimanja kopirana.</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsButton</name>
+    <message>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="27"/>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="43"/>
+        <source>Downloads</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="28"/>
+        <source>Open Download Manager</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2025,67 +2056,67 @@ nije pronađena!</translation>
 <context>
     <name>History</name>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="84"/>
+        <location filename="../src/lib/history/history.cpp" line="85"/>
         <source>Empty Page</source>
         <translation>Prazna stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="265"/>
+        <location filename="../src/lib/history/history.cpp" line="270"/>
         <source>January</source>
         <translation>Siječanj</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="267"/>
+        <location filename="../src/lib/history/history.cpp" line="272"/>
         <source>February</source>
         <translation>Veljača</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="269"/>
+        <location filename="../src/lib/history/history.cpp" line="274"/>
         <source>March</source>
         <translation>Ožujak</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="271"/>
+        <location filename="../src/lib/history/history.cpp" line="276"/>
         <source>April</source>
         <translation>Travanj</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="273"/>
+        <location filename="../src/lib/history/history.cpp" line="278"/>
         <source>May</source>
         <translation>Svibanj</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="275"/>
+        <location filename="../src/lib/history/history.cpp" line="280"/>
         <source>June</source>
         <translation>Lipanj</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="277"/>
+        <location filename="../src/lib/history/history.cpp" line="282"/>
         <source>July</source>
         <translation>Srpanj</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="279"/>
+        <location filename="../src/lib/history/history.cpp" line="284"/>
         <source>August</source>
         <translation>Kolovoz</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="281"/>
+        <location filename="../src/lib/history/history.cpp" line="286"/>
         <source>September</source>
         <translation>Rujan</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="283"/>
+        <location filename="../src/lib/history/history.cpp" line="288"/>
         <source>October</source>
         <translation>Listopad</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="285"/>
+        <location filename="../src/lib/history/history.cpp" line="290"/>
         <source>November</source>
         <translation>Studeni</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="287"/>
+        <location filename="../src/lib/history/history.cpp" line="292"/>
         <source>December</source>
         <translation>Prosinac</translation>
     </message>
@@ -2099,7 +2130,7 @@ nije pronađena!</translation>
     </message>
     <message>
         <location filename="../src/lib/history/historymanager.ui" line="20"/>
-        <location filename="../src/lib/history/historymanager.cpp" line="142"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="154"/>
         <source>Delete</source>
         <translation>Obriši</translation>
     </message>
@@ -2109,37 +2140,37 @@ nije pronađena!</translation>
         <translation>Obriši povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="77"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="78"/>
         <source>Confirmation</source>
         <translation>Potvrda</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="78"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="79"/>
         <source>Are you sure you want to delete all history?</source>
         <translation>Jeste li sigurni da želite izbrisati povijest?</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="133"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="145"/>
         <source>Open in new tab</source>
         <translation>Otvori u novoj kartici</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="134"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="146"/>
         <source>Open in new window</source>
         <translation>Otvori u novom prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="135"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="147"/>
         <source>Open in new private window</source>
         <translation>Otvori u novom privatnom prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="138"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="150"/>
         <source>Copy url</source>
         <translation>Kopiraj URL</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="139"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="151"/>
         <source>Copy title</source>
         <translation>Kopiraj naslov</translation>
     </message>
@@ -2147,55 +2178,67 @@ nije pronađena!</translation>
 <context>
     <name>HistoryMenu</name>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="134"/>
-        <location filename="../src/lib/history/historymenu.cpp" line="158"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="135"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="157"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="186"/>
         <source>Empty</source>
         <translation>Prazno</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="162"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="161"/>
         <source>Restore All Closed Tabs</source>
         <translation>Obnovi sve zatvorene kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="163"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="162"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="190"/>
         <source>Clear list</source>
         <translation>Obriši popis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="209"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="189"/>
+        <source>Restore All Closed Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/history/historymenu.cpp" line="236"/>
         <source>Hi&amp;story</source>
         <translation>Po&amp;vijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="211"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="238"/>
         <source>&amp;Back</source>
         <translation>&amp;Natrag</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="214"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="241"/>
         <source>&amp;Forward</source>
         <translation>&amp;Naprijed</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="217"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="244"/>
         <source>&amp;Home</source>
         <translation>&amp;Početna stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="220"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="247"/>
         <source>Show &amp;All History</source>
         <translation>Prikaži &amp;svu povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="228"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="255"/>
         <source>Most Visited</source>
         <translation>Najposjećenije</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="231"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="258"/>
         <source>Closed Tabs</source>
         <translation>Zatvorene kartice</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/history/historymenu.cpp" line="261"/>
+        <source>Closed Windows</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2221,18 +2264,18 @@ nije pronađena!</translation>
         <translation>Broj posjeta</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="339"/>
-        <location filename="../src/lib/history/historymodel.cpp" line="470"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="340"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="471"/>
         <source>Today</source>
         <translation>Danas</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="475"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="476"/>
         <source>This Week</source>
         <translation>Ovaj tjedan</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="480"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="481"/>
         <source>This Month</source>
         <translation>Ovaj mjesec</translation>
     </message>
@@ -2391,14 +2434,14 @@ nije pronađena!</translation>
         <translation>Zalijepi i &amp;idi</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/locationbar.cpp" line="152"/>
-        <source>Enter URL address or search on %1</source>
-        <translation>Upiši URL adresu ili pretragu na %1</translation>
+        <location filename="../src/lib/navigation/locationbar.cpp" line="148"/>
+        <source>Enter address or search with %1</source>
+        <translation>Unesite adresu ili tražite pomoću %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/locationbar.cpp" line="154"/>
-        <source>Enter URL address</source>
-        <translation>Unesite URL adresu</translation>
+        <location filename="../src/lib/navigation/locationbar.cpp" line="150"/>
+        <source>Enter address</source>
+        <translation>Unesite adresu</translation>
     </message>
     <message>
         <location filename="../src/lib/navigation/siteicon.cpp" line="40"/>
@@ -2407,47 +2450,70 @@ nije pronađena!</translation>
     </message>
 </context>
 <context>
-    <name>LocationCompleterView</name>
+    <name>LocationCompleterDelegate</name>
     <message>
-        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="143"/>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="157"/>
+        <source>Visit</source>
+        <translation>Posjeti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="163"/>
+        <source>Search with %1</source>
+        <translation>Traži pomoću %1</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="197"/>
         <source>Switch to tab</source>
         <translation>Prebaci na karticu</translation>
     </message>
 </context>
 <context>
+    <name>LocationCompleterView</name>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterview.cpp" line="73"/>
+        <source>Manage Search Engines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterview.cpp" line="78"/>
+        <source>Search with:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1074"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1109"/>
         <source>QupZilla is not currently your default browser. Would you like to make it your default browser?</source>
         <translation>QupZilla trenutno nije vaš zadani preglednik. Želite li ga postaviti za vaš zadani pregledink?</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1075"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1110"/>
         <source>Always perform this check when starting QupZilla.</source>
         <translation>Uvijek pokreni ovu provjeru kad se QupZilla pokrene.</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1077"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1112"/>
         <source>Default Browser</source>
         <translation>Zadani preglednik</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1164"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1230"/>
         <source>Open new tab</source>
-        <translation type="unfinished"/>
+        <translation>Otvori novu karticu</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1165"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1231"/>
         <source>Open new window</source>
-        <translation type="unfinished"/>
+        <translation>Otvori novi prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1166"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1232"/>
         <source>Open new private window</source>
-        <translation type="unfinished"/>
+        <translation>Otvori novi privatni prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1174"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1247"/>
         <source>QupZilla is a new, fast and secure open-source WWW browser. QupZilla is licensed under GPL version 3 or (at your option) any later version. It is based on WebKit core and Qt Framework.</source>
         <translation>QupZilla je nov, brz i siguran internetski preglednik otvorenog kôda. QupZilla je licencirana pod GPL inačice 3 ili (po vašem mišljenju) svake kasnije inačice. Temeljena je na WebKit jezgri i Qt Frameworku.</translation>
     </message>
@@ -2455,242 +2521,248 @@ nije pronađena!</translation>
 <context>
     <name>MainMenu</name>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="503"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="84"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="497"/>
+        <source>Sessions</source>
+        <translation>Sesije</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/app/mainmenu.cpp" line="467"/>
         <source>&amp;About QupZilla</source>
         <translation>&amp;O Qupzilli</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="508"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="472"/>
         <source>Pr&amp;eferences</source>
         <translation>Os&amp;obitosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="514"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="478"/>
         <source>Quit</source>
         <translation>Zatvori</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="521"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="485"/>
         <source>&amp;File</source>
         <translation>&amp;Datoteka</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="525"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="488"/>
         <source>New Tab</source>
         <translation>Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="526"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="489"/>
         <source>&amp;New Window</source>
         <translation>&amp;Novi prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="527"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="490"/>
         <source>New &amp;Private Window</source>
         <translation>Novi &amp;privatni prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="528"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="491"/>
         <source>Open Location</source>
         <translation>Otvori lokaciju</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="529"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="492"/>
         <source>Open &amp;File...</source>
         <translation>Otvori &amp;datoteku...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="530"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="493"/>
         <source>Close Window</source>
         <translation>Zatvori prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="532"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="500"/>
+        <source>Session Manager</source>
+        <translation>Upravitelj sesijama</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/app/mainmenu.cpp" line="507"/>
         <source>&amp;Save Page As...</source>
         <translation>&amp;Spremi stranicu kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="533"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="508"/>
         <source>Send Link...</source>
         <translation>Pošalji poveznicu...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="534"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="509"/>
         <source>&amp;Print...</source>
         <translation>&amp;Ispis...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="539"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="514"/>
         <source>&amp;Edit</source>
         <translation>&amp;Uredi</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="543"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="517"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vrati</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="544"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="519"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ponovi</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="546"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="522"/>
         <source>&amp;Cut</source>
         <translation>&amp;Izreži</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="547"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="524"/>
         <source>C&amp;opy</source>
         <translation>K&amp;opiraj</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="548"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="526"/>
         <source>&amp;Paste</source>
         <translation>&amp;Zalijepi</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="550"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="529"/>
         <source>Select &amp;All</source>
         <translation>Odaberi &amp;sve</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="551"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="531"/>
         <source>&amp;Find</source>
         <translation>&amp;Pretraži</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="555"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="536"/>
         <source>&amp;View</source>
         <translation>&amp;Pogled</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="559"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="539"/>
         <source>Toolbars</source>
         <translation>Alatne trake</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="561"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="541"/>
         <source>Sidebar</source>
-        <translation>Bočna traka</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="563"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="543"/>
         <source>Character &amp;Encoding</source>
         <translation>Kôdiranje &amp;znakova</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="572"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="552"/>
         <source>Sta&amp;tus Bar</source>
         <translation>Sta&amp;tusna traka</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="574"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="554"/>
         <source>&amp;Stop</source>
         <translation>&amp;Zaustavi</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="575"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="555"/>
         <source>&amp;Reload</source>
         <translation>&amp;Osvježi</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="577"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="557"/>
         <source>Zoom &amp;In</source>
         <translation>&amp;Uvećaj</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="578"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="558"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Umanji</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="579"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="559"/>
         <source>Reset</source>
         <translation>Vrati zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="583"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="563"/>
         <source>&amp;Page Source</source>
         <translation>&amp;Izvorni kôd stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="584"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="565"/>
         <source>&amp;FullScreen</source>
         <translation>&amp;Potpuni zaslon</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="587"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="568"/>
         <source>&amp;Tools</source>
         <translation>&amp;Alati</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="591"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="571"/>
         <source>&amp;Web Search</source>
         <translation>&amp;Web pretraživanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="592"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="572"/>
         <source>Site &amp;Info</source>
         <translation>Informacije &amp;stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="594"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="575"/>
         <source>&amp;Download Manager</source>
         <translation>&amp;Upravitelj preuzimanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="595"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="576"/>
         <source>&amp;Cookies Manager</source>
         <translation>&amp;Upravitelj kolačića</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="596"/>
-        <source>&amp;AdBlock</source>
-        <translation>&amp;AdBlock</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="597"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="577"/>
         <source>Web In&amp;spector</source>
         <translation>Web in&amp;spektor</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="598"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="578"/>
         <source>Clear Recent &amp;History</source>
         <translation>Obriši nedavnu &amp;povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="603"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="583"/>
         <source>&amp;Extensions</source>
         <translation>&amp;Proširenja</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="609"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="589"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoć</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="612"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="592"/>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt-u</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="617"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="597"/>
         <source>Information about application</source>
         <translation>Informacije o aplikaciji</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="618"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="598"/>
         <source>Configuration Information</source>
         <translation>Informacije podešavanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="619"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="599"/>
         <source>Report &amp;Issue</source>
         <translation>Prijavi &amp;problem</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="632"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="612"/>
         <source>Restore &amp;Closed Tab</source>
         <translation>Obnovi &amp;zatvorene kartice</translation>
     </message>
@@ -2748,30 +2820,30 @@ nije pronađena!</translation>
         <translation>&lt;b&gt;Napomena:&lt;/b&gt; Glavna lozinka ne može se obnoviti. Nemojte ju zaboraviti.</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="536"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="541"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="590"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="633"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="547"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="552"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="601"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="644"/>
         <source>Warning!</source>
         <translation>Upozorenje!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="536"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="547"/>
         <source>You entered a wrong password!</source>
         <translation>Unijeli ste pogrešnu lozinku!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="541"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="552"/>
         <source>New/Confirm password fields do not match!</source>
         <translation>Nova/Potvrdi lozinku polja se ne podudaraju!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="590"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="601"/>
         <source>Are you sure you want to clear master password and decrypt data?</source>
         <translation>Sigurno želite obrisati glavnu lozinku i dešifrirati podatke?</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="633"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="644"/>
         <source>Some data has not been decrypted. The master password was not cleared!</source>
         <translation>Neki podaci nisu dešifrirani. Glavna lozinka nije obrisana!</translation>
     </message>
@@ -2779,45 +2851,124 @@ nije pronađena!</translation>
 <context>
     <name>NavigationBar</name>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="53"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="49"/>
+        <source>Empty Page</source>
+        <translation>Prazna stranica</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="76"/>
         <source>Back</source>
         <translation>Natrag</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="62"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="86"/>
         <source>Forward</source>
         <translation>Naprijed</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="79"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="106"/>
         <source>Home</source>
         <translation>Početna stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="87"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="114"/>
         <source>New Tab</source>
         <translation>Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="107"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="134"/>
+        <source>Tools</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="147"/>
         <source>Main Menu</source>
         <translation>Glavni izbornik</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="124"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="164"/>
         <source>Exit Fullscreen</source>
-        <translation>Napusti potpuni zaslon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="240"/>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="274"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="190"/>
+        <source>Back and Forward buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="191"/>
+        <source>Reload button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="192"/>
+        <source>Home button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="193"/>
+        <source>Add tab button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="194"/>
+        <source>Address and Search bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="195"/>
+        <source>Tools button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="196"/>
+        <source>Exit Fullscreen button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="370"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="404"/>
         <source>Clear history</source>
         <translation>Obriši povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="376"/>
-        <source>Empty Page</source>
-        <translation>Prazna stranica</translation>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="411"/>
+        <source>Toolbars</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="412"/>
+        <source>Sidebar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="427"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="442"/>
+        <source>Configure Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NavigationBarConfigDialog</name>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="14"/>
+        <source>Configure Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="62"/>
+        <source>Show search bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="82"/>
+        <source>Available items:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="89"/>
+        <source>Current items:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2878,12 +3029,7 @@ nije pronađena!</translation>
 <context>
     <name>PluginsList</name>
     <message>
-        <location filename="../src/lib/preferences/pluginslist.ui" line="29"/>
-        <source>Allow Application Extensions to be loaded</source>
-        <translation>Dopusti učitavanje proširenja aplikacije</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/pluginslist.ui" line="63"/>
+        <location filename="../src/lib/preferences/pluginslist.ui" line="56"/>
         <source>Settings</source>
         <translation>Postavke</translation>
     </message>
@@ -2891,12 +3037,12 @@ nije pronađena!</translation>
 <context>
     <name>PluginsManager</name>
     <message>
-        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="214"/>
+        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="192"/>
         <source>Error!</source>
         <translation>Greška!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="214"/>
+        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="192"/>
         <source>Cannot load extension!</source>
         <translation>Nemoguće učitavanje proširenja!</translation>
     </message>
@@ -2912,67 +3058,72 @@ nije pronađena!</translation>
 <context>
     <name>PopupWindow</name>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="70"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="83"/>
         <source>File</source>
         <translation>Datoteka</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="71"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="84"/>
         <source>Send Link...</source>
         <translation>Pošalji poveznicu...</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="74"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="85"/>
+        <source>&amp;Print...</source>
+        <translation>&amp;Ispis...</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="87"/>
         <source>Close</source>
         <translation>Zatvori</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="77"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="90"/>
         <source>Edit</source>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="86"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="99"/>
         <source>Find</source>
         <translation>Pretraži</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="89"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="102"/>
         <source>View</source>
         <translation>Pogled</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="90"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="103"/>
         <source>&amp;Stop</source>
         <translation>&amp;Zaustavi</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="92"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="105"/>
         <source>&amp;Reload</source>
         <translation>&amp;Osvježi</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="95"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="108"/>
         <source>Zoom &amp;In</source>
         <translation>Uvećaj&amp;</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="96"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="109"/>
         <source>Zoom &amp;Out</source>
         <translation>Umanji&amp;</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="97"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="110"/>
         <source>Reset</source>
         <translation>Vrati zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="99"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="112"/>
         <source>&amp;Page Source</source>
         <translation>&amp;Izvorni kôd stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="252"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="266"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
@@ -3051,13 +3202,13 @@ nije pronađena!</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="196"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="338"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="343"/>
         <source>Use current</source>
         <translation>Koristi se trenutno</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="227"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="829"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="831"/>
         <source>Note: You cannot delete active profile.</source>
         <translation>Napomena: ne možete obrisati aktivni profil.</translation>
     </message>
@@ -3088,13 +3239,13 @@ nije pronađena!</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="308"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="360"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="365"/>
         <source>Open homepage</source>
         <translation>Otvori početnu stranicu</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="313"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="365"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="370"/>
         <source>Open speed dial</source>
         <translation>Otvori Brzo biranje</translation>
     </message>
@@ -3104,879 +3255,875 @@ nije pronađena!</translation>
         <translation>Obnovi sesiju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="326"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="323"/>
+        <source>Select session</source>
+        <translation>Odaberi sesiju</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="331"/>
         <source>Homepage: </source>
         <translation>Početna stranica:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="347"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="352"/>
         <source>On new tab: </source>
         <translation>Na novoj kartici:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="355"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="360"/>
         <source>Open blank tab</source>
         <translation>Otvori praznuu karticu</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="370"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="375"/>
         <source>Open other page...</source>
         <translation>Otvori drugu stranicu...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="378"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="383"/>
         <source>&lt;b&gt;Profiles&lt;/b&gt;</source>
         <translation>&lt;b&gt;Profili&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="385"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="390"/>
         <source>Startup profile:</source>
         <translation>Početni profil:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="392"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="397"/>
         <source>Check for updates on start</source>
         <translation>Provjeri ažuriranja pri pokretanju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="399"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="404"/>
         <source>Active profile:</source>
         <translation>Aktivan profil:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="413"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="418"/>
         <source>In order to change language, you must restart browser.</source>
         <translation>Za promjenu jezika, morate ponovno pokrenuti preglednik.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="420"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="425"/>
         <source>&lt;b&gt;Language&lt;/b&gt;</source>
         <translation>&lt;b&gt;Jezik&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="441"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="446"/>
         <source>Available translations: </source>
         <translation>Dostupni prijevodi:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="453"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="458"/>
         <source>Don&apos;t load tabs until selected</source>
         <translation>Ne učitavaj kartice dok nisu odabrane</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="475"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="480"/>
         <source>Check to see if QupZilla is the default browser on startup</source>
         <translation>Provjeri je li QupZilla zadani preglednik pri pokretanju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="485"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="490"/>
         <source>Check Now</source>
         <translation>Provjeri odmah</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="515"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="520"/>
         <source>Themes</source>
         <translation>Teme</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="537"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="542"/>
         <source>Advanced options</source>
         <translation>Napredne mogućnosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="543"/>
-        <source>&lt;b&gt;Browser Window&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Prozor preglednika&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="581"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="550"/>
         <source>Show StatusBar on start</source>
         <translation>Prikaži statusnu traku pri pokretanju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="588"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="557"/>
         <source>Show Bookmarks ToolBar on start</source>
         <translation>Prikaži traku zabilješki pri pokretanju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="595"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="564"/>
         <source>Show Navigation ToolBar on start</source>
         <translation>Prikaži traku navigacije pri pokretanju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="602"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="571"/>
         <source>Enable instant Bookmarks ToolBar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="611"/>
-        <source>&lt;b&gt;Navigation ToolBar&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Navigacijska traka&lt;/b&gt;</translation>
+        <location filename="../src/lib/preferences/preferences.ui" line="593"/>
+        <source>&lt;b&gt;Browser Window&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Prozor preglednika&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="618"/>
-        <source>Show Home button</source>
-        <translation>Prikaži tipku početne stranice</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="625"/>
-        <source>Show Back / Forward buttons</source>
-        <translation>Prikaži tipku Natrag/Naprijed</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="645"/>
-        <source>Show Add Tab button</source>
-        <translation>Prikaži tipku Dodaj karticu</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="652"/>
-        <source>Show web search bar</source>
-        <translation>Prikaži traku pretraživača</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="659"/>
-        <source>Show Reload / Stop buttons</source>
-        <translation>Prikaži Osvježi/Zaustavi tipku</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="678"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="641"/>
         <source>Tabs behaviour</source>
         <translation>Ponašanje kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="684"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="647"/>
         <source>Hide tabs when there is only one tab</source>
         <translation>Sakrij kartice kada je dostupna samo jedna kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="691"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="654"/>
         <source>Activate last tab when closing active tab</source>
         <translation>Aktiviraj posljednju karticu kada se zatvara aktivna kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="698"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="661"/>
         <source>Open new tabs after active tab</source>
         <translation>Otvori nove kartice nakon aktivne kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="705"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="668"/>
         <source>Open new empty tabs after active tab</source>
         <translation>Otvori nove prazne kartice nakon aktivne kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="712"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="675"/>
         <source>Open popup windows in tabs</source>
-        <translation type="unfinished"/>
+        <translation>Otvori skočne prozore u karticama</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="719"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="682"/>
         <source>Always switch between tabs with mouse wheel</source>
         <translation>Uvijek prebacuj između kartica pomoću kotačića miša</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="726"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="689"/>
         <source>Automatically switch to newly opened tab</source>
         <translation>Automatski prebaci na novootvorenu karticu</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="733"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="696"/>
         <source>Don&apos;t close window upon closing last tab</source>
         <translation>Ne zatvaraj prozor dok se ne zatvori zadnja kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="740"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="703"/>
         <source>Ask when closing multiple tabs</source>
         <translation>Pitaj kod zatvaranja višestrukih kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="747"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="710"/>
         <source>Show closed tabs button</source>
         <translation>Prikaži tipku zatvaranja kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="756"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="719"/>
         <source>Show close buttons on inactive tabs:</source>
         <translation>Prikaži tipke zatvaranja na neaktivnim karticama:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="764"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="727"/>
         <source>Automatic</source>
         <translation>Automatski</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="769"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="732"/>
         <source>Always</source>
         <translation>Uvijek</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="774"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="737"/>
         <source>Never</source>
         <translation>NIkada</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="814"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="777"/>
         <source>Address Bar behaviour</source>
         <translation>Ponašanje adresne trake</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="822"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="785"/>
         <source>Suggest when typing into address bar:</source>
         <translation>Prijedlozi pri tipkanju u adresnu traku:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="836"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="799"/>
         <source>History and Bookmarks</source>
         <translation>Povijest i Zabilješke</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="841"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="804"/>
         <source>History</source>
         <translation>Povijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="846"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="809"/>
         <source>Bookmarks</source>
         <translation>Zabilješke</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="851"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="814"/>
         <source>Nothing</source>
         <translation>Ništa</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="877"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="840"/>
         <source>Enable inline suggestions</source>
         <translation>Omogući ugrađene prijedloge</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="884"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="847"/>
         <source>Press &quot;Shift&quot; to not switch the tab but load the url in the current tab</source>
         <translation>Pritisni &quot;Shift&quot; za neprebacivanje na karticu već učitavanja URL-a u trenutnoj kartici</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="887"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="850"/>
         <source>Propose to switch tab if completed url is already loaded</source>
         <translation>Predloži prebacivanje na karticu ako je dovršeni URL već učitan</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="857"/>
         <source>Always show go icon</source>
         <translation>Uvijek prikaži Idi ikonu</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="901"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="864"/>
         <source>Select all text by double clicking in address bar</source>
         <translation>Odaberi sav tekst dvostrukim klikom u adresnu traku</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="908"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="871"/>
         <source>Select all text by clicking in address bar</source>
         <translation>Odaberi sav tekst klikom u adresnu traku</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="915"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="878"/>
         <source>Enable automatic searching from the address bar</source>
         <translation>Omogući automatsko traženje iz adresne trake</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="922"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="885"/>
         <source>Search with Default Engine</source>
         <translation>Traži sa zadanim pretraživačem </translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="945"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="892"/>
+        <source>Show search suggestions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="915"/>
         <source>Show loading progress in address bar</source>
         <translation>Prikaži napredak učitavanja u adresnoj traci</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="978"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="948"/>
         <source>Fill</source>
         <translation>Ispuni</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="983"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="953"/>
         <source>Bottom</source>
         <translation>Dno</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="988"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="958"/>
         <source>Top</source>
         <translation>Vrh</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="996"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="966"/>
         <source>Custom color:</source>
         <translation>Prilagođena boja:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1012"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="982"/>
         <source>Select color</source>
         <translation>Odaberi boju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1015"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1286"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1809"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1906"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="2490"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="985"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1263"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1797"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2491"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1022"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="992"/>
         <source>Reset</source>
         <translation>Vrati zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1073"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1043"/>
         <source>Web Configuration</source>
         <translation>Web podešavanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1081"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1051"/>
         <source>Allow Pepper Plugins (Flash plugin)</source>
         <translation>Dopusti Pepper priključke (Flash priključak)</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1088"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1058"/>
         <source>Allow JavaScript</source>
         <translation>Dopusti JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1095"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1065"/>
         <source>Include links in focus chain</source>
         <translation>Uključi poveznice fokusiranog niza podataka</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1102"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1072"/>
         <source>Enable XSS Auditing</source>
         <extracomment>try to detect possible XSS attacks when executing javascript</extracomment>
         <translation>Omogući XSS reviziju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1109"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1079"/>
+        <source>Print element background</source>
+        <extracomment>when you are printing page (on printer), it determine whether to also print background (color, image) of html elements</extracomment>
+        <translation>Ispiši pozadinu elementa</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1086"/>
         <source>Animated scrolling</source>
         <translation>Animirano pomicanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1116"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1093"/>
         <source>Enable spatial navigation</source>
         <translation>Omogući prostornu navigaciju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1123"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1100"/>
         <source>Use native scrollbars</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1140"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1117"/>
         <source>Mouse wheel scrolls</source>
         <translation>Pomicanje kotačićem miša</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1160"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1137"/>
         <source>lines on page</source>
         <translation>redaka na stranici</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1171"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1148"/>
         <source>Default zoom on pages: </source>
         <translation>Zadano zumiranje na stranicama</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1210"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1187"/>
         <source>Local Storage</source>
         <translation>Lokalna pohrana</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1218"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1195"/>
         <source>Allow storing network cache on disk</source>
         <translation>Dopusti spremanje mrežne predmemorije na disk</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1241"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1218"/>
         <source>Delete cache on close</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1248"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1225"/>
         <source>Maximum:</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1255"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1232"/>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1271"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1248"/>
         <source>Store cache in:</source>
         <translation>Spremi predmemoriju u:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1299"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1276"/>
         <source>Allow saving history</source>
         <translation>Dopusti spremanje povijesti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1306"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1283"/>
         <source>Delete history on close</source>
         <translation>Obriši povijest pri zatvaranju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1329"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1306"/>
         <source>Allow local storage of HTML5 web content</source>
         <translation>Dopusti lokalnu pohranu HTML5 web sadržaja</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1336"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1313"/>
         <source>Delete locally stored HTML5 web content on close</source>
         <translation>Obriši lokalno pohranjeni HTML5 web sadržaj pri zatvaranju</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1362"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1339"/>
         <source>Delete now</source>
         <translation>Obriši odmah</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1401"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1378"/>
         <source>Proxy Configuration</source>
         <translation>Proxy podešavanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1420"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1397"/>
         <source>System proxy configuration</source>
         <translation>Koristi proxy postavke sustava</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1443"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1420"/>
         <source>Manual configuration</source>
         <translation>Ručno podešavanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1453"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1430"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1458"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1435"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1469"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1446"/>
         <source>Port:</source>
         <translation>Ulaz:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1490"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1467"/>
         <source>Username:</source>
         <translation>Korisničko ime:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1500"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1477"/>
         <source>Password:</source>
         <translation>Lozinka:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1533"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1506"/>
+        <source>No proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1521"/>
         <source>&lt;b&gt;Font Families&lt;/b&gt;</source>
         <translation>&lt;b&gt;Vrsta slova&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1546"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1534"/>
         <source>Standard</source>
         <translation>Standardna</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1553"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1541"/>
         <source>Fixed</source>
         <translation>Nepromjenjiva</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1563"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1551"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1573"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1561"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1583"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1571"/>
         <source>Cursive</source>
         <translation>Rukopisna</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1635"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1623"/>
         <source>Fantasy</source>
         <translation>Fantazijska</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1642"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1630"/>
         <source>&lt;b&gt;Font Sizes&lt;/b&gt;</source>
         <translation>&lt;b&gt;Veličine slova&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1651"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1639"/>
         <source>Fixed Font Size</source>
         <translation>Veličina nepromjenjivih slova</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1658"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1646"/>
         <source>Default Font Size</source>
         <translation>Zadana veličina slova</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1685"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1673"/>
         <source>Minimum Font Size</source>
         <translation>Minimalna veličina slova</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1692"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1680"/>
         <source>Minimum Logical Font Size</source>
         <translation>Minimalna veličina logičkih slova</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1725"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1713"/>
         <source>&lt;b&gt;Shortcuts&lt;/b&gt;</source>
         <translation>&lt;b&gt;Prečaci&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1732"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1720"/>
         <source>Switch to tabs with Alt + number of tab</source>
         <translation>Prebaci na kartice pomoću tipka Alt + broj kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1739"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1727"/>
         <source>Load speed dials with Ctrl + number of speed dial</source>
         <translation>Učitaj Brza biranja pomoću Ctrl + broj Brzog biranja</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1746"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1734"/>
         <source>Existing shortcuts:&lt;br/&gt;&lt;b&gt;1&lt;/b&gt; - previous tab&lt;br/&gt;&lt;b&gt;2&lt;/b&gt; - next tab&lt;br/&gt;&lt;b&gt;/&lt;/b&gt; - search on page</source>
         <translation>Postojeći prečaci:&lt;br/&gt;&lt;b&gt;1&lt;/b&gt; - prijašnja kartica&lt;br/&gt;&lt;b&gt;2&lt;/b&gt; - sljedeća kartica&lt;br/&gt;&lt;b&gt;/&lt;/b&gt; - pretraži na stranici</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1749"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1737"/>
         <source>Use single key shortcuts</source>
         <translation>Koristi jednostruke tipke prečaca</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1756"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1744"/>
         <source>If unchecked, prevents accidental exit from the application if the Ctrl-W shortcut was intended.</source>
         <translation>Ako je odznačeno, sprječava slučajan izlaz iz aplikacije ako je Ctrl-W prečac upotrijebljen.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1759"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1747"/>
         <source>Close application with Ctrl-Q</source>
         <translation>Zatvori aplikaciju s Ctrl-Q</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1783"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1771"/>
         <source>&lt;b&gt;Download Location&lt;/b&gt;</source>
         <translation>&lt;b&gt;Lokacija preuzimanja&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1790"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1778"/>
         <source>Ask everytime for download location</source>
         <translation>Svaki puta upitaj za lokaciju preuzimanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1797"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1785"/>
         <source>Use defined location: </source>
         <translation>Koristi određenu lokaciju:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1847"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1835"/>
         <source>&lt;b&gt;Download Options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Mogućnosti preuzimanja&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1854"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1842"/>
         <source>Close download manager when downloading finishes</source>
         <translation>Zatvori upravitelja preuzimanja kada preuzimanje završi</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1861"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1849"/>
         <source>&lt;b&gt;External download manager&lt;/b&gt;</source>
         <translation>&lt;b&gt;Vanjski upravitelj preuzimanja&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1868"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1856"/>
         <source>Use external download manager</source>
         <translation>Koristi vanjski upravitelj preuzimanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1880"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1868"/>
         <source>Executable:</source>
         <translation>Izvršna datoteka:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1887"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1875"/>
         <source>Arguments:</source>
         <translation>Argumenti:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1882"/>
         <source>Leave blank if unsure</source>
         <translation>Ostavite prazno ako niste sigurni</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1915"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1903"/>
         <source>&lt;b&gt;%d&lt;/b&gt; will be replaced with URL to be downloaded</source>
         <translation>&lt;b&gt;%d&lt;/b&gt; biti će zamijenjen s URL-om da bi mogao biti preuzet</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1941"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1929"/>
         <source>&lt;b&gt;AutoFill options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Mogućnosti automatskog ispunjavanja&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1948"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1936"/>
         <source>Allow saving passwords from sites</source>
         <translation>Dopusti spremanje lozinki sa stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2003"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1987"/>
+        <source>Automatically complete passwords on sites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1998"/>
         <source>&lt;b&gt;Cookies&lt;/b&gt;</source>
         <translation>&lt;b&gt;Kolačići&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2010"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2005"/>
         <source>&lt;b&gt;Other&lt;/b&gt;</source>
         <translation>&lt;b&gt;Ostalo&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2036"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2031"/>
         <source>JavaScript options</source>
         <translation>JavaScript mogućnosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2046"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2041"/>
         <source>&lt;b&gt;JavaScript&lt;/b&gt;</source>
         <translation>&lt;b&gt;JavaScript&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2059"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2054"/>
         <source>Cookies Manager</source>
         <translation>Upravitelj kolačićima</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2069"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2064"/>
         <source>Manage JavaScript privacy options</source>
         <translation>Upravljajte mogućnostima JavaScript privatnosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2092"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2087"/>
         <source>Manage HTML5 permissions</source>
         <translation>Upravljajte HTML5 dozvolama</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2099"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2094"/>
         <source>Manage Cookies</source>
         <translation>Upravljajte kolačićima</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2119"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2114"/>
         <source>&lt;b&gt;HTML5 Permissions&lt;/b&gt;</source>
         <translation>&lt;b&gt;HTML5 dozvole&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2132"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2127"/>
         <source>HTML5 Permissions</source>
         <translation>HTML5 dozvole</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2139"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2134"/>
         <source>Send Do Not Track header to servers</source>
         <translation>Pošalji &apos;Nemoj pratiti&apos; zaglavlje na poslužitelje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2165"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2160"/>
         <source>Expiration timeout:</source>
         <translation>Vrijeme trajanja:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2178"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2173"/>
         <source> seconds</source>
         <translation> sekunda(e)</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2200"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2195"/>
         <source>&lt;b&gt;Notifications&lt;/b&gt;</source>
         <translation>&lt;b&gt;Obavijesti&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2223"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2218"/>
         <source>Use Native System Notifications (Linux only)</source>
         <translation>Koristi izvorne obavijesti sustava (samo za Linux)</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2230"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2225"/>
         <source>Do not use Notifications</source>
         <translation>Ne koristi obavijesti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2253"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2248"/>
         <source>&lt;b&gt;Note: &lt;/b&gt;You can change position of OSD Notification by dragging it on the screen.</source>
         <translation>&lt;b&gt;Napomena: &lt;/b&gt;možete promijenii položaj OSD obavijesti, povlačeći je po zaslonu.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2279"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2274"/>
         <source>Use OSD Notifications</source>
         <translation>Koristi OSD obavijesti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2286"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2281"/>
         <source>Preview</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2351"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2346"/>
         <source>For more information about Spell Check, please see &lt;a href=&quot;https://github.com/QupZilla/qupzilla/wiki/Spell-Check&quot;&gt;wiki&lt;/a&gt;.</source>
         <translation>Za više informacija o provjeri pravopisa, molim pogledajte &lt;a href=&quot;https://github.com/QupZilla/qupzilla/wiki/Spell-Check&quot;&gt;wiki&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2393"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2388"/>
         <source>&lt;b&gt;Spell Check options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Opcije provjere pravopisa&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2400"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2395"/>
         <source>Enable Spell Check</source>
         <translation>Omogući provjeru pravopisa</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2407"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2402"/>
         <source>&lt;b&gt;Dictionary directories&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Direktoriji rječnika&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2455"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2456"/>
         <source>No languages found</source>
         <translation>Nijedan jzik nije nađen</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2466"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2467"/>
         <source>&lt;b&gt;Manage search engines&lt;/b&gt;</source>
         <translation>&lt;b&gt;Upravitelj pretraživača&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2473"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2474"/>
         <source>&lt;b&gt;User Style Sheet&lt;/b&gt;</source>
         <translation>&lt;b&gt;Korisnički stil stranice&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2480"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2481"/>
         <source>Style Sheet automatically loaded with all websites: </source>
         <translation>Stil stranice automatski se učitava sa svim web stranicama:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2510"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2511"/>
         <source>&lt;b&gt;Preferred language for web sites&lt;/b&gt;</source>
         <translation>&lt;b&gt;Željeni jezik za web stranice&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2530"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2531"/>
         <source>&lt;b&gt;Change browser identification&lt;/b&gt;</source>
         <translation>&lt;b&gt;Promijeni identifikaciju preglednika&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2555"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2556"/>
         <source>User Agent Manager</source>
         <translation>Upravitelj agenta korisnika</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2595"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2596"/>
         <source>Languages</source>
         <translation>Jezici</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2635"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2636"/>
         <source>Search Engines Manager</source>
         <translation>Upravitelj pretraživača</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="149"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="599"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="147"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="607"/>
         <source>Default</source>
         <translation>Zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="153"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="151"/>
         <source>Set as default</source>
         <translation>Postavi kao zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="540"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="550"/>
         <source>Choose executable location...</source>
         <translation>Odaberi lokaciju izvršne datoteke...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="584"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="593"/>
         <source>OSD Notification</source>
         <translation>OSD obavijest</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="585"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="594"/>
         <source>Drag it on the screen to place it where you want.</source>
         <translation>Povucite ju po zaslonu i smjestite gdje želite.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="632"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="643"/>
         <source>Choose download location...</source>
         <translation>Odaberi lokaciju preuzimanja...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="646"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="657"/>
         <source>Choose stylesheet location...</source>
         <translation>Odaberi stylesheet lokaciju...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="657"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="668"/>
         <source>Deleted</source>
         <translation>Obrisano</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="746"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="758"/>
         <source>Choose cache path...</source>
         <translation>Odaberi putanju predmemorije...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="787"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="789"/>
         <source>New Profile</source>
         <translation>Novi profil</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="787"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="789"/>
         <source>Enter the new profile&apos;s name:</source>
         <translation>Upišite naziv novog profila:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="797"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="802"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="799"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="804"/>
         <source>Error!</source>
         <translation>Greška!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="797"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="799"/>
         <source>This profile already exists!</source>
         <translation>Profil već postoji!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="802"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="804"/>
         <source>Cannot create profile directory!</source>
         <translation>Nemoguće stvaranje direktorija profila!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="813"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="815"/>
         <source>Confirmation</source>
         <translation>Potvrda</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="814"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="816"/>
         <source>Are you sure you want to permanently delete &quot;%1&quot; profile? This action cannot be undone!</source>
         <translation>Sigurno želite trajno obrisati &quot;%1&quot; profil? Ova radnja se ne može poništiti!</translation>
     </message>
@@ -4047,429 +4194,425 @@ nije pronađena!</translation>
 <context>
     <name>QupZillaSchemeReply</name>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="131"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="132"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="153"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="154"/>
         <source>Report Issue</source>
         <translation>Prijavi problem</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="133"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="155"/>
         <source>If you are experiencing problems with QupZilla, please try to disable all extensions first. &lt;br/&gt;If this does not fix it, then please fill out this form: </source>
         <translation>Ako imate problema s QupZillom, pokušajte najprije onemogućiti sva proširenja. &lt;br/&gt;Ako to ne riješi problem, tada ispunite ovo:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="135"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="157"/>
         <source>Your E-mail</source>
         <translation>Vaša e-pošta</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="136"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="158"/>
         <source>Issue type</source>
         <translation>Vrsta problema</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="137"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="159"/>
         <source>Issue description</source>
         <translation>Opis problema</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="138"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="160"/>
         <source>Send</source>
         <translation>Pošalji</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="139"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="161"/>
         <source>E-mail is optional&lt;br/&gt;&lt;b&gt;Note: &lt;/b&gt;Please read how to make a bug report &lt;a href=%1&gt;here&lt;/a&gt; first.</source>
         <translation>Adresa e-pošta nije obavezna&lt;br/&gt;&lt;b&gt;Napomena: &lt;/b&gt;najprije pročitajte kako napraviti izvješće greške &lt;a href=%1&gt;ovdje&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="141"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="163"/>
         <source>Please fill out all required fields!</source>
         <translation>Popunite sva potrebna polja!</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="169"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="191"/>
         <source>Start Page</source>
         <translation>Početna stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="170"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="192"/>
         <source>Search on Web</source>
         <translation>Pretraži web</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="171"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="193"/>
         <source>Search results provided by DuckDuckGo</source>
         <translation>Rezultate pretrage omogućio je DuckDuckGo</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="173"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="189"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="190"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="195"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="211"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="212"/>
         <source>About QupZilla</source>
         <translation>O QupZilli</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="174"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="196"/>
         <source>&lt;h1&gt;Private Browsing&lt;/h1&gt;</source>
         <translation>&lt;h1&gt;Privatno pretraživanje&lt;/h1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="191"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="350"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="213"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="374"/>
         <source>Information about version</source>
         <translation>Informacije o inačici</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="192"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="214"/>
         <source>Copyright</source>
         <translation>Autorsko pravo</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="195"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="360"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="217"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="384"/>
         <source>Version</source>
         <translation>Inačica</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="202"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="224"/>
         <source>Main developer</source>
         <translation>Glavni razvijatelj</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="204"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="226"/>
         <source>Contributors</source>
         <translation>Doprinositelji</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="216"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="238"/>
         <source>Translators</source>
         <translation>Prevoditelji</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="276"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="298"/>
         <source>Speed Dial</source>
         <translation>Brzo biranje</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="277"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="299"/>
         <source>Add New Page</source>
         <translation>Dodaj novu stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="278"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="300"/>
         <source>Edit</source>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="279"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="301"/>
         <source>Remove</source>
         <translation>Ukloni</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="280"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="302"/>
         <source>Reload</source>
         <translation>Osvježi</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="281"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="303"/>
         <source>Are you sure you want to remove this speed dial?</source>
         <translation>Jeste li sigurni da želite ukloniti brzo biranje?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="282"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="304"/>
         <source>Are you sure you want to reload all speed dials?</source>
         <translation>Jeste li sigurni da želite ponovno učitati sva brza biranja?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="283"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="305"/>
         <source>Load title from page</source>
         <translation>Učitaj naslov sa stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="284"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="306"/>
+        <source>SpeedDial requires enabled JavaScript.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="307"/>
         <source>Url</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="285"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="308"/>
         <source>Title</source>
         <translation>Naslov</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="286"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="309"/>
         <source>Apply</source>
         <translation>Primijeni</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="287"/>
-        <source>Close</source>
-        <translation>Zatvori</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="310"/>
+        <source>Cancel</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="288"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="311"/>
         <source>New Page</source>
         <translation>Nova stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="289"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="312"/>
         <source>Speed Dial settings</source>
         <translation>Postavke Brzoga biranja</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="290"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="313"/>
         <source>Placement: </source>
         <translation>Smještaj:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="291"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="314"/>
         <source>Auto</source>
         <translation>Automatski</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="292"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="315"/>
         <source>Cover</source>
         <translation>Razvuci</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="293"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="316"/>
         <source>Fit</source>
         <translation>Prilagodi</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="294"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="317"/>
         <source>Fit Width</source>
         <translation>Prilagodi širinu </translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="295"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="318"/>
         <source>Fit Height</source>
         <translation>Prilagodi visinu</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="296"/>
-        <source>Use background image</source>
-        <translation>Koristi sliku pozadine</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="319"/>
+        <source>Use custom wallpaper</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="297"/>
-        <source>Select image</source>
-        <translation>Odaberi sliku</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="320"/>
+        <source>Click to select image</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="298"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="321"/>
         <source>Maximum pages in a row:</source>
         <translation>Maksimalno stranica u redu:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="299"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="322"/>
         <source>Change size of pages:</source>
         <translation>Promijeni veličinu stranica:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="300"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="323"/>
         <source>Center speed dials</source>
         <translation>Centriraj Brza biranja</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="325"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="348"/>
         <source>Restore Session</source>
         <translation>Obnovi sesiju</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="326"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="349"/>
         <source>Oops, QupZilla crashed.</source>
         <translation>Ups, QupZilla se srušila.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="327"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="350"/>
         <source>We apologize for this. Would you like to restore the last saved state?</source>
         <translation>Ispričavamo se zbog ovoga. Želite li obnoviti posljednju spremljenu sesiju?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="328"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="351"/>
         <source>Try removing one or more tabs that you think cause troubles</source>
         <translation>Pokušajte ukloniti jednu ili više kartica za koju mislite da uzrokuju probleme</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="329"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="352"/>
         <source>Or you can start completely new session</source>
         <translation>Ili možete pokrenuti potpuno novu sesiju</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="330"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="353"/>
         <source>Window</source>
         <translation>Prozor</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="331"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="354"/>
         <source>Windows and Tabs</source>
         <translation>Prozori i kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="332"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="355"/>
         <source>Start New Session</source>
         <translation>Pokreni novu sesiju</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="333"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="356"/>
         <source>Restore</source>
         <translation>Obnovi</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="348"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="349"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="357"/>
+        <source>Requires enabled JavaScript.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="372"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="373"/>
         <source>Configuration Information</source>
         <translation>Informacije podešavanja</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="351"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="375"/>
         <source>This page contains information about QupZilla&apos;s current configuration - relevant for troubleshooting. Please include this information when submitting bug reports.</source>
         <translation>Ova stranica sadrži informacije o trenutnom podešavanju QupZille - potrebne za otklanjanje problema. Uključite ove informacije kada prijavljujete izvješće greške.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="352"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="376"/>
         <source>Browser Identification</source>
         <translation>Identifikacija preglednika</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="353"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="377"/>
         <source>Paths</source>
         <translation>Putanje</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="354"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="378"/>
         <source>Build Configuration</source>
         <translation>Podešavanje izgradnje</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="355"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="379"/>
         <source>Preferences</source>
         <translation>Osobitosti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="356"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="380"/>
         <source>Option</source>
         <translation>Mogućnost</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="357"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="381"/>
         <source>Value</source>
         <translation>Vrijednost</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="358"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="382"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="417"/>
         <source>Extensions</source>
         <translation>Proširenja</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="359"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="383"/>
         <source>Name</source>
         <translation>Naziv</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="361"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="385"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="362"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="386"/>
         <source>Description</source>
         <translation>Opis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="365"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="401"/>
         <source>Application version</source>
         <translation>Inačica aplikacije</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="372"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="408"/>
         <source>Qt version</source>
         <translation>Qt inačica</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="373"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="409"/>
         <source>Platform</source>
         <translation>Platforma</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="376"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="412"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="377"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="413"/>
         <source>Settings</source>
         <translation>Postavke</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="378"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="414"/>
         <source>Saved session</source>
         <translation>Spremljena sesija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="379"/>
-        <source>Pinned tabs</source>
-        <translation>Pričvršćene kartice</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="380"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="415"/>
         <source>Data</source>
         <translation>Podaci</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="381"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="416"/>
         <source>Themes</source>
         <translation>Teme</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="382"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="418"/>
         <source>Translations</source>
         <translation>Prijevodi</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="385"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="392"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="398"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="421"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="428"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="434"/>
         <source>&lt;b&gt;Enabled&lt;/b&gt;</source>
         <translation>&lt;b&gt;Omogućeno&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="387"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="394"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="398"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="423"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="430"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="434"/>
         <source>Disabled</source>
         <translation>Onemogućeno</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="401"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="437"/>
         <source>Debug build</source>
         <translation>Izgradnja otklanjanja greške</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="403"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="439"/>
         <source>Windows 7 API</source>
         <translation>Windows 7 API</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="405"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="441"/>
         <source>Portable build</source>
         <translation>Prijenosna izgradnja</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="423"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="459"/>
         <source>No available extensions.</source>
         <translation>Nema dostupnih proširenja.</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="481"/>
-        <source>Blocked content</source>
-        <translation>Blokirani sadržaj</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="490"/>
-        <source>Blocked by &lt;i&gt;%1 (%2)&lt;/i&gt;</source>
-        <translation>Blokirao &lt;i&gt;%1 (%2)&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -4538,38 +4681,38 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
         <translation>Dolje</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="86"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="89"/>
         <source>Search Engine</source>
         <translation>Pretraživač</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="91"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="94"/>
         <source>Shortcut</source>
         <translation>Prečac</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="101"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="104"/>
         <source>Defaults</source>
         <translation>Zadano</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="49"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="52"/>
         <location filename="../src/lib/opensearch/searchenginesmanager.cpp" line="316"/>
         <source>Add Search Engine</source>
         <translation>Dodaj pretraživač</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="86"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="89"/>
         <source>Remove Engine</source>
         <translation>Ukloni pretraživač</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="87"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="90"/>
         <source>You can&apos;t remove the default search engine.&lt;br&gt;Set a different engine as default before removing %1.</source>
         <translation>Ne možete ukloniti zadani pretraživač.&lt;br&gt;Postavite drugi pretraživač zadanim prije uklanjanja %1.</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="104"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="107"/>
         <source>Edit Search Engine</source>
         <translation>Uredi pretraživače</translation>
     </message>
@@ -4605,7 +4748,7 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>SearchToolBar</name>
     <message>
-        <location filename="../src/lib/webtab/searchtoolbar.cpp" line="121"/>
+        <location filename="../src/lib/webtab/searchtoolbar.cpp" line="127"/>
         <source>No results found.</source>
         <translation>Nema pronađenih rezultata.</translation>
     </message>
@@ -4623,22 +4766,204 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
         <translation>Pretraži...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webtab/searchtoolbar.ui" line="94"/>
+        <location filename="../src/lib/webtab/searchtoolbar.ui" line="88"/>
         <source>&amp;Match Case</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SessionManager</name>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="126"/>
+        <source>_cloned</source>
+        <translation>_klonirano</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="126"/>
+        <source>_renamed</source>
+        <translation>_preimenovano</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="127"/>
+        <source>Clone Session</source>
+        <translation>Kloniraj sesiju</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="127"/>
+        <source>Rename Session</source>
+        <translation>Preimenuj sesiju</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="128"/>
+        <source>Please enter a new name:</source>
+        <translation>Molim unesite novo ime:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="136"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="143"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="148"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="170"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="218"/>
+        <source>Error!</source>
+        <translation>Greška!</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="136"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="170"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="218"/>
+        <source>The session file &quot;%1&quot; exists. Please enter another name.</source>
+        <translation>Datoteka sesije &quot;%1&quot; postoji. Molim unesite drugo ime.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="143"/>
+        <source>An error occurred when cloning session file.</source>
+        <translation>Došlo je do greške tijekom kloniranja datoteke sesije.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="148"/>
+        <source>An error occurred when renaming session file.</source>
+        <translation>Došlo je do greške tijekom preimenovanja datoteke seije.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="161"/>
+        <source>Save Session</source>
+        <translation>Spremi sesiju</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="162"/>
+        <source>Please enter a name to save session:</source>
+        <translation>Molim unesite ime da biste spremili sesiju:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="163"/>
+        <source>Saved Session (%1)</source>
+        <translation>Spremljena sesija (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="180"/>
+        <source>Restore Backup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="180"/>
+        <source>Are you sure you want to replace current session?</source>
+        <translation>Jeste li sigurni da želite zamjeniti trenutnu sesiju?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="199"/>
+        <source>Delete Session</source>
+        <translation>Izbriši sesiju</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="199"/>
+        <source>Are you sure you want to delete session &apos;%1&apos;?</source>
+        <translation>Jeste li sigurni da želite izbrisati sesiju &apos;%1&apos;?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="209"/>
+        <source>New Session</source>
+        <translation>Nova sesija</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="210"/>
+        <source>Please enter a name to create new session:</source>
+        <translation>Molim unesite ime da biste stvorili novu sesiju:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="211"/>
+        <source>New Session (%1)</source>
+        <translation>Nova sesija (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="243"/>
+        <source>Backup 1</source>
+        <translation>Sigurnosna kopija 1</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="250"/>
+        <source>Backup 2</source>
+        <translation>Sigurnosna kopija 2</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="290"/>
+        <source>Default Session</source>
+        <translation>Zadana sesija</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="393"/>
+        <source>Please select the startup session:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="412"/>
+        <source>%1 (last session)</source>
+        <translation>%1 (zadnja sesija)</translation>
+    </message>
+</context>
+<context>
+    <name>SessionManagerDialog</name>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="14"/>
+        <source>Session Manager</source>
+        <translation>Upravitelj sesijom</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="24"/>
+        <source>Session</source>
+        <translation>Sesija</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="29"/>
+        <source>Last Modified</source>
+        <translation>Zadnje izmjenjeno</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="39"/>
+        <source>New</source>
+        <translation>Nova</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="46"/>
+        <source>Rename</source>
+        <translation>Preimenuj</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="53"/>
+        <source>Clone</source>
+        <translation>Kloniraj</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="60"/>
+        <source>Delete</source>
+        <translation>Izbriši</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="67"/>
+        <source>Switch to</source>
+        <translation>Prebaci na</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.cpp" line="140"/>
+        <source>Restore</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.cpp" line="140"/>
+        <source>Switch To</source>
+        <translation>Prebaci na</translation>
     </message>
 </context>
 <context>
     <name>SideBar</name>
     <message>
         <location filename="../src/lib/sidebar/sidebar.cpp" line="65"/>
-        <location filename="../src/lib/sidebar/sidebar.cpp" line="100"/>
+        <location filename="../src/lib/sidebar/sidebar.cpp" line="107"/>
         <source>Bookmarks</source>
         <translation>Zabilješke</translation>
     </message>
     <message>
         <location filename="../src/lib/sidebar/sidebar.cpp" line="72"/>
-        <location filename="../src/lib/sidebar/sidebar.cpp" line="106"/>
+        <location filename="../src/lib/sidebar/sidebar.cpp" line="114"/>
         <source>History</source>
         <translation>Povijest</translation>
     </message>
@@ -4809,17 +5134,17 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>SpeedDial</name>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="290"/>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="286"/>
         <source>Image files</source>
         <translation>Datoteke slika</translation>
     </message>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="291"/>
-        <source>Select image...</source>
-        <translation>Odaberi sliku...</translation>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="287"/>
+        <source>Click to select image...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="346"/>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="342"/>
         <source>Unable to load</source>
         <translation>Nemoguće učitavanje</translation>
     </message>
@@ -4843,118 +5168,146 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="133"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="143"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="153"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="62"/>
+        <source>Don&apos;t ask again</source>
+        <translation>Ne pitaj ponovno</translation>
+    </message>
+</context>
+<context>
+    <name>TabContextMenu</name>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="79"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="90"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="101"/>
         <source>Close Tabs</source>
-        <translation>Zatvori kartice</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="133"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="79"/>
         <source>Do you really want to close other tabs?</source>
-        <translation>Želite li doista zatvoriti ostale kartice?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="143"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="87"/>
         <source>Do you really want to close all tabs to the right?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="153"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="88"/>
+        <source>Do you really want to close all tabs to the bottom?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="98"/>
         <source>Do you really want to close all tabs to the left?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="336"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="99"/>
+        <source>Do you really want to close all tabs to the top?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="115"/>
         <source>&amp;Stop Tab</source>
-        <translation>&amp;Zaustavi karticu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="339"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="118"/>
         <source>&amp;Reload Tab</source>
-        <translation>&amp;Osvježi karticu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="342"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="121"/>
         <source>&amp;Duplicate Tab</source>
-        <translation>&amp;Udvostruči karticu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="345"/>
-        <source>D&amp;etach Tab</source>
-        <translation>O&amp;slobodi karticu</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="348"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="123"/>
         <source>Un&amp;pin Tab</source>
-        <translation>Osl&amp;obodi karticu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="348"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="123"/>
         <source>&amp;Pin Tab</source>
-        <translation>&amp;Pričvrsti karticu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="349"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="124"/>
         <source>Un&amp;mute Tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="349"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="124"/>
         <source>&amp;Mute Tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="351"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="127"/>
+        <source>Unload Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="131"/>
         <source>Re&amp;load All Tabs</source>
-        <translation>Os&amp;vježi sve kartice</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="352"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="364"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="132"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="148"/>
         <source>Bookmark &amp;All Tabs</source>
-        <translation>Zabilježi &amp;sve kartice</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="354"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="136"/>
         <source>Close Ot&amp;her Tabs</source>
-        <translation>Zatvori os&amp;tale kartice</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="355"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="137"/>
         <source>Close Tabs To The Right</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="356"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="137"/>
+        <source>Close Tabs To The Bottom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="138"/>
         <source>Close Tabs To The Left</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="359"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="138"/>
+        <source>Close Tabs To The Top</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="143"/>
         <source>Cl&amp;ose Tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="361"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="145"/>
         <source>&amp;New tab</source>
-        <translation>&amp;Nova kartica</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="363"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="147"/>
         <source>Reloa&amp;d All Tabs</source>
-        <translation>Osvjež&amp;i sve kartice</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TabIcon</name>
     <message>
-        <location filename="../src/lib/tabwidget/tabicon.cpp" line="152"/>
+        <location filename="../src/lib/tabwidget/tabicon.cpp" line="156"/>
         <source>Unmute Tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabicon.cpp" line="152"/>
+        <location filename="../src/lib/tabwidget/tabicon.cpp" line="156"/>
         <source>Mute Tab</source>
         <translation type="unfinished"/>
     </message>
@@ -4967,37 +5320,32 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
         <translation>Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="161"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="129"/>
         <source>Closed tabs</source>
         <translation>Zatvorene kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="172"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="140"/>
         <source>List of tabs</source>
         <translation>Popis kartica</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="313"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="274"/>
         <source>Empty</source>
         <translation>Prazno</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="317"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="278"/>
         <source>Restore All Closed Tabs</source>
         <translation>Obnovi sve zatvorene kartice</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="318"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="279"/>
         <source>Clear list</source>
         <translation>Obriši popis</translation>
     </message>
-    <message numerus="yes">
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="460"/>
-        <source>Currently you have %n opened tab(s)</source>
-        <translation><numerusform>Trenutno imate %n otvorenu karticu</numerusform><numerusform>Trenutno imate %n otvorene kartice</numerusform><numerusform>Trenutno imate %n otvorenih kartica</numerusform></translation>
-    </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.h" line="102"/>
+        <location filename="../src/lib/tabwidget/tabwidget.h" line="100"/>
         <source>New tab</source>
         <translation>Nova kartica</translation>
     </message>
@@ -5005,7 +5353,7 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>TabbedWebView</name>
     <message>
-        <location filename="../src/lib/webtab/tabbedwebview.cpp" line="211"/>
+        <location filename="../src/lib/webtab/tabbedwebview.cpp" line="203"/>
         <source>Inspect Element</source>
         <translation>Ispitaj element</translation>
     </message>
@@ -5013,22 +5361,22 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="35"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="51"/>
         <source>&lt;b&gt;Name:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Naziv:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="45"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="61"/>
         <source>&lt;b&gt;Author:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Autor:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="68"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="84"/>
         <source>&lt;b&gt;Description:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Opis:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="112"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="128"/>
         <source>License</source>
         <translation>Licenca</translation>
     </message>
@@ -5094,22 +5442,22 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="95"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="99"/>
         <source>Add new site</source>
         <translation>Dodaj novu stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="133"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="137"/>
         <source>Edit site</source>
         <translation>Uredi stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="211"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="216"/>
         <source>Site domain: </source>
         <translation>Domena stranice:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="212"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="217"/>
         <source>User Agent: </source>
         <translation>Agent korisnika: </translation>
     </message>
@@ -5117,58 +5465,58 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="281"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="277"/>
         <source>QupZilla cannot handle &lt;b&gt;%1:&lt;/b&gt; links. The requested link is &lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;Do you want QupZilla to try open this link in system application?</source>
         <translation>QupZilla ne može obraditi &lt;b&gt;%1:&lt;/b&gt; poveznica. Tražen link je &lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;Želite li da QupZilla pokuša otvoriti ovu poveznicu u aplikaciji sustava?</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="286"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="282"/>
         <source>Remember my choice for this protocol</source>
         <translation>Zapamti moj izbor za ovaj protokol</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="287"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="283"/>
         <source>External Protocol Request</source>
         <translation>Vanjski zahtjev protokola</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="382"/>
-        <location filename="../src/lib/webengine/webpage.cpp" line="383"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="363"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="364"/>
         <source>Failed loading page</source>
         <translation>Neuspješno učitavanje stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="384"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="365"/>
         <source>Something went wrong while loading this page.</source>
         <translation>Nešto je pošlo krivo tijekom učitavanja ove stranice.</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="385"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="366"/>
         <source>Try reloading the page or closing some tabs to make more memory available.</source>
         <translation>Pokušajte ponovno učitati stranicu ili zatvoriti neke kartice da bi više memorije bilo dostupno.</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="386"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="367"/>
         <source>Reload page</source>
         <translation>Ponovno učitaj stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="421"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="435"/>
         <source>Choose file...</source>
         <translation>Odaberi datoteku...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="425"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="439"/>
         <source>Choose files...</source>
         <translation>Odaberi datoteke...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="562"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="549"/>
         <source>JavaScript alert</source>
         <translation>JavaScript upozorenje</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="570"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="558"/>
         <source>Prevent this page from creating additional dialogs</source>
         <translation>Spriječi ovu stranicu da stvori dodatne dijaloge</translation>
     </message>
@@ -5176,27 +5524,27 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>WebSearchBar</name>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="98"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="99"/>
         <source>Paste And &amp;Search</source>
         <translation>Zalijepi i &amp;pretraži</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="124"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="125"/>
         <source>Add %1 ...</source>
         <translation>Dodaj %1 ...</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="128"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="129"/>
         <source>Manage Search Engines</source>
         <translation>Upravitelj pretraživača</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="257"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="258"/>
         <source>Show suggestions</source>
         <translation>Prikaži prijedloge</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="262"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="263"/>
         <source>Search when engine changed</source>
         <translation>Pretraživaj kada se pretraživač promijeni</translation>
     </message>
@@ -5204,12 +5552,12 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>WebTab</name>
     <message>
-        <location filename="../src/lib/webtab/webtab.cpp" line="437"/>
+        <location filename="../src/lib/webtab/webtab.cpp" line="441"/>
         <source>Loading...</source>
         <translation>Učitavanje...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webtab/webtab.cpp" line="453"/>
+        <location filename="../src/lib/webtab/webtab.cpp" line="461"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
@@ -5217,252 +5565,257 @@ Probajte ju pokreniti s administratorskim ovlastima! ;)</translation>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="124"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="129"/>
         <source>Empty Page</source>
         <translation>Prazna stranica</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="663"/>
-        <source>No suggestions</source>
-        <translation type="unfinished"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="386"/>
+        <source>QupZilla %1 (%2)</source>
+        <translation>QupZilla %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="715"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="665"/>
+        <source>No suggestions</source>
+        <translation>Nema prijedloga</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/webengine/webview.cpp" line="716"/>
         <source>&amp;Back</source>
         <translation>&amp;Natrag</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="719"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="720"/>
         <source>&amp;Forward</source>
         <translation>&amp;Naprijed</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="726"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="727"/>
         <source>&amp;Add New Page</source>
         <translation>&amp;Dodaj novu stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="727"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="728"/>
         <source>&amp;Configure Speed Dial</source>
         <translation>&amp;Prilagodi Brzo biranje</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="729"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="730"/>
         <source>Reload All Dials</source>
         <translation>Osvježi sva biranja</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="748"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="749"/>
         <source>Book&amp;mark page</source>
         <translation>Zabi&amp;lježi stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="749"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="750"/>
         <source>&amp;Save page as...</source>
         <translation>&amp;Spremi stranicu kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="750"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="751"/>
         <source>&amp;Copy page link</source>
         <translation>&amp;Kopiraj poveznicu stranice</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="751"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="752"/>
         <source>Send page link...</source>
         <translation>Pošalji poveznicu stranice...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="753"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="754"/>
         <source>Select &amp;all</source>
         <translation>Odaberi &amp;sve</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="758"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="759"/>
         <source>Validate page</source>
         <translation>Ovjeri stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="762"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="763"/>
         <source>Translate page</source>
         <translation>Prevedi stranicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="766"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="767"/>
         <source>Show so&amp;urce code</source>
         <translation>Prikaži iz&amp;vorni kôd</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="769"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="770"/>
         <source>Show info ab&amp;out site</source>
         <translation>Prikaži informacije o s&amp;tranici</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="775"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="776"/>
         <source>Open link in new &amp;tab</source>
         <translation>Otvori poveznicu u novoj &amp;kartici</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="780"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="781"/>
         <source>Open link in new &amp;window</source>
         <translation>Otvori poveznicu u novom &amp;prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="781"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="782"/>
         <source>Open link in &amp;private window</source>
         <translation>Otvori poveznicu u &amp;privatnom prozoru</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="786"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="787"/>
         <source>B&amp;ookmark link</source>
         <translation>Z&amp;abilježi poveznicu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="788"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="789"/>
         <source>&amp;Save link as...</source>
         <translation>&amp;Spremi poveznicu kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="789"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="790"/>
         <source>Send link...</source>
         <translation>Pošalji poveznicu...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="790"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="791"/>
         <source>&amp;Copy link address</source>
         <translation>&amp;Kopiraj adresu poveznice</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="802"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="803"/>
         <source>Show i&amp;mage</source>
         <translation>Prikaži s&amp;liku</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="807"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="808"/>
         <source>Copy image</source>
         <translation>Kopiraj sliku</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="808"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="809"/>
         <source>Copy image ad&amp;dress</source>
         <translation>Kopiraj adresu sl&amp;ike</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="810"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="811"/>
         <source>&amp;Save image as...</source>
         <translation>&amp;Spremi sliku kao...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="811"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="812"/>
         <source>Send image...</source>
         <translation>Pošalji sliku...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="830"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="831"/>
         <source>Send text...</source>
         <translation>Pošalji tekst...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="835"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="836"/>
         <source>Google Translate</source>
         <translation>Google prevoditelj</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="841"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="842"/>
         <source>Dictionary</source>
         <translation>Rječnik</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="856"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="857"/>
         <source>Go to &amp;web address</source>
         <translation>Idi na &amp;web adresu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="870"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="871"/>
         <source>Search &quot;%1 ..&quot; with %2</source>
         <translation>Pretraži &quot;%1  ..&quot; pomoću %2</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="876"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="877"/>
         <source>Search with...</source>
         <translation>Pretraži pomoću...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="897"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
         <source>&amp;Play</source>
         <translation>&amp;Reproduciraj</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="897"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pauziraj</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="899"/>
         <source>Un&amp;mute</source>
         <translation>Uk&amp;ljuči zvuk</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="899"/>
         <source>&amp;Mute</source>
         <translation>&amp;Utišaj</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="900"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="901"/>
         <source>&amp;Copy Media Address</source>
         <translation>&amp;Kopiraj adresu medija</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="901"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="902"/>
         <source>&amp;Send Media Address</source>
         <translation>&amp;Pošalji adresu medija</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="902"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="903"/>
         <source>Save Media To &amp;Disk</source>
         <translation>Spremi medij na &amp;disk</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="921"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="922"/>
         <source>Create Search Engine</source>
         <translation>Napravi pretraživača</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="962"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="963"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vrati</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="968"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="969"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ponovi</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="974"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="975"/>
         <source>&amp;Cut</source>
         <translation>&amp;Izreži</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="980"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="981"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiraj</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="986"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="987"/>
         <source>&amp;Paste</source>
         <translation>&amp;Zalijepi</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="992"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="993"/>
         <source>Select All</source>
         <translation>Odaberi sve</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="998"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="999"/>
         <source>&amp;Reload</source>
         <translation>&amp;Osvježi</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="1002"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="1003"/>
         <source>S&amp;top</source>
         <translation>Z&amp;austavi</translation>
     </message>

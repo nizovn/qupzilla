@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@
 #include <QVector>
 
 #include "qzcommon.h"
-#include "passwordmanager.h"
 
 class QEventLoop;
 class QWebEngineDownloadItem;
@@ -39,6 +38,7 @@ class QUPZILLA_EXPORT WebPage : public QWebEnginePage
 
 public:
     enum JsWorld {
+        UnsafeJsWorld = QWebEngineScript::MainWorld,
         SafeJsWorld = QWebEngineScript::ApplicationWorld
     };
 
@@ -47,13 +47,8 @@ public:
 
     WebView *view() const;
 
-    QVariant execJavaScript(const QString &scriptSource, quint32 worldId = QWebEngineScript::MainWorld, int timeout = 500);
-
-    // TODO: Remove when depending on Qt 5.7
-    void runJavaScript(const QString &scriptSource);
-    void runJavaScript(const QString &scriptSource, const QWebEngineCallback<const QVariant &> &resultCallback);
-    void runJavaScript(const QString &scriptSource, quint32 worldId);
-    void runJavaScript(const QString &scriptSource, quint32 worldId, const QWebEngineCallback<const QVariant &> &resultCallback);
+    bool execPrintPage(QPrinter *printer, int timeout = 1000);
+    QVariant execJavaScript(const QString &scriptSource, quint32 worldId = UnsafeJsWorld, int timeout = 500);
 
     QPointF mapToViewport(const QPointF &pos) const;
     WebHitTestResult hitTestContent(const QPoint &pos) const;
@@ -64,28 +59,24 @@ public:
     bool javaScriptPrompt(const QUrl &securityOrigin, const QString &msg, const QString &defaultValue, QString* result) Q_DECL_OVERRIDE;
     bool javaScriptConfirm(const QUrl &securityOrigin, const QString &msg) Q_DECL_OVERRIDE;
     void javaScriptAlert(const QUrl &securityOrigin, const QString &msg) Q_DECL_OVERRIDE;
+    void javaScriptConsoleMessage(JavaScriptConsoleMessageLevel level, const QString &message, int lineNumber, const QString &sourceID) override;
 
-    void setJavaScriptEnabled(bool enabled);
+    QStringList autoFillUsernames() const;
 
-    bool hasMultipleUsernames() const;
-    QVector<PasswordEntry> autoFillData() const;
-
-    void scheduleAdjustPage();
     bool isRunningLoop();
 
     bool isLoading() const;
 
-    void setupWebChannel();
-
 signals:
     void privacyChanged(bool status);
+    void printRequested();
+    void navigationRequestAccepted(const QUrl &url, NavigationType type, bool isMainFrame);
 
 protected slots:
     void progress(int prog);
     void finished();
 
 private slots:
-    void cleanBlockedObjects();
     void urlChanged(const QUrl &url);
     void watchedFileChanged(const QString &file);
     void windowCloseRequested();
@@ -94,6 +85,7 @@ private slots:
     void renderProcessTerminated(RenderProcessTerminationStatus terminationStatus, int exitCode);
 
 private:
+    void setupWebChannelForUrl(const QUrl &url);
     bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) Q_DECL_OVERRIDE;
     bool certificateError(const QWebEngineCertificateError &error) Q_DECL_OVERRIDE;
     QStringList chooseFiles(FileSelectionMode mode, const QStringList &oldFiles, const QStringList &acceptedMimeTypes) Q_DECL_OVERRIDE;
@@ -109,14 +101,19 @@ private:
     DelayedFileWatcher* m_fileWatcher;
     QEventLoop* m_runningLoop;
 
-    QVector<PasswordEntry> m_passwordEntries;
+    QStringList m_autoFillUsernames;
 
     int m_loadProgress;
     bool m_blockAlerts;
     bool m_secureStatus;
-    bool m_adjustingScheduled;
 
     QMetaObject::Connection m_contentsResizedConnection;
+
+    QUrl m_channelUrl;
+    int m_channelWorldId = -1;
+    QTimer *m_setupChannelTimer = nullptr;
+
+    friend class WebView;
 };
 
 #endif // WEBPAGE_H

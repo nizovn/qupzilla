@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #define PREFERENCES_H
 
 #include <QUrl>
-#include <QWidget>
+#include <QDialog>
 #include <QPointer>
 
 #include "qzcommon.h"
@@ -38,7 +38,7 @@ class PluginsManager;
 class DesktopNotification;
 class ThemeManager;
 
-class QUPZILLA_EXPORT Preferences : public QWidget
+class QUPZILLA_EXPORT Preferences : public QDialog
 {
     Q_OBJECT
 
@@ -70,7 +70,6 @@ private slots:
     void allowHtml5storageChanged(bool state);
     void downLocChanged(bool state);
     void allowCacheChanged(bool state);
-    void showPassManager(bool state);
     void setManualProxyConfigurationEnabled(bool state);
     void useExternalDownManagerChanged(bool state);
     void changeCachePathClicked();
@@ -105,7 +104,6 @@ private:
     int m_afterLaunch;
     int m_onNewTab;
     QPoint m_notifPosition;
-    bool m_autoFillEnabled;
 };
 
 #endif // PREFERENCES_H

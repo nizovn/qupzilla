@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -43,11 +43,13 @@
 #include <QDesktopServices>
 #include <QWebEngineHistory>
 #include <QClipboard>
-#include <QHostInfo>
 #include <QMimeData>
 #include <QWebEngineContextMenuData>
 #include <QStackedLayout>
 #include <QScrollBar>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QQuickWidget>
 
 bool WebView::s_forceContextMenuOnMouseRelease = false;
 
@@ -91,12 +93,17 @@ WebView::WebView(QWidget* parent)
                 return;
             }
             m_rwhvqt->installEventFilter(this);
+            if (QQuickWidget *w = qobject_cast<QQuickWidget*>(m_rwhvqt)) {
+                w->setClearColor(palette().color(QPalette::Window));
+            }
         });
     });
 }
 
 WebView::~WebView()
 {
+    mApp->plugins()->emitWebPageDeleted(m_page);
+
     WebInspector::unregisterView(this);
     WebScrollBarManager::instance()->removeWebView(this);
 }
@@ -118,24 +125,29 @@ QIcon WebView::icon(bool allowNull) const
     return IconProvider::iconForUrl(url(), allowNull);
 }
 
-QString WebView::title() const
+QString WebView::title(bool allowEmpty) const
 {
     QString title = QWebEngineView::title();
 
-    if (title.isEmpty()) {
-        title = url().toString(QUrl::RemoveFragment);
+    if (allowEmpty) {
+        return title;
     }
 
-    if (title.isEmpty() || title == QLatin1String("about:blank")) {
+    const QUrl u = url().isEmpty() ? m_page->requestedUrl() : url();
+
+    if (title.isEmpty()) {
+        title = u.host();
+    }
+
+    if (title.isEmpty()) {
+        title = u.toString(QUrl::RemoveFragment);
+    }
+
+    if (title.isEmpty() || title == QL1S("about:blank")) {
         return tr("Empty Page");
     }
 
     return title;
-}
-
-bool WebView::isTitleEmpty() const
-{
-    return QWebEngineView::title().isEmpty();
 }
 
 WebPage* WebView::page() const
@@ -149,11 +161,27 @@ void WebView::setPage(WebPage *page)
         return;
     }
 
+    if (m_page) {
+        if (m_page->isLoading()) {
+            emit m_page->loadProgress(100);
+            emit m_page->loadFinished(true);
+        }
+        mApp->plugins()->emitWebPageDeleted(m_page);
+        m_page->setView(nullptr);
+        m_page->deleteLater();
+    }
+
     m_page = page;
     m_page->setParent(this);
     QWebEngineView::setPage(m_page);
 
-    connect(m_page, SIGNAL(privacyChanged(bool)), this, SIGNAL(privacyChanged(bool)));
+    if (m_page->isLoading()) {
+        emit loadStarted();
+        emit loadProgress(m_page->m_loadProgress);
+    }
+
+    connect(m_page, &WebPage::privacyChanged, this, &WebView::privacyChanged);
+    connect(m_page, &WebPage::printRequested, this, &WebView::printPage);
 
     // Set default zoom level
     zoomReset();
@@ -164,11 +192,16 @@ void WebView::setPage(WebPage *page)
     // Scrollbars must be added only after QWebEnginePage is set
     WebScrollBarManager::instance()->addWebView(this);
 
+    emit pageChanged(m_page);
     mApp->plugins()->emitWebPageCreated(m_page);
 }
 
 void WebView::load(const QUrl &url)
 {
+    if (m_page && !m_page->acceptNavigationRequest(url, QWebEnginePage::NavigationTypeTyped, true)) {
+        return;
+    }
+
     QWebEngineView::load(url);
 
     if (!m_firstLoad) {
@@ -197,31 +230,6 @@ void WebView::load(const LoadRequest &request)
 
     if (isUrlValid(reqUrl)) {
         loadRequest(request);
-        return;
-    }
-
-    // Make sure to correctly load hosts like localhost (eg. without the dot)
-    if (!reqUrl.isEmpty() &&
-        reqUrl.scheme().isEmpty() &&
-        !QzTools::containsSpace(reqUrl.path()) && // See #1622
-        !reqUrl.path().contains(QL1C('.'))
-       ) {
-        QUrl u(QSL("http://") + reqUrl.path());
-        if (u.isValid()) {
-            // This is blocking...
-            QHostInfo info = QHostInfo::fromName(u.path());
-            if (info.error() == QHostInfo::NoError) {
-                LoadRequest req = request;
-                req.setUrl(u);
-                loadRequest(req);
-                return;
-            }
-        }
-    }
-
-    if (qzSettings->searchFromAddressBar) {
-        const LoadRequest searchRequest = mApp->searchEnginesManager()->searchResult(request.urlString());
-        loadRequest(searchRequest);
     }
 }
 
@@ -262,15 +270,6 @@ QRect WebView::scrollBarGeometry(Qt::Orientation orientation) const
     return s && s->isVisible() ? s->geometry() : QRect();
 }
 
-void WebView::restoreHistory(const QByteArray &data)
-{
-    QDataStream stream(data);
-    stream >> *history();
-
-    // Workaround clearing QWebChannel after restoring history
-    page()->setupWebChannel();
-}
-
 QWidget *WebView::inputWidget() const
 {
     return m_rwhvqt ? m_rwhvqt : const_cast<WebView*>(this);
@@ -300,7 +299,10 @@ bool WebView::forceContextMenuOnMouseRelease()
 // static
 void WebView::setForceContextMenuOnMouseRelease(bool force)
 {
+    // Windows open context menu on mouse release by default
+#ifndef Q_OS_WIN
     s_forceContextMenuOnMouseRelease = force;
+#endif
 }
 
 void WebView::addNotification(QWidget* notif)
@@ -402,17 +404,53 @@ void WebView::forward()
     }
 }
 
+void WebView::printPage()
+{
+    Q_ASSERT(m_page);
+
+    QPrinter* printer = new QPrinter();
+    printer->setCreator(tr("QupZilla %1 (%2)").arg(Qz::VERSION, Qz::WWWADDRESS));
+    printer->setDocName(QzTools::filterCharsFromFilename(title()));
+
+    QPrintDialog* dialog = new QPrintDialog(printer, this);
+    dialog->setOptions(QAbstractPrintDialog::PrintToFile | QAbstractPrintDialog::PrintShowPageSize);
+#ifndef Q_OS_WIN
+    dialog->setOption(QAbstractPrintDialog::PrintPageRange);
+    dialog->setOption(QAbstractPrintDialog::PrintCollateCopies);
+#endif
+
+    if (dialog->exec() == QDialog::Accepted) {
+        if (dialog->printer()->outputFormat() == QPrinter::PdfFormat) {
+            m_page->printToPdf(dialog->printer()->outputFileName(), dialog->printer()->pageLayout());
+            delete dialog;
+        } else {
+            m_page->print(dialog->printer(), [=](bool success) {
+                Q_UNUSED(success);
+                delete dialog;
+            });
+        }
+    }
+}
+
 void WebView::slotLoadStarted()
 {
     m_progress = 0;
+
+    if (title(/*allowEmpty*/true).isEmpty()) {
+        emit titleChanged(title());
+    }
 }
 
 void WebView::slotLoadProgress(int progress)
 {
-    m_progress = progress;
+    if (m_progress < 100) {
+        m_progress = progress;
+    }
 
-    // Fix the viewport of the app
-    page()->runJavaScript(m_viewportScript);
+    // QtWebEngine sometimes forgets applied zoom factor
+    if (!qFuzzyCompare(zoomFactor(), zoomLevels().at(m_currentZoomLevel) / 100.0)) {
+        applyZoom();
+    }
 }
 
 void WebView::slotLoadFinished(bool ok)
@@ -430,13 +468,12 @@ void WebView::slotIconChanged()
 
 void WebView::slotUrlChanged(const QUrl &url)
 {
-    Q_UNUSED(url)
-
-    // Don't save blank page / speed dial in tab history
-    if (!history()->canGoForward()  && history()->backItems(1).size() == 1) {
-        const QString s = LocationBar::convertUrlToText(history()->backItem().url());
-        if (s.isEmpty())
-            history()->clear();
+    if (!url.isEmpty() && title(/*allowEmpty*/true).isEmpty()) {
+        // Don't treat this as background activity change
+        const bool oldActivity = m_backgroundActivity;
+        m_backgroundActivity = true;
+        emit titleChanged(title());
+        m_backgroundActivity = oldActivity;
     }
 }
 
@@ -525,14 +562,7 @@ void WebView::showSource()
         return;
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     triggerPageAction(QWebEnginePage::ViewSource);
-#else
-    QUrl u;
-    u.setScheme(QSL("view-source"));
-    u.setPath(url().toString());
-    openUrlInNewTab(u, Qz::NT_SelectedTab);
-#endif
 }
 
 void WebView::showSiteInfo()
@@ -543,7 +573,7 @@ void WebView::showSiteInfo()
 
 void WebView::searchSelectedText()
 {
-    SearchEngine engine = mApp->searchEnginesManager()->activeEngine();
+    SearchEngine engine = mApp->searchEnginesManager()->defaultEngine();
     if (QAction* act = qobject_cast<QAction*>(sender())) {
         if (act->data().isValid()) {
             engine = act->data().value<SearchEngine>();
@@ -556,7 +586,7 @@ void WebView::searchSelectedText()
 
 void WebView::searchSelectedTextInBackgroundTab()
 {
-    SearchEngine engine = mApp->searchEnginesManager()->activeEngine();
+    SearchEngine engine = mApp->searchEnginesManager()->defaultEngine();
     if (QAction* act = qobject_cast<QAction*>(sender())) {
         if (act->data().isValid()) {
             engine = act->data().value<SearchEngine>();
@@ -654,7 +684,6 @@ void WebView::createContextMenu(QMenu *menu, WebHitTestResult &hitTest)
     const QWebEngineContextMenuData &contextMenuData = page()->contextMenuData();
     hitTest.updateWithContextMenuData(contextMenuData);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     if (!contextMenuData.misspelledWord().isEmpty()) {
         QFont boldFont = menu->font();
         boldFont.setBold(true);
@@ -675,7 +704,6 @@ void WebView::createContextMenu(QMenu *menu, WebHitTestResult &hitTest)
         menu->addSeparator();
         spellCheckActionCount = menu->actions().count();
     }
-#endif
 
     if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != QL1S("javascript")) {
         createLinkContextMenu(menu, hitTest);
@@ -875,7 +903,7 @@ void WebView::createSelectedTextContextMenu(QMenu* menu, const WebHitTestResult 
     // KDE is displaying newlines in menu actions ... weird -,-
     selectedText.replace(QLatin1Char('\n'), QLatin1Char(' ')).replace(QLatin1Char('\t'), QLatin1Char(' '));
 
-    SearchEngine engine = mApp->searchEnginesManager()->activeEngine();
+    SearchEngine engine = mApp->searchEnginesManager()->defaultEngine();
     Action* act = new Action(engine.icon, tr("Search \"%1 ..\" with %2").arg(selectedText, engine.name));
     connect(act, SIGNAL(triggered()), this, SLOT(searchSelectedText()));
     connect(act, SIGNAL(ctrlTriggered()), this, SLOT(searchSelectedTextInBackgroundTab()));
@@ -1246,12 +1274,20 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
     });
 }
 
+bool WebView::focusNextPrevChild(bool next)
+{
+    // QTBUG-67043
+    // Workaround QtWebEngine issue where QWebEngineView loses focus on second load() call.
+    if (next) {
+        setFocus();
+        return false;
+    }
+    return QWebEngineView::focusNextPrevChild(next);
+}
+
 void WebView::loadRequest(const LoadRequest &req)
 {
-    if (req.operation() == LoadRequest::GetOperation)
-        load(req.url());
-    else
-        page()->runJavaScript(Scripts::sendPostData(req.url(), req.data()), WebPage::SafeJsWorld);
+    QWebEngineView::load(req.webRequest());
 }
 
 bool WebView::eventFilter(QObject *obj, QEvent *event)
@@ -1315,6 +1351,12 @@ bool WebView::eventFilter(QObject *obj, QEvent *event)
         case QEvent::MouseMove:
         case QEvent::Wheel:
             return true;
+
+        case QEvent::Hide:
+            if (isFullScreen()) {
+                triggerPageAction(QWebEnginePage::ExitFullScreen);
+            }
+            break;
 
         default:
             break;

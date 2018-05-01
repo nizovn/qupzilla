@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2015-2016 David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2015-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,25 +18,30 @@
 
 #include "scripts.h"
 #include "qztools.h"
+#include "webpage.h"
 
 #include <QUrlQuery>
 
-QString Scripts::setupWebChannel()
+QString Scripts::setupWebChannel(quint32 worldId)
 {
-    QString source =  QL1S("(function() {"
-                           "%1"
+    QString source =  QL1S("// ==UserScript==\n"
+                           "%1\n"
+                           "// ==/UserScript==\n\n"
+                           "(function() {"
+                           "%2"
                            ""
                            "function registerExternal(e) {"
                            "    window.external = e;"
                            "    if (window.external) {"
                            "        var event = document.createEvent('Event');"
                            "        event.initEvent('_qupzilla_external_created', true, true);"
+                           "        window._qupzilla_external = true;"
                            "        document.dispatchEvent(event);"
                            "    }"
                            "}"
                            ""
                            "if (self !== top) {"
-                           "    if (top.external)"
+                           "    if (top._qupzilla_external)"
                            "        registerExternal(top.external);"
                            "    else"
                            "        top.document.addEventListener('_qupzilla_external_created', function() {"
@@ -48,7 +53,14 @@ QString Scripts::setupWebChannel()
                            "function registerWebChannel() {"
                            "    try {"
                            "        new QWebChannel(qt.webChannelTransport, function(channel) {"
-                           "            registerExternal(channel.objects.qz_object);"
+                           "            var external = channel.objects.qz_object;"
+                           "            external.extra = {};"
+                           "            for (var key in channel.objects) {"
+                           "                if (key != 'qz_object' && key.startsWith('qz_')) {"
+                           "                    external.extra[key.substr(3)] = channel.objects[key];"
+                           "                }"
+                           "            }"
+                           "            registerExternal(external);"
                            "        });"
                            "    } catch (e) {"
                            "        setTimeout(registerWebChannel, 100);"
@@ -58,19 +70,25 @@ QString Scripts::setupWebChannel()
                            ""
                            "})()");
 
-    return source.arg(QzTools::readAllFileContents(QSL(":/qtwebchannel/qwebchannel.js")));
+    QString match;
+    if (worldId == WebPage::SafeJsWorld) {
+        match = QSL("// @exclude qupzilla:*\n// @exclude extension:*");
+    } else {
+        match = QSL("// @include qupzilla:*\n// @include extension:*");
+    }
+    return source.arg(match, QzTools::readAllFileContents(QSL(":/qtwebchannel/qwebchannel.js")));
 }
 
 QString Scripts::setupFormObserver()
 {
     QString source = QL1S("(function() {"
                           "function findUsername(inputs) {"
-                          "    for (var i = 0; i < inputs.length; ++i)"
-                          "        if (inputs[i].type == 'text' && inputs[i].value.length && inputs[i].name.indexOf('user') != -1)"
-                          "            return inputs[i].value;"
-                          "    for (var i = 0; i < inputs.length; ++i)"
-                          "        if (inputs[i].type == 'text' && inputs[i].value.length && inputs[i].name.indexOf('name') != -1)"
-                          "            return inputs[i].value;"
+                          "    var usernameNames = ['user', 'name', 'login'];"
+                          "    for (var i = 0; i < usernameNames.length; ++i) {"
+                          "        for (var j = 0; j < inputs.length; ++j)"
+                          "            if (inputs[j].type == 'text' && inputs[j].value.length && inputs[j].name.indexOf(usernameNames[i]) != -1)"
+                          "                return inputs[j].value;"
+                          "    }"
                           "    for (var i = 0; i < inputs.length; ++i)"
                           "        if (inputs[i].type == 'text' && inputs[i].value.length)"
                           "            return inputs[i].value;"
@@ -113,13 +131,33 @@ QString Scripts::setupFormObserver()
                           "    registerForm(document.forms[i]);"
                           ""
                           "var observer = new MutationObserver(function(mutations) {"
-                          "    for (var i = 0; i < mutations.length; ++i)"
-                          "        for (var j = 0; j < mutations[i].addedNodes.length; ++j)"
-                          "            if (mutations[i].addedNodes[j].tagName == 'form')"
-                          "                registerForm(mutations[i].addedNodes[j]);"
+                          "    for (var mutation of mutations)"
+                          "        for (var node of mutation.addedNodes)"
+                          "            if (node.tagName && node.tagName.toLowerCase() == 'form')"
+                          "                registerForm(node);"
                           "});"
-                          "observer.observe(document.documentElement, { childList: true });"
+                          "observer.observe(document.documentElement, { childList: true, subtree: true });"
                           ""
+                          "})()");
+
+    return source;
+}
+
+QString Scripts::setupWindowObject()
+{
+    QString source = QL1S("(function() {"
+                          "var external = {};"
+                          "external.AddSearchProvider = function(url) {"
+                          "    window.location = 'qupzilla:AddSearchProvider?url=' + url;"
+                          "};"
+                          "external.IsSearchProviderInstalled = function(url) {"
+                          "    console.warn('NOT IMPLEMENTED: IsSearchProviderInstalled()');"
+                          "    return false;"
+                          "};"
+                          "window.external = external;"
+                          "window.print = function() {"
+                          "    window.location = 'qupzilla:PrintPage';"
+                          "};"
                           "})()");
 
     return source;
@@ -192,8 +230,10 @@ QString Scripts::completeFormData(const QByteArray &data)
                           "        var type = input.type.toLowerCase();"
                           "        if (type != 'text' && type != 'password' && type != 'email')"
                           "            continue;"
-                          "        if (input.name == key)"
+                          "        if (input.name == key) {"
                           "            input.value = val;"
+                          "            input.dispatchEvent(new Event('change'));"
+                          "        }"
                           "    }"
                           "}"
                           ""
@@ -265,11 +305,11 @@ QString Scripts::getFormData(const QPointF &pos)
 {
     QString source = QL1S("(function() {"
                           "var e = document.elementFromPoint(%1, %2);"
-                          "if (!e || e.tagName != 'INPUT')"
+                          "if (!e || e.tagName.toLowerCase() != 'input')"
                           "    return;"
                           "var fe = e.parentElement;"
                           "while (fe) {"
-                          "    if (fe.tagName == 'FORM')"
+                          "    if (fe.tagName.toLowerCase() == 'form')"
                           "        break;"
                           "    fe = fe.parentElement;"
                           "}"

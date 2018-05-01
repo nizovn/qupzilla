@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,15 +18,11 @@
 #ifndef PROCESSINFO_H
 #define PROCESSINFO_H
 
-#include <QtGlobal>
+#include "qzcommon.h"
 
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
 #include <sys/types.h>
 #endif
-
-#include <QString>
-
-#include "qzcommon.h"
 
 /*
  * Code used from http://ubuntuforums.org/showpost.php?p=6593782&postcount=5
@@ -41,7 +37,7 @@ public:
     bool isRunning() const;
 
 private:
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     bool IsNumeric(const char* ccharptr_CharacterList) const;
     pid_t GetPIDbyName(const char* cchrptr_ProcessName) const;
 #endif

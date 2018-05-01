@@ -1,6 +1,6 @@
 /* ============================================================
 * TabManager plugin for QupZilla
-* Copyright (C) 2013-2016  S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
+* Copyright (C) 2013-2017  S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 #include <QWidget>
 #include <QPointer>
 #include <QHash>
+#include <QTreeWidgetItem>
 
 namespace Ui
 {
@@ -33,6 +34,25 @@ class WebPage;
 class WebTab;
 class WebView;
 class TLDExtractor;
+
+class TabTreeWidget : public QTreeWidget
+{
+    Q_OBJECT
+
+public:
+    TabTreeWidget(QWidget* parent = 0);
+
+    Qt::DropActions supportedDropActions() const;
+    QStringList mimeTypes() const;
+    QMimeData* mimeData(const QList<QTreeWidgetItem*> items) const;
+    bool dropMimeData(QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action);
+
+    void setEnableDragTabs(bool enable);
+
+signals:
+    void requestRefreshTree();
+
+};
 
 class TabManagerWidget : public QWidget
 {
@@ -51,6 +71,7 @@ public:
     void closeSelectedTabs(const QHash<BrowserWindow*, WebTab*> &tabsHash);
     void detachSelectedTabs(const QHash<BrowserWindow*, WebTab*> &tabsHash);
     bool bookmarkSelectedTabs(const QHash<BrowserWindow*, WebTab*> &tabsHash);
+    void unloadSelectedTabs(const QHash<BrowserWindow*, WebTab*> &tabsHash);
 
     void setGroupType(GroupType type);
 
@@ -61,18 +82,9 @@ public slots:
     void changeGroupType();
 
 private:
-    enum TabDataRole {
-        WebTabPointerRole = Qt::UserRole + 10,
-        QupZillaPointerRole = Qt::UserRole + 20,
-        UrlRole = Qt::UserRole + 30
-    };
-
-    QTreeWidgetItem* createEmptyItem(QTreeWidgetItem* parent = 0, bool addToTree = true);
-    void groupByDomainName(bool useHostName = false);
-    void groupByWindow();
+    QTreeWidgetItem* groupByDomainName(bool useHostName = false);
+    QTreeWidgetItem* groupByWindow();
     BrowserWindow* getQupZilla();
-
-    void makeWebViewConnections(WebView *view);
 
     Ui::TabManagerWidget* ui;
     QPointer<BrowserWindow> p_QupZilla;
@@ -91,7 +103,7 @@ private:
 private slots:
     void refreshTree();
     void processActions();
-    void itemDoubleClick(QTreeWidgetItem* item, int);
+    void onItemActivated(QTreeWidgetItem* item, int column);
     bool isTabSelected();
     void customContextMenuRequested(const QPoint &pos);
     void filterChanged(const QString &filter, bool force = false);
@@ -103,6 +115,39 @@ protected:
 signals:
     void showSideBySide();
     void groupTypeChanged(TabManagerWidget::GroupType);
+};
+
+class TabItem : public QObject, public QTreeWidgetItem
+{
+    Q_OBJECT
+
+public:
+    enum StateRole {
+        ActiveOrCaptionRole = Qt::UserRole + 1,
+        SavedRole = Qt::UserRole + 2
+    };
+
+    TabItem(QTreeWidget* treeWidget, bool supportDrag = true, bool isTab = true, QTreeWidgetItem* parent = 0, bool addToTree = true);
+
+    BrowserWindow* window() const;
+    void setBrowserWindow(BrowserWindow* window);
+
+    WebTab* webTab() const;
+    void setWebTab(WebTab* webTab);
+
+    bool isTab() const;
+
+public slots:
+    void updateIcon();
+    void setTitle(const QString& title);
+    void setIsActiveOrCaption(bool yes);
+    void setIsSavedTab(bool yes);
+
+private:
+    QTreeWidget* m_treeWidget;
+    BrowserWindow* m_window;
+    WebTab* m_webTab;
+    bool m_isTab;
 };
 
 #endif // TABMANAGERWIDGET_H

@@ -1,6 +1,6 @@
 /* ============================================================
 * KWalletPasswords - KWallet support plugin for QupZilla
-* Copyright (C) 2013-2014  David Rosca <nowrep@gmail.com>
+* Copyright (C) 2013-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@
 #include "kwalletpasswordbackend.h"
 #include "pluginproxy.h"
 #include "browserwindow.h"
+#include "mainapplication.h"
+#include "autofill.h"
+#include "passwordmanager.h"
 
 #include <QTranslator>
 
@@ -48,12 +51,12 @@ void KWalletPlugin::init(InitState state, const QString &settingsPath)
     Q_UNUSED(settingsPath);
 
     m_backend = new KWalletPasswordBackend;
-    QZ_REGISTER_PASSWORD_BACKEND("KWallet", m_backend);
+    mApp->autoFill()->passwordManager()->registerBackend(QSL("KWallet"), m_backend);
 }
 
 void KWalletPlugin::unload()
 {
-    QZ_UNREGISTER_PASSWORD_BACKEND(m_backend);
+    mApp->autoFill()->passwordManager()->unregisterBackend(m_backend);
     delete m_backend;
 }
 
@@ -69,7 +72,3 @@ QTranslator* KWalletPlugin::getTranslator(const QString &locale)
     translator->load(locale, ":/kwp/locale/");
     return translator;
 }
-
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(KWalletPasswords, KWalletPlugin)
-#endif

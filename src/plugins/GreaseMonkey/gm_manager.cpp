@@ -1,6 +1,6 @@
 /* ============================================================
 * GreaseMonkey plugin for QupZilla
-* Copyright (C) 2012-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2012-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 #include "gm_manager.h"
 #include "gm_script.h"
 #include "gm_downloader.h"
+#include "gm_jsobject.h"
 #include "gm_icon.h"
 #include "gm_addscriptdialog.h"
 #include "settings/gm_settings.h"
@@ -27,20 +28,28 @@
 #include "qztools.h"
 #include "mainapplication.h"
 #include "networkmanager.h"
+#include "navigationbar.h"
 #include "desktopnotificationsfactory.h"
+#include "javascript/externaljsobject.h"
+#include "statusbar.h"
 
 #include <QTimer>
 #include <QDir>
 #include <QSettings>
-#include <QStatusBar>
 #include <QWebEngineProfile>
 #include <QWebEngineScriptCollection>
 
 GM_Manager::GM_Manager(const QString &sPath, QObject* parent)
     : QObject(parent)
     , m_settingsPath(sPath)
+    , m_jsObject(new GM_JSObject(this))
 {
-    QTimer::singleShot(0, this, SLOT(load()));
+    load();
+}
+
+GM_Manager::~GM_Manager()
+{
+    ExternalJsObject::unregisterExtraObject(QSL("greasemonkey"));
 }
 
 void GM_Manager::showSettings(QWidget* parent)
@@ -55,7 +64,25 @@ void GM_Manager::showSettings(QWidget* parent)
 
 void GM_Manager::downloadScript(const QUrl &url)
 {
-    QMetaObject::invokeMethod(this, "doDownloadScript", Qt::QueuedConnection, Q_ARG(QUrl, url));
+    GM_Downloader *downloader = new GM_Downloader(url, this);
+    connect(downloader, &GM_Downloader::finished, this, [=](const QString &fileName) {
+        bool deleteScript = true;
+        GM_Script *script = new GM_Script(this, fileName);
+        if (script->isValid()) {
+            if (!containsScript(script->fullName())) {
+                GM_AddScriptDialog dialog(this, script);
+                deleteScript = dialog.exec() != QDialog::Accepted;
+            }
+            else {
+                showNotification(tr("'%1' is already installed").arg(script->name()));
+            }
+        }
+
+        if (deleteScript) {
+            delete script;
+            QFile(fileName).remove();
+        }
+    });
 }
 
 QString GM_Manager::settinsPath() const
@@ -82,8 +109,14 @@ QString GM_Manager::requireScripts(const QStringList &urlList) const
 
     foreach (const QString &url, urlList) {
         if (settings.contains(url)) {
-            const QString fileName = settings.value(url).toString();
-            script.append(QzTools::readAllFileContents(fileName).trimmed() + '\n');
+            QString fileName = settings.value(url).toString();
+            if (!QFileInfo(fileName).isAbsolute()) {
+                fileName = m_settingsPath + QL1S("/greasemonkey/requires/") + fileName;
+            }
+            const QString data = QzTools::readAllFileContents(fileName).trimmed();
+            if (!data.isEmpty()) {
+                script.append(data + QL1C('\n'));
+            }
         }
     }
 
@@ -233,6 +266,9 @@ void GM_Manager::load()
             mApp->webProfile()->scripts()->insert(script->webScript());
         }
     }
+
+    m_jsObject->setSettingsFile(m_settingsPath + QSL("/greasemonkey/values.ini"));
+    ExternalJsObject::registerExtraObject(QSL("greasemonkey"), m_jsObject);
 }
 
 void GM_Manager::scriptChanged()
@@ -246,29 +282,6 @@ void GM_Manager::scriptChanged()
     collection->insert(script->webScript());
 }
 
-void GM_Manager::doDownloadScript(const QUrl &url)
-{
-    GM_Downloader *downloader = new GM_Downloader(url, this);
-    connect(downloader, &GM_Downloader::finished, this, [=](const QString &fileName) {
-        bool deleteScript = true;
-        GM_Script *script = new GM_Script(this, fileName);
-        if (script->isValid()) {
-            if (!containsScript(script->fullName())) {
-                GM_AddScriptDialog dialog(this, script);
-                deleteScript = dialog.exec() != QDialog::Accepted;
-            }
-            else {
-                showNotification(tr("'%1' is already installed").arg(script->name()));
-            }
-        }
-
-        if (deleteScript) {
-            delete script;
-            QFile(fileName).remove();
-        }
-    });
-}
-
 bool GM_Manager::canRunOnScheme(const QString &scheme)
 {
     return (scheme == QLatin1String("http") || scheme == QLatin1String("https")
@@ -277,14 +290,14 @@ bool GM_Manager::canRunOnScheme(const QString &scheme)
 
 void GM_Manager::mainWindowCreated(BrowserWindow* window)
 {
-    GM_Icon* icon = new GM_Icon(this, window);
-    window->statusBar()->addPermanentWidget(icon);
+    GM_Icon *icon = new GM_Icon(this);
+    window->statusBar()->addButton(icon);
+    window->navigationBar()->addToolButton(icon);
     m_windows[window] = icon;
 }
 
 void GM_Manager::mainWindowDeleted(BrowserWindow* window)
 {
-    window->statusBar()->removeWidget(m_windows[window]);
-    delete m_windows[window];
-    m_windows.remove(window);
+    window->navigationBar()->removeToolButton(m_windows[window]);
+    delete m_windows.take(window);
 }

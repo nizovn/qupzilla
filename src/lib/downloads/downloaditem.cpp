@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -228,7 +228,7 @@ void DownloadItem::updateDownloadInfo(double currSpeed, qint64 received, qint64 
     QString speed = currentSpeedToString(currSpeed);
     // We have QString speed now
 
-    QTime time;
+    QTime time(0, 0, 0);
     time = time.addSecs(estimatedTime);
     QString remTime = remaingTimeToString(time);
     m_remTime = time;
@@ -315,6 +315,11 @@ void DownloadItem::openFolder()
 {
 #ifdef Q_OS_WIN
     QString winFileName = QSL("%1/%2").arg(m_path, m_fileName);
+
+    if (m_downloading) {
+        winFileName.append(QSL(".download"));
+    }
+
     winFileName.replace(QLatin1Char('/'), "\\");
     QString shExArg = "/e,/select,\"" + winFileName + "\"";
     ShellExecute(NULL, NULL, TEXT("explorer.exe"), shExArg.toStdWString().c_str(), NULL, SW_SHOW);

@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #include <QInputDialog>
 
 AdBlockDialog::AdBlockDialog(QWidget* parent)
-    : QWidget(parent)
+    : QDialog(parent)
     , m_manager(AdBlockManager::instance())
     , m_currentTreeWidget(0)
     , m_currentSubscription(0)
@@ -40,7 +40,7 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
 
     QzTools::centerWidgetOnScreen(this);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     tabWidget->setDocumentMode(false);
 #endif
     adblockCheckBox->setChecked(m_manager->isEnabled());

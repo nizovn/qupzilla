@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #include "websearchbar.h"
 #include "pluginproxy.h"
 #include "sidebar.h"
-#include "downloadmanager.h"
 #include "cookiejar.h"
 #include "cookiemanager.h"
 #include "bookmarkstoolbar.h"
@@ -34,14 +33,12 @@
 #include "autofill.h"
 #include "mainapplication.h"
 #include "checkboxdialog.h"
-#include "adblockmanager.h"
 #include "clickablelabel.h"
 #include "docktitlebarwidget.h"
 #include "iconprovider.h"
 #include "progressbar.h"
-#include "adblockicon.h"
-#include "closedtabsmanager.h"
-#include "statusbarmessage.h"
+#include "closedwindowsmanager.h"
+#include "statusbar.h"
 #include "browsinglibrary.h"
 #include "navigationbar.h"
 #include "bookmarksimport/bookmarksimportdialog.h"
@@ -51,24 +48,24 @@
 #include "navigationcontainer.h"
 #include "settings.h"
 #include "qzsettings.h"
-#include "webtab.h"
 #include "speeddial.h"
 #include "menubar.h"
 #include "bookmarkstools.h"
 #include "bookmarksmenu.h"
 #include "historymenu.h"
 #include "mainmenu.h"
+#include "downloadsbutton.h"
+#include "tabmodel.h"
+#include "tabmrumodel.h"
 
 #include <algorithm>
 
 #include <QKeyEvent>
 #include <QSplitter>
-#include <QStatusBar>
 #include <QMenuBar>
 #include <QTimer>
 #include <QShortcut>
 #include <QStackedWidget>
-#include <QSqlQuery>
 #include <QTextCodec>
 #include <QFileDialog>
 #include <QDesktopServices>
@@ -79,21 +76,118 @@
 #include <QToolTip>
 #include <QScrollArea>
 #include <QCollator>
-#include <QPrintDialog>
-#include <QPrinter>
 #include <QTemporaryFile>
-
-#ifdef Q_OS_WIN
-#include <qt_windows.h>
-#else
-#include "fileprinter.h"
-#endif
 
 #ifdef QZ_WS_X11
 #include <QX11Info>
 #include <xcb/xcb.h>
 #include <xcb/xcb_atom.h>
 #endif
+
+static const int savedWindowVersion = 2;
+
+BrowserWindow::SavedWindow::SavedWindow()
+{
+}
+
+BrowserWindow::SavedWindow::SavedWindow(BrowserWindow *window)
+{
+    windowState = window->isFullScreen() ? QByteArray() : window->saveState();
+    windowGeometry = window->saveGeometry();
+    windowUiState = window->saveUiState();
+#ifdef QZ_WS_X11
+    virtualDesktop = window->getCurrentVirtualDesktop();
+#endif
+
+    const int tabsCount = window->tabCount();
+    tabs.reserve(tabsCount);
+    for (int i = 0; i < tabsCount; ++i) {
+        TabbedWebView *webView = window->weView(i);
+        if (!webView) {
+            continue;
+        }
+        WebTab* webTab = webView->webTab();
+        if (!webTab) {
+            continue;
+        }
+        WebTab::SavedTab tab(webTab);
+        if (!tab.isValid()) {
+            continue;
+        }
+        if (webTab->isCurrentTab()) {
+            currentTab = tabs.size();
+        }
+        tabs.append(tab);
+    }
+}
+
+bool BrowserWindow::SavedWindow::isValid() const
+{
+    for (const WebTab::SavedTab &tab : qAsConst(tabs)) {
+        if (!tab.isValid()) {
+            return false;
+        }
+    }
+    return currentTab > -1;
+}
+
+void BrowserWindow::SavedWindow::clear()
+{
+    windowState.clear();
+    windowGeometry.clear();
+    virtualDesktop = -1;
+    currentTab = -1;
+    tabs.clear();
+}
+
+QDataStream &operator<<(QDataStream &stream, const BrowserWindow::SavedWindow &window)
+{
+    stream << savedWindowVersion;
+    stream << window.windowState;
+    stream << window.windowGeometry;
+    stream << window.virtualDesktop;
+    stream << window.currentTab;
+    stream << window.tabs.count();
+
+    for (int i = 0; i < window.tabs.count(); ++i) {
+        stream << window.tabs.at(i);
+    }
+
+    stream << window.windowUiState;
+
+    return stream;
+}
+
+QDataStream &operator>>(QDataStream &stream, BrowserWindow::SavedWindow &window)
+{
+    int version;
+    stream >> version;
+
+    if (version < 1) {
+        return stream;
+    }
+
+    stream >> window.windowState;
+    stream >> window.windowGeometry;
+    stream >> window.virtualDesktop;
+    stream >> window.currentTab;
+
+    int tabsCount = -1;
+    stream >> tabsCount;
+    window.tabs.reserve(tabsCount);
+
+    for (int i = 0; i < tabsCount; ++i) {
+        WebTab::SavedTab tab;
+        stream >> tab;
+        window.tabs.append(tab);
+    }
+
+    if (version >= 2) {
+        stream >> window.windowUiState;
+    }
+
+    return stream;
+}
 
 BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     : QMainWindow(0)
@@ -102,7 +196,6 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     , m_startTab(0)
     , m_startPage(0)
     , m_sideBarManager(new SideBarManager(this))
-    , m_statusBarMessage(new StatusBarMessage(this))
     , m_isHtmlFullScreen(false)
     , m_hideNavigationTimer(0)
 {
@@ -172,11 +265,16 @@ void BrowserWindow::postLaunch()
 
     case MainApplication::OpenHomePage:
     case MainApplication::RestoreSession:
+    case MainApplication::SelectSession:
         startUrl = m_homepage;
         break;
 
     default:
         break;
+    }
+
+    if (!mApp->isTestModeEnabled()) {
+        show();
     }
 
     switch (m_windowType) {
@@ -186,8 +284,8 @@ void BrowserWindow::postLaunch()
             startUrl.clear();
             m_tabWidget->addView(QUrl("qupzilla:restore"), Qz::NT_CleanSelectedTabAtTheEnd);
         }
-        else if (mApp->afterLaunch() == MainApplication::RestoreSession && mApp->restoreManager()) {
-            addTab = !mApp->restoreSession(this, mApp->restoreManager()->restoreData());
+        else if (mApp->afterLaunch() == MainApplication::SelectSession || mApp->afterLaunch() == MainApplication::RestoreSession) {
+            addTab = m_tabWidget->count() <= 0;
         }
         break;
 
@@ -201,8 +299,6 @@ void BrowserWindow::postLaunch()
         break;
     }
 
-    show();
-
     if (!m_startUrl.isEmpty()) {
         startUrl = m_startUrl;
         addTab = true;
@@ -210,7 +306,7 @@ void BrowserWindow::postLaunch()
 
     if (m_startTab) {
         addTab = false;
-        m_tabWidget->addView(m_startTab);
+        m_tabWidget->addView(m_startTab, Qz::NT_SelectedTab);
     }
 
     if (m_startPage) {
@@ -228,7 +324,7 @@ void BrowserWindow::postLaunch()
     }
 
     // Something went really wrong .. add one tab
-    if (m_tabWidget->tabBar()->normalTabsCount() <= 0) {
+    if (m_tabWidget->count() <= 0) {
         m_tabWidget->addView(m_homepage, Qz::NT_SelectedTabAtTheEnd);
     }
 
@@ -237,64 +333,28 @@ void BrowserWindow::postLaunch()
 
     raise();
     activateWindow();
-
-    QTimer::singleShot(0, this, [this]() {
-        // Scroll to current tab
-        tabWidget()->tabBar()->ensureVisible();
-        // Update focus
-        if (!m_startPage && LocationBar::convertUrlToText(weView()->page()->requestedUrl()).isEmpty())
-            locationBar()->setFocus();
-        else
-            weView()->setFocus();
-    });
+    updateStartupFocus();
 }
 
 void BrowserWindow::setupUi()
 {
-    int locationBarWidth;
-    int websearchBarWidth;
-
-    QDesktopWidget* desktop = mApp->desktop();
-    int windowWidth = desktop->availableGeometry().width() / 1.3;
-    int windowHeight = desktop->availableGeometry().height() / 1.3;
-
     Settings settings;
     settings.beginGroup("Browser-View-Settings");
-    if (settings.value("WindowMaximised", false).toBool()) {
-        resize(windowWidth, windowHeight);
-        setWindowState(Qt::WindowMaximized);
-    }
-    else {
-        // Let the WM decides where to put new browser window
-        if ((m_windowType != Qz::BW_FirstAppWindow && m_windowType != Qz::BW_MacFirstWindow) && mApp->getWindow()) {
-#ifdef Q_WS_WIN
-            // Windows WM places every new window in the middle of screen .. for some reason
-            QPoint p = mApp->getWindow()->geometry().topLeft();
-            p.setX(p.x() + 30);
-            p.setY(p.y() + 30);
+    const QByteArray windowGeometry = settings.value(QSL("WindowGeometry")).toByteArray();
 
-            if (!desktop->availableGeometry(mApp->getWindow()).contains(p)) {
-                p.setX(desktop->availableGeometry(mApp->getWindow()).x() + 30);
-                p.setY(desktop->availableGeometry(mApp->getWindow()).y() + 30);
-            }
-
-            setGeometry(QRect(p, mApp->getWindow()->size()));
-#else
-            resize(mApp->getWindow()->size());
-#endif
-        }
-        else if (!restoreGeometry(settings.value("WindowGeometry").toByteArray())) {
-#ifdef Q_WS_WIN
-            setGeometry(QRect(desktop->availableGeometry(mApp->getWindow()).x() + 30,
-                              desktop->availableGeometry(mApp->getWindow()).y() + 30, windowWidth, windowHeight));
-#else
-            resize(windowWidth, windowHeight);
-#endif
+    const QStringList keys = {
+        QSL("LocationBarWidth"),
+        QSL("WebSearchBarWidth"),
+        QSL("SideBarWidth"),
+        QSL("WebViewWidth"),
+        QSL("SideBar")
+    };
+    QHash<QString, QVariant> uiState;
+    for (const QString &key : keys) {
+        if (settings.contains(key)) {
+            uiState[key] = settings.value(key);
         }
     }
-
-    locationBarWidth = settings.value("LocationBarWidth", 480).toInt();
-    websearchBarWidth = settings.value("WebSearchBarWidth", 140).toInt();
     settings.endGroup();
 
     QWidget* widget = new QWidget(this);
@@ -309,8 +369,11 @@ void BrowserWindow::setupUi()
     m_tabWidget = new TabWidget(this);
     m_superMenu = new QMenu(this);
     m_navigationToolbar = new NavigationBar(this);
-    m_navigationToolbar->setSplitterSizes(locationBarWidth, websearchBarWidth);
     m_bookmarksToolbar = new BookmarksToolbar(this);
+
+    m_tabModel = new TabModel(this, this);
+    m_tabMruModel = new TabMruModel(this, this);
+    m_tabMruModel->setSourceModel(m_tabModel);
 
     m_navigationContainer = new NavigationContainer(this);
     m_navigationContainer->addWidget(m_navigationToolbar);
@@ -323,24 +386,53 @@ void BrowserWindow::setupUi()
     m_mainLayout->addWidget(m_navigationContainer);
     m_mainLayout->addWidget(m_mainSplitter);
 
-    statusBar()->setObjectName("mainwindow-statusbar");
-    statusBar()->setCursor(Qt::ArrowCursor);
-    m_progressBar = new ProgressBar(statusBar());
-    m_adblockIcon = new AdBlockIcon(this);
+    m_statusBar = new StatusBar(this);
+    m_statusBar->setObjectName("mainwindow-statusbar");
+    m_statusBar->setCursor(Qt::ArrowCursor);
+    setStatusBar(m_statusBar);
+    m_progressBar = new ProgressBar(m_statusBar);
     m_ipLabel = new QLabel(this);
     m_ipLabel->setObjectName("statusbar-ip-label");
     m_ipLabel->setToolTip(tr("IP Address of current page"));
 
-    statusBar()->addPermanentWidget(m_progressBar);
-    statusBar()->addPermanentWidget(m_ipLabel);
-    statusBar()->addPermanentWidget(m_adblockIcon);
+    m_statusBar->addPermanentWidget(m_progressBar);
+    m_statusBar->addPermanentWidget(m_ipLabel);
 
-    // Workaround for Oxygen tooltips not having transparent background
-    QPalette pal = QToolTip::palette();
-    QColor col = pal.window().color();
-    col.setAlpha(0);
-    pal.setColor(QPalette::Window, col);
-    QToolTip::setPalette(pal);
+    DownloadsButton *downloadsButton = new DownloadsButton(this);
+    m_statusBar->addButton(downloadsButton);
+    m_navigationToolbar->addToolButton(downloadsButton);
+
+    QDesktopWidget* desktop = mApp->desktop();
+    int windowWidth = desktop->availableGeometry().width() / 1.3;
+    int windowHeight = desktop->availableGeometry().height() / 1.3;
+
+    // Let the WM decides where to put new browser window
+    if (m_windowType != Qz::BW_FirstAppWindow && m_windowType != Qz::BW_MacFirstWindow && mApp->getWindow()) {
+#ifdef Q_WS_WIN
+        // Windows WM places every new window in the middle of screen .. for some reason
+        QPoint p = mApp->getWindow()->geometry().topLeft();
+        p.setX(p.x() + 30);
+        p.setY(p.y() + 30);
+
+        if (!desktop->availableGeometry(mApp->getWindow()).contains(p)) {
+            p.setX(desktop->availableGeometry(mApp->getWindow()).x() + 30);
+            p.setY(desktop->availableGeometry(mApp->getWindow()).y() + 30);
+        }
+
+        setGeometry(QRect(p, mApp->getWindow()->size()));
+#else
+        resize(mApp->getWindow()->size());
+#endif
+    } else if (!restoreGeometry(windowGeometry)) {
+#ifdef Q_WS_WIN
+        setGeometry(QRect(desktop->availableGeometry(mApp->getWindow()).x() + 30,
+                          desktop->availableGeometry(mApp->getWindow()).y() + 30, windowWidth, windowHeight));
+#else
+        resize(windowWidth, windowHeight);
+#endif
+    }
+
+    restoreUiState(uiState);
 
     // Set some sane minimum width
     setMinimumWidth(300);
@@ -348,26 +440,26 @@ void BrowserWindow::setupUi()
 
 void BrowserWindow::setupMenu()
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     static MainMenu* macMainMenu = 0;
 
     if (!macMainMenu) {
         macMainMenu = new MainMenu(this, 0);
         macMainMenu->initMenuBar(new QMenuBar(0));
+        connect(mApp, SIGNAL(activeWindowChanged(BrowserWindow*)), macMainMenu, SLOT(setWindow(BrowserWindow*)));
     }
     else {
         macMainMenu->setWindow(this);
     }
 
     m_mainMenu = macMainMenu;
-    m_mainMenu->initSuperMenu(m_superMenu);
 #else
     setMenuBar(new MenuBar(this));
 
     m_mainMenu = new MainMenu(this, this);
     m_mainMenu->initMenuBar(menuBar());
-    m_mainMenu->initSuperMenu(m_superMenu);
 #endif
+    m_mainMenu->initSuperMenu(m_superMenu);
 
     // Setup other shortcuts
     QShortcut* reloadBypassCacheAction = new QShortcut(QKeySequence(QSL("Ctrl+F5")), this);
@@ -388,6 +480,22 @@ void BrowserWindow::setupMenu()
 
     QShortcut* inspectorAction = new QShortcut(QKeySequence(QSL("F12")), this);
     connect(inspectorAction, SIGNAL(activated()), this, SLOT(toggleWebInspector()));
+
+    QShortcut* restoreClosedWindow = new QShortcut(QKeySequence(QSL("Ctrl+Shift+N")), this);
+    connect(restoreClosedWindow, &QShortcut::activated, mApp->closedWindowsManager(), &ClosedWindowsManager::restoreClosedWindow);
+}
+
+void BrowserWindow::updateStartupFocus()
+{
+    QTimer::singleShot(500, this, [this]() {
+        // Scroll to current tab
+        tabWidget()->tabBar()->ensureVisible();
+        // Update focus
+        if (!m_startPage && LocationBar::convertUrlToText(weView()->page()->requestedUrl()).isEmpty())
+            locationBar()->setFocus();
+        else
+            weView()->setFocus();
+    });
 }
 
 QAction* BrowserWindow::createEncodingAction(const QString &codecName,
@@ -416,13 +524,50 @@ void BrowserWindow::createEncodingSubMenu(const QString &name, QStringList &code
     });
 
     QMenu* subMenu = new QMenu(name, menu);
-    const QString activeCodecName = QWebEngineSettings::defaultSettings()->defaultTextEncoding();
+    const QString activeCodecName = mApp->webSettings()->defaultTextEncoding();
+
+    QActionGroup *group = new QActionGroup(subMenu);
 
     foreach (const QString &codecName, codecNames) {
-        subMenu->addAction(createEncodingAction(codecName, activeCodecName, subMenu));
+        QAction *act = createEncodingAction(codecName, activeCodecName, subMenu);
+        group->addAction(act);
+        subMenu->addAction(act);
     }
 
     menu->addMenu(subMenu);
+}
+
+QHash<QString, QVariant> BrowserWindow::saveUiState()
+{
+    saveSideBarSettings();
+
+    QHash<QString, QVariant> state;
+    state[QSL("LocationBarWidth")] = m_navigationToolbar->splitter()->sizes().at(0);
+    state[QSL("WebSearchBarWidth")] = m_navigationToolbar->splitter()->sizes().at(1);
+    state[QSL("SideBarWidth")] = m_sideBarWidth;
+    state[QSL("WebViewWidth")] = m_webViewWidth;
+    state[QSL("SideBar")] = m_sideBarManager->activeSideBar();
+    return state;
+}
+
+void BrowserWindow::restoreUiState(const QHash<QString, QVariant> &state)
+{
+    const int locationBarWidth = state.value(QSL("LocationBarWidth"), 480).toInt();
+    const int websearchBarWidth = state.value(QSL("WebSearchBarWidth"), 140).toInt();
+    m_navigationToolbar->setSplitterSizes(locationBarWidth, websearchBarWidth);
+
+    m_sideBarWidth = state.value(QSL("SideBarWidth"), 250).toInt();
+    m_webViewWidth = state.value(QSL("WebViewWidth"), 2000).toInt();
+    if (m_sideBar) {
+        m_mainSplitter->setSizes({m_sideBarWidth, m_webViewWidth});
+    }
+
+    const QString activeSideBar = state.value(QSL("SideBar")).toString();
+    if (activeSideBar.isEmpty() && m_sideBar) {
+        m_sideBar->close();
+    } else {
+        m_sideBarManager->showSideBar(activeSideBar, false);
+    }
 }
 
 void BrowserWindow::loadSettings()
@@ -437,17 +582,9 @@ void BrowserWindow::loadSettings()
     //Browser Window settings
     settings.beginGroup("Browser-View-Settings");
     bool showStatusBar = settings.value("showStatusBar", false).toBool();
-    bool showReloadButton = settings.value("showReloadButton", true).toBool();
-    bool showHomeButton = settings.value("showHomeButton", true).toBool();
-    bool showBackForwardButtons = settings.value("showBackForwardButtons", true).toBool();
-    bool showAddTabButton = settings.value("showAddTabButton", false).toBool();
-    bool showWebSearchBar = settings.value("showWebSearchBar", true).toBool();
     bool showBookmarksToolbar = settings.value("showBookmarksToolbar", true).toBool();
     bool showNavigationToolbar = settings.value("showNavigationToolbar", true).toBool();
     bool showMenuBar = settings.value("showMenubar", false).toBool();
-    m_sideBarWidth = settings.value("SideBarWidth", 250).toInt();
-    m_webViewWidth = settings.value("WebViewWidth", 2000).toInt();
-    const QString activeSideBar = settings.value("SideBar", "None").toString();
 
     // Make sure both menubar and navigationbar are not hidden
     // Fixes #781
@@ -473,25 +610,17 @@ void BrowserWindow::loadSettings()
     }
     settings.endGroup();
 
-    m_adblockIcon->setEnabled(settings.value("AdBlock/enabled", true).toBool());
-
+    m_statusBarVisible = showStatusBar;
     statusBar()->setVisible(!isFullScreen() && showStatusBar);
     m_bookmarksToolbar->setVisible(showBookmarksToolbar);
     m_navigationToolbar->setVisible(showNavigationToolbar);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
+    m_menuBarVisible = showMenuBar;
     menuBar()->setVisible(!isFullScreen() && showMenuBar);
 #endif
 
-    m_navigationToolbar->setSuperMenuVisible(!showMenuBar);
-    m_navigationToolbar->buttonReloadStop()->setVisible(showReloadButton);
-    m_navigationToolbar->buttonHome()->setVisible(showHomeButton);
-    m_navigationToolbar->buttonBack()->setVisible(showBackForwardButtons);
-    m_navigationToolbar->buttonForward()->setVisible(showBackForwardButtons);
-    m_navigationToolbar->webSearchBar()->setVisible(showWebSearchBar);
-    m_navigationToolbar->buttonAddTab()->setVisible(showAddTabButton);
-
-    m_sideBarManager->showSideBar(activeSideBar, false);
+    m_navigationToolbar->setSuperMenuVisible(isFullScreen() || !showMenuBar);
 }
 
 void BrowserWindow::goForward()
@@ -512,6 +641,11 @@ void BrowserWindow::reloadBypassCache()
 void BrowserWindow::goBack()
 {
     weView()->back();
+}
+
+int BrowserWindow::tabCount() const
+{
+    return m_tabWidget->count();
 }
 
 TabbedWebView* BrowserWindow::weView() const
@@ -544,9 +678,9 @@ BookmarksToolbar* BrowserWindow::bookmarksToolbar() const
     return m_bookmarksToolbar;
 }
 
-StatusBarMessage* BrowserWindow::statusBarMessage() const
+StatusBar* BrowserWindow::statusBar() const
 {
-    return m_statusBarMessage;
+    return m_statusBar;
 }
 
 NavigationBar* BrowserWindow::navigationBar() const
@@ -562,11 +696,6 @@ SideBarManager* BrowserWindow::sideBarManager() const
 QLabel* BrowserWindow::ipLabel() const
 {
     return m_ipLabel;
-}
-
-AdBlockIcon* BrowserWindow::adBlockIcon() const
-{
-    return m_adblockIcon;
 }
 
 QMenu* BrowserWindow::superMenu() const
@@ -589,6 +718,16 @@ QAction* BrowserWindow::action(const QString &name) const
     return m_mainMenu->action(name);
 }
 
+TabModel *BrowserWindow::tabModel() const
+{
+    return m_tabModel;
+}
+
+TabMruModel *BrowserWindow::tabMruModel() const
+{
+    return m_tabMruModel;
+}
+
 void BrowserWindow::setWindowTitle(const QString &t)
 {
     QString title = t;
@@ -604,7 +743,7 @@ void BrowserWindow::changeEncoding()
 {
     if (QAction* action = qobject_cast<QAction*>(sender())) {
         const QString encoding = action->data().toString();
-        QWebEngineSettings::defaultSettings()->setDefaultTextEncoding(encoding);
+        mApp->webSettings()->setDefaultTextEncoding(encoding);
 
         Settings settings;
         settings.setValue("Web-Browser-Settings/DefaultEncoding", encoding);
@@ -615,48 +754,7 @@ void BrowserWindow::changeEncoding()
 
 void BrowserWindow::printPage()
 {
-    QPrintDialog* dialog = new QPrintDialog(this);
-    dialog->setOptions(QAbstractPrintDialog::PrintToFile | QAbstractPrintDialog::PrintShowPageSize);
-#ifndef Q_OS_WIN
-    dialog->setOption(QAbstractPrintDialog::PrintPageRange);
-    if (Qz::FilePrinter::cupsAvailable()) {
-        dialog->setOption(QAbstractPrintDialog::PrintCollateCopies);
-    }
-#endif
-    dialog->printer()->setCreator(tr("QupZilla %1 (%2)").arg(Qz::VERSION, Qz::WWWADDRESS));
-    dialog->printer()->setDocName(QzTools::getFileNameFromUrl(weView()->url()));
-
-    if (dialog->exec() == QDialog::Accepted) {
-        if (dialog->printer()->outputFormat() == QPrinter::PdfFormat) {
-            weView()->page()->printToPdf(dialog->printer()->outputFileName(), dialog->printer()->pageLayout());
-            delete dialog;
-        } else {
-            weView()->page()->printToPdf([=](const QByteArray &data) {
-                if (!data.isEmpty()) {
-                    QTemporaryFile tempFile(QDir::tempPath() + QSL("/QupZillaPrintXXXXXX.pdf"));
-                    tempFile.setAutoRemove(false);
-                    if (tempFile.open()) {
-                        qint64 bytesWritten = tempFile.write(data);
-                        tempFile.close();
-                        if (bytesWritten == data.size()) {
-#ifdef Q_OS_WIN
-                            QString printerName = '"' + dialog->printer()->printerName() + '"';
-                            // This may bring up a PDF viewer window, and even keep it open, but it is the best we can do without adding third-party dependencies.
-                            // lpr is not installed by default on Windows, and it also can only print PDF if the printer handles it in hardware.
-                            ShellExecuteW((HWND)winId(), L"printto", (LPCWSTR)tempFile.fileName().utf16(), (LPCWSTR)printerName.utf16(), NULL, SW_HIDE);
-                            // TODO: When can we delete the file?
-#else
-                            Qz::FilePrinter::printFile(dialog->printer(), tempFile.fileName(), Qz::FilePrinter::SystemDeletesFiles, Qz::FilePrinter::SystemSelectsPages);
-#endif
-                        } else {
-                            tempFile.remove();
-                        }
-                    }
-                }
-                delete dialog;
-            }, dialog->printer()->pageLayout());
-        }
-    }
+    weView()->printPage();
 }
 
 void BrowserWindow::bookmarkPage()
@@ -712,8 +810,7 @@ void BrowserWindow::loadAddress(const QUrl &url)
     if (weView()->webTab()->isPinned()) {
         int index = m_tabWidget->addView(url, qzSettings->newTabPosition);
         weView(index)->setFocus();
-    }
-    else {
+    } else {
         weView()->setFocus();
         weView()->load(url);
     }
@@ -741,24 +838,26 @@ SideBar* BrowserWindow::addSideBar()
 
     m_mainSplitter->insertWidget(0, m_sideBar.data());
     m_mainSplitter->setCollapsible(0, false);
-
-    m_mainSplitter->setSizes(QList<int>() << m_sideBarWidth << m_webViewWidth);
+    m_mainSplitter->setSizes({m_sideBarWidth, m_webViewWidth});
 
     return m_sideBar.data();
 }
 
-void BrowserWindow::saveSideBarWidth()
+void BrowserWindow::saveSideBarSettings()
 {
-    // That +1 is important here, without it, the sidebar width would
-    // decrease by 1 pixel every close
+    if (m_sideBar) {
+        // That +1 is important here, without it, the sidebar width would
+        // decrease by 1 pixel every close
+        m_sideBarWidth = m_mainSplitter->sizes().at(0) + 1;
+        m_webViewWidth = width() - m_sideBarWidth;
+    }
 
-    m_sideBarWidth = m_mainSplitter->sizes().at(0) + 1;
-    m_webViewWidth = width() - m_sideBarWidth;
+    Settings().setValue(QSL("Browser-View-Settings/SideBar"), m_sideBarManager->activeSideBar());
 }
 
 void BrowserWindow::toggleShowMenubar()
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // We use one shared global menubar on Mac that can't be hidden
     return;
 #endif
@@ -782,11 +881,11 @@ void BrowserWindow::toggleShowStatusBar()
 {
     setUpdatesEnabled(false);
 
-    statusBar()->setVisible(!statusBar()->isVisible());
+    m_statusBar->setVisible(!m_statusBar->isVisible());
 
     setUpdatesEnabled(true);
 
-    Settings().setValue("Browser-View-Settings/showStatusBar", statusBar()->isVisible());
+    Settings().setValue("Browser-View-Settings/showStatusBar", m_statusBar->isVisible());
 
 }
 
@@ -812,7 +911,7 @@ void BrowserWindow::toggleShowNavigationToolbar()
 
     Settings().setValue("Browser-View-Settings/showNavigationToolbar", m_navigationToolbar->isVisible());
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Make sure we show Menu Bar when Navigation Toolbar is hidden
     if (!m_navigationToolbar->isVisible() && !menuBar()->isVisible()) {
         toggleShowMenubar();
@@ -833,16 +932,25 @@ void BrowserWindow::toggleFullScreen()
         return;
     }
 
-    if (isFullScreen())
+    if (isFullScreen()) {
         setWindowState(windowState() & ~Qt::WindowFullScreen);
-    else
+    } else {
         setWindowState(windowState() | Qt::WindowFullScreen);
+    }
 }
 
-void BrowserWindow::enterHtmlFullScreen()
+void BrowserWindow::toggleHtmlFullScreen(bool enable)
 {
-    showFullScreen();
-    m_isHtmlFullScreen = true;
+    if (enable) {
+        setWindowState(windowState() | Qt::WindowFullScreen);
+    } else {
+        setWindowState(windowState() & ~Qt::WindowFullScreen);
+    }
+
+    if (m_sideBar)
+        m_sideBar.data()->setHidden(enable);
+
+    m_isHtmlFullScreen = enable;
 }
 
 void BrowserWindow::showWebInspector()
@@ -867,11 +975,18 @@ void BrowserWindow::refreshHistory()
 void BrowserWindow::currentTabChanged()
 {
     TabbedWebView* view = weView();
+    m_navigationToolbar->setCurrentView(view);
+
     if (!view) {
         return;
     }
 
-    setWindowTitle(tr("%1 - QupZilla").arg(view->webTab()->title()));
+    const QString title = view->webTab()->title(/*allowEmpty*/true);
+    if (title.isEmpty()) {
+        setWindowTitle(tr("QupZilla"));
+    } else {
+        setWindowTitle(tr("%1 - QupZilla").arg(title));
+    }
     m_ipLabel->setText(view->getIp());
     view->setFocus();
 
@@ -913,10 +1028,19 @@ void BrowserWindow::addDeleteOnCloseWidget(QWidget* widget)
     }
 }
 
-void BrowserWindow::restoreWindowState(const RestoreManager::WindowData &d)
+void BrowserWindow::restoreWindow(const SavedWindow &window)
 {
-    restoreState(d.windowState);
-    m_tabWidget->restoreState(d.tabsState, d.currentTab);
+    restoreState(window.windowState);
+    restoreGeometry(window.windowGeometry);
+    restoreUiState(window.windowUiState);
+#ifdef QZ_WS_X11
+    moveToVirtualDesktop(window.virtualDesktop);
+#endif
+    if (!mApp->isTestModeEnabled()) {
+        show(); // Window has to be visible before adding QWebEngineView's
+    }
+    m_tabWidget->restoreState(window.tabs, window.currentTab);
+    updateStartupFocus();
 }
 
 void BrowserWindow::createToolbarsMenu(QMenu* menu)
@@ -926,7 +1050,7 @@ void BrowserWindow::createToolbarsMenu(QMenu* menu)
 
     QAction* action;
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     action = menu->addAction(tr("&Menu Bar"), this, SLOT(toggleShowMenubar()));
     action->setCheckable(true);
     action->setChecked(menuBar()->isVisible());
@@ -956,7 +1080,7 @@ void BrowserWindow::createSidebarsMenu(QMenu* menu)
 
 void BrowserWindow::createEncodingMenu(QMenu* menu)
 {
-    const QString activeCodecName = QWebEngineSettings::defaultSettings()->defaultTextEncoding();
+    const QString activeCodecName = mApp->webSettings()->defaultTextEncoding();
 
     QStringList isoCodecs;
     QStringList utfCodecs;
@@ -984,8 +1108,6 @@ void BrowserWindow::createEncodingMenu(QMenu* menu)
             isciiCodecs.append(codecName);
         else if (codecName.startsWith(QLatin1String("IBM")))
             ibmCodecs.append(codecName);
-        else if (codecName == QLatin1String("System"))
-            menu->addAction(createEncodingAction(codecName, activeCodecName, menu));
         else
             otherCodecs.append(codecName);
     }
@@ -1026,7 +1148,12 @@ void BrowserWindow::webSearch()
 void BrowserWindow::searchOnPage()
 {
     if (weView() && weView()->webTab()) {
-        weView()->webTab()->showSearchToolBar();
+        const QString searchText = weView()->page()->selectedText();
+        if (!searchText.contains('\n')) {
+            weView()->webTab()->showSearchToolBar(searchText);
+        } else {
+            weView()->webTab()->showSearchToolBar();
+        }
     }
 }
 
@@ -1091,49 +1218,41 @@ void BrowserWindow::hideNavigationSlot()
     }
 }
 
-bool BrowserWindow::event(QEvent* event)
+bool BrowserWindow::event(QEvent *event)
 {
-    switch (event->type()) {
-    case QEvent::WindowStateChange: {
-        QWindowStateChangeEvent* ev = static_cast<QWindowStateChangeEvent*>(event);
-
-        if (!(ev->oldState() & Qt::WindowFullScreen) && windowState() & Qt::WindowFullScreen) {
+    if (event->type() == QEvent::WindowStateChange) {
+        QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent*>(event);
+        if (!(e->oldState() & Qt::WindowFullScreen) && windowState() & Qt::WindowFullScreen) {
             // Enter fullscreen
-            m_windowStates = ev->oldState();
-
-            m_statusBarVisible = statusBar()->isVisible();
-#ifndef Q_OS_MAC
+            m_statusBarVisible = m_statusBar->isVisible();
+#ifndef Q_OS_MACOS
             m_menuBarVisible = menuBar()->isVisible();
             menuBar()->hide();
 #endif
-            statusBar()->hide();
+            m_statusBar->hide();
 
             m_navigationContainer->hide();
-            m_navigationToolbar->buttonExitFullscreen()->show();
+            m_navigationToolbar->enterFullScreen();
+
+            // Show main menu button since menubar is hidden
+            m_navigationToolbar->setSuperMenuVisible(true);
         }
-        else if (ev->oldState() & Qt::WindowFullScreen && !(windowState() & Qt::WindowFullScreen)) {
+        else if (e->oldState() & Qt::WindowFullScreen && !(windowState() & Qt::WindowFullScreen)) {
             // Leave fullscreen
-            statusBar()->setVisible(m_statusBarVisible);
-#ifndef Q_OS_MAC
+            m_statusBar->setVisible(m_statusBarVisible);
+#ifndef Q_OS_MACOS
             menuBar()->setVisible(m_menuBarVisible);
 #endif
 
             m_navigationContainer->show();
             m_navigationToolbar->setSuperMenuVisible(!m_menuBarVisible);
-            m_navigationToolbar->buttonExitFullscreen()->hide();
+            m_navigationToolbar->leaveFullScreen();
             m_isHtmlFullScreen = false;
-
-            setWindowState(m_windowStates);
         }
 
         if (m_hideNavigationTimer) {
             m_hideNavigationTimer->stop();
         }
-        break;
-    }
-
-    default:
-        break;
     }
 
     return QMainWindow::event(event);
@@ -1177,6 +1296,7 @@ void BrowserWindow::keyPressEvent(QKeyEvent* event)
         }
         break;
 
+    case Qt::Key_Reload:
     case Qt::Key_Refresh:
         if (view) {
             view->reload();
@@ -1227,15 +1347,13 @@ void BrowserWindow::keyPressEvent(QKeyEvent* event)
 
     case Qt::Key_Tab:
         if (event->modifiers() == Qt::ControlModifier) {
-            m_tabWidget->nextTab();
-            event->accept();
+            static_cast<QObject*>(m_tabWidget)->event(event);
         }
         break;
 
     case Qt::Key_Backtab:
         if (event->modifiers() == (Qt::ControlModifier + Qt::ShiftModifier)) {
-            m_tabWidget->previousTab();
-            event->accept();
+            static_cast<QObject*>(m_tabWidget)->event(event);
         }
         break;
 
@@ -1326,12 +1444,14 @@ void BrowserWindow::keyPressEvent(QKeyEvent* event)
                 number = m_tabWidget->count();
             }
             m_tabWidget->setCurrentIndex(number - 1);
+            event->accept();
             return;
         }
         if (event->modifiers() & Qt::ControlModifier && m_useSpeedDialNumberShortcuts) {
             const QUrl url = mApp->plugins()->speedDial()->urlForShortcut(number - 1);
             if (url.isValid()) {
                 loadAddress(url);
+                event->accept();
                 return;
             }
         }
@@ -1352,30 +1472,44 @@ void BrowserWindow::keyReleaseEvent(QKeyEvent* event)
         return;
     }
 
+    switch (event->key()) {
+    case Qt::Key_F:
+        if (event->modifiers() == Qt::ControlModifier) {
+            action(QSL("Edit/Find"))->trigger();
+            event->accept();
+        }
+        break;
+
+    default:
+        break;
+    }
+
     QMainWindow::keyReleaseEvent(event);
 }
 
 void BrowserWindow::closeEvent(QCloseEvent* event)
 {
     if (mApp->isClosing()) {
+        saveSettings();
         return;
     }
 
     Settings settings;
     bool askOnClose = settings.value("Browser-Tabs-Settings/AskOnClosing", true).toBool();
 
-    if (mApp->afterLaunch() == MainApplication::RestoreSession && mApp->windowCount() == 1) {
+    if ((mApp->afterLaunch() == MainApplication::SelectSession || mApp->afterLaunch() == MainApplication::RestoreSession) && mApp->windowCount() == 1) {
         askOnClose = false;
     }
 
     if (askOnClose && m_tabWidget->normalTabsCount() > 1) {
-        CheckBoxDialog dialog(QDialogButtonBox::Yes | QDialogButtonBox::No, this);
+        CheckBoxDialog dialog(QMessageBox::Yes | QMessageBox::No, this);
+        dialog.setDefaultButton(QMessageBox::No);
         dialog.setText(tr("There are still %n open tabs and your session won't be stored. \nAre you sure you want to close this window?", "", m_tabWidget->count()));
         dialog.setCheckBoxText(tr("Don't ask again"));
         dialog.setWindowTitle(tr("There are still open tabs"));
-        dialog.setIcon(IconProvider::standardIcon(QStyle::SP_MessageBoxWarning));
+        dialog.setIcon(QMessageBox::Warning);
 
-        if (dialog.exec() != QDialog::Accepted) {
+        if (dialog.exec() != QMessageBox::Yes) {
             event->ignore();
             return;
         }
@@ -1385,9 +1519,12 @@ void BrowserWindow::closeEvent(QCloseEvent* event)
         }
     }
 
-    saveSettings();
+    emit aboutToClose();
 
-    #ifndef Q_OS_MAC
+    saveSettings();
+    mApp->closedWindowsManager()->saveWindow(this);
+
+    #ifndef Q_OS_MACOS
         if (mApp->windowCount() == 1)
             mApp->quitApplication();
     #endif
@@ -1397,7 +1534,7 @@ void BrowserWindow::closeEvent(QCloseEvent* event)
 
 void BrowserWindow::closeWindow()
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     close();
     return;
 #endif
@@ -1409,22 +1546,20 @@ void BrowserWindow::closeWindow()
 
 void BrowserWindow::saveSettings()
 {
-    if (m_sideBar) {
-        saveSideBarWidth();
+    if (mApp->isPrivate()) {
+        return;
     }
 
-    if (!mApp->isPrivate()) {
-        Settings settings;
-        settings.beginGroup("Browser-View-Settings");
-        settings.setValue("WindowMaximised", windowState().testFlag(Qt::WindowMaximized));
-        settings.setValue("LocationBarWidth", m_navigationToolbar->splitter()->sizes().at(0));
-        settings.setValue("WebSearchBarWidth", m_navigationToolbar->splitter()->sizes().at(1));
-        settings.setValue("SideBarWidth", m_sideBarWidth);
-        settings.setValue("WebViewWidth", m_webViewWidth);
-        if (!isFullScreen())
-            settings.setValue("WindowGeometry", saveGeometry());
-        settings.endGroup();
+    Settings settings;
+    settings.beginGroup("Browser-View-Settings");
+    settings.setValue("WindowGeometry", saveGeometry());
+
+    const auto state = saveUiState();
+    for (auto it = state.constBegin(); it != state.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
     }
+
+    settings.endGroup();
 }
 
 void BrowserWindow::closeTab()
@@ -1433,39 +1568,6 @@ void BrowserWindow::closeTab()
     if (weView() && !weView()->webTab()->isPinned()) {
         m_tabWidget->requestCloseTab();
     }
-}
-
-QByteArray BrowserWindow::saveState(int version) const
-{
-#ifdef QZ_WS_X11
-    QByteArray data;
-    QDataStream stream(&data, QIODevice::WriteOnly);
-
-    stream << QMainWindow::saveState(version);
-    stream << getCurrentVirtualDesktop();
-
-    return data;
-#else
-    return QMainWindow::saveState(version);
-#endif
-}
-
-bool BrowserWindow::restoreState(const QByteArray &state, int version)
-{
-#ifdef QZ_WS_X11
-    QByteArray windowState;
-    int desktopId = -1;
-
-    QDataStream stream(state);
-    stream >> windowState;
-    stream >> desktopId;
-
-    moveToVirtualDesktop(desktopId);
-
-    return QMainWindow::restoreState(windowState, version);
-#else
-    return QMainWindow::restoreState(state, version);
-#endif
 }
 
 #ifdef QZ_WS_X11

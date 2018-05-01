@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2015  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,6 @@
 #include <QWebEngineSettings>
 #include <QNetworkDiskCache>
 #include <QDateTime>
-#include <QSqlQuery>
 #include <QCloseEvent>
 #include <QFileInfo>
 #include <QWebEngineProfile>
@@ -68,7 +67,7 @@ void ClearPrivateData::clearLocalStorage()
 {
     const QString profile = DataPaths::currentProfilePath();
 
-    QzTools::removeDir(profile + "/LocalStorage");
+    QzTools::removeDir(profile + "/Local Storage");
 }
 
 void ClearPrivateData::clearWebDatabases()
@@ -175,7 +174,7 @@ void ClearPrivateData::optimizeDb()
 
 void ClearPrivateData::showCookieManager()
 {
-    CookieManager* dialog = new CookieManager();
+    CookieManager* dialog = new CookieManager(this);
     dialog->show();
 }
 

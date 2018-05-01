@@ -72,10 +72,11 @@ void TestPlugin::init(InitState state, const QString &settingsPath)
 
     // Registering this plugin as a MousePressHandler.
     // Otherwise mousePress() function will never be called
-    QZ_REGISTER_EVENT_HANDLER(PluginProxy::MousePressHandler);
+    mApp->plugins()->registerAppEventHandler(PluginProxy::MousePressHandler, this);
 
     // Adding new sidebar into application
-    SideBarManager::addSidebar("testplugin-sidebar", new TestPlugin_Sidebar(this));
+    m_sideBar = new TestPlugin_Sidebar(this);
+    SideBarManager::addSidebar("testplugin-sidebar", m_sideBar);
 }
 
 void TestPlugin::unload()
@@ -86,7 +87,8 @@ void TestPlugin::unload()
     // it will be also called if we return false from testPlugin()
 
     // Removing sidebar from application
-    SideBarManager::removeSidebar("testplugin-sidebar");
+    SideBarManager::removeSidebar(m_sideBar);
+    delete m_sideBar;
 
     // Deleting settings dialog if opened
     delete m_settings.data();

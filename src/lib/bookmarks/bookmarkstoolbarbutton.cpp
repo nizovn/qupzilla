@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -92,7 +92,9 @@ QSize BookmarksToolbarButton::sizeHint() const
         }
     }
 
-    return QSize(qMin(width, MAX_WIDTH), preferredHeight());
+    QSize s = QPushButton::sizeHint();
+    s.setWidth(qMin(width, MAX_WIDTH));
+    return s;
 }
 
 QSize BookmarksToolbarButton::minimumSizeHint() const
@@ -109,12 +111,9 @@ QSize BookmarksToolbarButton::minimumSizeHint() const
         width += PADDING + 8;
     }
 
-    return QSize(width, preferredHeight());
-}
-
-int BookmarksToolbarButton::preferredHeight() const
-{
-    return fontMetrics().height() + PADDING * 2;
+    QSize s = QPushButton::minimumSizeHint();
+    s.setWidth(width);
+    return s;
 }
 
 void BookmarksToolbarButton::createMenu()
@@ -317,7 +316,7 @@ void BookmarksToolbarButton::paintEvent(QPaintEvent* event)
     option.features &= ~QStyleOptionButton::HasMenu;
 
     // Draw button base (only under mouse, this is autoraise button)
-    if (isDown() || underMouse()) {
+    if (isDown() || hitButton(mapFromGlobal(QCursor::pos()))) {
         option.state |= QStyle::State_AutoRaise | QStyle::State_Raised;
         style()->drawPrimitive(QStyle::PE_PanelButtonTool, &option, &p, this);
     }

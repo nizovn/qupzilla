@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>AdBlockDialog</class>
- <widget class="QWidget" name="AdBlockDialog">
+ <widget class="QDialog" name="AdBlockDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -78,7 +78,7 @@
           </property>
           <property name="icon">
            <iconset resource="../data/icons.qrc">
-            <normaloff>:/icons/other/adblock.png</normaloff>:/icons/other/adblock.png</iconset>
+            <normaloff>:/adblock/data/adblock.png</normaloff>:/adblock/data/adblock.png</iconset>
           </property>
          </widget>
         </item>

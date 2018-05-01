@@ -6,6 +6,7 @@ TRANSLATIONS += \
     $$PWD/da_DK.ts \
     $$PWD/de_DE.ts \
     $$PWD/el_GR.ts \
+    $$PWD/es_419.ts \
     $$PWD/es_ES.ts \
     $$PWD/es_MX.ts \
     $$PWD/es_VE.ts \
@@ -25,6 +26,7 @@ TRANSLATIONS += \
     $$PWD/lg.ts \
     $$PWD/lt.ts \
     $$PWD/lv_LV.ts \
+    $$PWD/nb_NO.ts \
     $$PWD/nl_NL.ts \
     $$PWD/nqo.ts \
     $$PWD/pl_PL.ts \
@@ -33,6 +35,7 @@ TRANSLATIONS += \
     $$PWD/ro_RO.ts \
     $$PWD/ru_RU.ts \
     $$PWD/sk_SK.ts \
+    $$PWD/sl_SI.ts \
     $$PWD/sr@ijekavianlatin.ts \
     $$PWD/sr@ijekavian.ts \
     $$PWD/sr@latin.ts \

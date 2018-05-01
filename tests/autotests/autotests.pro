@@ -4,21 +4,20 @@ QT += webenginewidgets network widgets printsupport sql script dbus testlib
 
 TARGET = autotests
 
+CONFIG -= app_bundle
+
 !unix|mac: LIBS += -L$$PWD/../../bin -lQupZilla
 !mac:unix: LIBS += $$PWD/../../bin/libQupZilla.so
 
 QMAKE_LFLAGS+=$${QMAKE_LFLAGS_RPATH}$$PWD/../../bin
 
-# KWallet plugin
-exists($$PWD/../../bin/plugins/libKWalletPasswords.so) {
-    LIBS += $$PWD/../../bin/plugins/libKWalletPasswords.so
-    DEFINES += HAVE_KDE_PASSWORDS_PLUGIN
-}
+mac {
+    # homebrew openssl
+    BREW_OPENSSL = $$system("brew --prefix openssl")
+    INCLUDEPATH += $$BREW_OPENSSL/include
+    LIBS += -L$$BREW_OPENSSL/lib
 
-# GnomeKeyring plugin
-exists($$PWD/../../bin/plugins/libGnomeKeyringPasswords.so) {
-    LIBS += $$PWD/../../bin/plugins/libGnomeKeyringPasswords.so
-    DEFINES += HAVE_GNOME_PASSWORDS_PLUGIN
+    LIBS += -lcrypto -framework CoreServices
 }
 
 DESTDIR =
@@ -55,7 +54,11 @@ HEADERS += \
     cookiestest.h \
     adblocktest.h \
     updatertest.h \
+    locationbartest.h \
     passwordbackendtest.h \
+    webviewtest.h \
+    tabmodeltest.h \
+    webtabtest.h \
 
 SOURCES += \
     qztoolstest.cpp \
@@ -63,4 +66,12 @@ SOURCES += \
     cookiestest.cpp \
     adblocktest.cpp \
     updatertest.cpp \
+    locationbartest.cpp \
     passwordbackendtest.cpp \
+    webviewtest.cpp \
+    tabmodeltest.cpp \
+    webtabtest.cpp \
+
+RESOURCES += autotests.qrc
+
+include(../modeltest/modeltest.pri)

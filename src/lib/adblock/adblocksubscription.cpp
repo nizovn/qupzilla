@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QNetworkReply>
+#include <QSaveFile>
 
 AdBlockSubscription::AdBlockSubscription(const QString &title, QObject* parent)
     : QObject(parent)
@@ -118,12 +119,14 @@ void AdBlockSubscription::loadSubscription(const QStringList &disabledRules)
     m_rules.clear();
 
     while (!textStream.atEnd()) {
-        AdBlockRule* rule = new AdBlockRule(textStream.readLine(), this);
-
+        const QString line = textStream.readLine().trimmed();
+        if (line.isEmpty()) {
+            continue;
+        }
+        AdBlockRule *rule = new AdBlockRule(line, this);
         if (disabledRules.contains(rule->filter())) {
             rule->setEnabled(false);
         }
-
         m_rules.append(rule);
     }
 
@@ -179,9 +182,9 @@ void AdBlockSubscription::subscriptionDownloaded()
 
 bool AdBlockSubscription::saveDownloadedData(const QByteArray &data)
 {
-    QFile file(m_filePath);
+    QSaveFile file(m_filePath);
 
-    if (!file.open(QFile::ReadWrite | QFile::Truncate)) {
+    if (!file.open(QFile::WriteOnly)) {
         qWarning() << "AdBlockSubscription::" << __FUNCTION__ << "Unable to open adblock file for writing:" << m_filePath;
         return false;
     }
@@ -189,7 +192,7 @@ bool AdBlockSubscription::saveDownloadedData(const QByteArray &data)
     // Write subscription header
     file.write(QString("Title: %1\nUrl: %2\n").arg(title(), url().toString()).toUtf8());
     file.write(data);
-    file.close();
+    file.commit();
     return true;
 }
 

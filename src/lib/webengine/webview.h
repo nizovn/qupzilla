@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -38,9 +38,7 @@ public:
     ~WebView();
 
     QIcon icon(bool allowNull = false) const;
-
-    QString title() const;
-    bool isTitleEmpty() const;
+    QString title(bool allowEmpty = false) const;
 
     WebPage* page() const;
     void setPage(WebPage* page);
@@ -60,8 +58,6 @@ public:
     QPointF mapToViewport(const QPointF &pos) const;
     QRect scrollBarGeometry(Qt::Orientation orientation) const;
 
-    void restoreHistory(const QByteArray &data);
-
     void addNotification(QWidget* notif);
     bool eventFilter(QObject *obj, QEvent *event);
 
@@ -77,6 +73,7 @@ public:
     static void setForceContextMenuOnMouseRelease(bool force);
 
 signals:
+    void pageChanged(WebPage *page);
     void focusChanged(bool);
     void viewportResized(QSize);
     void showNotification(QWidget*);
@@ -102,6 +99,7 @@ public slots:
     void back();
     void forward();
 
+    void printPage();
     void showSource();
     void sendPageByMail();
 
@@ -146,6 +144,8 @@ protected:
     void showEvent(QShowEvent *event) override;
     void resizeEvent(QResizeEvent *event);
     void contextMenuEvent(QContextMenuEvent *event);
+
+    bool focusNextPrevChild(bool next) override;
 
     virtual void _wheelEvent(QWheelEvent *event);
     virtual void _mousePressEvent(QMouseEvent *event);

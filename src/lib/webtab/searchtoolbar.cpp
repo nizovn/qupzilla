@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "searchtoolbar.h"
-#include "tabbedwebview.h"
+#include "webview.h"
 #include "webpage.h"
 #include "lineedit.h"
 #include "ui_searchtoolbar.h"
@@ -36,10 +36,12 @@ SearchToolBar::SearchToolBar(WebView* view, QWidget* parent)
 
     ui->closeButton->setIcon(IconProvider::instance()->standardIcon(QStyle::SP_DialogCloseButton));
     ui->next->setIcon(IconProvider::instance()->standardIcon(QStyle::SP_ArrowDown));
+    ui->next->setShortcut(QKeySequence("Ctrl+G"));
     ui->previous->setIcon(IconProvider::instance()->standardIcon(QStyle::SP_ArrowUp));
+    ui->previous->setShortcut(QKeySequence("Ctrl+Shift+G"));
 
     connect(ui->closeButton, SIGNAL(clicked()), this, SLOT(close()));
-    connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(findNext()));
+    connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(findNext()));
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(findNext()));
     connect(ui->next, SIGNAL(clicked()), this, SLOT(findNext()));
     connect(ui->previous, SIGNAL(clicked()), this, SLOT(findPrevious()));
@@ -111,9 +113,18 @@ void SearchToolBar::caseSensitivityChanged()
     searchText(ui->lineEdit->text());
 }
 
+void SearchToolBar::setText(const QString &text)
+{
+    ui->lineEdit->setText(text);
+}
+
 void SearchToolBar::searchText(const QString &text)
 {
-    m_view->findText(text, m_findFlags, [this](bool found) {
+    QPointer<SearchToolBar> guard = this;
+    m_view->findText(text, m_findFlags, [=](bool found) {
+        if (!guard) {
+            return;
+        }
         if (ui->lineEdit->text().isEmpty())
             found = true;
 
@@ -127,7 +138,7 @@ void SearchToolBar::searchText(const QString &text)
         ui->lineEdit->style()->polish(ui->lineEdit);
 
         // Clear selection
-        m_view->page()->runJavaScript(QSL("window.getSelection().empty();"));
+        m_view->page()->runJavaScript(QSL("window.getSelection().empty();"), WebPage::SafeJsWorld);
     });
 }
 

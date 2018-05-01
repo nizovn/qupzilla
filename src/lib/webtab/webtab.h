@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ class WebInspector;
 class LocationBar;
 class TabIcon;
 class TabBar;
+class LoadRequest;
 
 class QUPZILLA_EXPORT WebTab : public QWidget
 {
@@ -46,6 +47,9 @@ public:
         QByteArray history;
         bool isPinned;
         int zoomLevel;
+        int parentTab;
+        QVector<int> childTabs;
+        QHash<QString, QVariant> sessionData;
 
         SavedTab();
         SavedTab(WebTab* webTab);
@@ -57,14 +61,28 @@ public:
         friend QUPZILLA_EXPORT QDataStream &operator>>(QDataStream &stream, SavedTab &tab);
     };
 
-    explicit WebTab(BrowserWindow* window);
+    enum AddChildBehavior {
+        AppendChild = 0,
+        PrependChild
+    };
 
+    explicit WebTab(QWidget *parent = nullptr);
+
+    BrowserWindow *browserWindow() const;
     TabbedWebView* webView() const;
     LocationBar* locationBar() const;
     TabIcon* tabIcon() const;
 
+    WebTab *parentTab() const;
+    void setParentTab(WebTab *tab);
+    void addChildTab(WebTab *tab, int index = -1);
+    QVector<WebTab*> childTabs() const;
+
+    QHash<QString, QVariant> sessionData() const;
+    void setSessionData(const QString &key, const QVariant &value);
+
     QUrl url() const;
-    QString title() const;
+    QString title(bool allowEmpty = false) const;
     QIcon icon(bool allowNull = false) const;
     QWebEngineHistory* history() const;
     int zoomLevel() const;
@@ -73,11 +91,12 @@ public:
     void detach();
     void attach(BrowserWindow* window);
 
-    void setHistoryData(const QByteArray &data);
     QByteArray historyData() const;
 
     void stop();
     void reload();
+    void load(const LoadRequest &request);
+    void unload();
     bool isLoading() const;
 
     bool isPinned() const;
@@ -85,37 +104,58 @@ public:
     void togglePinned();
 
     bool isMuted() const;
+    bool isPlaying() const;
     void setMuted(bool muted);
     void toggleMuted();
+
+    bool backgroundActivity() const;
 
     int tabIndex() const;
 
     bool isCurrentTab() const;
+    void makeCurrentTab();
+    void closeTab();
+    void moveTab(int to);
 
     bool haveInspector() const;
     void showWebInspector(bool inspectElement = false);
     void toggleWebInspector();
 
-    void showSearchToolBar();
+    void showSearchToolBar(const QString &searchText = QString());
 
     bool isRestored() const;
     void restoreTab(const SavedTab &tab);
     void p_restoreTab(const SavedTab &tab);
     void p_restoreTab(const QUrl &url, const QByteArray &history, int zoomLevel);
 
+    void tabActivated();
+
+    static AddChildBehavior addChildBehavior();
+    static void setAddChildBehavior(AddChildBehavior behavior);
+
 private slots:
     void showNotification(QWidget* notif);
-    void loadStarted();
     void loadFinished();
-    void titleChanged(const QString &title);
 
-    void slotRestore();
+signals:
+    void titleChanged(const QString &title);
+    void iconChanged(const QIcon &icon);
+    void pinnedChanged(bool pinned);
+    void restoredChanged(bool restored);
+    void currentTabChanged(bool current);
+    void loadingChanged(bool loading);
+    void mutedChanged(bool muted);
+    void playingChanged(bool playing);
+    void backgroundActivityChanged(bool activity);
+    void parentTabChanged(WebTab *tab);
+    void childTabAdded(WebTab *tab, int index);
+    void childTabRemoved(WebTab *tab, int index);
 
 private:
-    void showEvent(QShowEvent* event);
+    void titleWasChanged(const QString &title);
     void resizeEvent(QResizeEvent *event) override;
+    void removeFromTabTree();
 
-    BrowserWindow* m_window;
     QVBoxLayout* m_layout;
     QSplitter* m_splitter;
 
@@ -123,13 +163,17 @@ private:
     WebInspector* m_inspector;
     LocationBar* m_locationBar;
     TabIcon* m_tabIcon;
-    TabBar* m_tabBar;
     QWidget *m_notificationWidget;
+    BrowserWindow* m_window = nullptr;
+    TabBar* m_tabBar = nullptr;
+
+    WebTab *m_parentTab = nullptr;
+    QVector<WebTab*> m_childTabs;
+    QHash<QString, QVariant> m_sessionData;
 
     SavedTab m_savedTab;
-    bool m_isPinned;
-
-    static bool s_pinningTab;
+    bool m_isPinned = false;
+    bool m_isCurrentTab = false;
 };
 
 #endif // WEBTAB_H

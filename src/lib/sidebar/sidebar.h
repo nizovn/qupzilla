@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -60,6 +60,8 @@ class QUPZILLA_EXPORT SideBarManager : public QObject
 public:
     explicit SideBarManager(BrowserWindow* parent);
 
+    QString activeSideBar() const;
+
     void createMenu(QMenu* menu);
 
     void showSideBar(const QString &id, bool toggle = true);
@@ -68,7 +70,7 @@ public:
 
     static QHash<QString, QPointer<SideBarInterface> > s_sidebars;
     static void addSidebar(const QString &id, SideBarInterface* interface);
-    static void removeSidebar(const QString &id);
+    static void removeSidebar(SideBarInterface *interface);
 
 private slots:
     void slotShowSideBar();

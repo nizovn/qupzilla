@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2014-2016 David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,22 +26,22 @@
 #include "bookmarksmenu.h"
 #include "tabbedwebview.h"
 #include "browserwindow.h"
-#include "adblockmanager.h"
 #include "downloadmanager.h"
 #include "mainapplication.h"
 #include "clearprivatedata.h"
 #include "qzsettings.h"
 #include "pluginproxy.h"
 #include "webinspector.h"
+#include "sessionmanager.h"
+#include "statusbar.h"
 
 #include <QApplication>
 #include <QMetaObject>
-#include <QStatusBar>
 #include <QWebEnginePage>
 #include <QMenuBar>
 #include <QDesktopServices>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 extern void qt_mac_set_dock_menu(QMenu* menu);
 #endif
 
@@ -79,6 +79,13 @@ void MainMenu::initSuperMenu(QMenu* superMenu) const
     superMenu->addAction(m_actions[QSL("File/NewWindow")]);
     superMenu->addAction(m_actions[QSL("File/NewPrivateWindow")]);
     superMenu->addAction(m_actions[QSL("File/OpenFile")]);
+    if (mApp->sessionManager()) {
+        superMenu->addSeparator();
+        QMenu* sessionsSubmenu = new QMenu(tr("Sessions"));
+        connect(sessionsSubmenu, SIGNAL(aboutToShow()), mApp->sessionManager(), SLOT(aboutToShowSessionsMenu()));
+        superMenu->addMenu(sessionsSubmenu);
+        superMenu->addAction(m_actions[QSL("File/SessionManager")]);
+    }
     superMenu->addSeparator();
     superMenu->addAction(m_actions[QSL("File/SendLink")]);
     superMenu->addAction(m_actions[QSL("File/Print")]);
@@ -89,22 +96,18 @@ void MainMenu::initSuperMenu(QMenu* superMenu) const
     superMenu->addAction(m_menuHistory->actions().at(3));
     superMenu->addAction(m_menuBookmarks->actions().at(2));
     superMenu->addSeparator();
-    superMenu->addAction(m_actions[QSL("Standard/Preferences")]);
-    superMenu->addSeparator();
     superMenu->addMenu(m_menuView);
     superMenu->addMenu(m_menuHistory);
     superMenu->addMenu(m_menuBookmarks);
     superMenu->addMenu(m_menuTools);
+    superMenu->addMenu(m_menuHelp);
     superMenu->addSeparator();
+    superMenu->addAction(m_actions[QSL("Standard/Preferences")]);
     superMenu->addAction(m_actions[QSL("Standard/About")]);
-    superMenu->addAction(m_actions[QSL("Help/InfoAboutApp")]);
-    superMenu->addAction(m_actions[QSL("Help/ConfigInfo")]);
-    superMenu->addAction(m_actions[QSL("Help/ReportIssue")]);
     superMenu->addSeparator();
     superMenu->addAction(m_actions[QSL("Standard/Quit")]);
 
     connect(superMenu, &QMenu::aboutToShow, this, &MainMenu::aboutToShowSuperMenu);
-    connect(superMenu, &QMenu::aboutToHide, this, &MainMenu::aboutToHideSuperMenu);
 }
 
 QAction* MainMenu::action(const QString &name) const
@@ -306,14 +309,9 @@ void MainMenu::showDownloadManager()
 
 void MainMenu::showCookieManager()
 {
-    CookieManager* m = new CookieManager();
+    CookieManager* m = new CookieManager(m_window);
     m->show();
     m->raise();
-}
-
-void MainMenu::showAdBlockDialog()
-{
-    AdBlockManager::instance()->showDialog();
 }
 
 void MainMenu::toggleWebInspector()
@@ -362,14 +360,9 @@ void MainMenu::restoreClosedTab()
 
 void MainMenu::aboutToShowFileMenu()
 {
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_actions[QSL("File/CloseWindow")]->setEnabled(mApp->windowCount() > 1);
 #endif
-}
-
-void MainMenu::aboutToHideFileMenu()
-{
-    m_actions[QSL("File/CloseWindow")]->setEnabled(true);
 }
 
 void MainMenu::aboutToShowViewMenu()
@@ -380,12 +373,6 @@ void MainMenu::aboutToShowViewMenu()
 
     m_actions[QSL("View/ShowStatusBar")]->setChecked(m_window->statusBar()->isVisible());
     m_actions[QSL("View/FullScreen")]->setChecked(m_window->isFullScreen());
-    m_actions[QSL("View/PageSource")]->setEnabled(true);
-}
-
-void MainMenu::aboutToHideViewMenu()
-{
-    m_actions[QSL("View/PageSource")]->setEnabled(false);
 }
 
 void MainMenu::aboutToShowEditMenu()
@@ -402,18 +389,6 @@ void MainMenu::aboutToShowEditMenu()
     m_actions[QSL("Edit/Copy")]->setEnabled(view->pageAction(QWebEnginePage::Copy)->isEnabled());
     m_actions[QSL("Edit/Paste")]->setEnabled(view->pageAction(QWebEnginePage::Paste)->isEnabled());
     m_actions[QSL("Edit/SelectAll")]->setEnabled(view->pageAction(QWebEnginePage::SelectAll)->isEnabled());
-    m_actions[QSL("Edit/Find")]->setEnabled(true);
-}
-
-void MainMenu::aboutToHideEditMenu()
-{
-    m_actions[QSL("Edit/Undo")]->setEnabled(false);
-    m_actions[QSL("Edit/Redo")]->setEnabled(false);
-    m_actions[QSL("Edit/Cut")]->setEnabled(false);
-    m_actions[QSL("Edit/Copy")]->setEnabled(false);
-    m_actions[QSL("Edit/Paste")]->setEnabled(false);
-    m_actions[QSL("Edit/SelectAll")]->setEnabled(false);
-    m_actions[QSL("Edit/Find")]->setEnabled(false);
 }
 
 void MainMenu::aboutToShowToolsMenu()
@@ -429,11 +404,6 @@ void MainMenu::aboutToShowToolsMenu()
     m_submenuExtensions->menuAction()->setVisible(!m_submenuExtensions->actions().isEmpty());
 }
 
-void MainMenu::aboutToHideToolsMenu()
-{
-    m_actions[QSL("Tools/SiteInfo")]->setEnabled(false);
-}
-
 void MainMenu::aboutToShowSuperMenu()
 {
     if (!m_window) {
@@ -444,12 +414,6 @@ void MainMenu::aboutToShowSuperMenu()
 
     m_actions[QSL("Edit/Find")]->setEnabled(true);
     m_actions[QSL("Edit/SelectAll")]->setEnabled(view->pageAction(QWebEnginePage::SelectAll)->isEnabled());
-}
-
-void MainMenu::aboutToHideSuperMenu()
-{
-    m_actions[QSL("Edit/Find")]->setEnabled(true);
-    m_actions[QSL("Edit/SelectAll")]->setEnabled(false);
 }
 
 void MainMenu::aboutToShowToolbarsMenu()
@@ -520,7 +484,6 @@ void MainMenu::init()
     // File menu
     m_menuFile = new QMenu(tr("&File"));
     connect(m_menuFile, SIGNAL(aboutToShow()), this, SLOT(aboutToShowFileMenu()));
-    connect(m_menuFile, SIGNAL(aboutToHide()), this, SLOT(aboutToHideFileMenu()));
 
     ADD_ACTION("File/NewTab", m_menuFile, IconProvider::newTabIcon(), tr("New Tab"), SLOT(newTab()), "Ctrl+T");
     ADD_ACTION("File/NewWindow", m_menuFile, IconProvider::newWindowIcon(), tr("&New Window"), SLOT(newWindow()), "Ctrl+N");
@@ -529,6 +492,18 @@ void MainMenu::init()
     ADD_ACTION("File/OpenFile", m_menuFile, QIcon::fromTheme(QSL("document-open")), tr("Open &File..."), SLOT(openFile()), "Ctrl+O");
     ADD_ACTION("File/CloseWindow", m_menuFile, QIcon::fromTheme(QSL("window-close")), tr("Close Window"), SLOT(closeWindow()), "Ctrl+Shift+W");
     m_menuFile->addSeparator();
+
+    if (mApp->sessionManager()) {
+        QMenu* sessionsSubmenu = new QMenu(tr("Sessions"));
+        connect(sessionsSubmenu, SIGNAL(aboutToShow()), mApp->sessionManager(), SLOT(aboutToShowSessionsMenu()));
+        m_menuFile->addMenu(sessionsSubmenu);
+        action = new QAction(tr("Session Manager"), this);
+        connect(action, SIGNAL(triggered()), mApp->sessionManager(), SLOT(openSessionManagerDialog()));
+        m_actions[QSL("File/SessionManager")] = action;
+        m_menuFile->addAction(action);
+        m_menuFile->addSeparator();
+    }
+
     ADD_ACTION("File/SavePageAs", m_menuFile, QIcon::fromTheme(QSL("document-save")), tr("&Save Page As..."), SLOT(savePageAs()), "Ctrl+S");
     ADD_ACTION("File/SendLink", m_menuFile, QIcon::fromTheme(QSL("mail-message-new")), tr("Send Link..."), SLOT(sendLink()), "");
     ADD_ACTION("File/Print", m_menuFile, QIcon::fromTheme(QSL("document-print")), tr("&Print..."), SLOT(printPage()), "Ctrl+P");
@@ -538,23 +513,28 @@ void MainMenu::init()
     // Edit menu
     m_menuEdit = new QMenu(tr("&Edit"));
     connect(m_menuEdit, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEditMenu()));
-    connect(m_menuEdit, SIGNAL(aboutToHide()), this, SLOT(aboutToHideEditMenu()));
 
     ADD_ACTION("Edit/Undo", m_menuEdit, QIcon::fromTheme(QSL("edit-undo")), tr("&Undo"), SLOT(editUndo()), "Ctrl+Z");
+    action->setShortcutContext(Qt::WidgetShortcut);
     ADD_ACTION("Edit/Redo", m_menuEdit, QIcon::fromTheme(QSL("edit-redo")), tr("&Redo"), SLOT(editRedo()), "Ctrl+Shift+Z");
+    action->setShortcutContext(Qt::WidgetShortcut);
     m_menuEdit->addSeparator();
     ADD_ACTION("Edit/Cut", m_menuEdit, QIcon::fromTheme(QSL("edit-cut")), tr("&Cut"), SLOT(editCut()), "Ctrl+X");
+    action->setShortcutContext(Qt::WidgetShortcut);
     ADD_ACTION("Edit/Copy", m_menuEdit, QIcon::fromTheme(QSL("edit-copy")), tr("C&opy"), SLOT(editCopy()), "Ctrl+C");
+    action->setShortcutContext(Qt::WidgetShortcut);
     ADD_ACTION("Edit/Paste", m_menuEdit, QIcon::fromTheme(QSL("edit-paste")), tr("&Paste"), SLOT(editPaste()), "Ctrl+V");
+    action->setShortcutContext(Qt::WidgetShortcut);
     m_menuEdit->addSeparator();
     ADD_ACTION("Edit/SelectAll", m_menuEdit, QIcon::fromTheme(QSL("edit-select-all")), tr("Select &All"), SLOT(editSelectAll()), "Ctrl+A");
+    action->setShortcutContext(Qt::WidgetShortcut);
     ADD_ACTION("Edit/Find", m_menuEdit, QIcon::fromTheme(QSL("edit-find")), tr("&Find"), SLOT(editFind()), "Ctrl+F");
+    action->setShortcutContext(Qt::WidgetShortcut);
     m_menuEdit->addSeparator();
 
     // View menu
     m_menuView = new QMenu(tr("&View"));
     connect(m_menuView, SIGNAL(aboutToShow()), this, SLOT(aboutToShowViewMenu()));
-    connect(m_menuView, SIGNAL(aboutToHide()), this, SLOT(aboutToHideViewMenu()));
 
     QMenu* toolbarsMenu = new QMenu(tr("Toolbars"));
     connect(toolbarsMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowToolbarsMenu()));
@@ -581,19 +561,19 @@ void MainMenu::init()
     m_menuView->addMenu(encodingMenu);
     m_menuView->addSeparator();
     ADD_ACTION("View/PageSource", m_menuView, QIcon::fromTheme(QSL("text-html")), tr("&Page Source"), SLOT(showPageSource()), "Ctrl+U");
+    action->setShortcutContext(Qt::WidgetShortcut);
     ADD_CHECKABLE_ACTION("View/FullScreen", m_menuView, QIcon(), tr("&FullScreen"), SLOT(showFullScreen()), "F11");
 
     // Tools menu
     m_menuTools = new QMenu(tr("&Tools"));
     connect(m_menuTools, SIGNAL(aboutToShow()), this, SLOT(aboutToShowToolsMenu()));
-    connect(m_menuTools, SIGNAL(aboutToHide()), this, SLOT(aboutToHideToolsMenu()));
 
     ADD_ACTION("Tools/WebSearch", m_menuTools, QIcon(), tr("&Web Search"), SLOT(webSearch()), "Ctrl+K");
     ADD_ACTION("Tools/SiteInfo", m_menuTools, QIcon::fromTheme(QSL("dialog-information")), tr("Site &Info"), SLOT(showSiteInfo()), "Ctrl+I");
+    action->setShortcutContext(Qt::WidgetShortcut);
     m_menuTools->addSeparator();
     ADD_ACTION("Tools/DownloadManager", m_menuTools, QIcon(), tr("&Download Manager"), SLOT(showDownloadManager()), "Ctrl+Y");
     ADD_ACTION("Tools/CookiesManager", m_menuTools, QIcon(), tr("&Cookies Manager"), SLOT(showCookieManager()), "");
-    ADD_ACTION("Tools/AdBlock", m_menuTools, QIcon(), tr("&AdBlock"), SLOT(showAdBlockDialog()), "");
     ADD_ACTION("Tools/WebInspector", m_menuTools, QIcon(), tr("Web In&spector"), SLOT(toggleWebInspector()), "Ctrl+Shift+I");
     ADD_ACTION("Tools/ClearRecentHistory", m_menuTools, QIcon::fromTheme(QSL("edit-clear")), tr("Clear Recent &History"), SLOT(showClearRecentHistoryDialog()), "Ctrl+Shift+Del");
 
@@ -608,7 +588,7 @@ void MainMenu::init()
     // Help menu
     m_menuHelp = new QMenu(tr("&Help"));
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     ADD_ACTION("Help/AboutQt", m_menuHelp, QIcon(), tr("About &Qt"), SLOT(aboutQt()), "");
     m_menuHelp->addAction(m_actions[QSL("Standard/About")]);
     m_menuHelp->addSeparator();
@@ -634,7 +614,7 @@ void MainMenu::init()
     connect(action, SIGNAL(triggered()), this, SLOT(restoreClosedTab()));
     m_actions[QSL("Other/RestoreClosedTab")] = action;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_actions[QSL("View/FullScreen")]->setShortcut(QKeySequence(QSL("Ctrl+Meta+F")));
 
     // Add standard actions to File Menu (as it won't be ever cleared) and Mac menubar should move them to "Application" menu
@@ -652,17 +632,11 @@ void MainMenu::init()
     qt_mac_set_dock_menu(dockMenu);
 #endif
 
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     m_menuEdit->addAction(m_actions[QSL("Standard/Preferences")]);
-#elif !defined(Q_OS_MAC)
+#elif !defined(Q_OS_MACOS)
     m_menuTools->addAction(m_actions[QSL("Standard/Preferences")]);
 #endif
-
-    // Menus are hidden by default
-    aboutToHideFileMenu();
-    aboutToHideViewMenu();
-    aboutToHideEditMenu();
-    aboutToHideToolsMenu();
 
     addActionsToWindow();
 }

@@ -2,65 +2,65 @@
 <context>
     <name>SBI_ImagesIcon</name>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="32"/>
+        <location filename="../sbi_imagesicon.cpp" line="33"/>
         <source>Modify images loading settings per-site and globally</source>
         <translation>Ubah pengaturan pemuatan gambar persitus dan global</translation>
     </message>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="56"/>
+        <location filename="../sbi_imagesicon.cpp" line="57"/>
         <source>Current Page Settings</source>
         <translation>Pengaturan Saat Ini</translation>
     </message>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="59"/>
+        <location filename="../sbi_imagesicon.cpp" line="60"/>
         <source>Disable loading images (temporarily)</source>
         <translation>Nonaktifkan pemuatan gambar (sementara)</translation>
     </message>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="62"/>
+        <location filename="../sbi_imagesicon.cpp" line="63"/>
         <source>Enable loading images (temporarily)</source>
         <translation>Aktifkan pemuatan gambar (sementara)</translation>
     </message>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="66"/>
+        <location filename="../sbi_imagesicon.cpp" line="67"/>
         <source>Global Settings</source>
         <translation>Pengaturan Global</translation>
     </message>
     <message>
-        <location filename="../sbi_imagesicon.cpp" line="68"/>
+        <location filename="../sbi_imagesicon.cpp" line="69"/>
         <source>Automatically load images</source>
-        <translation>Otomatis muat gambar</translation>
+        <translation>Muat gambar otomatis</translation>
     </message>
 </context>
 <context>
     <name>SBI_JavaScriptIcon</name>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="33"/>
+        <location filename="../sbi_javascripticon.cpp" line="34"/>
         <source>Modify JavaScript settings per-site and globally</source>
         <translation>Ubah pengaturan JavaScript persitus dan global</translation>
     </message>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="50"/>
+        <location filename="../sbi_javascripticon.cpp" line="51"/>
         <source>Current Page Settings</source>
         <translation>Pengaturan Saat Ini</translation>
     </message>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="53"/>
+        <location filename="../sbi_javascripticon.cpp" line="54"/>
         <source>Disable JavaScript (temporarily)</source>
-        <translation>Non-aktifkan JavaScript (sementara)</translation>
+        <translation>Nonaktifkan JavaScript (sementara)</translation>
     </message>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="56"/>
+        <location filename="../sbi_javascripticon.cpp" line="57"/>
         <source>Enable JavaScript (temporarily)</source>
         <translation>Aktifkan JavaScript (sementara)</translation>
     </message>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="65"/>
+        <location filename="../sbi_javascripticon.cpp" line="66"/>
         <source>Global Settings</source>
         <translation>Pengaturan Global</translation>
     </message>
     <message>
-        <location filename="../sbi_javascripticon.cpp" line="66"/>
+        <location filename="../sbi_javascripticon.cpp" line="67"/>
         <source>Manage JavaScript settings</source>
         <translation>Atur pengaturan JavaScript</translation>
     </message>
@@ -68,52 +68,52 @@
 <context>
     <name>SBI_NetworkIcon</name>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="64"/>
+        <location filename="../sbi_networkicon.cpp" line="65"/>
         <source>Proxy Configuration</source>
-        <translation>Konfigurasi Proxy</translation>
+        <translation>Konfigurasi Proksi</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="66"/>
+        <location filename="../sbi_networkicon.cpp" line="67"/>
         <source>Select proxy</source>
-        <translation>Pilih proxy</translation>
+        <translation>Pilih proksi</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="80"/>
+        <location filename="../sbi_networkicon.cpp" line="81"/>
         <source>Empty</source>
         <translation>Kosong</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="84"/>
+        <location filename="../sbi_networkicon.cpp" line="85"/>
         <source>Manage proxies</source>
         <translation>Kelola proksi</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="97"/>
+        <location filename="../sbi_networkicon.cpp" line="98"/>
         <source>Shows network status and manages proxy&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Network:&lt;/b&gt;&lt;br/&gt;%1&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Proxy:&lt;/b&gt;&lt;br/&gt;%2</source>
         <translation>Tampilkan status jaringan dan atur proksi&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Jaringan:&lt;/b&gt;&lt;br/&gt;%1&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Proksi:&lt;/b&gt;&lt;br/&gt;%2</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="100"/>
+        <location filename="../sbi_networkicon.cpp" line="101"/>
         <source>Connected</source>
         <translation>Tersambung</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="103"/>
+        <location filename="../sbi_networkicon.cpp" line="104"/>
         <source>Offline</source>
         <translation>Luring</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="108"/>
+        <location filename="../sbi_networkicon.cpp" line="109"/>
         <source>System proxy</source>
         <translation>Proksi sistem</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="112"/>
+        <location filename="../sbi_networkicon.cpp" line="113"/>
         <source>No proxy</source>
         <translation>Tanpa proksi</translation>
     </message>
     <message>
-        <location filename="../sbi_networkicon.cpp" line="116"/>
+        <location filename="../sbi_networkicon.cpp" line="117"/>
         <source>User defined</source>
         <translation>Ditetapkan pengguna</translation>
     </message>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../sbi_networkicondialog.cpp" line="70"/>
         <source>Are you sure you want to remove current proxy?</source>
-        <translation type="unfinished"/>
+        <translation>Anda yakin ingin menghapus proksi saat ini?</translation>
     </message>
 </context>
 <context>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../sbi_proxywidget.ui" line="111"/>
         <source>S&amp;ystem proxy configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi proksi s&amp;istem</translation>
     </message>
     <message>
         <location filename="../sbi_proxywidget.ui" line="118"/>
         <source>&amp;Manual configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi &amp;manual</translation>
     </message>
 </context>
 <context>
@@ -251,7 +251,7 @@
 <context>
     <name>SBI_ZoomWidget</name>
     <message>
-        <location filename="../sbi_zoomwidget.cpp" line="47"/>
+        <location filename="../sbi_zoomwidget.cpp" line="48"/>
         <source>Zoom: %1%</source>
         <translation>Zoom: %1%</translation>
     </message>

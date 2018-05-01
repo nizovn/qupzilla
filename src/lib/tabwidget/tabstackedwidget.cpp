@@ -1,6 +1,7 @@
 /* ============================================================
-* QupZilla - WebKit based browser
+* QupZilla - Qt web browser
 * Copyright (C) 2013-2014  S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
+* Copyright (C) 2018       David Rosca <nowrep@gmail.com>
 *
 * Some code was taken from qtabwidget.cpp
 *
@@ -70,7 +71,7 @@ void TabStackedWidget::setTabBar(ComboTabBar* tb)
     setFocusProxy(m_tabBar);
 
     connect(m_tabBar, SIGNAL(currentChanged(int)), this, SLOT(showTab(int)));
-    connect(m_tabBar, SIGNAL(tabMoved(int,int)), this, SLOT(tabWasMoved(int,int)));
+    connect(m_tabBar, &ComboTabBar::tabMoved, this, &TabStackedWidget::tabWasMoved);
     connect(m_tabBar, SIGNAL(overFlowChanged(bool)), this, SLOT(setUpLayout()));
 
     if (m_tabBar->tabsClosable()) {
@@ -261,6 +262,8 @@ int TabStackedWidget::pinUnPinTab(int index, const QString &title)
 
     bool makePinned = index >= m_tabBar->pinnedTabsCount();
     QWidget* button = m_tabBar->tabButton(index, m_tabBar->iconButtonPosition());
+    // To show tooltip of tab which is pinned in the current session
+    QString toolTip =  tabToolTip(index);
 
     m_tabBar->m_blockCurrentChangedSignal = true;
     m_tabBar->setTabButton(index, m_tabBar->iconButtonPosition(), 0);
@@ -270,6 +273,7 @@ int TabStackedWidget::pinUnPinTab(int index, const QString &title)
 
     m_tabBar->setTabButton(newIndex, m_tabBar->iconButtonPosition(), button);
     m_tabBar->m_blockCurrentChangedSignal = false;
+    setTabToolTip(newIndex, toolTip);
 
     // Restore current widget
     setCurrentWidget(currentWidget);
@@ -287,6 +291,11 @@ void TabStackedWidget::removeTab(int index)
             selectTabOnRemove();
         m_stack->removeWidget(w);
     }
+}
+
+void TabStackedWidget::moveTab(int from, int to)
+{
+    m_tabBar->moveTab(from, to);
 }
 
 int TabStackedWidget::currentIndex() const

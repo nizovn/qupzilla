@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2016  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,6 @@
 #include "qzsettings.h"
 #include "colors.h"
 #include "autofillicon.h"
-#include "searchenginesmanager.h"
 #include "completer/locationcompleter.h"
 
 #include <QTimer>
@@ -43,9 +42,9 @@
 #include <QContextMenuEvent>
 #include <QStyleOptionFrameV3>
 
-LocationBar::LocationBar(BrowserWindow* window)
-    : LineEdit(window)
-    , m_window(window)
+LocationBar::LocationBar(QWidget *parent)
+    : LineEdit(parent)
+    , m_window(nullptr)
     , m_webView(0)
     , m_holdingAlt(false)
     , m_oldTextLength(0)
@@ -56,12 +55,12 @@ LocationBar::LocationBar(BrowserWindow* window)
     setObjectName("locationbar");
     setDragEnabled(true);
 
-    // Disable Oxygen QLineEdit transitions, it breaks with setText() && home()
+    // Disable KDE QLineEdit transitions, it breaks with setText() && home()
     setProperty("_kde_no_animations", QVariant(true));
 
     m_bookmarkIcon = new BookmarksIcon(this);
     m_goIcon = new GoIcon(this);
-    m_siteIcon = new SiteIcon(m_window, this);
+    m_siteIcon = new SiteIcon(this);
     m_autofillIcon = new AutoFillIcon(this);
     DownIcon* down = new DownIcon(this);
 
@@ -72,12 +71,12 @@ LocationBar::LocationBar(BrowserWindow* window)
     addWidget(down, LineEdit::RightSide);
 
     m_completer = new LocationCompleter(this);
-    m_completer->setMainWindow(m_window);
     m_completer->setLocationBar(this);
     connect(m_completer, SIGNAL(showCompletion(QString,bool)), this, SLOT(showCompletion(QString,bool)));
     connect(m_completer, SIGNAL(showDomainCompletion(QString)), this, SLOT(showDomainCompletion(QString)));
-    connect(m_completer, SIGNAL(loadCompletion()), this, SLOT(requestLoadUrl()));
     connect(m_completer, SIGNAL(clearCompletion()), this, SLOT(clearCompletion()));
+    connect(m_completer, &LocationCompleter::loadRequested, this, &LocationBar::loadRequest);
+    connect(m_completer, &LocationCompleter::popupClosed, this, &LocationBar::updateSiteIcon);
 
     m_domainCompleterModel = new QStringListModel(this);
     QCompleter* domainCompleter = new QCompleter(this);
@@ -112,6 +111,18 @@ LocationBar::LocationBar(BrowserWindow* window)
     QTimer::singleShot(0, this, SLOT(updatePlaceHolderText()));
 }
 
+BrowserWindow *LocationBar::browserWindow() const
+{
+    return m_window;
+}
+
+void LocationBar::setBrowserWindow(BrowserWindow *window)
+{
+    m_window = window;
+    m_completer->setMainWindow(m_window);
+    m_siteIcon->setBrowserWindow(m_window);
+}
+
 TabbedWebView* LocationBar::webView() const
 {
     return m_webView;
@@ -130,7 +141,6 @@ void LocationBar::setWebView(TabbedWebView* view)
     connect(m_webView, SIGNAL(loadFinished(bool)), SLOT(loadFinished()));
     connect(m_webView, SIGNAL(urlChanged(QUrl)), this, SLOT(showUrl(QUrl)));
     connect(m_webView, SIGNAL(privacyChanged(bool)), this, SLOT(setPrivacyState(bool)));
-    connect(m_webView, &TabbedWebView::iconChanged, this, &LocationBar::updateSiteIcon);
 }
 
 void LocationBar::setText(const QString &text)
@@ -146,24 +156,23 @@ void LocationBar::setText(const QString &text)
 void LocationBar::updatePlaceHolderText()
 {
     if (qzSettings->searchFromAddressBar) {
-        QString engineName = qzSettings->searchWithDefaultEngine ?
-                             mApp->searchEnginesManager()->defaultEngine().name :
-                             mApp->searchEnginesManager()->activeEngine().name;
-        setPlaceholderText(tr("Enter URL address or search on %1").arg(engineName));
+        setPlaceholderText(tr("Enter address or search with %1").arg(searchEngine().name));
     } else
-        setPlaceholderText(tr("Enter URL address"));
+        setPlaceholderText(tr("Enter address"));
 }
 
-void LocationBar::showCompletion(const QString &completion, bool isOriginal)
+void LocationBar::showCompletion(const QString &completion, bool completeDomain)
 {
     LineEdit::setText(completion);
 
     // Move cursor to the end
     end(false);
 
-    if (isOriginal) {
+    if (completeDomain) {
         completer()->complete();
     }
+
+    updateSiteIcon();
 }
 
 void LocationBar::clearCompletion()
@@ -182,54 +191,11 @@ void LocationBar::showDomainCompletion(const QString &completion)
         completer()->complete();
 }
 
-LoadRequest LocationBar::createLoadRequest() const
-{
-    LoadRequest req;
-
-    const QString &t = text().trimmed();
-
-    // Check for Search Engine shortcut
-    int firstSpacePos = t.indexOf(QLatin1Char(' '));
-    if (firstSpacePos != -1) {
-        const QString shortcut = t.left(firstSpacePos);
-        const QString searchedString = t.mid(firstSpacePos).trimmed();
-
-        SearchEngine en = mApp->searchEnginesManager()->engineForShortcut(shortcut);
-        if (!en.name.isEmpty()) {
-            req = mApp->searchEnginesManager()->searchResult(en, searchedString);
-        }
-    }
-
-    // Check for Bookmark keyword
-    QList<BookmarkItem*> items = mApp->bookmarks()->searchKeyword(t);
-    if (!items.isEmpty()) {
-        BookmarkItem* item = items.at(0);
-        item->updateVisitCount();
-        req.setUrl(item->url());
-    }
-
-    if (req.isEmpty()) {
-        // One word needs special handling, because QUrl::fromUserInput
-        // would convert it to QUrl("http://WORD")
-        if (!t.contains(QL1C(' ')) && !t.contains(QL1C('.'))) {
-            req.setUrl(QUrl(t));
-        }
-        else {
-            const QUrl &guessed = QUrl::fromUserInput(t);
-            if (!guessed.isEmpty())
-                req.setUrl(guessed);
-            else
-                req.setUrl(QUrl::fromEncoded(t.toUtf8()));
-        }
-    }
-
-    return req;
-}
-
 QString LocationBar::convertUrlToText(const QUrl &url)
 {
     // It was most probably entered by user, so don't urlencode it
-    if (url.scheme().isEmpty()) {
+    // Also don't urlencode JavaScript code
+    if (url.scheme().isEmpty() || url.scheme() == QL1S("javascript")) {
         return QUrl::fromPercentEncoding(url.toEncoded());
     }
 
@@ -240,6 +206,101 @@ QString LocationBar::convertUrlToText(const QUrl &url)
     }
 
     return stringUrl;
+}
+
+SearchEnginesManager::Engine LocationBar::searchEngine()
+{
+    if (!qzSettings->searchFromAddressBar) {
+        return SearchEngine();
+    } else if (qzSettings->searchWithDefaultEngine) {
+        return mApp->searchEnginesManager()->defaultEngine();
+    } else {
+        return mApp->searchEnginesManager()->activeEngine();
+    }
+}
+
+LocationBar::LoadAction LocationBar::loadAction(const QString &text)
+{
+    LoadAction action;
+
+    const QString &t = text.trimmed();
+
+    if (t.isEmpty()) {
+        return action;
+    }
+
+    // Check for Search Engine shortcut
+    const int firstSpacePos = t.indexOf(QLatin1Char(' '));
+    if (qzSettings->searchFromAddressBar && firstSpacePos != -1) {
+        const QString shortcut = t.left(firstSpacePos);
+        const QString searchedString = t.mid(firstSpacePos).trimmed();
+
+        SearchEngine en = mApp->searchEnginesManager()->engineForShortcut(shortcut);
+        if (en.isValid()) {
+            action.type = LoadAction::Search;
+            action.searchEngine = en;
+            action.loadRequest = mApp->searchEnginesManager()->searchResult(en, searchedString);
+            return action;
+        }
+    }
+
+    // Check for Bookmark keyword
+    const QList<BookmarkItem*> items = mApp->bookmarks()->searchKeyword(t);
+    if (!items.isEmpty()) {
+        BookmarkItem* item = items.at(0);
+        action.type = LoadAction::Bookmark;
+        action.bookmark = item;
+        action.loadRequest.setUrl(item->url());
+        return action;
+    }
+
+    if (!qzSettings->searchFromAddressBar) {
+        const QUrl &guessedUrl = QUrl::fromUserInput(t);
+        if (guessedUrl.isValid()) {
+            action.type = LoadAction::Url;
+            action.loadRequest = guessedUrl;
+        }
+        return action;
+    }
+
+    // Check for one word search
+    if (t != QL1S("localhost")
+            && !QzTools::containsSpace(t)
+            && !t.contains(QL1C('.'))
+            && !t.contains(QL1C(':'))
+            && !t.contains(QL1C('/'))
+       ) {
+        action.type = LoadAction::Search;
+        action.searchEngine = searchEngine();
+        action.loadRequest = mApp->searchEnginesManager()->searchResult(searchEngine(), t);
+        return action;
+    }
+
+    // Otherwise load as url
+    const QUrl &guessedUrl = QUrl::fromUserInput(t);
+    if (guessedUrl.isValid()) {
+        // Always allow javascript: to be loaded
+        const bool forceLoad = guessedUrl.scheme() == QL1S("javascript");
+        // Only allow spaces in query
+        if (forceLoad || !QzTools::containsSpace(guessedUrl.toString(QUrl::RemoveQuery))) {
+            // Only allow whitelisted schemes
+            static const QSet<QString> whitelistedSchemes = {
+                QSL("http"), QSL("https"), QSL("ftp"), QSL("file"),
+                QSL("data"), QSL("about"), QSL("qupzilla")
+            };
+            if (forceLoad || whitelistedSchemes.contains(guessedUrl.scheme())) {
+                action.type = LoadAction::Url;
+                action.loadRequest = guessedUrl;
+                return action;
+            }
+        }
+    }
+
+    // Search when creating url failed
+    action.type = LoadAction::Search;
+    action.searchEngine = searchEngine();
+    action.loadRequest = mApp->searchEnginesManager()->searchResult(searchEngine(), t);
+    return action;
 }
 
 void LocationBar::refreshTextFormat()
@@ -283,17 +344,7 @@ void LocationBar::refreshTextFormat()
 
 void LocationBar::requestLoadUrl()
 {
-    const LoadRequest req = createLoadRequest();
-    const QString urlString = convertUrlToText(req.url());
-
-    m_completer->closePopup();
-    m_webView->setFocus();
-
-    if (urlString != text()) {
-        setText(urlString);
-    }
-
-    m_webView->userLoadAction(req);
+    loadRequest(loadAction(text()).loadRequest);
 }
 
 void LocationBar::textEdited(const QString &text)
@@ -303,6 +354,7 @@ void LocationBar::textEdited(const QString &text)
 
     if (!text.isEmpty()) {
         m_completer->complete(text);
+        m_siteIcon->setIcon(QIcon::fromTheme(QSL("edit-find"), QIcon(QSL(":icons/menu/search-icon.svg"))));
     }
     else {
         m_completer->closePopup();
@@ -351,12 +403,35 @@ void LocationBar::showUrl(const QUrl &url)
     m_bookmarkIcon->checkBookmark(url);
 }
 
+void LocationBar::loadRequest(const LoadRequest &request)
+{
+    if (!m_webView->webTab()->isRestored()) {
+        return;
+    }
+
+    const QString urlString = convertUrlToText(request.url());
+
+    m_completer->closePopup();
+    m_webView->setFocus();
+
+    if (urlString != text()) {
+        setText(urlString);
+    }
+
+    m_webView->userLoadAction(request);
+}
+
 void LocationBar::updateSiteIcon()
 {
-    QIcon icon = m_webView ? m_webView->icon() : IconProvider::emptyWebIcon();
-    if (m_webView && m_webView->url().scheme() == QL1S("https"))
-        icon = QIcon::fromTheme(QSL("document-encrypted"), icon);
-    m_siteIcon->setIcon(QIcon(icon.pixmap(16)));
+    if (m_completer->isVisible()) {
+        m_siteIcon->setIcon(QIcon::fromTheme(QSL("edit-find"), QIcon(QSL(":icons/menu/search-icon.svg"))));
+    } else {
+        QIcon icon = IconProvider::emptyWebIcon();
+        if (property("secured").toBool()) {
+            icon = QIcon::fromTheme(QSL("document-encrypted"), icon);
+        }
+        m_siteIcon->setIcon(QIcon(icon.pixmap(16)));
+    }
 }
 
 void LocationBar::setPrivacyState(bool state)
@@ -368,6 +443,8 @@ void LocationBar::setPrivacyState(bool state)
     setProperty("secured", QVariant(state));
     style()->unpolish(this);
     style()->polish(this);
+
+    updateSiteIcon();
 }
 
 void LocationBar::pasteAndGo()
@@ -409,7 +486,7 @@ void LocationBar::focusInEvent(QFocusEvent* event)
     clearTextFormat();
     LineEdit::focusInEvent(event);
 
-    if (Settings().value("Browser-View-Settings/instantBookmarksToolbar").toBool()) {
+    if (m_window && Settings().value("Browser-View-Settings/instantBookmarksToolbar").toBool()) {
         m_window->bookmarksToolbar()->show();
     }
 }
@@ -432,7 +509,7 @@ void LocationBar::focusOutEvent(QFocusEvent* event)
 
     refreshTextFormat();
 
-    if (Settings().value("Browser-View-Settings/instantBookmarksToolbar").toBool()) {
+    if (m_window && Settings().value("Browser-View-Settings/instantBookmarksToolbar").toBool()) {
         m_window->bookmarksToolbar()->hide();
     }
 }
@@ -443,9 +520,7 @@ void LocationBar::dropEvent(QDropEvent* event)
         const QUrl dropUrl = event->mimeData()->urls().at(0);
         if (WebView::isUrlValid(dropUrl)) {
             setText(dropUrl.toString());
-
-            m_webView->setFocus();
-            m_webView->userLoadAction(dropUrl);
+            loadRequest(dropUrl);
 
             QFocusEvent event(QFocusEvent::FocusOut);
             LineEdit::focusOutEvent(&event);
@@ -457,9 +532,7 @@ void LocationBar::dropEvent(QDropEvent* event)
         const QUrl dropUrl = QUrl(dropText);
         if (WebView::isUrlValid(dropUrl)) {
             setText(dropUrl.toString());
-
-            m_webView->setFocus();
-            m_webView->userLoadAction(dropUrl);
+            loadRequest(dropUrl);
 
             QFocusEvent event(QFocusEvent::FocusOut);
             LineEdit::focusOutEvent(&event);
@@ -515,7 +588,9 @@ void LocationBar::keyPressEvent(QKeyEvent* event)
 
         case Qt::AltModifier:
             m_completer->closePopup();
-            m_window->tabWidget()->addView(createLoadRequest());
+            if (m_window) {
+                m_window->tabWidget()->addView(loadAction(text()).loadRequest);
+            }
             m_holdingAlt = false;
             break;
 
@@ -574,12 +649,10 @@ void LocationBar::loadFinished()
 
     WebPage* page = qobject_cast<WebPage*>(m_webView->page());
 
-    if (page && page->hasMultipleUsernames()) {
-        m_autofillIcon->setFormData(page->autoFillData());
+    if (page && !page->autoFillUsernames().isEmpty()) {
+        m_autofillIcon->setUsernames(page->autoFillUsernames());
         m_autofillIcon->show();
     }
-
-    updateSiteIcon();
 }
 
 void LocationBar::loadSettings()

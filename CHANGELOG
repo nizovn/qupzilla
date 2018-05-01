@@ -1,3 +1,94 @@
+Version 2.2.6
+    * released 13 March 2018
+    * added VerticalTabs plugin
+    * added NoCoin List as default list to AdBlock
+    * added support for userscript icons in GreaseMonkey
+    * added extension:// scheme to be used from plugins
+    * added support for changing default background color of webview
+    * added support for real WebInspector with QtWebEngine 5.11
+    * added support for filtering 3rd party cookies with QtWebEngine 5.11
+    * improved Unload Tab action to kill the web process entirely
+    * fix default size of pinned tabs with some Qt styles
+    * fix loading incomplete urls from locationbar with search disabled
+
+Version 2.2.5
+    * released 28 January 2018
+    * added Unload Tab action
+    * added search engine buttons to locationbar completer
+    * added option to disable automatic password completion on sites
+    * plugins are now always enabled (fixes missing AdBlock)
+    * bring back AdBlock and GreaseMonkey icons in statusbar + add new buttons
+    * fix incorrect size of buttons in bookmarks toolbar with some styles
+    * fix losing session when loading newer profile with old application version
+    * fix temporariliy enabling/disabling JavaScript using StatusBarIcons plugin
+    * fix user agent settings not being applied on startup
+    * fix calculating remaining time in download manager
+
+Version 2.2.4
+    * released 16 January 2018
+    * added option to disable search suggestions from locationbar
+    * added support for detaching and moving tabs to other windows with drag&drop
+    * added support for dropping text/url on tabbar to create new tabs
+    * added support for GreaseMonkey 4.0 API in userscripts
+    * added support for customizing navigation bar layout and widgets
+    * added support for loading userChrome.css stylesheet from profile to configure interface
+    * added new buttons to navigation bar: Tools, Downloads, GreaseMonkey and AdBlock
+    * added new Windows theme and improve every other theme
+    * added support for printing from JavaScript with window.print()
+    * closed windows can now be restored using history menu or Ctrl+Shit+N shortcut
+    * multiple windows in session now each restore its geometry, state and settings
+    * number of fixes and improvements in tabbar
+    * greatly improved compatibility with various GreaseMonkey userscripts
+    * updated design for SpeedDial
+    * fix infinite loading animation on some sites with QtWebEngine 5.10
+    * fix restoring maximized state after leaving fullscreen
+    * fix internal pages not working when JavaScript is disabled
+    * fix showing close button in Web Inspector
+    * fix tabs not being restored when activated in some cases
+    * fix loading "localhost" from locationbar
+    * fix applying web settings when in private mode
+
+Version 2.2.3
+    * released 19 December 2017
+    * fix crashes with Qt 5.10
+    * fix default proxy configuration type in preferences
+
+Version 2.2.2
+    * released 05 December 2017
+    * updated available user agent strings
+    * added support for "font" option in AdBlock
+    * fix build with Qt 5.10
+    * fix build on macOS < 10.12
+    * fix showing irrelevant domain completions in locationbar
+    * fix showing site icons on some systems
+    * fix clearing visited links when clearing history
+    * fix using system network proxy configuration
+    * fix saving window geometry when closing app with Ctrl+Q shortcut
+    * fix various issues with web page not being focused after restoring session
+    * fix AutoScroll plugin not being able to scroll to all directions in some cases
+    * Linux: add StartupWMClass to desktop file
+    * Windows: fix possible isssue with uninstaller removing more files than it should
+
+Version 2.2.1
+    * released 01 November 2017
+    * fix build with Qt 5.10
+    * fix crash in loading popup completions with Qt 5.10
+    * fix clearing local storage on close when enabled
+    * fix sometimes failing to restore tab on switch
+    * fix document quality when printing to PDF
+    * fix various issues with completion popup opening at wrong position
+
+Version 2.2.0
+    * released 08 October 2017
+    * added back print element background option
+    * added back print preview dialog
+    * added session manager
+    * tab icon is now hidden when page has no icon
+    * improved locationbar completer with search suggestions
+    * improved handling of downloading dependencies in GreaseMonkey scripts
+    * various improvements in TabManager extension
+    * Linux: PulseAudio streams now have QupZilla app name and icon
+
 Version 2.1.2
     * released 15 March 2017
     * updated translations

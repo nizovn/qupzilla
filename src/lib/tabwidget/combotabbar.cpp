@@ -1,7 +1,7 @@
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2013-2014 S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
-* Copyright (C) 2014-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,12 @@
 #include <QMouseEvent>
 #include <QApplication>
 #include <QToolTip>
+
+class QMovableTabWidget : public QWidget
+{
+public:
+    QPixmap m_pixmap;
+};
 
 ComboTabBar::ComboTabBar(QWidget* parent)
     : QWidget(parent)
@@ -196,43 +202,39 @@ void ComboTabBar::setTabTextColor(int index, const QColor &color)
 
 QRect ComboTabBar::tabRect(int index) const
 {
-    QRect rect;
-    if (index != -1) {
-        bool mainTabBar = index >= pinnedTabsCount();
-        rect = localTabBar(index)->tabRect(toLocalIndex(index));
+    return mapFromLocalTabRect(localTabBar(index)->tabRect(toLocalIndex(index)), localTabBar(index));
+}
 
-        if (mainTabBar) {
-            rect.moveLeft(rect.x() + mapFromGlobal(m_mainTabBar->mapToGlobal(QPoint(0, 0))).x());
-            QRect widgetRect = m_mainTabBarWidget->scrollArea()->viewport()->rect();
-            widgetRect.moveLeft(widgetRect.x() + mapFromGlobal(m_mainTabBarWidget->scrollArea()->viewport()->mapToGlobal(QPoint(0, 0))).x());
-            rect = rect.intersected(widgetRect);
-        }
-        else {
-            rect.moveLeft(rect.x() + mapFromGlobal(m_pinnedTabBar->mapToGlobal(QPoint(0, 0))).x());
-            QRect widgetRect = m_pinnedTabBarWidget->scrollArea()->viewport()->rect();
-            widgetRect.moveLeft(widgetRect.x() + mapFromGlobal(m_pinnedTabBarWidget->scrollArea()->viewport()->mapToGlobal(QPoint(0, 0))).x());
-            rect = rect.intersected(widgetRect);
-        }
+QRect ComboTabBar::draggedTabRect() const
+{
+    const QRect r = m_pinnedTabBar->draggedTabRect();
+    if (r.isValid()) {
+        return mapFromLocalTabRect(r, m_pinnedTabBar);
     }
+    return mapFromLocalTabRect(m_mainTabBar->draggedTabRect(), m_mainTabBar);
+}
 
-    return rect;
+QPixmap ComboTabBar::tabPixmap(int index) const
+{
+    return localTabBar(index)->tabPixmap(toLocalIndex(index));
 }
 
 int ComboTabBar::tabAt(const QPoint &pos) const
 {
     QWidget* w = QApplication::widgetAt(mapToGlobal(pos));
-    if (!qobject_cast<TabBarHelper*>(w) && !qobject_cast<TabIcon*>(w))
+    if (!qobject_cast<TabBarHelper*>(w) && !qobject_cast<TabIcon*>(w) && !qobject_cast<CloseButton*>(w))
         return -1;
 
-    int index = m_pinnedTabBarWidget->tabAt(m_pinnedTabBarWidget->mapFromParent(pos));
-    if (index != -1)
+    if (m_pinnedTabBarWidget->geometry().contains(pos)) {
+        return m_pinnedTabBarWidget->tabAt(m_pinnedTabBarWidget->mapFromParent(pos));
+    } else if (m_mainTabBarWidget->geometry().contains(pos)) {
+        int index = m_mainTabBarWidget->tabAt(m_mainTabBarWidget->mapFromParent(pos));
+        if (index != -1)
+            index += pinnedTabsCount();
         return index;
+    }
 
-    index = m_mainTabBarWidget->tabAt(m_mainTabBarWidget->mapFromParent(pos));
-    if (index != -1)
-        index += pinnedTabsCount();
-
-    return index;
+    return -1;
 }
 
 bool ComboTabBar::emptyArea(const QPoint &pos) const
@@ -525,10 +527,8 @@ void ComboTabBar::setUpLayout()
 {
     int height = qMax(m_mainTabBar->height(), m_pinnedTabBar->height());
 
-    // Workaround for Oxygen theme. For some reason, QTabBar::height() returns bigger
-    // height than it actually should.
-    if (mApp->styleName() == QLatin1String("oxygen")) {
-        height -= 4;
+    if (height < 1) {
+        height = qMax(m_mainTabBar->sizeHint().height(), m_pinnedTabBar->sizeHint().height());
     }
 
     // We need to setup heights even before m_mainTabBar->height() has correct value
@@ -536,7 +536,6 @@ void ComboTabBar::setUpLayout()
     height = qMax(5, height);
 
     setFixedHeight(height);
-    m_pinnedTabBar->setFixedHeight(height);
     m_leftContainer->setFixedHeight(height);
     m_rightContainer->setFixedHeight(height);
     m_mainTabBarWidget->setUpLayout();
@@ -544,10 +543,10 @@ void ComboTabBar::setUpLayout()
 
     setMinimumWidths();
 
-    if (isVisible() && m_mainTabBar->count() > 0) {
+    if (isVisible() && height > 5) {
         // ComboTabBar is now visible, we can sync heights of both tabbars
-        m_pinnedTabBar->setFixedHeight(m_mainTabBar->sizeHint().height());
-        m_mainTabBar->setFixedHeight(m_mainTabBar->sizeHint().height());
+        m_mainTabBar->setFixedHeight(height);
+        m_pinnedTabBar->setFixedHeight(height);
     }
 }
 
@@ -686,7 +685,7 @@ void ComboTabBar::paintEvent(QPaintEvent* ev)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &option, &p, this);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Draw tabbar base even on parts of ComboTabBar that are not directly QTabBar
     QStyleOptionTabBarBase opt;
     TabBarHelper::initStyleBaseOption(&opt, m_mainTabBar, size());
@@ -755,7 +754,7 @@ QTabBar::ButtonPosition ComboTabBar::iconButtonPosition() const
 
 QTabBar::ButtonPosition ComboTabBar::closeButtonPosition() const
 {
-    return (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, this);
+    return (QTabBar::ButtonPosition)style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, m_mainTabBar);
 }
 
 QSize ComboTabBar::iconButtonSize() const
@@ -796,6 +795,18 @@ bool ComboTabBar::usesScrollButtons() const
 void ComboTabBar::setUsesScrollButtons(bool useButtons)
 {
     m_mainTabBarWidget->setUsesScrollButtons(useButtons);
+}
+
+void ComboTabBar::showDropIndicator(int index, DropIndicatorPosition position)
+{
+    clearDropIndicator();
+    localTabBar(index)->showDropIndicator(toLocalIndex(index), position);
+}
+
+void ComboTabBar::clearDropIndicator()
+{
+    m_mainTabBar->clearDropIndicator();
+    m_pinnedTabBar->clearDropIndicator();
 }
 
 bool ComboTabBar::isDragInProgress() const
@@ -913,6 +924,29 @@ int ComboTabBar::toLocalIndex(int globalIndex) const
     }
 }
 
+QRect ComboTabBar::mapFromLocalTabRect(const QRect &rect, QWidget *tabBar) const
+{
+    if (!rect.isValid()) {
+        return rect;
+    }
+
+    QRect r = rect;
+
+    if (tabBar == m_mainTabBar) {
+        r.moveLeft(r.x() + mapFromGlobal(m_mainTabBar->mapToGlobal(QPoint(0, 0))).x());
+        QRect widgetRect = m_mainTabBarWidget->scrollArea()->viewport()->rect();
+        widgetRect.moveLeft(widgetRect.x() + mapFromGlobal(m_mainTabBarWidget->scrollArea()->viewport()->mapToGlobal(QPoint(0, 0))).x());
+        r = r.intersected(widgetRect);
+    } else {
+        r.moveLeft(r.x() + mapFromGlobal(m_pinnedTabBar->mapToGlobal(QPoint(0, 0))).x());
+        QRect widgetRect = m_pinnedTabBarWidget->scrollArea()->viewport()->rect();
+        widgetRect.moveLeft(widgetRect.x() + mapFromGlobal(m_pinnedTabBarWidget->scrollArea()->viewport()->mapToGlobal(QPoint(0, 0))).x());
+        r = r.intersected(widgetRect);
+    }
+
+    return r;
+}
+
 void ComboTabBar::updatePinnedTabBarVisibility()
 {
     m_pinnedTabBarWidget->setVisible(pinnedTabsCount() > 0);
@@ -967,13 +1001,31 @@ TabBarHelper::TabBarHelper(bool isPinnedTabBar, ComboTabBar* comboTabBar)
     , m_comboTabBar(comboTabBar)
     , m_scrollArea(0)
     , m_pressedIndex(-1)
-    , m_pressedGlobalX(-1)
     , m_dragInProgress(false)
     , m_activeTabBar(false)
     , m_isPinnedTabBar(isPinnedTabBar)
     , m_useFastTabSizeHint(false)
 {
-    connect(this, SIGNAL(tabMoved(int,int)), this, SLOT(tabWasMoved(int,int)));
+}
+
+int TabBarHelper::tabPadding() const
+{
+    return m_tabPadding;
+}
+
+void TabBarHelper::setTabPadding(int padding)
+{
+    m_tabPadding = padding;
+}
+
+QColor TabBarHelper::baseColor() const
+{
+    return m_baseColor;
+}
+
+void TabBarHelper::setBaseColor(const QColor &color)
+{
+    m_baseColor = color;
 }
 
 void TabBarHelper::setTabButton(int index, QTabBar::ButtonPosition position, QWidget* widget)
@@ -992,6 +1044,60 @@ QSize TabBarHelper::tabSizeHint(int index) const
 QSize TabBarHelper::baseClassTabSizeHint(int index) const
 {
     return QTabBar::tabSizeHint(index);
+}
+
+QRect TabBarHelper::draggedTabRect() const
+{
+    if (!m_dragInProgress) {
+        return QRect();
+    }
+
+    QStyleOptionTab tab;
+    initStyleOption(&tab, m_pressedIndex);
+
+    const int tabDragOffset = dragOffset(&tab, m_pressedIndex);
+    if (tabDragOffset != 0) {
+        tab.rect.moveLeft(tab.rect.x() + tabDragOffset);
+    }
+    return tab.rect;
+}
+
+QPixmap TabBarHelper::tabPixmap(int index) const
+{
+    QStyleOptionTab tab;
+    initStyleOption(&tab, index);
+
+    tab.state &= ~QStyle::State_MouseOver;
+    tab.position = QStyleOptionTab::OnlyOneTab;
+    tab.leftButtonSize = QSize();
+    tab.rightButtonSize = QSize();
+
+    QWidget *iconButton = tabButton(index, m_comboTabBar->iconButtonPosition());
+    QWidget *closeButton = tabButton(index, m_comboTabBar->closeButtonPosition());
+
+    if (iconButton) {
+        const QPixmap pix = iconButton->grab();
+        if (!pix.isNull()) {
+            tab.icon = pix;
+            tab.iconSize = pix.size() / pix.devicePixelRatioF();
+        }
+    }
+
+    if (closeButton) {
+        const int width = tab.fontMetrics.width(tab.text) + closeButton->width();
+        tab.text = tab.fontMetrics.elidedText(tabText(index), Qt::ElideRight, width);
+    }
+
+    QPixmap out(tab.rect.size() * devicePixelRatioF());
+    out.setDevicePixelRatio(devicePixelRatioF());
+    out.fill(Qt::transparent);
+    tab.rect = QRect(QPoint(0, 0), tab.rect.size());
+
+    QPainter p(&out);
+    style()->drawControl(QStyle::CE_TabBarTab, &tab, &p, this);
+    p.end();
+
+    return out;
 }
 
 bool TabBarHelper::isActiveTabBar()
@@ -1022,8 +1128,8 @@ void TabBarHelper::removeTab(int index)
 {
     // Removing tab in inactive tabbar will change current index and thus
     // changing active tabbar, which is really not wanted.
-    if (!m_activeTabBar)
-        m_comboTabBar->m_blockCurrentChangedSignal = true;
+    // Also removing tab will cause a duplicate call to ComboTabBar::slotCurrentChanged()
+    m_comboTabBar->m_blockCurrentChangedSignal = true;
 
     QTabBar::removeTab(index);
 
@@ -1038,6 +1144,19 @@ void TabBarHelper::setScrollArea(QScrollArea* scrollArea)
 void TabBarHelper::useFastTabSizeHint(bool enabled)
 {
     m_useFastTabSizeHint = enabled;
+}
+
+void TabBarHelper::showDropIndicator(int index, ComboTabBar::DropIndicatorPosition position)
+{
+    m_dropIndicatorIndex = index;
+    m_dropIndicatorPosition = position;
+    update();
+}
+
+void TabBarHelper::clearDropIndicator()
+{
+    m_dropIndicatorIndex = -1;
+    update();
 }
 
 bool TabBarHelper::isDisplayedOnViewPort(int globalLeft, int globalRight)
@@ -1085,6 +1204,24 @@ bool TabBarHelper::event(QEvent* ev)
     return false;
 }
 
+// Hack to get dragOffset from QTabBar internals
+int TabBarHelper::dragOffset(QStyleOptionTab *option, int tabIndex) const
+{
+    QRect rect;
+    QWidget *button = tabButton(tabIndex, QTabBar::LeftSide);
+    if (button) {
+        rect = style()->subElementRect(QStyle::SE_TabBarTabLeftButton, option, this);
+    }
+    if (!rect.isValid()) {
+        button = tabButton(tabIndex, QTabBar::RightSide);
+        rect = style()->subElementRect(QStyle::SE_TabBarTabRightButton, option, this);
+    }
+    if (!button || !rect.isValid()) {
+        return 0;
+    }
+    return button->pos().x() - rect.topLeft().x();
+}
+
 // Taken from qtabbar.cpp
 void TabBarHelper::initStyleBaseOption(QStyleOptionTabBarBase *optTabBase, QTabBar* tabbar, QSize size)
 {
@@ -1120,14 +1257,9 @@ void TabBarHelper::initStyleBaseOption(QStyleOptionTabBarBase *optTabBase, QTabB
 }
 
 // Adapted from qtabbar.cpp
-void TabBarHelper::paintEvent(QPaintEvent* event)
+// Note: doesn't support vertical tabs
+void TabBarHelper::paintEvent(QPaintEvent *)
 {
-    // Note: this code doesn't support vertical tabs
-    if (m_dragInProgress) {
-        QTabBar::paintEvent(event);
-        return;
-    }
-
     QStyleOptionTabBarBase optTabBase;
     initStyleBaseOption(&optTabBase, this, size());
 
@@ -1150,11 +1282,16 @@ void TabBarHelper::paintEvent(QPaintEvent* event)
     int indexUnderMouse = isDisplayedOnViewPort(cursorPos.x(), cursorPos.x()) ? tabAt(mapFromGlobal(cursorPos)) : -1;
 
     for (int i = 0; i < count(); ++i) {
+        if (i == selected) {
+            continue;
+        }
+
         QStyleOptionTab tab;
         initStyleOption(&tab, i);
 
-        if (i == selected) {
-            continue;
+        const int tabDragOffset = dragOffset(&tab, i);
+        if (tabDragOffset != 0) {
+            tab.rect.moveLeft(tab.rect.x() + tabDragOffset);
         }
 
         // Don't bother drawing a tab if the entire tab is outside of the visible tab bar.
@@ -1171,10 +1308,9 @@ void TabBarHelper::paintEvent(QPaintEvent* event)
         }
 
         // Update mouseover state when scrolling
-        if (i == indexUnderMouse) {
+        if (!m_dragInProgress && i == indexUnderMouse) {
             tab.state |= QStyle::State_MouseOver;
-        }
-        else {
+        } else {
             tab.state &= ~QStyle::State_MouseOver;
         }
 
@@ -1186,11 +1322,15 @@ void TabBarHelper::paintEvent(QPaintEvent* event)
         QStyleOptionTab tab;
         initStyleOption(&tab, selected);
 
+        const int tabDragOffset = dragOffset(&tab, selected);
+        if (tabDragOffset != 0) {
+            tab.rect.moveLeft(tab.rect.x() + tabDragOffset);
+        }
+
         // Update mouseover state when scrolling
         if (selected == indexUnderMouse) {
             tab.state |= QStyle::State_MouseOver;
-        }
-        else {
+        } else {
             tab.state &= ~QStyle::State_MouseOver;
         }
 
@@ -1206,7 +1346,52 @@ void TabBarHelper::paintEvent(QPaintEvent* event)
             tab.state = tab.state & ~QStyle::State_Selected;
         }
 
-        p.drawControl(QStyle::CE_TabBarTab, tab);
+        if (!m_movingTab || !m_movingTab->isVisible()) {
+            p.drawControl(QStyle::CE_TabBarTab, tab);
+        } else {
+            int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, nullptr, this);
+            m_movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
+
+            QRect grabRect = tabRect(selected);
+            grabRect.adjust(-taboverlap, 0, taboverlap, 0);
+            QPixmap grabImage(grabRect.size() * devicePixelRatioF());
+            grabImage.setDevicePixelRatio(devicePixelRatioF());
+            grabImage.fill(Qt::transparent);
+            QStylePainter p(&grabImage, this);
+            p.initFrom(this);
+            if (tabDragOffset != 0) {
+                tab.position = QStyleOptionTab::OnlyOneTab;
+            }
+            tab.rect.moveTopLeft(QPoint(taboverlap, 0));
+            p.drawControl(QStyle::CE_TabBarTab, tab);
+            m_movingTab->m_pixmap = grabImage;
+            m_movingTab->update();
+        }
+    }
+
+    // Draw drop indicator
+    if (m_dropIndicatorIndex != -1) {
+        const QRect tr = tabRect(m_dropIndicatorIndex);
+        QRect r;
+        if (m_dropIndicatorPosition == ComboTabBar::BeforeTab) {
+            r = QRect(qMax(0, tr.left() - 1), tr.top(), 3, tr.height());
+        } else {
+            const int rightOffset = m_dropIndicatorIndex == count() - 1 ? -2 : 0;
+            r = QRect(tr.right() + rightOffset, tr.top(), 3, tr.height());
+        }
+        // Modified code from KFilePlacesView
+        QColor color = palette().brush(QPalette::Normal, QPalette::Highlight).color();
+        const int x = (r.left() + r.right()) / 2;
+        const int thickness = qRound(r.width() / 2.0);
+        int alpha = 255;
+        const int alphaDec = alpha / (thickness + 1);
+        for (int i = 0; i < thickness; i++) {
+            color.setAlpha(alpha);
+            alpha -= alphaDec;
+            p.setPen(color);
+            p.drawLine(x - i, r.top(), x - i, r.bottom());
+            p.drawLine(x + i, r.top(), x + i, r.bottom());
+        }
     }
 }
 
@@ -1216,8 +1401,7 @@ void TabBarHelper::mousePressEvent(QMouseEvent* event)
     if (event->buttons() == Qt::LeftButton) {
         m_pressedIndex = tabAt(event->pos());
         if (m_pressedIndex != -1) {
-            m_pressedGlobalX = event->globalX();
-            m_dragInProgress = true;
+            m_dragStartPosition = event->pos();
             // virtualize selecting tab by click
             if (m_pressedIndex == currentIndex() && !m_activeTabBar) {
                 emit currentChanged(currentIndex());
@@ -1228,26 +1412,83 @@ void TabBarHelper::mousePressEvent(QMouseEvent* event)
     QTabBar::mousePressEvent(event);
 }
 
+void TabBarHelper::mouseMoveEvent(QMouseEvent *event)
+{
+    if (!m_dragInProgress && m_pressedIndex != -1) {
+        if ((event->pos() - m_dragStartPosition).manhattanLength() > QApplication::startDragDistance()) {
+            m_dragInProgress = true;
+        }
+    }
+
+    QTabBar::mouseMoveEvent(event);
+
+    // Hack to find QMovableTabWidget
+    if (m_dragInProgress && !m_movingTab) {
+        const auto objects = children();
+        const int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, nullptr, this);
+        QRect grabRect = tabRect(currentIndex());
+        grabRect.adjust(-taboverlap, 0, taboverlap, 0);
+        for (QObject *object : objects) {
+            QWidget *widget = qobject_cast<QWidget*>(object);
+            if (widget && widget->geometry() == grabRect) {
+                m_movingTab = static_cast<QMovableTabWidget*>(widget);
+                break;
+            }
+        }
+    }
+
+    // Don't allow to move tabs outside of tabbar
+    if (m_dragInProgress && m_movingTab) {
+        // FIXME: This doesn't work at all with RTL...
+        if (isRightToLeft()) {
+            return;
+        }
+        QRect r = tabRect(m_pressedIndex);
+        r.moveLeft(r.x() + (event->pos().x() - m_dragStartPosition.x()));
+        bool sendEvent = false;
+        int diff = r.topRight().x() - tabRect(count() - 1).topRight().x();
+        if (diff > 0) {
+            sendEvent = true;
+        } else {
+            diff = r.topLeft().x() - tabRect(0).topLeft().x();
+            if (diff < 0) {
+                sendEvent = true;
+            }
+        }
+        if (sendEvent) {
+            QPoint pos = event->pos();
+            pos.setX(pos.x() - diff);
+            QMouseEvent ev(event->type(), pos, event->button(), event->buttons(), event->modifiers());
+            QTabBar::mouseMoveEvent(&ev);
+        }
+    }
+}
+
 void TabBarHelper::mouseReleaseEvent(QMouseEvent* event)
 {
     event->ignore();
-    if (event->button() != Qt::LeftButton) {
-        return;
+
+    if (event->button() == Qt::LeftButton) {
+        m_pressedIndex = -1;
+        m_dragInProgress = false;
+        m_dragStartPosition = QPoint();
     }
 
     QTabBar::mouseReleaseEvent(event);
 
-    if (m_pressedIndex >= 0 && m_pressedIndex < count()) {
-        QTimer::singleShot(ComboTabBar::slideAnimationDuration(), this, &TabBarHelper::resetDragState);
-
-        m_pressedIndex = -1;
-        m_pressedGlobalX = -1;
-    }
+    update();
 }
 
 void TabBarHelper::initStyleOption(QStyleOptionTab* option, int tabIndex) const
 {
     QTabBar::initStyleOption(option, tabIndex);
+
+    // Workaround zero padding when tabs are styled using style sheets
+    if (m_tabPadding) {
+        const QRect textRect = style()->subElementRect(QStyle::SE_TabBarTabText, option, this);
+        const int width = textRect.width() - 2 * m_tabPadding;
+        option->text = option->fontMetrics.elidedText(tabText(tabIndex), elideMode(), width, Qt::TextShowMnemonic);
+    }
 
     // Bespin doesn't highlight current tab when there is only one tab in tabbar
     static int isBespin = -1;
@@ -1270,50 +1511,6 @@ void TabBarHelper::initStyleOption(QStyleOptionTab* option, int tabIndex) const
     }
     else {
         option->position = QStyleOptionTab::OnlyOneTab;
-    }
-}
-
-void TabBarHelper::resetDragState()
-{
-    if (m_pressedIndex == -1) {
-        m_dragInProgress = false;
-        update();
-    }
-}
-
-void TabBarHelper::tabWasMoved(int from, int to)
-{
-    if (m_pressedIndex != -1) {
-        if (m_pressedIndex == from) {
-            m_pressedIndex = to;
-        }
-        else {
-            const int start = qMin(from, to);
-            const int end = qMax(from, to);
-
-            if (m_pressedIndex >= start && m_pressedIndex <= end) {
-                m_pressedIndex += (from < to) ? -1 : 1;
-            }
-        }
-    }
-}
-
-void TabBarHelper::tabInserted(int index)
-{
-    if (m_pressedIndex != -1 && index <= m_pressedIndex) {
-        ++m_pressedIndex;
-    }
-}
-
-void TabBarHelper::tabRemoved(int index)
-{
-    if (m_pressedIndex != -1) {
-        if (index < m_pressedIndex) {
-            --m_pressedIndex;
-        }
-        else if (index == m_pressedIndex) {
-            m_pressedIndex = -1;
-        }
     }
 }
 
@@ -1366,6 +1563,7 @@ TabBarScrollWidget::TabBarScrollWidget(QTabBar* tabBar, QWidget* parent)
     m_scrollArea->setWidget(m_tabBar);
 
     m_leftScrollButton = new ToolButton(this);
+    m_leftScrollButton->setFocusPolicy(Qt::NoFocus);
     m_leftScrollButton->setAutoRaise(true);
     m_leftScrollButton->setObjectName("tabbar-button-left");
     m_leftScrollButton->setAutoRepeat(true);
@@ -1376,6 +1574,7 @@ TabBarScrollWidget::TabBarScrollWidget(QTabBar* tabBar, QWidget* parent)
     connect(m_leftScrollButton, SIGNAL(middleMouseClicked()), this, SLOT(ensureVisible()));
 
     m_rightScrollButton = new ToolButton(this);
+    m_rightScrollButton->setFocusPolicy(Qt::NoFocus);
     m_rightScrollButton->setAutoRaise(true);
     m_rightScrollButton->setObjectName("tabbar-button-right");
     m_rightScrollButton->setAutoRepeat(true);
@@ -1611,6 +1810,15 @@ CloseButton::CloseButton(QWidget* parent)
     setObjectName("combotabbar_tabs_close_button");
     setFocusPolicy(Qt::NoFocus);
     setCursor(Qt::ArrowCursor);
+    resize(sizeHint());
+}
+
+QSize CloseButton::sizeHint() const
+{
+    ensurePolished();
+    int width = style()->pixelMetric(QStyle::PM_TabCloseIndicatorWidth, nullptr, this);
+    int height = style()->pixelMetric(QStyle::PM_TabCloseIndicatorHeight, nullptr, this);
+    return QSize(width, height);
 }
 
 void CloseButton::enterEvent(QEvent* event)

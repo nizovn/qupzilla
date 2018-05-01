@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,20 +30,26 @@ class LocationCompleterModel : public QStandardItemModel
 public:
     enum Role {
         IdRole = Qt::UserRole + 1,
-        TitleRole = Qt::UserRole + 2,
-        UrlRole = Qt::UserRole + 3,
-        CountRole = Qt::UserRole + 4,
-        BookmarkRole = Qt::UserRole + 5,
-        BookmarkItemRole = Qt::UserRole + 6,
-        SearchStringRole = Qt::UserRole + 7,
-        TabPositionWindowRole = Qt::UserRole + 8,
-        TabPositionTabRole = Qt::UserRole + 9,
-        ImageRole = Qt::UserRole + 10
+        TitleRole,
+        UrlRole,
+        CountRole,
+        HistoryRole,
+        BookmarkRole,
+        BookmarkItemRole,
+        SearchStringRole,
+        TabPositionWindowRole,
+        TabPositionTabRole,
+        ImageRole,
+        VisitSearchItemRole,
+        SearchSuggestionRole
     };
 
     explicit LocationCompleterModel(QObject* parent = 0);
 
     void setCompletions(const QList<QStandardItem*> &items);
+    void addCompletions(const QList<QStandardItem*> &items);
+
+    QList<QStandardItem*> suggestionItems() const;
 
     static QSqlQuery createHistoryQuery(const QString &searchString, int limit, bool exactMatch = false);
     static QSqlQuery createDomainQuery(const QString &text);

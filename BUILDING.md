@@ -12,22 +12,22 @@ General
   Path section.
 
   You may want to build QupZilla with debugging symbols (for generating
-  backtrace of crash) as easily as adding one line to src/defines.pri:
+  backtrace of crash). You can enable debug build with:
 
-               CONFIG += debug
+               qmake CONFIG+=debug -r
 
-  QupZilla requires Qt (>= 5.7) and QtWebEngine (at least version included in Qt 5.7)
+  QupZilla requires Qt (>= 5.9) and QtWebEngine (at least version included in Qt 5.9)
 
 Microsoft Windows
 ----------------------------------------------------------------------------------
 
-  You need Microsoft Visual C++ Compiler, Qt Libraries 5.7.0 or higher and openssl
+  You need Microsoft Visual C++ Compiler, Qt Libraries 5.9 or higher and openssl
   libraries. in order to build QupZilla.
 
 Linux / Unix
 ----------------------------------------------------------------------------------
 
-  You need to have Qt 5 (>= 5.7) with QtWebEngine.
+  You need to have Qt 5 (>= 5.9) with QtWebEngine.
   Next compulsory requirement is OpenSSL (libcrypto). xcb libraries are also
   required unless you specify NO_X11 build option.
 
@@ -46,30 +46,10 @@ MAC OS X
 
   You need to have Xcode from the Apple App Store installed in Applications, [Command Line Tools for the same Xcode version](https://developer.apple.com/) may be included depending on the version,
   [Homebrew](http://brew.sh/), and `$ brew install openssl` for openssl.
-  Next compulsory requirement is Qt 5 (>= 5.7) with QtWebEngine.
-  After successful compilation, you need to build the application bundle and follow any
-  instructions that may be presented. You will do it with following command:
+  Next compulsory requirement is Qt 5 (>= 5.9) with QtWebEngine.
+  After successful compilation, you need to build the application bundle. You will do it with following command:
 
-    $ ./mac/macdeploy.sh [<path-to-macdeployqt>]
-
-  You need to specify path to macdeployqt (usually in QTDIR/bin/macdeployqt) only
-  if it is not in PATH.
-
-OS/2
-----------------------------------------------------------------------------------
-
-  I cannot provide support for QupZilla on OS/2 as I don't have access to
-  machine with OS/2, but it is possible to get QupZilla working there.
-
-  Builds are provided by netlabs.org (http://svn.netlabs.org/qtapps/wiki/QT4%20Networking)
-
-FreeBSD
-----------------------------------------------------------------------------------
-
-  You may need to set few sysctls to get QupZilla running with raster graphics system.
-
-  For more informations, please see FAQ.
-
+    $ make bundle
 
 Available Defines
 ----------------------------------------------------------------------------------
@@ -80,27 +60,13 @@ Available Defines
     $ export NAME="value"
 
  General:
-   PORTABLE_BUILD         QupZilla won't write any data outside of path of execution.
+
+    PORTABLE_BUILD        QupZilla won't write any data outside of path of execution.
                           It will also disable plugins by default.
                           (disabled by default)
 
                           example:
                           $ export PORTABLE_BUILD="true"
-
-
-   NONBLOCK_JS_DIALOGS    Enable non-blocking JavaScript dialogs from alert() prompt()
-                          and confirm() functions. They are shown inside page and are not
-                          blocking application window.
-                          However, due to synchronous API, there is a possible crash when
-                          closing browser windows with opened dialogs.
-                          If you can take this risk and/or make sure you aren't closing browser
-                          with opened dialogs, you may enable this option.
-                          These dialogs are much more beautiful than normal QDialogs.
-                          (disabled by default)
-
-                          example:
-                          $ export NONBLOCK_JS_DIALOGS="true"
-
 
  Windows specific defines:
 

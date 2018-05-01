@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -201,7 +201,6 @@ bool AdBlockRule::urlMatch(const QUrl &url) const
         return false;
     }
 
-
     const QString encodedUrl = url.toEncoded();
     const QString domain = url.host();
 
@@ -259,6 +258,21 @@ bool AdBlockRule::networkMatch(const QWebEngineUrlRequestInfo &request, const QS
 
         // Check object-subrequest restriction
         if (hasOption(ObjectSubrequestOption) && !matchObjectSubrequest(request)) {
+            return false;
+        }
+
+        // Check ping restriction
+        if (hasOption(PingOption) && !matchPing(request)) {
+            return false;
+        }
+
+        // Check media restriction
+        if (hasOption(MediaOption) && !matchMedia(request)) {
+            return false;
+        }
+
+        // Check font restriction
+        if (hasOption(FontOption) && !matchFont(request)) {
             return false;
         }
     }
@@ -363,9 +377,44 @@ bool AdBlockRule::matchStyleSheet(const QWebEngineUrlRequestInfo &request) const
 
 bool AdBlockRule::matchObjectSubrequest(const QWebEngineUrlRequestInfo &request) const
 {
-    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeSubResource;
+    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypePluginResource;
 
     return hasException(ObjectSubrequestOption) ? !match : match;
+}
+
+bool AdBlockRule::matchPing(const QWebEngineUrlRequestInfo &request) const
+{
+    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypePing;
+
+    return hasException(PingOption) ? !match : match;
+}
+
+bool AdBlockRule::matchMedia(const QWebEngineUrlRequestInfo &request) const
+{
+    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeMedia;
+
+    return hasException(MediaOption) ? !match : match;
+}
+
+bool AdBlockRule::matchFont(const QWebEngineUrlRequestInfo &request) const
+{
+    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeFontResource;
+
+    return hasException(FontOption) ? !match : match;
+}
+
+bool AdBlockRule::matchOther(const QWebEngineUrlRequestInfo &request) const
+{
+    bool match = request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeFontResource
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeSubResource
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeWorker
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeSharedWorker
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypePrefetch
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeFavicon
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeServiceWorker
+              || request.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeUnknown;
+
+    return hasException(MediaOption) ? !match : match;
 }
 
 void AdBlockRule::parseFilter()
@@ -461,6 +510,26 @@ void AdBlockRule::parseFilter()
                 setException(ObjectSubrequestOption, option.startsWith(QL1C('~')));
                 ++handledOptions;
             }
+            else if (option.endsWith(QL1S("ping"))) {
+                setOption(PingOption);
+                setException(PingOption, option.startsWith(QL1C('~')));
+                ++handledOptions;
+            }
+            else if (option.endsWith(QL1S("media"))) {
+                setOption(MediaOption);
+                setException(MediaOption, option.startsWith(QL1C('~')));
+                ++handledOptions;
+            }
+            else if (option.endsWith(QL1S("font"))) {
+                setOption(FontOption);
+                setException(FontOption, option.startsWith(QL1C('~')));
+                ++handledOptions;
+            }
+            else if (option.endsWith(QL1S("other"))) {
+                setOption(OtherOption);
+                setException(OtherOption, option.startsWith(QL1C('~')));
+                ++handledOptions;
+            }
             else if (option == QL1S("document") && m_isException) {
                 setOption(DocumentOption);
                 ++handledOptions;
@@ -535,6 +604,18 @@ void AdBlockRule::parseFilter()
         m_regExp = new RegExp;
         m_regExp->regExp = QzRegExp(createRegExpFromFilter(parsedLine), m_caseSensitivity);
         m_regExp->matchers = createStringMatchers(parseRegExpFilter(parsedLine));
+        return;
+    }
+
+    // This rule matches all urls
+    if (parsedLine.isEmpty()) {
+        if (m_options == NoOption) {
+            qWarning() << "Disabling unrestricted rule that would block all requests" << m_filter;
+            m_isInternalDisabled = true;
+            m_type = Invalid;
+            return;
+        }
+        m_type = MatchAllUrlsRule;
         return;
     }
 
@@ -671,23 +752,28 @@ QList<QStringMatcher> AdBlockRule::createStringMatchers(const QStringList &filte
 
 bool AdBlockRule::stringMatch(const QString &domain, const QString &encodedUrl) const
 {
-    if (m_type == StringContainsMatchRule) {
+    switch (m_type) {
+    case StringContainsMatchRule:
         return encodedUrl.contains(m_matchString, m_caseSensitivity);
-    }
-    else if (m_type == DomainMatchRule) {
+
+    case DomainMatchRule:
         return isMatchingDomain(domain, m_matchString);
-    }
-    else if (m_type == StringEndsMatchRule) {
+
+    case StringEndsMatchRule:
         return encodedUrl.endsWith(m_matchString, m_caseSensitivity);
-    }
-    else if (m_type == RegExpMatchRule) {
+
+    case RegExpMatchRule:
         if (!isMatchingRegExpStrings(encodedUrl)) {
             return false;
         }
         return (m_regExp->regExp.indexIn(encodedUrl) != -1);
-    }
 
-    return false;
+    case MatchAllUrlsRule:
+        return true;
+
+    default:
+        return false;
+    }
 }
 
 bool AdBlockRule::isMatchingDomain(const QString &domain, const QString &filter) const

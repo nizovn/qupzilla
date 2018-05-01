@@ -12,6 +12,8 @@ headers*.tar.gz
 license_template
 Makefile*
 bin/qupzilla
+bin/QupZilla.dmg
+mac/images/qupzilla-dmg-icon.iconset
 lib*.so*
 bin/core
 qupzilla.sh
@@ -38,3 +40,4 @@ callgrind.out.*
 tests/autotests/autotests
 .ycm_extra_conf.py*
 *.stash
+bin/profiles

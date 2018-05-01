@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include "sslerrordialog.h"
 #include "networkurlinterceptor.h"
 #include "schemehandlers/qupzillaschemehandler.h"
+#include "schemehandlers/extensionschemehandler.h"
 
 #include <QLabel>
 #include <QDialog>
@@ -44,6 +45,8 @@ NetworkManager::NetworkManager(QObject *parent)
 {
     // Create scheme handlers
     mApp->webProfile()->installUrlSchemeHandler(QByteArrayLiteral("qupzilla"), new QupZillaSchemeHandler());
+    m_extensionScheme = new ExtensionSchemeManager();
+    mApp->webProfile()->installUrlSchemeHandler(QByteArrayLiteral("extension"), m_extensionScheme);
 
     // Create url interceptor
     m_urlInterceptor = new NetworkUrlInterceptor(this);
@@ -228,6 +231,16 @@ void NetworkManager::removeUrlInterceptor(UrlInterceptor *interceptor)
     m_urlInterceptor->removeUrlInterceptor(interceptor);
 }
 
+void NetworkManager::registerExtensionSchemeHandler(const QString &name, ExtensionSchemeHandler *handler)
+{
+    m_extensionScheme->registerHandler(name, handler);
+}
+
+void NetworkManager::unregisterExtensionSchemeHandler(const QString &name)
+{
+    m_extensionScheme->unregisterHandler(name);
+}
+
 void NetworkManager::loadSettings()
 {
     Settings settings;
@@ -238,13 +251,28 @@ void NetworkManager::loadSettings()
 
     QNetworkProxy proxy;
     settings.beginGroup("Web-Proxy");
-    proxy.setType(QNetworkProxy::ProxyType(settings.value("ProxyType", QNetworkProxy::NoProxy).toInt()));
+    const int proxyType = settings.value("ProxyType", 2).toInt();
     proxy.setHostName(settings.value("HostName", QString()).toString());
     proxy.setPort(settings.value("Port", 8080).toInt());
     proxy.setUser(settings.value("Username", QString()).toString());
     proxy.setPassword(settings.value("Password", QString()).toString());
     settings.endGroup();
-    QNetworkProxy::setApplicationProxy(proxy);
+
+    if (proxyType == 0) {
+        proxy.setType(QNetworkProxy::NoProxy);
+    } else if (proxyType == 3) {
+        proxy.setType(QNetworkProxy::HttpProxy);
+    } else if (proxyType == 4) {
+        proxy.setType(QNetworkProxy::Socks5Proxy);
+    }
+
+    if (proxyType == 2) {
+        QNetworkProxy::setApplicationProxy(QNetworkProxy());
+        QNetworkProxyFactory::setUseSystemConfiguration(true);
+    } else {
+        QNetworkProxy::setApplicationProxy(proxy);
+        QNetworkProxyFactory::setUseSystemConfiguration(false);
+    }
 
     m_urlInterceptor->loadSettings();
 }

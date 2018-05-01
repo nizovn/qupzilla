@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
-#include <QTabWidget>
 #include <QMenu>
+#include <QPointer>
 
 #include "tabstackedwidget.h"
 #include "toolbutton.h"
@@ -44,8 +44,6 @@ public:
 private:
     void wheelEvent(QWheelEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
-    void dragEnterEvent(QDragEnterEvent* event);
-    void dropEvent(QDropEvent* event);
 
     TabBar* m_tabBar;
     TabWidget* m_tabWidget;
@@ -68,12 +66,12 @@ class QUPZILLA_EXPORT TabWidget : public TabStackedWidget
 {
     Q_OBJECT
 public:
-    explicit TabWidget(BrowserWindow* mainclass, QWidget* parent = 0);
+    explicit TabWidget(BrowserWindow *window, QWidget *parent = nullptr);
     ~TabWidget();
 
-    QByteArray saveState();
+    BrowserWindow *browserWindow() const;
+
     bool restoreState(const QVector<WebTab::SavedTab> &tabs, int currentTab);
-    void closeRecoveryTab();
 
     void setCurrentIndex(int index);
 
@@ -83,8 +81,9 @@ public:
 
     int normalTabsCount() const;
     int pinnedTabsCount() const;
-    int lastTabIndex() const;
     int extraReservedWidth() const;
+
+    WebTab *webTab(int index = -1) const;
 
     TabBar* tabBar() const;
     ClosedTabsManager* closedTabsManager() const;
@@ -97,10 +96,16 @@ public:
     ToolButton* buttonClosedTabs() const;
     AddTabButton* buttonAddTab() const;
 
+    void moveTab(int from, int to);
+    int pinUnPinTab(int index, const QString &title = QString());
+
+    void detachTab(WebTab* tab);
+
 public slots:
     int addView(const LoadRequest &req, const Qz::NewTabPositionFlags &openFlags, bool selectLine = false, bool pinned = false);
     int addView(const LoadRequest &req, const QString &title = tr("New tab"), const Qz::NewTabPositionFlags &openFlags = Qz::NT_SelectedTab, bool selectLine = false, int position = -1, bool pinned = false);
-    int addView(WebTab* tab);
+    int addView(WebTab *tab, const Qz::NewTabPositionFlags &openFlags);
+    int insertView(int index, WebTab *tab, const Qz::NewTabPositionFlags &openFlags);
 
     void addTabFromClipboard();
     int duplicateTab(int index);
@@ -117,6 +122,8 @@ public slots:
     void closeToRight(int index);
     void closeToLeft(int index);
     void detachTab(int index);
+    void loadTab(int index);
+    void unloadTab(int index);
     void restoreClosedTab(QObject* obj = 0);
     void restoreAllClosedTabs();
     void clearClosedTabsList();
@@ -127,6 +134,9 @@ public slots:
 
 signals:
     void changed();
+    void tabInserted(int index);
+    void tabRemoved(int index);
+    void tabMoved(int from, int to);
 
 private slots:
     void loadSettings();
@@ -135,15 +145,18 @@ private slots:
     void aboutToShowClosedTabsMenu();
 
     void actionChangeIndex();
-    void tabMoved(int before, int after);
+    void tabWasMoved(int before, int after);
 
 private:
-    WebTab* weTab();
-    WebTab* weTab(int index);
-    TabIcon* tabIcon(int index);
+    WebTab* weTab() const;
+    WebTab* weTab(int index) const;
+    TabIcon* tabIcon(int index) const;
 
     bool validIndex(int index) const;
     void updateClosedTabsButton();
+
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
     BrowserWindow* m_window;
     TabBar* m_tabBar;
@@ -157,8 +170,7 @@ private:
     AddTabButton* m_buttonAddTab;
     AddTabButton* m_buttonAddTab2;
 
-    int m_lastTabIndex;
-    int m_lastBackgroundTabIndex;
+    QPointer<WebTab> m_lastBackgroundTab;
 
     bool m_dontCloseWithOneTab;
     bool m_showClosedTabsButton;

@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,7 @@
 #include "qzsettings.h"
 #include "browserwindow.h"
 #include "tabwidget.h"
-
-#include <QSqlQuery>
+#include "sqldatabase.h"
 
 LocationCompleterModel::LocationCompleterModel(QObject* parent)
     : QStandardItemModel(parent)
@@ -33,23 +32,38 @@ LocationCompleterModel::LocationCompleterModel(QObject* parent)
 
 void LocationCompleterModel::setCompletions(const QList<QStandardItem*> &items)
 {
-    foreach (QStandardItem* item, items) {
+    clear();
+    addCompletions(items);
+}
+
+void LocationCompleterModel::addCompletions(const QList<QStandardItem*> &items)
+{
+    for (QStandardItem *item : items) {
         item->setIcon(QPixmap::fromImage(item->data(ImageRole).value<QImage>()));
         setTabPosition(item);
-
         if (item->icon().isNull()) {
             item->setIcon(IconProvider::emptyWebIcon());
         }
+        appendRow(QList<QStandardItem*>{item});
     }
+}
 
-    clear();
-    appendColumn(items);
+QList<QStandardItem*> LocationCompleterModel::suggestionItems() const
+{
+    QList<QStandardItem*> items;
+    for (int i = 0; i < rowCount(); ++i) {
+        QStandardItem *it = item(i);
+        if (it->data(SearchSuggestionRole).toBool()) {
+            items.append(it);
+        }
+    }
+    return items;
 }
 
 QSqlQuery LocationCompleterModel::createDomainQuery(const QString &text)
 {
     if (text.isEmpty() || text == QLatin1String("www.")) {
-        return QSqlQuery();
+        return QSqlQuery(SqlDatabase::instance()->database());
     }
 
     bool withoutWww = text.startsWith(QLatin1Char('w')) && !text.startsWith(QLatin1String("www."));
@@ -62,9 +76,9 @@ QSqlQuery LocationCompleterModel::createDomainQuery(const QString &text)
         query.append(QLatin1String("url LIKE ? OR url LIKE ? OR "));
     }
 
-    query.append(QLatin1String("(url LIKE ? OR url LIKE ?) LIMIT 1"));
+    query.append(QLatin1String("(url LIKE ? OR url LIKE ?) ORDER BY date DESC LIMIT 1"));
 
-    QSqlQuery sqlQuery;
+    QSqlQuery sqlQuery(SqlDatabase::instance()->database());
     sqlQuery.prepare(query);
 
     if (withoutWww) {
@@ -104,7 +118,7 @@ QSqlQuery LocationCompleterModel::createHistoryQuery(const QString &searchString
 
     query.append(QLatin1String("ORDER BY date DESC LIMIT ?"));
 
-    QSqlQuery sqlQuery;
+    QSqlQuery sqlQuery(SqlDatabase::instance()->database());
     sqlQuery.prepare(query);
 
     if (exactMatch) {
@@ -127,7 +141,9 @@ void LocationCompleterModel::setTabPosition(QStandardItem* item) const
 {
     Q_ASSERT(item);
 
-    if (!qzSettings->showSwitchTab) {
+    item->setData(-1, TabPositionTabRole);
+
+    if (!qzSettings->showSwitchTab || item->data(VisitSearchItemRole).toBool()) {
         return;
     }
 
@@ -145,10 +161,6 @@ void LocationCompleterModel::setTabPosition(QStandardItem* item) const
             }
         }
     }
-
-    // Tab wasn't found
-    item->setData(QVariant::fromValue<void*>(static_cast<void*>(0)), TabPositionWindowRole);
-    item->setData(-1, TabPositionTabRole);
 }
 
 void LocationCompleterModel::refreshTabPositions() const

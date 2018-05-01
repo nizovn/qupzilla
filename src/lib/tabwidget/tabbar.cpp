@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,15 +21,15 @@
 #include "webtab.h"
 #include "toolbutton.h"
 #include "settings.h"
-#include "tabbedwebview.h"
 #include "mainapplication.h"
 #include "pluginproxy.h"
 #include "iconprovider.h"
+#include "tabcontextmenu.h"
+#include "searchenginesmanager.h"
+#include "tabmrumodel.h"
 
-#include <QMenu>
 #include <QMimeData>
 #include <QMouseEvent>
-#include <QMessageBox>
 #include <QStyleOption>
 #include <QApplication>
 #include <QTimer>
@@ -37,6 +37,52 @@
 #include <QLabel>
 #include <QScrollArea>
 #include <QHBoxLayout>
+#include <QDrag>
+
+#define MIMETYPE QSL("application/qupzilla.tabbar.tab")
+
+class TabBarTabMetrics : public QWidget
+{
+    Q_OBJECT
+    Q_PROPERTY(int normalMaxWidth READ normalMaxWidth WRITE setNormalMaxWidth)
+    Q_PROPERTY(int normalMinWidth READ normalMinWidth WRITE setNormalMinWidth)
+    Q_PROPERTY(int activeMinWidth READ activeMinWidth WRITE setActiveMinWidth)
+    Q_PROPERTY(int overflowedWidth READ overflowedWidth WRITE setOverflowedWidth)
+    Q_PROPERTY(int pinnedWidth READ pinnedWidth WRITE setPinnedWidth)
+
+public:
+    void init()
+    {
+        if (!m_metrics.isEmpty()) {
+            return;
+        }
+        m_metrics[0] = 250;
+        m_metrics[1] = 100;
+        m_metrics[2] = 100;
+        m_metrics[3] = 100;
+        m_metrics[4] = -1; // Will be initialized from TabBar
+    }
+
+    int normalMaxWidth() const { return m_metrics.value(0); }
+    void setNormalMaxWidth(int value) { m_metrics[0] = value; }
+
+    int normalMinWidth() const { return m_metrics.value(1); }
+    void setNormalMinWidth(int value) { m_metrics[1] = value; }
+
+    int activeMinWidth() const { return m_metrics.value(2); }
+    void setActiveMinWidth(int value) { m_metrics[2] = value; }
+
+    int overflowedWidth() const { return m_metrics.value(3); }
+    void setOverflowedWidth(int value) { m_metrics[3] = value; }
+
+    int pinnedWidth() const { return m_metrics.value(4); }
+    void setPinnedWidth(int value) { m_metrics[4] = value; }
+
+private:
+    QHash<int, int> m_metrics;
+};
+
+Q_GLOBAL_STATIC(TabBarTabMetrics, tabMetrics)
 
 TabBar::TabBar(BrowserWindow* window, TabWidget* tabWidget)
     : ComboTabBar()
@@ -44,7 +90,6 @@ TabBar::TabBar(BrowserWindow* window, TabWidget* tabWidget)
     , m_tabWidget(tabWidget)
     , m_hideTabBarWithOneTab(false)
     , m_showCloseOnInactive(0)
-    , m_clickedTab(0)
     , m_normalTabWidth(0)
     , m_activeTabWidth(0)
     , m_forceHidden(false)
@@ -66,6 +111,8 @@ TabBar::TabBar(BrowserWindow* window, TabWidget* tabWidget)
     setCloseButtonsToolTip(BrowserWindow::tr("Close Tab"));
     connect(this, SIGNAL(overFlowChanged(bool)), this, SLOT(overflowChanged(bool)));
 
+    tabMetrics()->init();
+
     if (mApp->isPrivate()) {
         QLabel* privateBrowsing = new QLabel(this);
         privateBrowsing->setObjectName(QSL("private-browsing-icon"));
@@ -86,7 +133,7 @@ void TabBar::loadSettings()
     settings.endGroup();
 
     setSelectionBehaviorOnRemove(activateLastTab ? QTabBar::SelectPreviousTab : QTabBar::SelectRightTab);
-    setVisible(!(count() == 1 && m_hideTabBarWithOneTab));
+    setVisible(!(count() <= 1 && m_hideTabBarWithOneTab));
 
     setUpLayout();
 }
@@ -105,7 +152,7 @@ void TabBar::setVisible(bool visible)
 
     // Make sure to honor user preference
     if (visible) {
-        visible = !(count() == 1 && m_hideTabBarWithOneTab);
+        visible = !(count() <= 1 && m_hideTabBarWithOneTab);
     }
 
     ComboTabBar::setVisible(visible);
@@ -124,37 +171,6 @@ void TabBar::overflowChanged(bool overflowed)
     if (overflowed && m_showCloseOnInactive != 1) {
         setTabsClosable(false);
         showCloseButton(currentIndex());
-    }
-}
-
-//TODO: replace these 3 w/ preferencable mbox
-void TabBar::closeAllButCurrent()
-{
-    QMessageBox::StandardButton button = QMessageBox::question(this, tr("Close Tabs"), tr("Do you really want to close other tabs?"),
-                                         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-
-    if (button == QMessageBox::Yes) {
-        emit closeAllButCurrent(m_clickedTab);
-    }
-}
-
-void TabBar::closeToRight()
-{
-    QMessageBox::StandardButton button = QMessageBox::question(this, tr("Close Tabs"), tr("Do you really want to close all tabs to the right?"),
-                                         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-
-    if (button == QMessageBox::Yes) {
-        emit closeToRight(m_clickedTab);
-    }
-}
-
-void TabBar::closeToLeft()
-{
-    QMessageBox::StandardButton button = QMessageBox::question(this, tr("Close Tabs"), tr("Do you really want to close all tabs to the left?"),
-                                         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-
-    if (button == QMessageBox::Yes) {
-        emit closeToLeft(m_clickedTab);
     }
 }
 
@@ -276,15 +292,19 @@ int TabBar::comboTabBarPixelMetric(ComboTabBar::SizeType sizeType) const
 {
     switch (sizeType) {
     case ComboTabBar::PinnedTabWidth:
-        return iconButtonSize().width() + style()->pixelMetric(QStyle::PM_TabBarTabHSpace, 0, this);
+        return tabMetrics()->pinnedWidth() > 0 ? tabMetrics()->pinnedWidth() : 32;
 
     case ComboTabBar::ActiveTabMinimumWidth:
+        return tabMetrics()->activeMinWidth();
+
     case ComboTabBar::NormalTabMinimumWidth:
+        return tabMetrics()->normalMinWidth();
+
     case ComboTabBar::OverflowedTabWidth:
-        return 100;
+        return tabMetrics()->overflowedWidth();
 
     case ComboTabBar::NormalTabMaximumWidth:
-        return 250;
+        return tabMetrics()->normalMaxWidth();
 
     case ComboTabBar::ExtraReservedWidth:
         return m_tabWidget->extraReservedWidth();
@@ -322,58 +342,18 @@ void TabBar::showCloseButton(int index)
 
 void TabBar::contextMenuEvent(QContextMenuEvent* event)
 {
-    int index = tabAt(event->pos());
-    m_clickedTab = index;
-
-    QMenu menu;
-    if (index != -1) {
-        WebTab* webTab = qobject_cast<WebTab*>(m_tabWidget->widget(m_clickedTab));
-        if (!webTab) {
-            return;
-        }
-
-        if (m_window->weView(m_clickedTab)->isLoading()) {
-            menu.addAction(QIcon::fromTheme(QSL("process-stop")), tr("&Stop Tab"), this, SLOT(stopTab()));
-        }
-        else {
-            menu.addAction(QIcon::fromTheme(QSL("view-refresh")), tr("&Reload Tab"), this, SLOT(reloadTab()));
-        }
-
-        menu.addAction(QIcon::fromTheme("tab-duplicate"), tr("&Duplicate Tab"), this, SLOT(duplicateTab()));
-
-        if (count() > 1 && !webTab->isPinned()) {
-            menu.addAction(QIcon::fromTheme("tab-detach"), tr("D&etach Tab"), this, SLOT(detachTab()));
-        }
-
-        menu.addAction(webTab->isPinned() ? tr("Un&pin Tab") : tr("&Pin Tab"), this, SLOT(pinTab()));
-        menu.addAction(webTab->isMuted() ? tr("Un&mute Tab") : tr("&Mute Tab"), this, SLOT(muteTab()));
-        menu.addSeparator();
-        menu.addAction(tr("Re&load All Tabs"), m_tabWidget, SLOT(reloadAllTabs()));
-        menu.addAction(tr("Bookmark &All Tabs"), m_window, SLOT(bookmarkAllTabs()));
-        menu.addSeparator();
-        menu.addAction(tr("Close Ot&her Tabs"), this, SLOT(closeAllButCurrent()));
-        menu.addAction(tr("Close Tabs To The Right"), this, SLOT(closeToRight()));
-        menu.addAction(tr("Close Tabs To The Left"), this, SLOT(closeToLeft()));
-        menu.addSeparator();
-        menu.addAction(m_window->action(QSL("Other/RestoreClosedTab")));
-        menu.addAction(QIcon::fromTheme("window-close"), tr("Cl&ose Tab"), this, SLOT(closeTab()));
-    } else {
-        menu.addAction(IconProvider::newTabIcon(), tr("&New tab"), m_window, SLOT(addTab()));
-        menu.addSeparator();
-        menu.addAction(tr("Reloa&d All Tabs"), m_tabWidget, SLOT(reloadAllTabs()));
-        menu.addAction(tr("Bookmark &All Tabs"), m_window, SLOT(bookmarkAllTabs()));
-        menu.addSeparator();
-        menu.addAction(m_window->action(QSL("Other/RestoreClosedTab")));
+    if (isDragInProgress()) {
+        return;
     }
 
-    m_window->action(QSL("Other/RestoreClosedTab"))->setEnabled(m_tabWidget->canRestoreTab());
+    int index = tabAt(event->pos());
+
+    TabContextMenu menu(index, m_window);
 
     // Prevent choosing first option with double rightclick
     const QPoint pos = event->globalPos();
     QPoint p(pos.x(), pos.y() + 1);
     menu.exec(p);
-
-    m_window->action(QSL("Other/RestoreClosedTab"))->setEnabled(true);
 }
 
 void TabBar::hideCloseButton(int index)
@@ -417,11 +397,6 @@ void TabBar::updatePinnedTabCloseButton(int index)
     }
 }
 
-void TabBar::closeCurrentTab()
-{
-    m_tabWidget->requestCloseTab(currentIndex());
-}
-
 void TabBar::closeTabFromButton()
 {
     QWidget* button = qobject_cast<QWidget*>(sender());
@@ -449,44 +424,14 @@ void TabBar::currentTabChanged(int index)
     // Don't hide close buttons when dragging tabs
     if (m_dragStartPosition.isNull()) {
         showCloseButton(index);
-        hideCloseButton(m_tabWidget->lastTabIndex());
-
+        if (m_lastTab) {
+            hideCloseButton(m_lastTab->tabIndex());
+        }
         QTimer::singleShot(100, this, [this]() { ensureVisible(); });
     }
 
+    m_lastTab = webTab(index);
     m_tabWidget->currentTabChanged(index);
-}
-
-void TabBar::pinTab()
-{
-    WebTab* webTab = qobject_cast<WebTab*>(m_tabWidget->widget(m_clickedTab));
-
-    if (webTab) {
-        webTab->togglePinned();
-    }
-}
-
-void TabBar::muteTab()
-{
-    WebTab* webTab = qobject_cast<WebTab*>(m_tabWidget->widget(m_clickedTab));
-
-    if (webTab) {
-        webTab->toggleMuted();
-    }
-}
-
-void TabBar::overrideTabTextColor(int index, QColor color)
-{
-    if (!m_originalTabTextColor.isValid()) {
-        m_originalTabTextColor = tabTextColor(index);
-    }
-
-    setTabTextColor(index, color);
-}
-
-void TabBar::restoreTabTextColor(int index)
-{
-    setTabTextColor(index, m_originalTabTextColor);
 }
 
 void TabBar::setTabText(int index, const QString &text)
@@ -510,7 +455,23 @@ void TabBar::tabInserted(int index)
 {
     Q_UNUSED(index)
 
-    setVisible(!(count() == 1 && m_hideTabBarWithOneTab));
+    // Initialize pinned tab metrics
+    if (tabMetrics()->pinnedWidth() == -1) {
+        QTimer::singleShot(0, this, [this]() {
+            if (tabMetrics()->pinnedWidth() != -1) {
+                return;
+            }
+            QWidget *w = tabButton(0, iconButtonPosition());
+            if (w && w->parentWidget()) {
+                const QRect wg = w->parentWidget()->geometry();
+                const QRect wr = QStyle::visualRect(layoutDirection(), wg, w->geometry());
+                tabMetrics()->setPinnedWidth(iconButtonSize().width() + wr.x() * 2);
+                setUpLayout();
+            }
+        });
+    }
+
+    setVisible(!(count() <= 1 && m_hideTabBarWithOneTab));
 }
 
 void TabBar::tabRemoved(int index)
@@ -518,7 +479,7 @@ void TabBar::tabRemoved(int index)
     Q_UNUSED(index)
 
     showCloseButton(currentIndex());
-    setVisible(!(count() == 1 && m_hideTabBarWithOneTab));
+    setVisible(!(count() <= 1 && m_hideTabBarWithOneTab));
 
     // Make sure to move add tab button to correct position when there are no normal tabs
     if (normalTabsCount() == 0) {
@@ -545,46 +506,67 @@ void TabBar::mouseDoubleClickEvent(QMouseEvent* event)
 
 void TabBar::mousePressEvent(QMouseEvent* event)
 {
+    ComboTabBar::mousePressEvent(event);
+
     if (mApp->plugins()->processMousePress(Qz::ON_TabBar, this, event)) {
         return;
     }
 
     if (event->buttons() == Qt::LeftButton && !emptyArea(event->pos())) {
-        m_dragStartPosition = mapFromGlobal(event->globalPos());
-    }
-    else {
+        m_dragStartPosition = event->pos();
+    } else {
         m_dragStartPosition = QPoint();
     }
-
-    ComboTabBar::mousePressEvent(event);
 }
 
 void TabBar::mouseMoveEvent(QMouseEvent* event)
 {
+    ComboTabBar::mouseMoveEvent(event);
+
     if (mApp->plugins()->processMouseMove(Qz::ON_TabBar, this, event)) {
         return;
     }
 
-    if (!m_dragStartPosition.isNull() && m_tabWidget->buttonAddTab()->isVisible()) {
-        int manhattanLength = (event->pos() - m_dragStartPosition).manhattanLength();
-        if (manhattanLength > QApplication::startDragDistance()) {
-            m_tabWidget->buttonAddTab()->hide();
-        }
+    if (count() == 1 && mApp->windowCount() == 1) {
+        return;
     }
 
-    ComboTabBar::mouseMoveEvent(event);
+    if (!m_dragStartPosition.isNull()) {
+        int offset = 0;
+        const int eventY = event->pos().y();
+        if (eventY < 0) {
+            offset = qAbs(eventY);
+        } else if (eventY > height()) {
+            offset = eventY - height();
+        }
+        if (offset > QApplication::startDragDistance() * 3) {
+            const QPoint global = mapToGlobal(m_dragStartPosition);
+            QWidget *w = QApplication::widgetAt(global);
+            if (w) {
+                QMouseEvent mouse(QEvent::MouseButtonRelease, w->mapFromGlobal(global), Qt::LeftButton, Qt::LeftButton, event->modifiers());
+                QApplication::sendEvent(w, &mouse);
+            }
+            QDrag *drag = new QDrag(this);
+            QMimeData *mime = new QMimeData;
+            mime->setData(MIMETYPE, QByteArray());
+            drag->setMimeData(mime);
+            drag->setPixmap(tabPixmap(currentIndex()));
+            if (drag->exec() == Qt::IgnoreAction) {
+                m_tabWidget->detachTab(currentIndex());
+            }
+            return;
+        }
+    }
 }
 
 void TabBar::mouseReleaseEvent(QMouseEvent* event)
 {
+    ComboTabBar::mouseReleaseEvent(event);
+
     m_dragStartPosition = QPoint();
 
     if (mApp->plugins()->processMouseRelease(Qz::ON_TabBar, this, event)) {
         return;
-    }
-
-    if (m_tabWidget->buttonAddTab()->isHidden() && !isMainBarOverflowed()) {
-        QTimer::singleShot(ComboTabBar::slideAnimationDuration(), m_tabWidget->buttonAddTab(), &AddTabButton::show);
     }
 
     if (!rect().contains(event->pos())) {
@@ -604,8 +586,6 @@ void TabBar::mouseReleaseEvent(QMouseEvent* event)
             return;
         }
     }
-
-    ComboTabBar::mouseReleaseEvent(event);
 }
 
 void TabBar::wheelEvent(QWheelEvent* event)
@@ -617,11 +597,37 @@ void TabBar::wheelEvent(QWheelEvent* event)
     ComboTabBar::wheelEvent(event);
 }
 
+enum TabDropAction {
+    NoAction,
+    SelectTab,
+    PrependTab,
+    AppendTab
+};
+
+static TabDropAction tabDropAction(const QPoint &pos, const QRect &tabRect, bool allowSelect)
+{
+    if (!tabRect.contains(pos)) {
+        return NoAction;
+    }
+
+    const QPoint c = tabRect.center();
+    const QSize csize = QSize(tabRect.width() * 0.7, tabRect.height() * 0.7);
+    const QRect center(c.x() - csize.width() / 2, c.y() - csize.height() / 2, csize.width(), csize.height());
+
+    if (allowSelect && center.contains(pos)) {
+        return SelectTab;
+    } else if (pos.x() < c.x()) {
+        return PrependTab;
+    } else {
+        return AppendTab;
+    }
+}
+
 void TabBar::dragEnterEvent(QDragEnterEvent* event)
 {
     const QMimeData* mime = event->mimeData();
 
-    if (mime->hasUrls()) {
+    if (mime->hasText() || mime->hasUrls() || (mime->hasFormat(MIMETYPE) && event->source())) {
         event->acceptProposedAction();
         return;
     }
@@ -629,25 +635,98 @@ void TabBar::dragEnterEvent(QDragEnterEvent* event)
     ComboTabBar::dragEnterEvent(event);
 }
 
-void TabBar::dropEvent(QDropEvent* event)
+void TabBar::dragMoveEvent(QDragMoveEvent *event)
 {
+    const int index = tabAt(event->pos());
     const QMimeData* mime = event->mimeData();
 
-    if (!mime->hasUrls()) {
+    if (index == -1) {
+        ComboTabBar::dragMoveEvent(event);
+        return;
+    }
+
+    switch (tabDropAction(event->pos(), tabRect(index), !mime->hasFormat(MIMETYPE))) {
+    case PrependTab:
+        showDropIndicator(index, BeforeTab);
+        break;
+    case AppendTab:
+        showDropIndicator(index, AfterTab);
+        break;
+    default:
+        clearDropIndicator();
+        break;
+    }
+}
+
+void TabBar::dragLeaveEvent(QDragLeaveEvent *event)
+{
+    clearDropIndicator();
+
+    ComboTabBar::dragLeaveEvent(event);
+}
+
+void TabBar::dropEvent(QDropEvent* event)
+{
+    clearDropIndicator();
+
+    const QMimeData* mime = event->mimeData();
+
+    if (!mime->hasText() && !mime->hasUrls() && !mime->hasFormat(MIMETYPE)) {
         ComboTabBar::dropEvent(event);
         return;
     }
 
+    event->acceptProposedAction();
+
+    TabBar *sourceTabBar = qobject_cast<TabBar*>(event->source());
+
     int index = tabAt(event->pos());
     if (index == -1) {
-        foreach (const QUrl &url, mime->urls()) {
-            m_tabWidget->addView(url, Qz::NT_SelectedTabAtTheEnd);
+        if (mime->hasUrls()) {
+            foreach (const QUrl &url, mime->urls()) {
+                m_tabWidget->addView(url, Qz::NT_SelectedTabAtTheEnd);
+            }
+        } else if (mime->hasText()) {
+            m_tabWidget->addView(mApp->searchEnginesManager()->searchResult(mime->text()), Qz::NT_SelectedNewEmptyTab);
+        } else if (mime->hasFormat(MIMETYPE) && sourceTabBar) {
+            WebTab *tab = sourceTabBar->webTab();
+            if (tab) {
+                sourceTabBar->m_tabWidget->detachTab(tab);
+                tab->setPinned(false);
+                m_tabWidget->addView(tab, Qz::NT_SelectedTab);
+            }
         }
-    }
-    else {
-        WebTab* tab = m_window->weView(index)->webTab();
-        if (tab->isRestored()) {
-            tab->webView()->load(mime->urls().at(0));
+    } else {
+        LoadRequest req;
+        WebTab* tab = m_tabWidget->webTab(index);
+        TabDropAction action = tabDropAction(event->pos(), tabRect(index), !mime->hasFormat(MIMETYPE));
+        if (mime->hasUrls()) {
+            req = mime->urls().at(0);
+        } else if (mime->hasText()) {
+            req = mApp->searchEnginesManager()->searchResult(mime->text());
+        }
+        if (action == SelectTab) {
+            if (req.isValid()) {
+                tab->load(req);
+            }
+        } else if (action == PrependTab || action == AppendTab) {
+            const int newIndex = action == PrependTab ? index : index + 1;
+            if (req.isValid()) {
+                m_tabWidget->addView(req, QString(), Qz::NT_SelectedNewEmptyTab, false, newIndex, index < pinnedTabsCount());
+            } else if (mime->hasFormat(MIMETYPE) && sourceTabBar) {
+                WebTab *tab = sourceTabBar->webTab();
+                if (tab) {
+                    if (sourceTabBar == this) {
+                        tab->moveTab(newIndex > tab->tabIndex() ? newIndex - 1 : newIndex);
+                    } else {
+                        sourceTabBar->m_tabWidget->detachTab(tab);
+                        tab->setPinned(index < pinnedTabsCount());
+                        m_tabWidget->insertView(newIndex, tab, Qz::NT_SelectedTab);
+                    }
+                }
+            }
         }
     }
 }
+
+#include "tabbar.moc"

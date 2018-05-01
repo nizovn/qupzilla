@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,6 @@
 #include "autofill.h"
 #include "popupwebview.h"
 #include "popupwindow.h"
-#include "adblockmanager.h"
 #include "iconprovider.h"
 #include "qzsettings.h"
 #include "useragentmanager.h"
@@ -37,17 +36,14 @@
 #include "html5permissions/html5permissionsmanager.h"
 #include "javascript/externaljsobject.h"
 #include "tabwidget.h"
-#include "scripts.h"
 #include "networkmanager.h"
 #include "webhittestresult.h"
-
-#ifdef NONBLOCK_JS_DIALOGS
 #include "ui_jsconfirm.h"
 #include "ui_jsalert.h"
 #include "ui_jsprompt.h"
+#include "passwordmanager.h"
 
-#include <QPushButton>
-#endif
+#include <iostream>
 
 #include <QDir>
 #include <QMouseEvent>
@@ -59,22 +55,24 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QAuthenticator>
+#include <QPushButton>
+#include <QUrlQuery>
 
 QString WebPage::s_lastUploadLocation = QDir::homePath();
 QUrl WebPage::s_lastUnsupportedUrl;
 QTime WebPage::s_lastUnsupportedUrlTime;
 
+static const bool kEnableJsOutput = qEnvironmentVariableIsSet("QUPZILLA_ENABLE_JS_OUTPUT");
+static const bool kEnableJsNonBlockDialogs = qEnvironmentVariableIsSet("QUPZILLA_ENABLE_JS_NONBLOCK_DIALOGS");
+
 WebPage::WebPage(QObject* parent)
     : QWebEnginePage(mApp->webProfile(), parent)
     , m_fileWatcher(0)
     , m_runningLoop(0)
-    , m_loadProgress(-1)
+    , m_loadProgress(100)
     , m_blockAlerts(false)
     , m_secureStatus(false)
-    , m_adjustingScheduled(false)
 {
-    setupWebChannel();
-
     connect(this, &QWebEnginePage::loadProgress, this, &WebPage::progress);
     connect(this, &QWebEnginePage::loadFinished, this, &WebPage::finished);
     connect(this, &QWebEnginePage::urlChanged, this, &WebPage::urlChanged);
@@ -100,12 +98,27 @@ WebPage::WebPage(QObject* parent)
         }
         disconnect(m_contentsResizedConnection);
     });
+
+    // Workaround for broken load started/finished signals in QtWebEngine 5.10
+    if (qstrncmp(qVersion(), "5.10.", 5) == 0) {
+        connect(this, &QWebEnginePage::loadProgress, this, [this](int progress) {
+            if (progress == 100) {
+                emit loadFinished(true);
+            }
+        });
+    }
+
+    // Workaround for changing webchannel world inside acceptNavigationRequest not working
+    m_setupChannelTimer = new QTimer(this);
+    m_setupChannelTimer->setSingleShot(true);
+    m_setupChannelTimer->setInterval(100);
+    connect(m_setupChannelTimer, &QTimer::timeout, this, [this]() {
+        setupWebChannelForUrl(m_channelUrl);
+    });
 }
 
 WebPage::~WebPage()
 {
-    mApp->plugins()->emitWebPageDeleted(this);
-
     if (m_runningLoop) {
         m_runningLoop->exit(1);
         m_runningLoop = 0;
@@ -115,6 +128,25 @@ WebPage::~WebPage()
 WebView *WebPage::view() const
 {
     return static_cast<WebView*>(QWebEnginePage::view());
+}
+
+bool WebPage::execPrintPage(QPrinter *printer, int timeout)
+{
+    QPointer<QEventLoop> loop = new QEventLoop;
+    bool result = false;
+    QTimer::singleShot(timeout, loop.data(), &QEventLoop::quit);
+
+    print(printer, [loop, &result](bool res) {
+        if (loop && loop->isRunning()) {
+            result = res;
+            loop->quit();
+        }
+    });
+
+    loop->exec();
+    delete loop;
+
+    return result;
 }
 
 QVariant WebPage::execJavaScript(const QString &scriptSource, quint32 worldId, int timeout)
@@ -136,26 +168,6 @@ QVariant WebPage::execJavaScript(const QString &scriptSource, quint32 worldId, i
     return result;
 }
 
-void WebPage::runJavaScript(const QString &scriptSource)
-{
-    return QWebEnginePage::runJavaScript(scriptSource);
-}
-
-void WebPage::runJavaScript(const QString &scriptSource, const QWebEngineCallback<const QVariant &> &resultCallback)
-{
-    return QWebEnginePage::runJavaScript(scriptSource, resultCallback);
-}
-
-void WebPage::runJavaScript(const QString &scriptSource, quint32 worldId)
-{
-    QWebEnginePage::runJavaScript(scriptSource, worldId);
-}
-
-void WebPage::runJavaScript(const QString &scriptSource, quint32 worldId, const QWebEngineCallback<const QVariant &> &resultCallback)
-{
-    QWebEnginePage::runJavaScript(scriptSource, worldId, resultCallback);
-}
-
 QPointF WebPage::mapToViewport(const QPointF &pos) const
 {
     return QPointF(pos.x() / zoomFactor(), pos.y() / zoomFactor());
@@ -168,27 +180,13 @@ WebHitTestResult WebPage::hitTestContent(const QPoint &pos) const
 
 void WebPage::scroll(int x, int y)
 {
-    runJavaScript(QSL("window.scrollTo(window.scrollX + %1, window.scrollY + %2)").arg(x).arg(y), WebPage::SafeJsWorld);
+    runJavaScript(QSL("window.scrollTo(window.scrollX + %1, window.scrollY + %2)").arg(x).arg(y), SafeJsWorld);
 }
 
 void WebPage::setScrollPosition(const QPointF &pos)
 {
     const QPointF v = mapToViewport(pos.toPoint());
-    runJavaScript(QSL("window.scrollTo(%1, %2)").arg(v.x()).arg(v.y()), WebPage::SafeJsWorld);
-}
-
-void WebPage::scheduleAdjustPage()
-{
-    if (view()->isLoading()) {
-        m_adjustingScheduled = true;
-    }
-    else {
-        const QSize originalSize = view()->size();
-        QSize newSize(originalSize.width() - 1, originalSize.height() - 1);
-
-        view()->resize(newSize);
-        view()->resize(originalSize);
-    }
+    runJavaScript(QSL("window.scrollTo(%1, %2)").arg(v.x()).arg(v.y()), SafeJsWorld);
 }
 
 bool WebPage::isRunningLoop()
@@ -226,12 +224,6 @@ void WebPage::finished()
 {
     progress(100);
 
-    if (m_adjustingScheduled) {
-        m_adjustingScheduled = false;
-        setZoomFactor(zoomFactor() + 1);
-        setZoomFactor(zoomFactor() - 1);
-    }
-
     // File scheme watcher
     if (url().scheme() == QLatin1String("file")) {
         QFileInfo info(url().toLocalFile());
@@ -252,11 +244,8 @@ void WebPage::finished()
         m_fileWatcher->removePaths(m_fileWatcher->files());
     }
 
-    // AdBlock
-    cleanBlockedObjects();
-
     // AutoFill
-    m_passwordEntries = mApp->autoFill()->completePage(this, url());
+    m_autoFillUsernames = mApp->autoFill()->completePage(this, url());
 }
 
 void WebPage::watchedFileChanged(const QString &file)
@@ -285,7 +274,8 @@ void WebPage::handleUnknownProtocol(const QUrl &url)
         return;
     }
 
-    CheckBoxDialog dialog(QDialogButtonBox::Yes | QDialogButtonBox::No, view());
+    CheckBoxDialog dialog(QMessageBox::Yes | QMessageBox::No, view());
+    dialog.setDefaultButton(QMessageBox::Yes);
 
     const QString wrappedUrl = QzTools::alignTextToWidth(url.toString(), "<br/>", dialog.fontMetrics(), 450);
     const QString text = tr("QupZilla cannot handle <b>%1:</b> links. The requested link "
@@ -295,10 +285,10 @@ void WebPage::handleUnknownProtocol(const QUrl &url)
     dialog.setText(text);
     dialog.setCheckBoxText(tr("Remember my choice for this protocol"));
     dialog.setWindowTitle(tr("External Protocol Request"));
-    dialog.setIcon(IconProvider::standardIcon(QStyle::SP_MessageBoxQuestion));
+    dialog.setIcon(QMessageBox::Question);
 
     switch (dialog.exec()) {
-    case QDialog::Accepted:
+    case QMessageBox::Yes:
         if (dialog.isChecked()) {
             qzSettings->autoOpenProtocols.append(protocol);
             qzSettings->saveSettings();
@@ -308,7 +298,7 @@ void WebPage::handleUnknownProtocol(const QUrl &url)
         QDesktopServices::openUrl(url);
         break;
 
-    case QDialog::Rejected:
+    case QMessageBox::No:
         if (dialog.isChecked()) {
             qzSettings->blockedProtocols.append(protocol);
             qzSettings->saveSettings();
@@ -334,21 +324,6 @@ void WebPage::desktopServicesOpen(const QUrl &url)
     else {
         qWarning() << "WebPage::desktopServicesOpen Url" << url << "has already been opened!\n"
                    "Ignoring it to prevent infinite loop!";
-    }
-}
-
-void WebPage::setupWebChannel()
-{
-    QWebChannel *old = webChannel();
-    const QString objectName = QSL("qz_object");
-
-    QWebChannel *channel = new QWebChannel(this);
-    channel->registerObject(QSL("qz_object"), new ExternalJsObject(this));
-    setWebChannel(channel);
-
-    if (old) {
-        delete old->registeredObjects().value(objectName);
-        delete old;
     }
 }
 
@@ -395,21 +370,63 @@ void WebPage::renderProcessTerminated(QWebEnginePage::RenderProcessTerminationSt
         page.replace(QL1S("%LI-2%"), tr("Try reloading the page or closing some tabs to make more memory available."));
         page.replace(QL1S("%RELOAD-PAGE%"), tr("Reload page"));
         page = QzTools::applyDirectionToPage(page);
-        load(url()); // Workaround for QtWebEngine crash
         setHtml(page.toUtf8(), url());
     });
 }
 
+void WebPage::setupWebChannelForUrl(const QUrl &url)
+{
+    QWebChannel *channel = webChannel();
+    if (!channel) {
+        channel = new QWebChannel(this);
+        ExternalJsObject::setupWebChannel(channel, this);
+    }
+    int worldId = -1;
+    if (url.scheme() == QL1S("qupzilla") || url.scheme() == QL1S("extension")) {
+        worldId = UnsafeJsWorld;
+    } else {
+        worldId = SafeJsWorld;
+    }
+    if (worldId != m_channelWorldId) {
+        m_channelWorldId = worldId;
+        setWebChannel(channel, m_channelWorldId);
+    }
+}
+
 bool WebPage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)
 {
+    if (mApp->isClosing()) {
+        return QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
+    }
+
     if (!mApp->plugins()->acceptNavigationRequest(this, url, type, isMainFrame))
         return false;
 
-    // AdBlock
-    if (url.scheme() == QL1S("abp") && AdBlockManager::instance()->addSubscriptionFromUrl(url))
-        return false;
+    if (url.scheme() == QL1S("qupzilla")) {
+        if (url.path() == QL1S("AddSearchProvider")) {
+            QUrlQuery query(url);
+            mApp->searchEnginesManager()->addEngine(QUrl(query.queryItemValue(QSL("url"))));
+            return false;
+        } else if (url.path() == QL1S("PrintPage")) {
+            emit printRequested();
+            return false;
+        }
+    }
 
-    return QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
+    const bool result = QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);
+
+    if (result) {
+        if (isMainFrame) {
+            const bool isWeb = url.scheme() == QL1S("http") || url.scheme() == QL1S("https") || url.scheme() == QL1S("file");
+            const bool globalJsEnabled = mApp->webSettings()->testAttribute(QWebEngineSettings::JavascriptEnabled);
+            settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, isWeb ? globalJsEnabled : true);
+            m_channelUrl = url;
+            m_setupChannelTimer->start();
+        }
+        emit navigationRequestAccepted(url, type, isMainFrame);
+    }
+
+    return result;
 }
 
 bool WebPage::certificateError(const QWebEngineCertificateError &error)
@@ -446,41 +463,17 @@ QStringList WebPage::chooseFiles(QWebEnginePage::FileSelectionMode mode, const Q
     return files;
 }
 
-bool WebPage::hasMultipleUsernames() const
+QStringList WebPage::autoFillUsernames() const
 {
-    return m_passwordEntries.count() > 1;
-}
-
-QVector<PasswordEntry> WebPage::autoFillData() const
-{
-    return m_passwordEntries;
-}
-
-void WebPage::cleanBlockedObjects()
-{
-    AdBlockManager* manager = AdBlockManager::instance();
-    if (!manager->isEnabled()) {
-        return;
-    }
-
-    // Apply global element hiding rules
-    const QString elementHiding = manager->elementHidingRules(url());
-    if (!elementHiding.isEmpty())
-        runJavaScript(Scripts::setCss(elementHiding), WebPage::SafeJsWorld);
-
-    // Apply domain-specific element hiding rules
-    const QString siteElementHiding = manager->elementHidingRulesForDomain(url());
-    if (!siteElementHiding.isEmpty())
-        runJavaScript(Scripts::setCss(siteElementHiding), WebPage::SafeJsWorld);
+    return m_autoFillUsernames;
 }
 
 bool WebPage::javaScriptPrompt(const QUrl &securityOrigin, const QString &msg, const QString &defaultValue, QString* result)
 {
-    Q_UNUSED(securityOrigin)
+    if (!kEnableJsNonBlockDialogs) {
+        return QWebEnginePage::javaScriptPrompt(securityOrigin, msg, defaultValue, result);
+    }
 
-#ifndef NONBLOCK_JS_DIALOGS
-    return QWebEnginePage::javaScriptPrompt(securityOrigin, msg, defaultValue, result);
-#else
     if (m_runningLoop) {
         return false;
     }
@@ -516,16 +509,14 @@ bool WebPage::javaScriptPrompt(const QUrl &securityOrigin, const QString &msg, c
     view()->setFocus();
 
     return _result;
-#endif
 }
 
 bool WebPage::javaScriptConfirm(const QUrl &securityOrigin, const QString &msg)
 {
-    Q_UNUSED(securityOrigin)
+    if (!kEnableJsNonBlockDialogs) {
+        return QWebEnginePage::javaScriptConfirm(securityOrigin, msg);
+    }
 
-#ifndef NONBLOCK_JS_DIALOGS
-    return QWebEnginePage::javaScriptConfirm(securityOrigin, msg);
-#else
     if (m_runningLoop) {
         return false;
     }
@@ -557,7 +548,6 @@ bool WebPage::javaScriptConfirm(const QUrl &securityOrigin, const QString &msg)
     view()->setFocus();
 
     return result;
-#endif
 }
 
 void WebPage::javaScriptAlert(const QUrl &securityOrigin, const QString &msg)
@@ -568,21 +558,24 @@ void WebPage::javaScriptAlert(const QUrl &securityOrigin, const QString &msg)
         return;
     }
 
-#ifndef NONBLOCK_JS_DIALOGS
-    QString title = tr("JavaScript alert");
-    if (!url().host().isEmpty()) {
-        title.append(QString(" - %1").arg(url().host()));
+    if (!kEnableJsNonBlockDialogs) {
+        QString title = tr("JavaScript alert");
+        if (!url().host().isEmpty()) {
+            title.append(QString(" - %1").arg(url().host()));
+        }
+
+        CheckBoxDialog dialog(QMessageBox::Ok, view());
+        dialog.setDefaultButton(QMessageBox::Ok);
+        dialog.setWindowTitle(title);
+        dialog.setText(msg);
+        dialog.setCheckBoxText(tr("Prevent this page from creating additional dialogs"));
+        dialog.setIcon(QMessageBox::Information);
+        dialog.exec();
+
+        m_blockAlerts = dialog.isChecked();
+        return;
     }
 
-    CheckBoxDialog dialog(QDialogButtonBox::Ok, view());
-    dialog.setWindowTitle(title);
-    dialog.setText(msg);
-    dialog.setCheckBoxText(tr("Prevent this page from creating additional dialogs"));
-    dialog.setIcon(IconProvider::standardIcon(QStyle::SP_MessageBoxInformation));
-    dialog.exec();
-
-    m_blockAlerts = dialog.isChecked();
-#else
     ResizableFrame* widget = new ResizableFrame(view()->overlayWidget());
 
     widget->setObjectName("jsFrame");
@@ -609,12 +602,29 @@ void WebPage::javaScriptAlert(const QUrl &securityOrigin, const QString &msg)
     delete widget;
 
     view()->setFocus();
-#endif
 }
 
-void WebPage::setJavaScriptEnabled(bool enabled)
+void WebPage::javaScriptConsoleMessage(JavaScriptConsoleMessageLevel level, const QString &message, int lineNumber, const QString &sourceID)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, enabled);
+    if (!kEnableJsOutput) {
+        return;
+    }
+
+    switch (level) {
+    case InfoMessageLevel:
+        std::cout << "[I] ";
+        break;
+
+    case WarningMessageLevel:
+        std::cout << "[W] ";
+        break;
+
+    case ErrorMessageLevel:
+        std::cout << "[E] ";
+        break;
+    }
+
+    std::cout << qPrintable(sourceID) << ":" << lineNumber << " " << qPrintable(message);
 }
 
 QWebEnginePage* WebPage::createWindow(QWebEnginePage::WebWindowType type)
@@ -626,6 +636,19 @@ QWebEnginePage* WebPage::createWindow(QWebEnginePage::WebWindowType type)
         int index = window->tabWidget()->addView(QUrl(), pos);
         TabbedWebView* view = window->weView(index);
         view->setPage(new WebPage);
+        if (tView) {
+            tView->webTab()->addChildTab(view->webTab());
+        }
+        // Workaround focus issue when creating tab
+        if (pos.testFlag(Qz::NT_SelectedTab)) {
+            QPointer<TabbedWebView> pview = view;
+            pview->setFocus();
+            QTimer::singleShot(100, this, [pview]() {
+                if (pview && pview->webTab()->isCurrentTab()) {
+                    pview->setFocus();
+                }
+            });
+        }
         return view->page();
     };
 

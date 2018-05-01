@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,9 @@
 
 #include <QDir>
 #include <QVariant>
-#include <QSqlQuery>
 #include <QSqlError>
 #include <QFileDialog>
+#include <QSqlQuery>
 #include <QSqlDatabase>
 
 #define CONNECTION "firefox-places-import"
@@ -89,7 +89,8 @@ BookmarkItem* FirefoxImporter::importBookmarks()
     root->setTitle("Firefox Import");
 
     QSqlQuery query(QSqlDatabase::database(CONNECTION));
-    query.exec("SELECT id, parent, type, title, fk FROM moz_bookmarks WHERE title != '' OR type = 3");
+    query.prepare("SELECT id, parent, type, title, fk FROM moz_bookmarks WHERE fk NOT NULL OR type = 3");
+    query.exec();
 
     while (query.next()) {
         Item item;
@@ -128,7 +129,7 @@ BookmarkItem* FirefoxImporter::importBookmarks()
     foreach (const Item &item, items) {
         BookmarkItem* parent = hash.value(item.parent);
         BookmarkItem* bookmark = new BookmarkItem(item.type, parent ? parent : root);
-        bookmark->setTitle(item.title);
+        bookmark->setTitle(item.title.isEmpty() ? item.url.toString() : item.title);
         bookmark->setUrl(item.url);
 
         hash.insert(item.id, bookmark);

@@ -1,6 +1,6 @@
 /* ============================================================
 * TabManager plugin for QupZilla
-* Copyright (C) 2013-2016  S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
+* Copyright (C) 2013-2017  S. Razi Alavizadeh <s.r.alavizadeh@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ PluginSpec TabManagerPlugin::pluginSpec()
     spec.name = "Tab Manager";
     spec.info = "Simple yet powerful tab manager for QupZilla";
     spec.description = "Adds ability to managing tabs and windows";
-    spec.version = "0.6.0";
+    spec.version = "0.8.0";
     spec.author = "Razi Alavizadeh <s.r.alavizadeh@gmail.com>";
     spec.icon = QPixmap(":tabmanager/data/tabmanager.png");
     spec.hasSettings = true;
@@ -152,7 +152,7 @@ void TabManagerPlugin::mainWindowCreated(BrowserWindow* window, bool refresh)
         }
 
         connect(window->tabWidget(), SIGNAL(currentChanged(int)), m_controller, SIGNAL(requestRefreshTree()));
-        connect(window->tabWidget(), SIGNAL(pinStateChanged(int,bool)), m_controller, SIGNAL(pinStateChanged(int,bool)));
+        connect(window->tabWidget(), SIGNAL(pinStateChanged(int,bool)), m_controller, SIGNAL(requestRefreshTree()));
     }
 
     if (refresh) {
@@ -170,7 +170,7 @@ void TabManagerPlugin::setTabBarVisible(bool visible)
 void TabManagerPlugin::removeManagerWidget()
 {
     if (viewType() == ShowAsSideBar) {
-        SideBarManager::removeSidebar("TabManager");
+        SideBarManager::removeSidebar(m_controller);
     }
     else if (viewType() == ShowAsWindow) {
         // remove statusbar icon

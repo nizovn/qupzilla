@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "datapaths.h"
 #include "qztools.h"
+#include "mainapplication.h"
 
 #include <QApplication>
 #include <QDir>
@@ -85,7 +86,7 @@ void DataPaths::clearTempData()
 void DataPaths::init()
 {
     // AppData
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
     m_paths[AppData].append(QApplication::applicationDirPath() + QLatin1String("/../Resources"));
 #elif defined(Q_OS_UNIX) && !defined(NO_SYSTEM_DATAPATH)
     m_paths[AppData].append(USE_DATADIR);
@@ -98,14 +99,18 @@ void DataPaths::init()
     m_paths[Plugins].append(m_paths[AppData].at(0) + QLatin1String("/plugins"));
 
     // Config
+    if (MainApplication::isTestModeEnabled()) {
+        m_paths[Config].append(QDir::tempPath() + QL1S("/QupZilla-test"));
+    } else {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
     // Use %LOCALAPPDATA%/qupzilla as Config path on Windows
     m_paths[Config].append(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     m_paths[Config].append(QDir::homePath() + QLatin1String("/Library/Application Support/QupZilla"));
 #else // Unix
     m_paths[Config].append(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QL1S("/qupzilla"));
 #endif
+    }
 
     // Profiles
     m_paths[Profiles].append(m_paths[Config].at(0) + QLatin1String("/profiles"));
@@ -148,5 +153,10 @@ void DataPaths::initCurrentProfile(const QString &profilePath)
     if (m_paths[Cache].isEmpty())
         m_paths[Cache].append(m_paths[CurrentProfile].at(0) + QLatin1String("/cache"));
 
-    QDir().mkpath(m_paths[Cache].at(0));
+    if (m_paths[Sessions].isEmpty())
+        m_paths[Sessions].append(m_paths[CurrentProfile].at(0) + QLatin1String("/sessions"));
+
+    QDir dir;
+    dir.mkpath(m_paths[Cache].at(0));
+    dir.mkpath(m_paths[Sessions].at(0));
 }

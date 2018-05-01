@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #define LOADREQUEST_H
 
 #include <QUrl>
+#include <QWebEngineHttpRequest>
 
 #include "qzcommon.h"
 
@@ -36,7 +37,7 @@ public:
 
     LoadRequest &operator=(const LoadRequest &other);
 
-    bool isEmpty() const;
+    bool isValid() const;
 
     QUrl url() const;
     void setUrl(const QUrl &url);
@@ -48,6 +49,8 @@ public:
 
     QByteArray data() const;
     void setData(const QByteArray &data);
+
+    QWebEngineHttpRequest webRequest() const;
 
 private:
     QUrl m_url;

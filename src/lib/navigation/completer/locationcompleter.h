@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,9 @@ class QUrl;
 class QModelIndex;
 
 class LocationBar;
+class LoadRequest;
 class BrowserWindow;
+class OpenSearchEngine;
 class LocationCompleterModel;
 class LocationCompleterView;
 
@@ -39,6 +41,7 @@ public:
     void setMainWindow(BrowserWindow* window);
     void setLocationBar(LocationBar* locationBar);
 
+    bool isVisible() const;
     void closePopup();
 
 public slots:
@@ -46,27 +49,29 @@ public slots:
     void showMostVisited();
 
 signals:
-    void showCompletion(const QString &completion, bool isOriginal);
+    void showCompletion(const QString &completion, bool completeDomain);
     void showDomainCompletion(const QString &completion);
-    void loadCompletion();
     void clearCompletion();
     void popupClosed();
     void cancelRefreshJob();
+    void loadRequested(const LoadRequest &request);
 
 private slots:
     void refreshJobFinished();
     void slotPopupClosed();
+    void addSuggestions(const QStringList &suggestions);
 
     void currentChanged(const QModelIndex &index);
-
     void indexActivated(const QModelIndex &index);
     void indexCtrlActivated(const QModelIndex &index);
     void indexShiftActivated(const QModelIndex &index);
     void indexDeleteRequested(const QModelIndex &index);
 
 private:
+    LoadRequest createLoadRequest(const QModelIndex &index);
     void switchToTab(BrowserWindow* window, int tab);
-    void loadUrl(const QUrl &url);
+    void loadRequest(const LoadRequest &reqeust);
+    void openSearchEnginesDialog();
 
     void showPopup();
     void adjustPopupSize();
@@ -76,6 +81,10 @@ private:
     qint64 m_lastRefreshTimestamp;
     QString m_originalText;
     bool m_popupClosed;
+    bool m_ignoreCurrentChanged = false;
+    OpenSearchEngine* m_openSearchEngine = nullptr;
+    QStringList m_oldSuggestions;
+    QString m_suggestionsTerm;
 
     static LocationCompleterView* s_view;
     static LocationCompleterModel* s_model;

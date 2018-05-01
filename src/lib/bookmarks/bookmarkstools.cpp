@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2014-2017 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@
 #include "tabwidget.h"
 #include "qzsettings.h"
 #include "browserwindow.h"
+#include "sqldatabase.h"
 
 #include <iostream>
-#include <QSqlQuery>
 #include <QDialogButtonBox>
 #include <QBoxLayout>
 #include <QFormLayout>
@@ -35,6 +35,7 @@
 #include <QPlainTextEdit>
 #include <QStyle>
 #include <QDialog>
+#include <QMessageBox>
 
 // BookmarksFoldersMenu
 BookmarksFoldersMenu::BookmarksFoldersMenu(QWidget* parent)
@@ -325,6 +326,25 @@ void BookmarksTools::openFolderInTabs(BrowserWindow* window, BookmarkItem* folde
     Q_ASSERT(window);
     Q_ASSERT(folder->isFolder());
 
+    bool showWarning = folder->children().size() > 10;
+    if (!showWarning) {
+        foreach (BookmarkItem* child, folder->children()) {
+            if (child->isFolder()) {
+                showWarning = true;
+                break;
+            }
+        }
+    }
+
+    if (showWarning) {
+        const auto button = QMessageBox::warning(window, Bookmarks::tr("Confirmation"),
+                                                 Bookmarks::tr("Are you sure you want to open all bookmarks from '%1' folder in tabs?").arg(folder->title()),
+                                                 QMessageBox::Yes | QMessageBox::No);
+        if (button != QMessageBox::Yes) {
+            return;
+        }
+    }
+
     foreach (BookmarkItem* child, folder->children()) {
         if (child->isUrl()) {
             openBookmarkInNewTab(window, child);
@@ -418,7 +438,7 @@ void BookmarksTools::addFolderContentsToMenu(QObject *receiver, Menu *menu, Book
 
 bool BookmarksTools::migrateBookmarksIfNecessary(Bookmarks* bookmarks)
 {
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='folders'");
 
     if (!query.next()) {

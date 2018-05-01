@@ -1,6 +1,6 @@
 /* ============================================================
 * GreaseMonkey plugin for QupZilla
-* Copyright (C) 2012-2016  David Rosca <nowrep@gmail.com>
+* Copyright (C) 2012-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #define GM_SCRIPT_H
 
 #include <QObject>
-#include <QVector>
+#include <QIcon>
 #include <QUrl>
 
 class QWebEngineScript;
@@ -44,6 +44,9 @@ public:
     QString description() const;
     QString version() const;
 
+    QIcon icon() const;
+    QUrl iconUrl() const;
+
     QUrl downloadUrl() const;
     QUrl updateUrl() const;
 
@@ -55,8 +58,8 @@ public:
 
     QStringList include() const;
     QStringList exclude() const;
+    QStringList require() const;
 
-    QString script() const;
     QString metaData() const;
     QString fileName() const;
 
@@ -74,6 +77,9 @@ private slots:
 
 private:
     void parseScript();
+    void reloadScript();
+    void downloadIcon();
+    void downloadRequires();
 
     GM_Manager* m_manager;
     DelayedFileWatcher* m_fileWatcher;
@@ -85,7 +91,10 @@ private:
 
     QStringList m_include;
     QStringList m_exclude;
+    QStringList m_require;
 
+    QIcon m_icon;
+    QUrl m_iconUrl;
     QUrl m_downloadUrl;
     QUrl m_updateUrl;
     StartAt m_startAt;

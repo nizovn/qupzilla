@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,14 @@
 #include "mainapplication.h"
 #include "networkmanager.h"
 #include "settings.h"
+#include "webview.h"
+#include "webpage.h"
 
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
+#include <QWebEngineSettings>
 
 QList<QWebEngineView*> WebInspector::s_views;
 
@@ -46,6 +49,10 @@ WebInspector::WebInspector(QWidget *parent)
 
 WebInspector::~WebInspector()
 {
+    if (m_view && hasFocus()) {
+        m_view->setFocus();
+    }
+
     unregisterView(this);
 
     if (isWindow()) {
@@ -55,11 +62,15 @@ WebInspector::~WebInspector()
     }
 }
 
-void WebInspector::setView(QWebEngineView *view)
+void WebInspector::setView(WebView *view)
 {
     m_view = view;
     Q_ASSERT(isEnabled());
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    page()->setInspectedPage(m_view->page());
+    connect(m_view, &WebView::pageChanged, this, &WebInspector::deleteLater);
+#else
     int port = qEnvironmentVariableIntValue("QTWEBENGINE_REMOTE_DEBUGGING");
     QUrl inspectorUrl = QUrl(QSL("http://localhost:%1").arg(port));
     int index = s_views.indexOf(m_view);
@@ -76,6 +87,7 @@ void WebInspector::setView(QWebEngineView *view)
         pushView(this);
         show();
     });
+#endif
 }
 
 void WebInspector::inspectElement()
@@ -85,7 +97,15 @@ void WebInspector::inspectElement()
 
 bool WebInspector::isEnabled()
 {
-    return qEnvironmentVariableIsSet("QTWEBENGINE_REMOTE_DEBUGGING");
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+    if (!qEnvironmentVariableIsSet("QTWEBENGINE_REMOTE_DEBUGGING")) {
+        return false;
+    }
+#endif
+    if (!mApp->webSettings()->testAttribute(QWebEngineSettings::JavascriptEnabled)) {
+        return false;
+    }
+    return true;
 }
 
 void WebInspector::pushView(QWebEngineView *view)
@@ -108,18 +128,11 @@ void WebInspector::loadFinished()
 {
     // Show close button only when docked
     if (!isWindow()) {
-        page()->runJavaScript(QL1S("var toolbar = document.getElementsByClassName('inspector-view-toolbar')[1];"
-                                   "var button = document.createElement('button');"
-                                   "button.style.width = '22px';"
-                                   "button.style.height = '22px';"
-                                   "button.style.border = 'none';"
-                                   "button.style.cursor = 'pointer';"
-                                   "button.style.background = 'url(qrc:html/close.png) no-repeat';"
-                                   "button.style.backgroundPosition = 'center center';"
-                                   "button.addEventListener('click', function() {"
+        page()->runJavaScript(QL1S("var button = Components.dockController._closeButton;"
+                                   "button.setVisible(true);"
+                                   "button.element.onmouseup = function() {"
                                    "    window.close();"
-                                   "});"
-                                   "toolbar.appendChild(button);"));
+                                   "};"));
     }
 
     // Inspect element

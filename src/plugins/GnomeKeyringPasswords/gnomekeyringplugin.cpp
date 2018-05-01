@@ -19,6 +19,9 @@
 #include "gnomekeyringpasswordbackend.h"
 #include "pluginproxy.h"
 #include "browserwindow.h"
+#include "mainapplication.h"
+#include "autofill.h"
+#include "passwordmanager.h"
 
 #include <QTranslator>
 
@@ -48,12 +51,12 @@ void GnomeKeyringPlugin::init(InitState state, const QString &settingsPath)
     Q_UNUSED(settingsPath);
 
     m_backend = new GnomeKeyringPasswordBackend;
-    QZ_REGISTER_PASSWORD_BACKEND("GnomeKeyring", m_backend);
+    mApp->autoFill()->passwordManager()->registerBackend(QSL("GnomeKeyring"), m_backend);
 }
 
 void GnomeKeyringPlugin::unload()
 {
-    QZ_UNREGISTER_PASSWORD_BACKEND(m_backend);
+    mApp->autoFill()->passwordManager()->unregisterBackend(m_backend);
     delete m_backend;
 }
 

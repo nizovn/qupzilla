@@ -1,6 +1,6 @@
 /* ============================================================
 * QupZilla - Qt web browser
-* Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include <QPointer>
 #include <QUrl>
 
-#include "restoremanager.h"
+#include "webtab.h"
 #include "qzcommon.h"
 
 class QLabel;
@@ -41,31 +41,49 @@ class BookmarksMenu;
 class BookmarksToolbar;
 class AutoFill;
 class MainApplication;
-class WebTab;
 class WebView;
-class AdBlockIcon;
+class WebPage;
 class SideBar;
 class SideBarManager;
 class ProgressBar;
-class StatusBarMessage;
+class StatusBar;
 class NavigationBar;
 class NavigationContainer;
 class ClickableLabel;
 class LocationBar;
+class TabModel;
+class TabMruModel;
 
 class QUPZILLA_EXPORT BrowserWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    struct SavedWindow {
+        QByteArray windowState;
+        QByteArray windowGeometry;
+        QHash<QString, QVariant> windowUiState;
+        int virtualDesktop = -1;
+        int currentTab = -1;
+        QVector<WebTab::SavedTab> tabs;
+
+        SavedWindow();
+        SavedWindow(BrowserWindow *window);
+
+        bool isValid() const;
+        void clear();
+
+        friend QUPZILLA_EXPORT QDataStream &operator<<(QDataStream &stream, const SavedWindow &window);
+        friend QUPZILLA_EXPORT QDataStream &operator>>(QDataStream &stream, SavedWindow &window);
+    };
+
     explicit BrowserWindow(Qz::BrowserWindowType type, const QUrl &url = QUrl());
     ~BrowserWindow();
 
     void setStartTab(WebTab* tab);
     void setStartPage(WebPage* page);
 
-    void restoreWindowState(const RestoreManager::WindowData &d);
-    void saveSideBarWidth();
+    void restoreWindow(const SavedWindow &window);
 
     bool fullScreenNavigationVisible() const;
     void showNavigationWithFullScreen();
@@ -84,10 +102,9 @@ public:
     void removeActions(const QList<QAction*> &actions);
 
     SideBar* addSideBar();
+    void saveSideBarSettings();
 
-    QByteArray saveState(int version = 0) const;
-    bool restoreState(const QByteArray &state, int version = 0);
-
+    int tabCount() const;
     TabbedWebView* weView() const;
     TabbedWebView* weView(int index) const;
 
@@ -95,19 +112,22 @@ public:
     LocationBar* locationBar() const;
     TabWidget* tabWidget() const;
     BookmarksToolbar* bookmarksToolbar() const;
-    StatusBarMessage* statusBarMessage() const;
+    StatusBar* statusBar() const;
     NavigationBar* navigationBar() const;
     SideBarManager* sideBarManager() const;
     QLabel* ipLabel() const;
-    AdBlockIcon* adBlockIcon() const;
     QMenu* superMenu() const;
 
     QUrl homepageUrl() const;
 
     QAction* action(const QString &name) const;
 
+    TabModel *tabModel() const;
+    TabMruModel *tabMruModel() const;
+
 signals:
     void startingCompleted();
+    void aboutToClose();
 
 public slots:
     void goHome();
@@ -131,7 +151,7 @@ public slots:
     void toggleTabsOnTop(bool enable);
 
     void toggleFullScreen();
-    void enterHtmlFullScreen();
+    void toggleHtmlFullScreen(bool enable);
 
     void loadActionUrl(QObject* obj = 0);
     void loadActionUrlInNewTab(QObject* obj = 0);
@@ -168,10 +188,13 @@ private:
 
     void setupUi();
     void setupMenu();
+    void updateStartupFocus();
 
-    QAction *createEncodingAction(const QString &codecName, const QString &activeCodecName,
-                                  QMenu *menu);
+    QAction *createEncodingAction(const QString &codecName, const QString &activeCodecName, QMenu *menu);
     void createEncodingSubMenu(const QString &name, QStringList &codecNames, QMenu *menu);
+
+    QHash<QString, QVariant> saveUiState();
+    void restoreUiState(const QHash<QString, QVariant> &state);
 
     QUrl m_startUrl;
     QUrl m_homepage;
@@ -182,12 +205,10 @@ private:
     QVBoxLayout* m_mainLayout;
     QSplitter* m_mainSplitter;
 
-    AdBlockIcon* m_adblockIcon;
-
     TabWidget* m_tabWidget;
     QPointer<SideBar> m_sideBar;
     SideBarManager* m_sideBarManager;
-    StatusBarMessage* m_statusBarMessage;
+    StatusBar* m_statusBar;
 
     NavigationContainer* m_navigationContainer;
     NavigationBar* m_navigationToolbar;
@@ -198,6 +219,9 @@ private:
 
     QMenu* m_superMenu;
     MainMenu* m_mainMenu;
+
+    TabModel *m_tabModel = nullptr;
+    TabMruModel *m_tabMruModel = nullptr;
 
     int m_sideBarWidth;
     int m_webViewWidth;
@@ -211,7 +235,6 @@ private:
     bool m_menuBarVisible;
     bool m_statusBarVisible;
     bool m_isHtmlFullScreen;
-    Qt::WindowStates m_windowStates;
     QTimer* m_hideNavigationTimer;
 
     QList<QPointer<QWidget> > m_deleteOnCloseWidgets;

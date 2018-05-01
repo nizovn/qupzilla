@@ -1,6 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* QupZilla - Qt web browser
+* Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,14 @@
 * ============================================================ */
 #include "history.h"
 #include "historymodel.h"
-#include "tabbedwebview.h"
 #include "browserwindow.h"
 #include "iconprovider.h"
 #include "settings.h"
+#include "mainapplication.h"
+#include "sqldatabase.h"
+#include "webview.h"
 
-#include <QSqlDatabase>
-#include <QSqlQuery>
+#include <QWebEngineProfile>
 
 History::History(QObject* parent)
     : QObject(parent)
@@ -69,14 +70,11 @@ void History::addHistoryEntry(const QUrl &url, QString title)
         return;
     }
 
-    const QStringList ignoredSchemes = {
-        QStringLiteral("qupzilla"),
-        QStringLiteral("view-source"),
-        QStringLiteral("data"),
-        QStringLiteral("about")
+    const QStringList schemes = {
+        QSL("http"), QSL("https"), QSL("ftp"), QSL("file")
     };
 
-    if (url.isEmpty() || ignoredSchemes.contains(url.scheme())) {
+    if (!schemes.contains(url.scheme())) {
         return;
     }
 
@@ -84,7 +82,7 @@ void History::addHistoryEntry(const QUrl &url, QString title)
         title = tr("Empty Page");
     }
 
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.prepare("SELECT id, count, date, title FROM history WHERE url=?");
     query.bindValue(0, url);
     query.exec();
@@ -145,15 +143,18 @@ void History::deleteHistoryEntry(int index)
 
 void History::deleteHistoryEntry(const QList<int> &list)
 {
-    QSqlDatabase db = QSqlDatabase::database();
+    QSqlDatabase db = SqlDatabase::instance()->database();
     db.transaction();
 
+    QList<QUrl> urls;
+
     foreach (int index, list) {
-        QSqlQuery query;
+        QSqlQuery query(SqlDatabase::instance()->database());
         query.prepare("SELECT count, date, url, title FROM history WHERE id=?");
         query.addBindValue(index);
+        query.exec();
 
-        if (!query.exec() || !query.next()) {
+        if (!query.isActive() || !query.next()) {
             continue;
         }
 
@@ -173,15 +174,18 @@ void History::deleteHistoryEntry(const QList<int> &list)
         query.addBindValue(entry.url.toEncoded(QUrl::RemoveFragment));
         query.exec();
 
+        urls.append(entry.url);
         emit historyEntryDeleted(entry);
     }
+
+    mApp->webProfile()->clearVisitedLinks(urls);
 
     db.commit();
 }
 
 void History::deleteHistoryEntry(const QString &url, const QString &title)
 {
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.prepare("SELECT id FROM history WHERE url=? AND title=?");
     query.bindValue(0, url);
     query.bindValue(1, title);
@@ -200,7 +204,7 @@ QList<int> History::indexesFromTimeRange(qint64 start, qint64 end)
         return list;
     }
 
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.prepare("SELECT id FROM history WHERE date BETWEEN ? AND ?");
     query.addBindValue(end);
     query.addBindValue(start);
@@ -215,7 +219,7 @@ QList<int> History::indexesFromTimeRange(qint64 start, qint64 end)
 
 bool History::urlIsStored(const QString &url)
 {
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.prepare("SELECT id FROM history WHERE url=?");
     query.bindValue(0, url);
     query.exec();
@@ -225,8 +229,9 @@ bool History::urlIsStored(const QString &url)
 QVector<HistoryEntry> History::mostVisited(int count)
 {
     QVector<HistoryEntry> list;
-    QSqlQuery query;
-    query.exec(QString("SELECT count, date, id, title, url FROM history ORDER BY count DESC LIMIT %1").arg(count));
+    QSqlQuery query(SqlDatabase::instance()->database());
+    query.prepare(QString("SELECT count, date, id, title, url FROM history ORDER BY count DESC LIMIT %1").arg(count));
+    query.exec();
     while (query.next()) {
         HistoryEntry entry;
         entry.count = query.value(0).toInt();
@@ -241,9 +246,11 @@ QVector<HistoryEntry> History::mostVisited(int count)
 
 void History::clearHistory()
 {
-    QSqlQuery query;
+    QSqlQuery query(SqlDatabase::instance()->database());
     query.exec(QSL("DELETE FROM history"));
     query.exec(QSL("VACUUM"));
+
+    mApp->webProfile()->clearAllVisitedLinks();
 
     emit resetHistory();
 }

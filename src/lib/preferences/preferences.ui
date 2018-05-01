@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Preferences</class>
- <widget class="QWidget" name="Preferences">
+ <widget class="QDialog" name="Preferences">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -146,7 +146,7 @@
         <x>0</x>
         <y>0</y>
         <width>582</width>
-        <height>489</height>
+        <height>534</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -316,6 +316,11 @@
              <item>
               <property name="text">
                <string>Restore session</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select session</string>
               </property>
              </item>
             </widget>
@@ -537,42 +542,6 @@
                <string>Advanced options</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_16">
-               <item row="0" column="0" colspan="2">
-                <widget class="QLabel" name="label_18">
-                 <property name="text">
-                  <string>&lt;b&gt;Browser Window&lt;/b&gt;</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <spacer name="horizontalSpacer_8">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="2">
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
                <item row="1" column="1">
                 <layout class="QGridLayout" name="gridLayout_7">
                  <item row="0" column="0">
@@ -605,28 +574,43 @@
                  </item>
                 </layout>
                </item>
-               <item row="2" column="0" colspan="2">
-                <widget class="QLabel" name="label_8">
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QLabel" name="label_18">
                  <property name="text">
-                  <string>&lt;b&gt;Navigation ToolBar&lt;/b&gt;</string>
+                  <string>&lt;b&gt;Browser Window&lt;/b&gt;</string>
                  </property>
                 </widget>
+               </item>
+               <item row="1" column="0">
+                <spacer name="horizontalSpacer_8">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item row="3" column="1">
-                <widget class="QCheckBox" name="showHome">
-                 <property name="text">
-                  <string>Show Home button</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="1">
-                <widget class="QCheckBox" name="showBackForward">
-                 <property name="text">
-                  <string>Show Back / Forward buttons</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="9" column="1">
                 <spacer name="verticalSpacer_12">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -638,27 +622,6 @@
                   </size>
                  </property>
                 </spacer>
-               </item>
-               <item row="6" column="1">
-                <widget class="QCheckBox" name="showAddTabButton">
-                 <property name="text">
-                  <string>Show Add Tab button</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="1">
-                <widget class="QCheckBox" name="showWebSearchBar">
-                 <property name="text">
-                  <string>Show web search bar</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QCheckBox" name="showReloadStopButtons">
-                 <property name="text">
-                  <string>Show Reload / Stop buttons</string>
-                 </property>
-                </widget>
                </item>
               </layout>
              </widget>
@@ -924,6 +887,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="showABSearchSuggestions">
+                 <property name="text">
+                  <string>Show search suggestions</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <spacer name="verticalSpacer_16">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -1100,6 +1070,13 @@
                   <widget class="QCheckBox" name="xssAuditing">
                    <property name="text">
                     <string extracomment="try to detect possible XSS attacks when executing javascript">Enable XSS Auditing</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="printEBackground">
+                   <property name="text">
+                    <string extracomment="when you are printing page (on printer), it determine whether to also print background (color, image) of html elements">Print element background</string>
                    </property>
                   </widget>
                  </item>
@@ -1401,7 +1378,7 @@
                <string>Proxy Configuration</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_8">
-               <item row="4" column="0">
+               <item row="5" column="0">
                 <spacer name="verticalSpacer_14">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -1414,14 +1391,14 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="0" colspan="2">
+               <item row="1" column="0" colspan="2">
                 <widget class="QRadioButton" name="systemProxy">
                  <property name="text">
                   <string>System proxy configuration</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <spacer name="horizontalSpacer_29">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1437,14 +1414,14 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="0" colspan="2">
+               <item row="2" column="0" colspan="2">
                 <widget class="QRadioButton" name="manualProxy">
                  <property name="text">
                   <string>Manual configuration</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <layout class="QHBoxLayout" name="horizontalLayout_9">
                  <item>
                   <widget class="QComboBox" name="proxyType">
@@ -1482,7 +1459,7 @@
                  </item>
                 </layout>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <layout class="QHBoxLayout" name="horizontalLayout_23">
                  <item>
                   <widget class="QLabel" name="label_38">
@@ -1502,7 +1479,11 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="proxyPassword"/>
+                  <widget class="QLineEdit" name="proxyPassword">
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_3">
@@ -1518,6 +1499,13 @@
                   </spacer>
                  </item>
                 </layout>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QRadioButton" name="noProxy">
+                 <property name="text">
+                  <string>No proxy</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1978,7 +1966,7 @@
              </property>
             </spacer>
            </item>
-           <item row="2" column="0" colspan="3">
+           <item row="3" column="0" colspan="3">
             <widget class="QFrame" name="AutoFillFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1991,6 +1979,13 @@
                <enum>QLayout::SetMinAndMaxSize</enum>
               </property>
              </layout>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="autoCompletePasswords">
+             <property name="text">
+              <string>Automatically complete passwords on sites</string>
+             </property>
             </widget>
            </item>
           </layout>
@@ -2727,7 +2722,6 @@
   <tabstop>preferredLanguages</tabstop>
   <tabstop>userStyleSheet</tabstop>
   <tabstop>chooseUserStylesheet</tabstop>
-  <tabstop>showBackForward</tabstop>
   <tabstop>allowCache</tabstop>
   <tabstop>cacheMB</tabstop>
   <tabstop>saveHistory</tabstop>
@@ -2738,7 +2732,6 @@
   <tabstop>systemProxy</tabstop>
   <tabstop>showStatusbar</tabstop>
   <tabstop>showNavigationToolbar</tabstop>
-  <tabstop>showHome</tabstop>
   <tabstop>showBookmarksToolbar</tabstop>
  </tabstops>
  <resources/>

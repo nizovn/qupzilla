@@ -7,42 +7,42 @@
         <translation>Apie QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.ui" line="54"/>
+        <location filename="../src/lib/other/aboutdialog.ui" line="60"/>
         <source>Authors</source>
         <translation>Autoriai</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="71"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="56"/>
         <source>Authors and Contributors</source>
         <translation>Autoriai ir talkininkai</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="74"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="59"/>
         <source>&lt;p&gt;&lt;b&gt;Application version %1&lt;/b&gt;&lt;br/&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Programos versija %1&lt;/b&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="81"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="66"/>
         <source>&lt;b&gt;QtWebEngine version %1&lt;/b&gt;&lt;/p&gt;</source>
         <translation>&lt;b&gt;QtWebEngine versija %1&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="93"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="78"/>
         <source>&lt; About QupZilla</source>
         <translation>&lt; Apie QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="96"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="81"/>
         <source>&lt;p&gt;&lt;b&gt;Main developer:&lt;/b&gt;&lt;br/&gt;%1 &amp;lt;%2&amp;gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Pagrindinis kūrėjas:&lt;/b&gt;&lt;br/&gt;%1 &amp;lt;%2&amp;gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="97"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="82"/>
         <source>&lt;p&gt;&lt;b&gt;Contributors:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Talkininkai:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/aboutdialog.cpp" line="109"/>
+        <location filename="../src/lib/other/aboutdialog.cpp" line="94"/>
         <source>&lt;p&gt;&lt;b&gt;Translators:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Vertėjai:&lt;/b&gt;&lt;br/&gt;%1&lt;/p&gt;</translation>
     </message>
@@ -104,7 +104,7 @@
         <translation>Pridėti į reklamos blokavimą naują prenumeratą:</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockaddsubscriptiondialog.cpp" line="47"/>
+        <location filename="../src/lib/adblock/adblockaddsubscriptiondialog.cpp" line="44"/>
         <source>Other...</source>
         <translation>Kita...</translation>
     </message>
@@ -112,7 +112,7 @@
 <context>
     <name>AdBlockCustomList</name>
     <message>
-        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="298"/>
+        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="284"/>
         <source>Custom Rules</source>
         <translation>Pasirinktinos taisyklės</translation>
     </message>
@@ -135,47 +135,42 @@
         <translation>Paieška...</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="68"/>
+        <location filename="../src/lib/adblock/adblockdialog.ui" line="77"/>
         <source>Options</source>
         <translation>Parinktys</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="98"/>
+        <location filename="../src/lib/adblock/adblockdialog.ui" line="107"/>
         <source>AdBlock</source>
         <translation>Reklamos blokavimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.ui" line="122"/>
-        <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>Naudoti tik esminę EasyList dalį (dėl našumo priežasčių)</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="50"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="49"/>
         <source>Add Rule</source>
         <translation>Pridėti taisyklę</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="51"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="50"/>
         <source>Remove Rule</source>
         <translation>Šalinti taisyklę</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="53"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="52"/>
         <source>Add Subscription</source>
         <translation>Pridėti prenumeratą</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="54"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="53"/>
         <source>Remove Subscription</source>
         <translation>Šalinti prenumeratą</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="55"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="54"/>
         <source>Update Subscriptions</source>
         <translation>Atnaujinti prenumeratas</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockdialog.cpp" line="57"/>
+        <location filename="../src/lib/adblock/adblockdialog.cpp" line="56"/>
         <source>Learn about writing rules...</source>
         <translation>Sužinoti daugiau apie taisyklių rašymą...</translation>
     </message>
@@ -183,65 +178,60 @@
 <context>
     <name>AdBlockIcon</name>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="42"/>
-        <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation>Reklamos Blokavimas leidžia jums blokuoti nepageidautiną internetinių puslapių turinį</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="71"/>
-        <source>Blocked popup window</source>
-        <translation>Iškylantysis langas užblokuotas</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="71"/>
-        <source>AdBlock blocked unwanted popup window.</source>
-        <translation>Reklamos blokavimas užblokavo nepageidautiną iškylantįjį langą.</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="90"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="35"/>
         <source>AdBlock</source>
         <translation>Reklamos blokavimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="117"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="53"/>
+        <source>AdBlock Icon</source>
+        <translation>Reklamos blokavimo piktograma</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="87"/>
+        <source>AdBlock is disabled</source>
+        <translation>Reklamos blokavimas yra išjungtas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="93"/>
+        <source>AdBlock is disabled on this site </source>
+        <translation>Reklamos blokavimas šioje svetainėje yra išjungtas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="99"/>
+        <source>AdBlock is active</source>
+        <translation>Reklamos blokavimas yra aktyvus</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="146"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>Rodyti reklamos blokavimo nu&amp;statymus</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="125"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="154"/>
         <source>Disable on %1</source>
         <translation>Išjungti puslapyje %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="131"/>
+        <location filename="../src/lib/adblock/adblockicon.cpp" line="160"/>
         <source>Disable only on this page</source>
         <translation>Išjungti tik šiame puslapyje</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="141"/>
-        <source>Blocked Popup Windows</source>
-        <translation>Užblokuoti iškylantieji langai</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/adblock/adblockicon.cpp" line="146"/>
-        <source>%1 with (%2)</source>
-        <translation>%1 su (%2)</translation>
     </message>
 </context>
 <context>
     <name>AdBlockManager</name>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="166"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="184"/>
         <source>Do you want to add &lt;b&gt;%1&lt;/b&gt; subscription?</source>
         <translation>Ar norite pridėti &lt;b&gt;%1&lt;/b&gt; prenumeratą?</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="168"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="186"/>
         <source>AdBlock Subscription</source>
         <translation>Reklamos blokavimo prenumerata</translation>
     </message>
     <message>
-        <location filename="../src/lib/adblock/adblockmanager.cpp" line="297"/>
+        <location filename="../src/lib/adblock/adblockmanager.cpp" line="316"/>
         <source>EasyList</source>
         <translation>EasyList</translation>
     </message>
@@ -249,7 +239,7 @@
 <context>
     <name>AdBlockSubscription</name>
     <message>
-        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="170"/>
+        <location filename="../src/lib/adblock/adblocksubscription.cpp" line="171"/>
         <source>Cannot load subscription!</source>
         <translation>Nepavyko įkelti prenumeratos!</translation>
     </message>
@@ -288,6 +278,19 @@
     </message>
 </context>
 <context>
+    <name>AdBlockUrlInterceptor</name>
+    <message>
+        <location filename="../src/lib/adblock/adblockurlinterceptor.cpp" line="44"/>
+        <source>Blocked content</source>
+        <translation>Užblokuotas turinys</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/adblock/adblockurlinterceptor.cpp" line="45"/>
+        <source>Blocked by &lt;i&gt;%1 (%2)&lt;/i&gt;</source>
+        <translation>Užblokavo &lt;i&gt;%1 (%2)&lt;/i&gt;</translation>
+    </message>
+</context>
+<context>
     <name>AddAcceptLanguage</name>
     <message>
         <location filename="../src/lib/preferences/addacceptlanguage.ui" line="14"/>
@@ -308,12 +311,12 @@
 <context>
     <name>AesInterface</name>
     <message>
-        <location filename="../src/lib/tools/aesinterface.cpp" line="143"/>
+        <location filename="../src/lib/tools/aesinterface.cpp" line="147"/>
         <source>Warning!</source>
         <translation>Įspėjimas!</translation>
     </message>
     <message>
-        <location filename="../src/lib/tools/aesinterface.cpp" line="143"/>
+        <location filename="../src/lib/tools/aesinterface.cpp" line="147"/>
         <source>Data has been encrypted with a newer version of QupZilla.
 Please install latest version of QupZilla.</source>
         <translation>Duomenys buvo užšifruoti, naudojant naujesnę QupZilla versiją.
@@ -323,32 +326,32 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
 <context>
     <name>AutoFill</name>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="243"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="258"/>
         <source>Database (encrypted)</source>
         <translation>Duomenų bazė (užšifruota)</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="568"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="579"/>
         <source>Warning!</source>
         <translation>Įspėjimas!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="569"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="580"/>
         <source>This backend needs a master password to be set! QupZilla just switches to its default backend</source>
         <translation>Ši vidinė pusė reikalauja, kad būtų nustatytas pagrindinis slaptažodis! QupZilla, tiesiog, persijungia į savo numatytąją vidinę pusę</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="659"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="670"/>
         <source>Enter Master Password</source>
         <translation>Įveskite pagrindinį slaptažodį</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="663"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="674"/>
         <source>Permission is required, please enter Master Password:</source>
         <translation>Reikalingas leidimas, prašome įvesti pagrindinį slaptažodį:</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="669"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="680"/>
         <source>Entered password is wrong!</source>
         <translation>Įvestas slaptažodis yra neteisingas!</translation>
     </message>
@@ -622,52 +625,62 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
         <translation>Visi kiti adresyno įrašai</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="151"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="152"/>
         <source>Choose name and location of this bookmark.</source>
         <translation>Pasirinkite šio adresyno įrašo pavadinimą bei vietą.</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="155"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="156"/>
         <source>Add New Bookmark</source>
         <translation>Pridėti naują adresyno įrašą</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="195"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="196"/>
         <source>Choose folder for bookmarks:</source>
         <translation>Pasirinkite aplanką adresyno įrašams:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="196"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="197"/>
         <source>Bookmark All Tabs</source>
         <translation>Įtraukti į adresyną visas korteles</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="236"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="237"/>
         <source>Title:</source>
         <translation>Pavadinimas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="239"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="240"/>
         <source>Address:</source>
         <translation>Adresas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="241"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="242"/>
         <source>Keyword:</source>
         <translation>Raktažodis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="244"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="245"/>
         <source>Description:</source>
         <translation>Aprašas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="249"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="250"/>
         <source>Edit Bookmark</source>
         <translation>Redaguoti adresyno įrašą</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="415"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="340"/>
+        <source>Confirmation</source>
+        <translation>Patvirtinimas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="341"/>
+        <source>Are you sure you want to open all bookmarks from &apos;%1&apos; folder in tabs?</source>
+        <translation>Ar tikrai norite kortelėse atverti visus adresyno įrašus iš aplanko &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="435"/>
         <source>Empty</source>
         <translation>Tuščia</translation>
     </message>
@@ -736,7 +749,7 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
 <context>
     <name>BookmarksFoldersMenu</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="75"/>
+        <location filename="../src/lib/bookmarks/bookmarkstools.cpp" line="76"/>
         <source>Choose %1</source>
         <translation>Pasirinkti %1</translation>
     </message>
@@ -990,12 +1003,12 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
 <context>
     <name>BookmarksModel</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="147"/>
+        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="148"/>
         <source>Title</source>
         <translation>Pavadinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="149"/>
+        <location filename="../src/lib/bookmarks/bookmarksmodel.cpp" line="150"/>
         <source>Address</source>
         <translation>Adresas</translation>
     </message>
@@ -1034,37 +1047,37 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
 <context>
     <name>BookmarksToolbar</name>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="73"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="72"/>
         <source>Open in new tab</source>
         <translation>Atverti naujoje kortelėje</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="74"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="73"/>
         <source>Open in new window</source>
         <translation>Atverti naujame lange</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="75"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="74"/>
         <source>Open in new private window</source>
         <translation>Atverti naujame privačiame lange</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="77"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="76"/>
         <source>Edit</source>
         <translation>Redaguoti</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="78"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="77"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="80"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="79"/>
         <source>Show Only Icons</source>
         <translation>Rodyti tik piktogramas</translation>
     </message>
     <message>
-        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="84"/>
+        <location filename="../src/lib/bookmarks/bookmarkstoolbar.cpp" line="83"/>
         <source>Show Only Text</source>
         <translation>Rodyti tik tekstą</translation>
     </message>
@@ -1101,82 +1114,78 @@ Prašome įsidiegti naujausią programos QupZilla versiją.</translation>
 <context>
     <name>BrowserWindow</name>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="113"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="199"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="968"/>
         <source>QupZilla</source>
         <translation>QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="332"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="383"/>
         <source>IP Address of current page</source>
         <translation>Esamo puslapio IP adresas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="597"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="718"/>
         <source> (Private Browsing)</source>
         <translation> (Privatus naršymas)</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="626"/>
-        <source>QupZilla %1 (%2)</source>
-        <translation>QupZilla %1 (%2)</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="874"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="970"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="930"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1034"/>
         <source>&amp;Menu Bar</source>
         <translation>&amp;Meniu juosta</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="935"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1039"/>
         <source>&amp;Navigation Toolbar</source>
         <translation>&amp;Naršymo įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="939"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1043"/>
         <source>&amp;Bookmarks Toolbar</source>
         <translation>A&amp;dresyno įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="945"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1049"/>
         <source>&amp;Tabs on Top</source>
         <translation>Kor&amp;telės viršuje</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1001"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1103"/>
         <source>Other</source>
         <translation>Kita</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>HTML files</source>
         <translation>HTML failai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>Image files</source>
         <translation>Paveikslų failai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>Text files</source>
         <translation>Tekstiniai failai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1038"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1140"/>
         <source>All files</source>
         <translation>Visi failai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1040"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1142"/>
         <source>Open file...</source>
         <translation>Atverti failą...</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/app/browserwindow.cpp" line="1373"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1481"/>
         <source>There are still %n open tabs and your session won't be stored. 
 Are you sure you want to close this window?</source>
         <translation><numerusform>Yra vis dar atverta %n kortelė, o jūsų seansas nebus išsaugotas. 
@@ -1185,17 +1194,17 @@ Ar tikrai norite užverti šį langą?</numerusform><numerusform>Yra vis dar atv
 Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1374"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1482"/>
         <source>Don&apos;t ask again</source>
         <translation>Daugiau nebeklausti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/browserwindow.cpp" line="1375"/>
+        <location filename="../src/lib/app/browserwindow.cpp" line="1483"/>
         <source>There are still open tabs</source>
         <translation>Yra vis dar atvertų kortelių</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="66"/>
+        <location filename="../src/lib/tabwidget/tabbar.cpp" line="111"/>
         <source>Close Tab</source>
         <translation>Užverti kortelę</translation>
     </message>
@@ -1297,92 +1306,92 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Valyti žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="36"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="20"/>
         <source>&lt;b&gt;Clear Recent History&lt;/b&gt;</source>
         <translation>&lt;b&gt;Valyti žurnalą&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="43"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="27"/>
         <source>Edit cookies</source>
         <translation>Redaguoti slapukus</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="54"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="38"/>
         <source>Earlier Today</source>
         <translation>Šiandienos</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="59"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="43"/>
         <source>Week</source>
         <translation>Savaitės</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="64"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="48"/>
         <source>Month</source>
         <translation>Mėnesio</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="69"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="53"/>
         <source>All</source>
         <translation>Visas</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="77"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="61"/>
         <source>Visited pages history from:</source>
         <translation>Aplankytų puslapių žurnalas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="87"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="71"/>
         <source>Checked items will be cleared upon clicking the Clear button.</source>
         <translation>Pažymėti elementai bus išvalyti, nuspaudus mygtuką Išvalyti.</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="94"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="78"/>
         <source>Local storage</source>
         <translation>Vietinis kaupiklis</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="110"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="94"/>
         <source>Clear</source>
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="130"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="114"/>
         <source>Web databases</source>
         <translation>Saityno duomenų bazės</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="140"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="124"/>
         <source>Cache</source>
         <translation>Podėlis</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="150"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="134"/>
         <source>Optimize database</source>
         <translation>Optimizuoti duomenų bazę</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="157"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="141"/>
         <source>Cookies</source>
         <translation>Slapukai</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.ui" line="174"/>
+        <location filename="../src/lib/other/clearprivatedata.ui" line="158"/>
         <source>Database</source>
         <translation>Duomenų bazė</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="155"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="154"/>
         <source>Done</source>
         <translation>Atlikta</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="173"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="172"/>
         <source>Database Optimized</source>
         <translation>Duomenų bazė optimizuota</translation>
     </message>
     <message>
-        <location filename="../src/lib/other/clearprivatedata.cpp" line="173"/>
+        <location filename="../src/lib/other/clearprivatedata.cpp" line="172"/>
         <source>Database successfully optimized.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Database Size Before: &lt;/b&gt;%1&lt;br/&gt;&lt;b&gt;Database Size After: &lt;/b&gt;%2</source>
         <translation>Duomenų bazė sėkmingai optimizuota.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Duomenų bazės dydis prieš: &lt;/b&gt;%1&lt;br/&gt;&lt;b&gt;Duomenų bazės dydis po: &lt;/b&gt;%2</translation>
     </message>
@@ -1612,6 +1621,14 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
 </context>
 <context>
+    <name>DesktopNotificationsFactory</name>
+    <message>
+        <location filename="../src/lib/notifications/desktopnotificationsfactory.cpp" line="109"/>
+        <source>Preview</source>
+        <translation>Peržiūra</translation>
+    </message>
+</context>
+<context>
     <name>DownloadItem</name>
     <message>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="70"/>
@@ -1632,13 +1649,13 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="132"/>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="259"/>
         <source>Cancelled - %1</source>
-        <translation>Atšaukta - %1</translation>
+        <translation>Atsisakyta - %1</translation>
     </message>
     <message>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="179"/>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="284"/>
         <source>Cancelled</source>
-        <translation>Atšaukta</translation>
+        <translation>Atsisakyta</translation>
     </message>
     <message>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="185"/>
@@ -1713,7 +1730,7 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     <message>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="281"/>
         <source>Cancel downloading</source>
-        <translation>Atšaukti atsiuntimą</translation>
+        <translation>Atsisakyti atsiuntimo</translation>
     </message>
     <message>
         <location filename="../src/lib/downloads/downloaditem.cpp" line="282"/>
@@ -1745,12 +1762,12 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     <message>
         <location filename="../src/lib/downloads/downloadmanager.ui" line="20"/>
         <location filename="../src/lib/downloads/downloadmanager.cpp" line="177"/>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="395"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="408"/>
         <source>Download Manager</source>
         <translation>Atsiuntimų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.ui" line="85"/>
+        <location filename="../src/lib/downloads/downloadmanager.ui" line="69"/>
         <source>Clear</source>
         <translation>Išvalyti</translation>
     </message>
@@ -1765,49 +1782,49 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>%1% - Atsiuntimų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="298"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="293"/>
         <source>Save file as...</source>
         <translation>Įrašyti failą kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="308"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="303"/>
         <source>MIME HTML Archive (*.mhtml)</source>
         <translation>MIME HTML archyvas(*.mhtml)</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="309"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="304"/>
         <source>HTML Page, single (*.html)</source>
         <translation>HTML puslapis, vienas (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="310"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="305"/>
         <source>HTML Page, complete (*.html)</source>
         <translation>HTML puslapis, visas (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="314"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="309"/>
         <source>Save page as...</source>
         <translation>Įrašyti puslapį kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="388"/>
-        <source>Download Finished</source>
-        <translation>Atsiuntimas baigtas</translation>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="401"/>
+        <source>QupZilla: Download Finished</source>
+        <translation>QupZilla: Atsiuntimas užbaigtas</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="388"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="401"/>
         <source>All files have been successfully downloaded.</source>
         <translation>Visi failai buvo sėkmingai atsiųsti.</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="456"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="469"/>
         <source>Warning</source>
         <translation>Įspėjimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadmanager.cpp" line="457"/>
+        <location filename="../src/lib/downloads/downloadmanager.cpp" line="470"/>
         <source>Are you sure you want to quit? All uncompleted downloads will be cancelled!</source>
-        <translation>Ar tikrai norite baigti? Visi neužbaigti atsiuntimai bus atšaukti!</translation>
+        <translation>Ar tikrai norite baigti? Visų neužbaigtų atsiuntimų bus atsisakyta!</translation>
     </message>
 </context>
 <context>
@@ -1858,9 +1875,23 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Atveriama %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/downloads/downloadoptionsdialog.cpp" line="111"/>
+        <location filename="../src/lib/downloads/downloadoptionsdialog.cpp" line="112"/>
         <source>Download link copied.</source>
         <translation>Atsiuntimo nuoroda nukopijuota.</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsButton</name>
+    <message>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="27"/>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="43"/>
+        <source>Downloads</source>
+        <translation>Atsiuntimai</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/downloads/downloadsbutton.cpp" line="28"/>
+        <source>Open Download Manager</source>
+        <translation>Atverti atsiuntimų tvarkytuvę</translation>
     </message>
 </context>
 <context>
@@ -2025,67 +2056,67 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>History</name>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="84"/>
+        <location filename="../src/lib/history/history.cpp" line="85"/>
         <source>Empty Page</source>
         <translation>Tuščias puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="265"/>
+        <location filename="../src/lib/history/history.cpp" line="270"/>
         <source>January</source>
         <translation>Sausis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="267"/>
+        <location filename="../src/lib/history/history.cpp" line="272"/>
         <source>February</source>
         <translation>Vasaris</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="269"/>
+        <location filename="../src/lib/history/history.cpp" line="274"/>
         <source>March</source>
         <translation>Kovas</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="271"/>
+        <location filename="../src/lib/history/history.cpp" line="276"/>
         <source>April</source>
         <translation>Balandis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="273"/>
+        <location filename="../src/lib/history/history.cpp" line="278"/>
         <source>May</source>
         <translation>Gegužė</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="275"/>
+        <location filename="../src/lib/history/history.cpp" line="280"/>
         <source>June</source>
         <translation>Birželis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="277"/>
+        <location filename="../src/lib/history/history.cpp" line="282"/>
         <source>July</source>
         <translation>Liepa</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="279"/>
+        <location filename="../src/lib/history/history.cpp" line="284"/>
         <source>August</source>
         <translation>Rugpjūtis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="281"/>
+        <location filename="../src/lib/history/history.cpp" line="286"/>
         <source>September</source>
         <translation>Rugsėjis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="283"/>
+        <location filename="../src/lib/history/history.cpp" line="288"/>
         <source>October</source>
         <translation>Spalis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="285"/>
+        <location filename="../src/lib/history/history.cpp" line="290"/>
         <source>November</source>
         <translation>Lapkritis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/history.cpp" line="287"/>
+        <location filename="../src/lib/history/history.cpp" line="292"/>
         <source>December</source>
         <translation>Gruodis</translation>
     </message>
@@ -2099,7 +2130,7 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/lib/history/historymanager.ui" line="20"/>
-        <location filename="../src/lib/history/historymanager.cpp" line="142"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="154"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
@@ -2109,37 +2140,37 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Išvalyti visą žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="77"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="78"/>
         <source>Confirmation</source>
         <translation>Patvirtinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="78"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="79"/>
         <source>Are you sure you want to delete all history?</source>
         <translation>Ar tikrai norite išvalyti visą žurnalą?</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="133"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="145"/>
         <source>Open in new tab</source>
         <translation>Atverti naujoje kortelėje</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="134"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="146"/>
         <source>Open in new window</source>
         <translation>Atverti naujame lange</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="135"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="147"/>
         <source>Open in new private window</source>
         <translation>Atverti naujame privačiame lange</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="138"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="150"/>
         <source>Copy url</source>
         <translation>Kopijuoti url</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymanager.cpp" line="139"/>
+        <location filename="../src/lib/history/historymanager.cpp" line="151"/>
         <source>Copy title</source>
         <translation>Kopijuoti pavadinimą</translation>
     </message>
@@ -2147,55 +2178,67 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>HistoryMenu</name>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="134"/>
-        <location filename="../src/lib/history/historymenu.cpp" line="158"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="135"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="157"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="186"/>
         <source>Empty</source>
         <translation>Tuščia</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="162"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="161"/>
         <source>Restore All Closed Tabs</source>
         <translation>Atkurti visas užvertas korteles</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="163"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="162"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="190"/>
         <source>Clear list</source>
         <translation>Išvalyti sąrašą</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="209"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="189"/>
+        <source>Restore All Closed Windows</source>
+        <translation>Atkurti visus užvertus langus</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/history/historymenu.cpp" line="236"/>
         <source>Hi&amp;story</source>
         <translation>Ž&amp;urnalas</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="211"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="238"/>
         <source>&amp;Back</source>
         <translation>&amp;Atgal</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="214"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="241"/>
         <source>&amp;Forward</source>
         <translation>&amp;Pirmyn</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="217"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="244"/>
         <source>&amp;Home</source>
         <translation>&amp;Pradinis puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="220"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="247"/>
         <source>Show &amp;All History</source>
         <translation>Rodyti v&amp;isą žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="228"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="255"/>
         <source>Most Visited</source>
         <translation>Dažniausiai lankyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymenu.cpp" line="231"/>
+        <location filename="../src/lib/history/historymenu.cpp" line="258"/>
         <source>Closed Tabs</source>
         <translation>Užvertos kortelės</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/history/historymenu.cpp" line="261"/>
+        <source>Closed Windows</source>
+        <translation>Užverti langai</translation>
     </message>
 </context>
 <context>
@@ -2221,18 +2264,18 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Apsilankymų skaičius</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="339"/>
-        <location filename="../src/lib/history/historymodel.cpp" line="470"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="340"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="471"/>
         <source>Today</source>
         <translation>Šiandien</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="475"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="476"/>
         <source>This Week</source>
         <translation>Šią savaitę</translation>
     </message>
     <message>
-        <location filename="../src/lib/history/historymodel.cpp" line="480"/>
+        <location filename="../src/lib/history/historymodel.cpp" line="481"/>
         <source>This Month</source>
         <translation>Šį mėnesį</translation>
     </message>
@@ -2391,14 +2434,14 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Įdėti ir a&amp;tverti</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/locationbar.cpp" line="152"/>
-        <source>Enter URL address or search on %1</source>
-        <translation>Įveskite URL adresą arba paiešką sistemoje %1</translation>
+        <location filename="../src/lib/navigation/locationbar.cpp" line="148"/>
+        <source>Enter address or search with %1</source>
+        <translation>Įveskite adresą arba atlikite paiešką, naudojant %1</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/locationbar.cpp" line="154"/>
-        <source>Enter URL address</source>
-        <translation>Įveskite URL adresą</translation>
+        <location filename="../src/lib/navigation/locationbar.cpp" line="150"/>
+        <source>Enter address</source>
+        <translation>Įveskite adresą</translation>
     </message>
     <message>
         <location filename="../src/lib/navigation/siteicon.cpp" line="40"/>
@@ -2407,47 +2450,70 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
 </context>
 <context>
-    <name>LocationCompleterView</name>
+    <name>LocationCompleterDelegate</name>
     <message>
-        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="143"/>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="157"/>
+        <source>Visit</source>
+        <translation>Aplankyti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="163"/>
+        <source>Search with %1</source>
+        <translation>Ieškoti, naudojant %1</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterdelegate.cpp" line="197"/>
         <source>Switch to tab</source>
         <translation>Perjungti į kortelę</translation>
     </message>
 </context>
 <context>
+    <name>LocationCompleterView</name>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterview.cpp" line="73"/>
+        <source>Manage Search Engines</source>
+        <translation>Tvarkyti paieškos sistemas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/completer/locationcompleterview.cpp" line="78"/>
+        <source>Search with:</source>
+        <translation>Ieškoti, naudojant:</translation>
+    </message>
+</context>
+<context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1074"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1109"/>
         <source>QupZilla is not currently your default browser. Would you like to make it your default browser?</source>
         <translation>Šiuo metu QupZilla nėra jūsų numatytoji naršyklė. Ar norėtumėte padaryti ją numatytąja naršykle?</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1075"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1110"/>
         <source>Always perform this check when starting QupZilla.</source>
         <translation>Paleidžiant QupZilla, visuomet atlikti šį patikrinimą.</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1077"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1112"/>
         <source>Default Browser</source>
         <translation>Numatytoji naršyklė</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1164"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1230"/>
         <source>Open new tab</source>
         <translation>Atverti naują kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1165"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1231"/>
         <source>Open new window</source>
         <translation>Atverti naują langą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1166"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1232"/>
         <source>Open new private window</source>
         <translation>Atverti naują privatų langą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainapplication.cpp" line="1174"/>
+        <location filename="../src/lib/app/mainapplication.cpp" line="1247"/>
         <source>QupZilla is a new, fast and secure open-source WWW browser. QupZilla is licensed under GPL version 3 or (at your option) any later version. It is based on WebKit core and Qt Framework.</source>
         <translation>QupZilla yra nauja, greita ir saugi atviro kodo WWW naršyklė. QupZilla yra licencijuota pagal GPL versiją 3 arba (jūsų pasirinkimu) bet kuria vėlesne versija. Ji yra pagrįsta WebKit branduoliu ir Qt Karkasu.</translation>
     </message>
@@ -2455,242 +2521,248 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>MainMenu</name>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="503"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="84"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="497"/>
+        <source>Sessions</source>
+        <translation>Seansai</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/app/mainmenu.cpp" line="467"/>
         <source>&amp;About QupZilla</source>
         <translation>&amp;Apie QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="508"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="472"/>
         <source>Pr&amp;eferences</source>
         <translation>Nuos&amp;tatos</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="514"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="478"/>
         <source>Quit</source>
         <translation>Baigti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="521"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="485"/>
         <source>&amp;File</source>
         <translation>&amp;Failas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="525"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="488"/>
         <source>New Tab</source>
         <translation>Nauja kortelė</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="526"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="489"/>
         <source>&amp;New Window</source>
         <translation>&amp;Naujas langas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="527"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="490"/>
         <source>New &amp;Private Window</source>
         <translation>Naujas &amp;privatus langas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="528"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="491"/>
         <source>Open Location</source>
         <translation>Atverti vietą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="529"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="492"/>
         <source>Open &amp;File...</source>
         <translation>Atverti &amp;failą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="530"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="493"/>
         <source>Close Window</source>
         <translation>Užverti langą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="532"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="500"/>
+        <source>Session Manager</source>
+        <translation>Seansų tvarkytuvė</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/app/mainmenu.cpp" line="507"/>
         <source>&amp;Save Page As...</source>
         <translation>Į&amp;rašyti puslapį kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="533"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="508"/>
         <source>Send Link...</source>
         <translation>Siųsti nuorodą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="534"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="509"/>
         <source>&amp;Print...</source>
         <translation>S&amp;pausdinti...</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="539"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="514"/>
         <source>&amp;Edit</source>
         <translation>&amp;Taisa</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="543"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="517"/>
         <source>&amp;Undo</source>
         <translation>&amp;Atšaukti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="544"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="519"/>
         <source>&amp;Redo</source>
         <translation>&amp;Grąžinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="546"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="522"/>
         <source>&amp;Cut</source>
         <translation>&amp;Iškirpti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="547"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="524"/>
         <source>C&amp;opy</source>
         <translation>K&amp;opijuoti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="548"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="526"/>
         <source>&amp;Paste</source>
         <translation>Į&amp;dėti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="550"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="529"/>
         <source>Select &amp;All</source>
         <translation>P&amp;ažymėti viską</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="551"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="531"/>
         <source>&amp;Find</source>
         <translation>&amp;Rasti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="555"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="536"/>
         <source>&amp;View</source>
         <translation>&amp;Rodinys</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="559"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="539"/>
         <source>Toolbars</source>
         <translation>Įrankių juostos</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="561"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="541"/>
         <source>Sidebar</source>
         <translation>Šoninė juosta</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="563"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="543"/>
         <source>Character &amp;Encoding</source>
         <translation>Simbolių k&amp;oduotė</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="572"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="552"/>
         <source>Sta&amp;tus Bar</source>
         <translation>Būsenos juos&amp;ta</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="574"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="554"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stabdyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="575"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="555"/>
         <source>&amp;Reload</source>
         <translation>Įk&amp;elti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="577"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="557"/>
         <source>Zoom &amp;In</source>
         <translation>D&amp;idinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="578"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="558"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Mažinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="579"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="559"/>
         <source>Reset</source>
         <translation>Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="583"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="563"/>
         <source>&amp;Page Source</source>
         <translation>&amp;Pirminis tekstas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="584"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="565"/>
         <source>&amp;FullScreen</source>
         <translation>&amp;Visas ekranas</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="587"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="568"/>
         <source>&amp;Tools</source>
         <translation>Įr&amp;ankiai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="591"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="571"/>
         <source>&amp;Web Search</source>
         <translation>&amp;Paieška saityne</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="592"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="572"/>
         <source>Site &amp;Info</source>
         <translation>Svetainės &amp;informacija</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="594"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="575"/>
         <source>&amp;Download Manager</source>
         <translation>Atsiunti&amp;mų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="595"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="576"/>
         <source>&amp;Cookies Manager</source>
         <translation>&amp;Slapukų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="596"/>
-        <source>&amp;AdBlock</source>
-        <translation>&amp;Reklamos blokavimas</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="597"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="577"/>
         <source>Web In&amp;spector</source>
         <translation>Saityno insp&amp;ektorius</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="598"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="578"/>
         <source>Clear Recent &amp;History</source>
         <translation>Valyti ž&amp;urnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="603"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="583"/>
         <source>&amp;Extensions</source>
         <translation>&amp;Plėtiniai</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="609"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="589"/>
         <source>&amp;Help</source>
         <translation>&amp;Pagalba</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="612"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="592"/>
         <source>About &amp;Qt</source>
         <translation>Apie &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="617"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="597"/>
         <source>Information about application</source>
         <translation>Informacija apie programą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="618"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="598"/>
         <source>Configuration Information</source>
         <translation>Konfigūracijos informacija</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="619"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="599"/>
         <source>Report &amp;Issue</source>
         <translation>Pranešti ap&amp;ie klaidą</translation>
     </message>
     <message>
-        <location filename="../src/lib/app/mainmenu.cpp" line="632"/>
+        <location filename="../src/lib/app/mainmenu.cpp" line="612"/>
         <source>Restore &amp;Closed Tab</source>
         <translation>Atkurti užvertą &amp;kortelę</translation>
     </message>
@@ -2748,30 +2820,30 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>&lt;b&gt;Pastaba:&lt;/b&gt; Pagrindinis slaptažodis nėra atkuriamas. Prašome jo nepamiršti.</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="536"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="541"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="590"/>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="633"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="547"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="552"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="601"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="644"/>
         <source>Warning!</source>
         <translation>Įspėjimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="536"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="547"/>
         <source>You entered a wrong password!</source>
         <translation>Jūs įvedėte neteisingą slaptažodį!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="541"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="552"/>
         <source>New/Confirm password fields do not match!</source>
         <translation>Naujas/Patvirtintas slaptažodžiai nesutampa!</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="590"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="601"/>
         <source>Are you sure you want to clear master password and decrypt data?</source>
         <translation>Ar tikrai norite panaikinti pagrindinį slaptažodį ir iššifruoti visus duomenis?</translation>
     </message>
     <message>
-        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="633"/>
+        <location filename="../src/lib/autofill/passwordbackends/databaseencryptedpasswordbackend.cpp" line="644"/>
         <source>Some data has not been decrypted. The master password was not cleared!</source>
         <translation>Kai kurie duomenys nebuvo iššifruoti. Pagrindinis slaptažodis nebuvo panaikintas!</translation>
     </message>
@@ -2779,45 +2851,124 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>NavigationBar</name>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="53"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="49"/>
+        <source>Empty Page</source>
+        <translation>Tuščias puslapis</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="76"/>
         <source>Back</source>
         <translation>Atgal</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="62"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="86"/>
         <source>Forward</source>
         <translation>Pirmyn</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="79"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="106"/>
         <source>Home</source>
         <translation>Pradinis puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="87"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="114"/>
         <source>New Tab</source>
         <translation>Nauja kortelė</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="107"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="134"/>
+        <source>Tools</source>
+        <translation>Įrankiai</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="147"/>
         <source>Main Menu</source>
         <translation>Pagrindinis meniu</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="124"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="164"/>
         <source>Exit Fullscreen</source>
         <translation>Išeiti iš viso ekrano</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="240"/>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="274"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="190"/>
+        <source>Back and Forward buttons</source>
+        <translation>Mygtukai Atgal ir Pirmyn</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="191"/>
+        <source>Reload button</source>
+        <translation>Įkėlimo iš naujo mygtukas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="192"/>
+        <source>Home button</source>
+        <translation>Pradinio puslapio mygtukas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="193"/>
+        <source>Add tab button</source>
+        <translation>Kortelės pridėjimo mygtukas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="194"/>
+        <source>Address and Search bar</source>
+        <translation>Adreso ir paieškos juosta</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="195"/>
+        <source>Tools button</source>
+        <translation>Įrankių mygtukas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="196"/>
+        <source>Exit Fullscreen button</source>
+        <translation>Mygtukas išeiti iš viso ekrano</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="370"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="404"/>
         <source>Clear history</source>
         <translation>Valyti žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/navigationbar.cpp" line="376"/>
-        <source>Empty Page</source>
-        <translation>Tuščias puslapis</translation>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="411"/>
+        <source>Toolbars</source>
+        <translation>Įrankių juostos</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="412"/>
+        <source>Sidebar</source>
+        <translation>Šoninė juosta</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="427"/>
+        <location filename="../src/lib/navigation/navigationbar.cpp" line="442"/>
+        <source>Configure Toolbar</source>
+        <translation>Konfigūruoti įrankių juostą</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationBarConfigDialog</name>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="14"/>
+        <source>Configure Toolbar</source>
+        <translation>Konfigūruoti įrankių juostą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="62"/>
+        <source>Show search bar</source>
+        <translation>Rodyti paieškos juostą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="82"/>
+        <source>Available items:</source>
+        <translation>Prieinami elemntai:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/navigation/navigationbarconfigdialog.ui" line="89"/>
+        <source>Current items:</source>
+        <translation>Esami elementai:</translation>
     </message>
 </context>
 <context>
@@ -2878,12 +3029,7 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>PluginsList</name>
     <message>
-        <location filename="../src/lib/preferences/pluginslist.ui" line="29"/>
-        <source>Allow Application Extensions to be loaded</source>
-        <translation>Leisti įkelti programos plėtinius</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/pluginslist.ui" line="63"/>
+        <location filename="../src/lib/preferences/pluginslist.ui" line="56"/>
         <source>Settings</source>
         <translation>Nustatymai</translation>
     </message>
@@ -2891,12 +3037,12 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>PluginsManager</name>
     <message>
-        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="214"/>
+        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="192"/>
         <source>Error!</source>
         <translation>Klaida!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="214"/>
+        <location filename="../src/lib/preferences/pluginsmanager.cpp" line="192"/>
         <source>Cannot load extension!</source>
         <translation>Nepavyko įkelti plėtinio!</translation>
     </message>
@@ -2912,67 +3058,72 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>PopupWindow</name>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="70"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="83"/>
         <source>File</source>
         <translation>Failas</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="71"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="84"/>
         <source>Send Link...</source>
         <translation>Siųsti nuorodą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="74"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="85"/>
+        <source>&amp;Print...</source>
+        <translation>S&amp;pausdinti...</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="87"/>
         <source>Close</source>
         <translation>Užverti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="77"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="90"/>
         <source>Edit</source>
         <translation>Keisti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="86"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="99"/>
         <source>Find</source>
         <translation>Rasti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="89"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="102"/>
         <source>View</source>
         <translation>Rodinys</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="90"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="103"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stabdyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="92"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="105"/>
         <source>&amp;Reload</source>
         <translation>Įke&amp;lti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="95"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="108"/>
         <source>Zoom &amp;In</source>
         <translation>Did&amp;inti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="96"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="109"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Mažinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="97"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="110"/>
         <source>Reset</source>
         <translation>Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="99"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="112"/>
         <source>&amp;Page Source</source>
         <translation>&amp;Pirminis tekstas</translation>
     </message>
     <message>
-        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="252"/>
+        <location filename="../src/lib/popupwindow/popupwindow.cpp" line="266"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
@@ -3051,13 +3202,13 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="196"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="338"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="343"/>
         <source>Use current</source>
         <translation>Naudoti dabartinį</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="227"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="829"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="831"/>
         <source>Note: You cannot delete active profile.</source>
         <translation>Pastaba: Jūs negalite ištrinti aktyvaus profilio.</translation>
     </message>
@@ -3088,13 +3239,13 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="308"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="360"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="365"/>
         <source>Open homepage</source>
         <translation>Atverti pradinį puslapį</translation>
     </message>
     <message>
         <location filename="../src/lib/preferences/preferences.ui" line="313"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="365"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="370"/>
         <source>Open speed dial</source>
         <translation>Atverti spartųjį rinkimą</translation>
     </message>
@@ -3104,879 +3255,875 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
         <translation>Atkurti seansą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="326"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="323"/>
+        <source>Select session</source>
+        <translation>Pasirinkti seansą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="331"/>
         <source>Homepage: </source>
         <translation>Pradinis puslapis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="347"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="352"/>
         <source>On new tab: </source>
         <translation>Naujoje kortelėje:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="355"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="360"/>
         <source>Open blank tab</source>
         <translation>Atverti tuščią kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="370"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="375"/>
         <source>Open other page...</source>
         <translation>Atverti kitą puslapį...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="378"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="383"/>
         <source>&lt;b&gt;Profiles&lt;/b&gt;</source>
         <translation>&lt;b&gt;Profiliai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="385"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="390"/>
         <source>Startup profile:</source>
         <translation>Paleisties profilis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="392"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="397"/>
         <source>Check for updates on start</source>
         <translation>Paleidus, tikrinti ar yra naujinimų</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="399"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="404"/>
         <source>Active profile:</source>
         <translation>Aktyvus profilis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="413"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="418"/>
         <source>In order to change language, you must restart browser.</source>
         <translation>Norėdami pakeisti kalbą, privalote iš naujo paleisti naršyklę.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="420"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="425"/>
         <source>&lt;b&gt;Language&lt;/b&gt;</source>
         <translation>&lt;b&gt;Kalba&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="441"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="446"/>
         <source>Available translations: </source>
         <translation>Prieinami vertimai:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="453"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="458"/>
         <source>Don&apos;t load tabs until selected</source>
-        <translation>Neįkelti kortelių, kol jos nepasirenkamos</translation>
+        <translation>Neįkelti kortelių tol, kol jos nepasirenkamos</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="475"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="480"/>
         <source>Check to see if QupZilla is the default browser on startup</source>
         <translation>Pažymėkite, norėdami paleisties metu tikrinti ar QupZilla yra numatytoji naršyklė</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="485"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="490"/>
         <source>Check Now</source>
         <translation>Tikrinti dabar</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="515"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="520"/>
         <source>Themes</source>
         <translation>Temos</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="537"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="542"/>
         <source>Advanced options</source>
         <translation>Išplėstinės parinktys</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="543"/>
-        <source>&lt;b&gt;Browser Window&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Naršyklės langas&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="581"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="550"/>
         <source>Show StatusBar on start</source>
         <translation>Paleidus, rodyti būsenos juostą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="588"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="557"/>
         <source>Show Bookmarks ToolBar on start</source>
         <translation>Paleidus, rodyti adresyno įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="595"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="564"/>
         <source>Show Navigation ToolBar on start</source>
         <translation>Paleidus, rodyti naršymo įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="602"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="571"/>
         <source>Enable instant Bookmarks ToolBar</source>
         <translation>Įjungti greitąją adresyno įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="611"/>
-        <source>&lt;b&gt;Navigation ToolBar&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Naršymo įrankių juosta&lt;/b&gt;</translation>
+        <location filename="../src/lib/preferences/preferences.ui" line="593"/>
+        <source>&lt;b&gt;Browser Window&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Naršyklės langas&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="618"/>
-        <source>Show Home button</source>
-        <translation>Rodyti pradinio puslapio mygtuką</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="625"/>
-        <source>Show Back / Forward buttons</source>
-        <translation>Rodyti Atgal / Pirmyn mygtukus</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="645"/>
-        <source>Show Add Tab button</source>
-        <translation>Rodyti Pridėti kortelę mygtuką</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="652"/>
-        <source>Show web search bar</source>
-        <translation>Rodyti paieškos saityne juostą</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="659"/>
-        <source>Show Reload / Stop buttons</source>
-        <translation>Rodyti Įkelti iš naujo / Stabdyti mygtuką</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="678"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="641"/>
         <source>Tabs behaviour</source>
         <translation>Kortelių elgsena</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="684"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="647"/>
         <source>Hide tabs when there is only one tab</source>
         <translation>Slėpti korteles, kai yra tik viena kortelė</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="691"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="654"/>
         <source>Activate last tab when closing active tab</source>
         <translation>Užvėrus aktyvią kortelę, aktyvuoti paskutinę kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="698"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="661"/>
         <source>Open new tabs after active tab</source>
         <translation>Atvėrinėti naujas korteles po aktyvios kortelės</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="705"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="668"/>
         <source>Open new empty tabs after active tab</source>
         <translation>Atvėrinėti naujas tuščias korteles po aktyvios kortelės</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="712"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="675"/>
         <source>Open popup windows in tabs</source>
         <translation>Atverti iškylančiuosius langus kortelėse</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="719"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="682"/>
         <source>Always switch between tabs with mouse wheel</source>
         <translation>Visada perjunginėti korteles pelės ratuku</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="726"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="689"/>
         <source>Automatically switch to newly opened tab</source>
         <translation>Automatiškai perjungti į naujai atvertą kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="733"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="696"/>
         <source>Don&apos;t close window upon closing last tab</source>
         <translation>Neužvėrinėti lango, užvėrus paskutinę kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="740"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="703"/>
         <source>Ask when closing multiple tabs</source>
         <translation>Klausti, kai užveriamos kelios kortelės</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="747"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="710"/>
         <source>Show closed tabs button</source>
         <translation>Rodyti užvertų kortelių mygtuką</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="756"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="719"/>
         <source>Show close buttons on inactive tabs:</source>
         <translation>Rodyti užvėrimo mygtuką pasyviose kortelėse</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="764"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="727"/>
         <source>Automatic</source>
         <translation>Automatiškai</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="769"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="732"/>
         <source>Always</source>
         <translation>Visada</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="774"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="737"/>
         <source>Never</source>
         <translation>Niekada</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="814"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="777"/>
         <source>Address Bar behaviour</source>
         <translation>Adreso juostos elgsena</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="822"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="785"/>
         <source>Suggest when typing into address bar:</source>
         <translation>Įvedinėjant į adreso juostą, siūlyti:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="836"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="799"/>
         <source>History and Bookmarks</source>
         <translation>Žurnalą ir adresyno įrašus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="841"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="804"/>
         <source>History</source>
         <translation>Žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="846"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="809"/>
         <source>Bookmarks</source>
         <translation>Adresyno įrašus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="851"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="814"/>
         <source>Nothing</source>
         <translation>Nieko</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="877"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="840"/>
         <source>Enable inline suggestions</source>
         <translation>Įjungti įterptuosius pasiūlymus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="884"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="847"/>
         <source>Press &quot;Shift&quot; to not switch the tab but load the url in the current tab</source>
         <translation>Spauskite &quot;Shift&quot;, kad neperjungtumėte kortelės, o įkeltumėte url esamoje kortelėje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="887"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="850"/>
         <source>Propose to switch tab if completed url is already loaded</source>
         <translation>Siūlyti perjungti kortelę, jeigu užpildytas url jau yra įkeltas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="857"/>
         <source>Always show go icon</source>
         <translation>Visada rodyti piktogramą Eiti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="901"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="864"/>
         <source>Select all text by double clicking in address bar</source>
         <translation>Spustelėjus du kartus adreso juostoje, pažymėti visą tekstą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="908"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="871"/>
         <source>Select all text by clicking in address bar</source>
         <translation>Spustelėjus adreso juostoje, pažymėti visą tekstą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="915"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="878"/>
         <source>Enable automatic searching from the address bar</source>
         <translation>Įjungti automatinę paiešką iš adreso juostos</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="922"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="885"/>
         <source>Search with Default Engine</source>
         <translation>Ieškoti, naudojant numatytąją paieškos sistemą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="945"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="892"/>
+        <source>Show search suggestions</source>
+        <translation>Rodyti paieškos pasiūlymus</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="915"/>
         <source>Show loading progress in address bar</source>
         <translation>Adreso juostoje rodyti įkėlimo eigą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="978"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="948"/>
         <source>Fill</source>
         <translation>Užpildas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="983"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="953"/>
         <source>Bottom</source>
         <translation>Apačioje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="988"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="958"/>
         <source>Top</source>
         <translation>Viršuje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="996"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="966"/>
         <source>Custom color:</source>
         <translation>Pasirinktina spalva:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1012"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="982"/>
         <source>Select color</source>
         <translation>Pasirinkite spalvą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1015"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1286"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1809"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="1906"/>
-        <location filename="../src/lib/preferences/preferences.ui" line="2490"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="985"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1263"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1797"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2491"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1022"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="992"/>
         <source>Reset</source>
         <translation>Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1073"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1043"/>
         <source>Web Configuration</source>
         <translation>Saityno konfigūracija</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1081"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1051"/>
         <source>Allow Pepper Plugins (Flash plugin)</source>
         <translation>Leisti Pepper papildinius (Flash papildinį)</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1088"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1058"/>
         <source>Allow JavaScript</source>
         <translation>Leisti JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1095"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1065"/>
         <source>Include links in focus chain</source>
         <translation>Įtraukti nuorodas į židinio perjungimo seką</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1102"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1072"/>
         <source>Enable XSS Auditing</source>
         <extracomment>try to detect possible XSS attacks when executing javascript</extracomment>
         <translation>Įjungti XSS reviziją</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1109"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1079"/>
+        <source>Print element background</source>
+        <extracomment>when you are printing page (on printer), it determine whether to also print background (color, image) of html elements</extracomment>
+        <translation>Spausdinti elementų foną</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1086"/>
         <source>Animated scrolling</source>
         <translation>Animuotas slinkimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1116"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1093"/>
         <source>Enable spatial navigation</source>
         <translation>Įjungti erdvinį naršymą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1123"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1100"/>
         <source>Use native scrollbars</source>
         <translation>Naudoti savas slankjuostes</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1140"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1117"/>
         <source>Mouse wheel scrolls</source>
         <translation>Pelės ratukas slenka</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1160"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1137"/>
         <source>lines on page</source>
         <translation>puslapio eilutes</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1171"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1148"/>
         <source>Default zoom on pages: </source>
         <translation>Numatytasis mastelis puslapiuose:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1210"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1187"/>
         <source>Local Storage</source>
         <translation>Vietinis kaupiklis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1218"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1195"/>
         <source>Allow storing network cache on disk</source>
         <translation>Leisti saugoti tinklo podėlį diske</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1241"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1218"/>
         <source>Delete cache on close</source>
         <translation>Užveriant, ištrinti podėlį</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1248"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1225"/>
         <source>Maximum:</source>
         <translation>Daugiausia:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1255"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1232"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1271"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1248"/>
         <source>Store cache in:</source>
         <translation>Saugoti podėlį kataloge:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1299"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1276"/>
         <source>Allow saving history</source>
         <translation>Leisti žurnalo saugojimą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1306"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1283"/>
         <source>Delete history on close</source>
         <translation>Uždarant, ištrinti žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1329"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1306"/>
         <source>Allow local storage of HTML5 web content</source>
         <translation>Leisti vietinį HTML5 saityno turinio kaupimą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1336"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1313"/>
         <source>Delete locally stored HTML5 web content on close</source>
         <translation>Uždarant, ištrinti vietoje saugomą HTML5 saityno turinį</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1362"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1339"/>
         <source>Delete now</source>
         <translation>Ištrinti dabar</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1401"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1378"/>
         <source>Proxy Configuration</source>
         <translation>Įgaliotojo serverio konfigūracija</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1420"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1397"/>
         <source>System proxy configuration</source>
         <translation>Sistemos įgaliotojo serverio konfigūracija</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1443"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1420"/>
         <source>Manual configuration</source>
         <translation>Rankinė konfigūracija</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1453"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1430"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1458"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1435"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1469"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1446"/>
         <source>Port:</source>
         <translation>Prievadas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1490"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1467"/>
         <source>Username:</source>
         <translation>Naudotojo vardas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1500"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1477"/>
         <source>Password:</source>
         <translation>Slaptažodis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1533"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1506"/>
+        <source>No proxy</source>
+        <translation>Be įgaliotojo serverio</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1521"/>
         <source>&lt;b&gt;Font Families&lt;/b&gt;</source>
         <translation>&lt;b&gt;Šriftų šeimos&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1546"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1534"/>
         <source>Standard</source>
         <translation>Standartinis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1553"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1541"/>
         <source>Fixed</source>
         <translation>Fiksuotas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1563"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1551"/>
         <source>Serif</source>
         <translation>Serifas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1573"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1561"/>
         <source>Sans Serif</source>
         <translation>Neserifinis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1583"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1571"/>
         <source>Cursive</source>
         <translation>Rankraštinis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1635"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1623"/>
         <source>Fantasy</source>
         <translation>Dekoratyvinis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1642"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1630"/>
         <source>&lt;b&gt;Font Sizes&lt;/b&gt;</source>
         <translation>&lt;b&gt;Šriftų dydžiai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1651"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1639"/>
         <source>Fixed Font Size</source>
         <translation>Fiksuotas šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1658"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1646"/>
         <source>Default Font Size</source>
         <translation>Numatytasis šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1685"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1673"/>
         <source>Minimum Font Size</source>
         <translation>Mažiausias šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1692"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1680"/>
         <source>Minimum Logical Font Size</source>
         <translation>Mažiausias loginis šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1725"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1713"/>
         <source>&lt;b&gt;Shortcuts&lt;/b&gt;</source>
         <translation>&lt;b&gt;Spartieji klavišai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1732"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1720"/>
         <source>Switch to tabs with Alt + number of tab</source>
         <translation>Perjungti į korteles, naudojant Alt + kortelės numerį</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1739"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1727"/>
         <source>Load speed dials with Ctrl + number of speed dial</source>
         <translation>Įkelti sparčiuosius rinkimus, naudojant Ctrl + sparčiojo rinkimo numeris</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1746"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1734"/>
         <source>Existing shortcuts:&lt;br/&gt;&lt;b&gt;1&lt;/b&gt; - previous tab&lt;br/&gt;&lt;b&gt;2&lt;/b&gt; - next tab&lt;br/&gt;&lt;b&gt;/&lt;/b&gt; - search on page</source>
         <translation>Esami spartieji klavišai:&lt;br/&gt;&lt;b&gt;1&lt;/b&gt; - ankstesnė kortelė&lt;br/&gt;&lt;b&gt;2&lt;/b&gt; - kita kortelė&lt;br/&gt;&lt;b&gt;/&lt;/b&gt; - ieškoti puslapyje</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1749"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1737"/>
         <source>Use single key shortcuts</source>
         <translation>Naudoti pavienio klavišo sparčiuosius klavišus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1756"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1744"/>
         <source>If unchecked, prevents accidental exit from the application if the Ctrl-W shortcut was intended.</source>
         <translation>Jei nepažymėta, neleidžia atsitiktinai išeiti iš programos tuo atveju, jeigu buvo numatytas Ctrl-W spartusis klavišas.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1759"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1747"/>
         <source>Close application with Ctrl-Q</source>
         <translation>Užverti programą, naudojant Ctrl-Q</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1783"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1771"/>
         <source>&lt;b&gt;Download Location&lt;/b&gt;</source>
         <translation>&lt;b&gt;Atsiuntimų vieta&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1790"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1778"/>
         <source>Ask everytime for download location</source>
         <translation>Kas kartą klausti atsiuntimo vietos</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1797"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1785"/>
         <source>Use defined location: </source>
         <translation>Naudoti apibrėžtą vietą:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1847"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1835"/>
         <source>&lt;b&gt;Download Options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Atsiuntimo parinktys&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1854"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1842"/>
         <source>Close download manager when downloading finishes</source>
         <translation>Atsiuntimui užsibaigus, užverti atsiuntimų tvarkytuvę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1861"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1849"/>
         <source>&lt;b&gt;External download manager&lt;/b&gt;</source>
         <translation>&lt;b&gt;Išorinė atsiuntimų tvarkytuvė&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1868"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1856"/>
         <source>Use external download manager</source>
         <translation>Naudoti išorinę atsiuntimų tvarkytuvę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1880"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1868"/>
         <source>Executable:</source>
         <translation>Vykdomasis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1887"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1875"/>
         <source>Arguments:</source>
         <translation>Argumentai:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1894"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1882"/>
         <source>Leave blank if unsure</source>
         <translation>Palikite tuščią, jei nesate tikri</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1915"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1903"/>
         <source>&lt;b&gt;%d&lt;/b&gt; will be replaced with URL to be downloaded</source>
         <translation>&lt;b&gt;%d&lt;/b&gt; bus pakeista jūsų norimu atsisiųsti URL</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1941"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1929"/>
         <source>&lt;b&gt;AutoFill options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Automatinio užpildymo parinktys&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="1948"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1936"/>
         <source>Allow saving passwords from sites</source>
         <translation>Leisti slaptažodžių įrašymą iš svetainių</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2003"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="1987"/>
+        <source>Automatically complete passwords on sites</source>
+        <translation>Automatiškai svetainėse užbaiginėti slaptažodžius</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/preferences/preferences.ui" line="1998"/>
         <source>&lt;b&gt;Cookies&lt;/b&gt;</source>
         <translation>&lt;b&gt;Slapukai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2010"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2005"/>
         <source>&lt;b&gt;Other&lt;/b&gt;</source>
         <translation>&lt;b&gt;Kita&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2036"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2031"/>
         <source>JavaScript options</source>
         <translation>JavaScript parinktys</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2046"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2041"/>
         <source>&lt;b&gt;JavaScript&lt;/b&gt;</source>
         <translation>&lt;b&gt;JavaScript&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2059"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2054"/>
         <source>Cookies Manager</source>
         <translation>Slapukų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2069"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2064"/>
         <source>Manage JavaScript privacy options</source>
         <translation>Tvarkyti JavaScript privatumo parinktis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2092"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2087"/>
         <source>Manage HTML5 permissions</source>
         <translation>Tvarkyti HTML5 leidimus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2099"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2094"/>
         <source>Manage Cookies</source>
         <translation>Tvarkyti slapukus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2119"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2114"/>
         <source>&lt;b&gt;HTML5 Permissions&lt;/b&gt;</source>
         <translation>&lt;b&gt;HTML5 leidimai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2132"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2127"/>
         <source>HTML5 Permissions</source>
         <translation>HTML5 leidimai</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2139"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2134"/>
         <source>Send Do Not Track header to servers</source>
         <translation>Siųsti Do Not Track antraštes į serverius</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2165"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2160"/>
         <source>Expiration timeout:</source>
         <translation>Rodymo trukmė:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2178"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2173"/>
         <source> seconds</source>
         <translation>sekundžių</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2200"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2195"/>
         <source>&lt;b&gt;Notifications&lt;/b&gt;</source>
         <translation>&lt;b&gt;Pranešimai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2223"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2218"/>
         <source>Use Native System Notifications (Linux only)</source>
         <translation>Naudoti savus sistemos pranešimus (Tik Linux)</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2230"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2225"/>
         <source>Do not use Notifications</source>
         <translation>Nenaudoti pranešimų</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2253"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2248"/>
         <source>&lt;b&gt;Note: &lt;/b&gt;You can change position of OSD Notification by dragging it on the screen.</source>
         <translation>&lt;b&gt;Pastaba: &lt;/b&gt;Jūs galite keisti OSD pranešimo vietą, vilkdami jį ekrane.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2279"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2274"/>
         <source>Use OSD Notifications</source>
         <translation>Naudoti OSD pranešimus</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2286"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2281"/>
         <source>Preview</source>
         <translation>Peržiūra</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2351"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2346"/>
         <source>For more information about Spell Check, please see &lt;a href=&quot;https://github.com/QupZilla/qupzilla/wiki/Spell-Check&quot;&gt;wiki&lt;/a&gt;.</source>
         <translation>Išsamesnei informacijai apie rašybos tikrinimą, žiūrėkite &lt;a href=&quot;https://github.com/QupZilla/qupzilla/wiki/Spell-Check&quot;&gt;vikį&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2393"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2388"/>
         <source>&lt;b&gt;Spell Check options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Rašybos tikrinimo parinktys&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2400"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2395"/>
         <source>Enable Spell Check</source>
         <translation>Įjungti rašybos tikrinimą</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2407"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2402"/>
         <source>&lt;b&gt;Dictionary directories&lt;/b&gt;</source>
         <translation>&lt;b&gt;Žodyno katalogai&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2455"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2456"/>
         <source>No languages found</source>
         <translation>Kalbų nerasta</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2466"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2467"/>
         <source>&lt;b&gt;Manage search engines&lt;/b&gt;</source>
         <translation>&lt;b&gt;Tvarkyti paieškos sistemas&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2473"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2474"/>
         <source>&lt;b&gt;User Style Sheet&lt;/b&gt;</source>
         <translation>&lt;b&gt;Naudotojo stilių aprašas&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2480"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2481"/>
         <source>Style Sheet automatically loaded with all websites: </source>
         <translation>Stilių aprašas, kuris bus automatiškai įkeliamas visose svetainėse:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2510"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2511"/>
         <source>&lt;b&gt;Preferred language for web sites&lt;/b&gt;</source>
         <translation>&lt;b&gt;Pageidautina internetinių svetainių kalba&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2530"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2531"/>
         <source>&lt;b&gt;Change browser identification&lt;/b&gt;</source>
         <translation>&lt;b&gt;Keisti naršyklės atpažinimą&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2555"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2556"/>
         <source>User Agent Manager</source>
         <translation>Naudotojo agento tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2595"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2596"/>
         <source>Languages</source>
         <translation>Kalbos</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.ui" line="2635"/>
+        <location filename="../src/lib/preferences/preferences.ui" line="2636"/>
         <source>Search Engines Manager</source>
         <translation>Paieškos sistemų tvarkytuvė</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="149"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="599"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="147"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="607"/>
         <source>Default</source>
         <translation>Numatytasis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="153"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="151"/>
         <source>Set as default</source>
         <translation>Nustatyti kaip numatytąją</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="540"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="550"/>
         <source>Choose executable location...</source>
         <translation>Pasirinkite vykdomojo vietą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="584"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="593"/>
         <source>OSD Notification</source>
         <translation>OSD pranešimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="585"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="594"/>
         <source>Drag it on the screen to place it where you want.</source>
         <translation>Vilkite jį ekrane ir palikite ten, kur norite.</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="632"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="643"/>
         <source>Choose download location...</source>
         <translation>Pasirinkite atsiuntimo vietą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="646"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="657"/>
         <source>Choose stylesheet location...</source>
         <translation>Pasirinkite stilių aprašo vietą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="657"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="668"/>
         <source>Deleted</source>
         <translation>Ištrinta</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="746"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="758"/>
         <source>Choose cache path...</source>
         <translation>Pasirinkite podėlio kelią...</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="787"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="789"/>
         <source>New Profile</source>
         <translation>Naujas profilis</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="787"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="789"/>
         <source>Enter the new profile&apos;s name:</source>
         <translation>Įveskite naujo profilio pavadinimą:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="797"/>
-        <location filename="../src/lib/preferences/preferences.cpp" line="802"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="799"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="804"/>
         <source>Error!</source>
         <translation>Klaida!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="797"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="799"/>
         <source>This profile already exists!</source>
         <translation>Šis profilis jau yra!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="802"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="804"/>
         <source>Cannot create profile directory!</source>
         <translation>Nepavyko sukurti profilio katalogo!</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="813"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="815"/>
         <source>Confirmation</source>
         <translation>Patvirtinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/preferences.cpp" line="814"/>
+        <location filename="../src/lib/preferences/preferences.cpp" line="816"/>
         <source>Are you sure you want to permanently delete &quot;%1&quot; profile? This action cannot be undone!</source>
         <translation>Ar tikrai norite visam laikui ištrinti profilį &quot;%1&quot;? Šis veiksmas negalės būti atšauktas!</translation>
     </message>
@@ -4047,429 +4194,425 @@ Ar tikrai norite užverti šį langą?</numerusform></translation>
 <context>
     <name>QupZillaSchemeReply</name>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="131"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="132"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="153"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="154"/>
         <source>Report Issue</source>
         <translation>Pranešimas apie klaidą</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="133"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="155"/>
         <source>If you are experiencing problems with QupZilla, please try to disable all extensions first. &lt;br/&gt;If this does not fix it, then please fill out this form: </source>
         <translation>Jeigu jus patiriate problemų su QupZilla, prašome iš pradžių, pabandyti išjungti visus plėtinius. &lt;br/&gt;Jei tai neišsprendžia problemų, tuomet prašome užpildyti šią formą:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="135"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="157"/>
         <source>Your E-mail</source>
         <translation>Jūsų el. paštas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="136"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="158"/>
         <source>Issue type</source>
         <translation>Klaidos tipas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="137"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="159"/>
         <source>Issue description</source>
         <translation>Klaidos aprašas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="138"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="160"/>
         <source>Send</source>
         <translation>Siųsti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="139"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="161"/>
         <source>E-mail is optional&lt;br/&gt;&lt;b&gt;Note: &lt;/b&gt;Please read how to make a bug report &lt;a href=%1&gt;here&lt;/a&gt; first.</source>
         <translation>El. paštas yra nebūtinas&lt;br/&gt;&lt;b&gt;Pastaba: &lt;/b&gt;Prašome, iš pradžių, perskaityti &lt;a href=%1&gt;čia&lt;/a&gt;, kaip turėtų būti pranešama apie klaidą.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="141"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="163"/>
         <source>Please fill out all required fields!</source>
         <translation>Prašome užpildyti visus būtinus laukus!</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="169"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="191"/>
         <source>Start Page</source>
         <translation>Pradinis puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="170"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="192"/>
         <source>Search on Web</source>
         <translation>Ieškoti saityne</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="171"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="193"/>
         <source>Search results provided by DuckDuckGo</source>
         <translation>Paieškos rezultatus pateikia DuckDuckGo</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="173"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="189"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="190"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="195"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="211"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="212"/>
         <source>About QupZilla</source>
         <translation>Apie QupZilla</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="174"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="196"/>
         <source>&lt;h1&gt;Private Browsing&lt;/h1&gt;</source>
         <translation>&lt;h1&gt;Privatus naršymas&lt;/h1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="191"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="350"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="213"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="374"/>
         <source>Information about version</source>
         <translation>Informacija apie versiją</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="192"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="214"/>
         <source>Copyright</source>
         <translation>Autorių Teisės</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="195"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="360"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="217"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="384"/>
         <source>Version</source>
         <translation>Versija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="202"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="224"/>
         <source>Main developer</source>
         <translation>Pagrindinis kūrėjas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="204"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="226"/>
         <source>Contributors</source>
         <translation>Talkininkai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="216"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="238"/>
         <source>Translators</source>
         <translation>Vertėjai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="276"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="298"/>
         <source>Speed Dial</source>
         <translation>Spartusis rinkimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="277"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="299"/>
         <source>Add New Page</source>
         <translation>Pridėti naują puslapį</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="278"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="300"/>
         <source>Edit</source>
         <translation>Keisti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="279"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="301"/>
         <source>Remove</source>
         <translation>Šalinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="280"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="302"/>
         <source>Reload</source>
         <translation>Įkelti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="281"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="303"/>
         <source>Are you sure you want to remove this speed dial?</source>
         <translation>Ar tikrai norite pašalinti šį spartųjį rinkimą?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="282"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="304"/>
         <source>Are you sure you want to reload all speed dials?</source>
         <translation>Ar tikrai norite iš naujo įkelti visus sparčiuosius rinkimus?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="283"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="305"/>
         <source>Load title from page</source>
         <translation>Įkelti pavadinimą iš puslapio</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="284"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="306"/>
+        <source>SpeedDial requires enabled JavaScript.</source>
+        <translation>Spartusis rinkimas reikalauja įjungto JavaScript.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="307"/>
         <source>Url</source>
         <translation>Url</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="285"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="308"/>
         <source>Title</source>
         <translation>Pavadinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="286"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="309"/>
         <source>Apply</source>
         <translation>Taikyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="287"/>
-        <source>Close</source>
-        <translation>Užverti</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="310"/>
+        <source>Cancel</source>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="288"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="311"/>
         <source>New Page</source>
         <translation>Naujas puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="289"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="312"/>
         <source>Speed Dial settings</source>
         <translation>Sparčiojo rinkimo nustatymai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="290"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="313"/>
         <source>Placement: </source>
         <translation>Išdėstymas:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="291"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="314"/>
         <source>Auto</source>
         <translation>Automatinis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="292"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="315"/>
         <source>Cover</source>
         <translation>Aprėpti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="293"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="316"/>
         <source>Fit</source>
         <translation>Priderinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="294"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="317"/>
         <source>Fit Width</source>
         <translation>Priderinti plotį</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="295"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="318"/>
         <source>Fit Height</source>
         <translation>Priderinti aukštį</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="296"/>
-        <source>Use background image</source>
-        <translation>Naudoti fono paveikslą</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="319"/>
+        <source>Use custom wallpaper</source>
+        <translation>Naudoti pasirinktinį darbalaukio foną</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="297"/>
-        <source>Select image</source>
-        <translation>Pasirinkti paveikslą</translation>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="320"/>
+        <source>Click to select image</source>
+        <translation>Spustelėkite, norėdami pasirinkti paveikslą</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="298"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="321"/>
         <source>Maximum pages in a row:</source>
         <translation>Daugiausia puslapių eilėje:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="299"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="322"/>
         <source>Change size of pages:</source>
         <translation>Keisti puslapių dydį:</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="300"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="323"/>
         <source>Center speed dials</source>
         <translation>Centruoti sparčiuosius rinkimus</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="325"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="348"/>
         <source>Restore Session</source>
         <translation>Atkurti seansą</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="326"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="349"/>
         <source>Oops, QupZilla crashed.</source>
         <translation>Oi, QupZilla užstrigo.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="327"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="350"/>
         <source>We apologize for this. Would you like to restore the last saved state?</source>
         <translation>Atsiprašome, kad taip įvyko. Ar norėtumėte atkurti paskutinę įrašytą būseną?</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="328"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="351"/>
         <source>Try removing one or more tabs that you think cause troubles</source>
         <translation>Pabandykite pašalinti vieną ar daugiau kortelių, kurios jūsų manymu sukelia problemas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="329"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="352"/>
         <source>Or you can start completely new session</source>
         <translation>Arba galite pradėti visiškai naują seansą</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="330"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="353"/>
         <source>Window</source>
         <translation>Langas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="331"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="354"/>
         <source>Windows and Tabs</source>
         <translation>Langai ir kortelės</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="332"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="355"/>
         <source>Start New Session</source>
         <translation>Pradėti naują seansą</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="333"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="356"/>
         <source>Restore</source>
         <translation>Atkurti</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="348"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="349"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="357"/>
+        <source>Requires enabled JavaScript.</source>
+        <translation>Reikalauja įjungto JavaScript.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="372"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="373"/>
         <source>Configuration Information</source>
         <translation>Konfigūracijos informacija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="351"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="375"/>
         <source>This page contains information about QupZilla&apos;s current configuration - relevant for troubleshooting. Please include this information when submitting bug reports.</source>
         <translation>Šiame puslapyje yra su esama QupZilla konfigūracija susijusi informacija - aktuali, šalinant nesklandumus. Pranešant apie klaidas, prašome įtraukti šią informaciją.</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="352"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="376"/>
         <source>Browser Identification</source>
         <translation>Naršyklės atpažinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="353"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="377"/>
         <source>Paths</source>
         <translation>Keliai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="354"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="378"/>
         <source>Build Configuration</source>
         <translation>Darinio konfigūracija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="355"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="379"/>
         <source>Preferences</source>
         <translation>Nuostatos</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="356"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="380"/>
         <source>Option</source>
         <translation>Parinktis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="357"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="381"/>
         <source>Value</source>
         <translation>Reikšmė</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="358"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="382"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="417"/>
         <source>Extensions</source>
         <translation>Plėtiniai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="359"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="383"/>
         <source>Name</source>
         <translation>Pavadinimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="361"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="385"/>
         <source>Author</source>
         <translation>Autorius</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="362"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="386"/>
         <source>Description</source>
         <translation>Aprašas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="365"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="401"/>
         <source>Application version</source>
         <translation>Programos versija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="372"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="408"/>
         <source>Qt version</source>
         <translation>Qt versija</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="373"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="409"/>
         <source>Platform</source>
         <translation>Platforma</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="376"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="412"/>
         <source>Profile</source>
         <translation>Profilis</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="377"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="413"/>
         <source>Settings</source>
         <translation>Nustatymai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="378"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="414"/>
         <source>Saved session</source>
         <translation>Įrašytas seansas</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="379"/>
-        <source>Pinned tabs</source>
-        <translation>Prisegtos kortelės</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="380"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="415"/>
         <source>Data</source>
         <translation>Duomenys</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="381"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="416"/>
         <source>Themes</source>
         <translation>Temos</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="382"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="418"/>
         <source>Translations</source>
         <translation>Vertimai</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="385"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="392"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="398"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="421"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="428"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="434"/>
         <source>&lt;b&gt;Enabled&lt;/b&gt;</source>
         <translation>&lt;b&gt;Įjungta&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="387"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="394"/>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="398"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="423"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="430"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="434"/>
         <source>Disabled</source>
         <translation>Išjungta</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="401"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="437"/>
         <source>Debug build</source>
         <translation>Derinimo darinys</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="403"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="439"/>
         <source>Windows 7 API</source>
         <translation>Windows 7 API</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="405"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="441"/>
         <source>Portable build</source>
         <translation>Perkeliamas darinys</translation>
     </message>
     <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="423"/>
+        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="459"/>
         <source>No available extensions.</source>
         <translation>Nėra prieinamų plėtinių.</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="481"/>
-        <source>Blocked content</source>
-        <translation>Užblokuotas turinys</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/network/schemehandlers/qupzillaschemehandler.cpp" line="490"/>
-        <source>Blocked by &lt;i&gt;%1 (%2)&lt;/i&gt;</source>
-        <translation>Užblokavo &lt;i&gt;%1 (%2)&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -4538,38 +4681,38 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
         <translation>Žemyn</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="86"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="89"/>
         <source>Search Engine</source>
         <translation>Paieškos sistema</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="91"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="94"/>
         <source>Shortcut</source>
         <translation>Spartusis klavišas</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="101"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.ui" line="104"/>
         <source>Defaults</source>
         <translation>Numatytosios nuostatos</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="49"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="52"/>
         <location filename="../src/lib/opensearch/searchenginesmanager.cpp" line="316"/>
         <source>Add Search Engine</source>
         <translation>Pridėti paieškos sistemą</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="86"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="89"/>
         <source>Remove Engine</source>
         <translation>Šalinti sistemą</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="87"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="90"/>
         <source>You can&apos;t remove the default search engine.&lt;br&gt;Set a different engine as default before removing %1.</source>
         <translation>Jūs negalite pašalinti numatytosios paieškos sistemos.&lt;br&gt;Prieš šalindami %1, nustatykite kitą paieškos sistemą kaip numatytąją.</translation>
     </message>
     <message>
-        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="104"/>
+        <location filename="../src/lib/opensearch/searchenginesdialog.cpp" line="107"/>
         <source>Edit Search Engine</source>
         <translation>Redaguoti paieškos sistemą</translation>
     </message>
@@ -4605,7 +4748,7 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>SearchToolBar</name>
     <message>
-        <location filename="../src/lib/webtab/searchtoolbar.cpp" line="121"/>
+        <location filename="../src/lib/webtab/searchtoolbar.cpp" line="127"/>
         <source>No results found.</source>
         <translation>Rezultatų nerasta.</translation>
     </message>
@@ -4623,22 +4766,204 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
         <translation>Paieška...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webtab/searchtoolbar.ui" line="94"/>
+        <location filename="../src/lib/webtab/searchtoolbar.ui" line="88"/>
         <source>&amp;Match Case</source>
         <translation>&amp;Skirti didžiąsias ir mažąsias raides</translation>
+    </message>
+</context>
+<context>
+    <name>SessionManager</name>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="126"/>
+        <source>_cloned</source>
+        <translation>_dubliuotas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="126"/>
+        <source>_renamed</source>
+        <translation>_pervadintas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="127"/>
+        <source>Clone Session</source>
+        <translation>Dubliuoti seansą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="127"/>
+        <source>Rename Session</source>
+        <translation>Pervadinti seansą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="128"/>
+        <source>Please enter a new name:</source>
+        <translation>Įveskite naują pavadinimą:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="136"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="143"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="148"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="170"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="218"/>
+        <source>Error!</source>
+        <translation>Klaida!</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="136"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="170"/>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="218"/>
+        <source>The session file &quot;%1&quot; exists. Please enter another name.</source>
+        <translation>Seanso failas &quot;%1&quot; yra. Įveskite kitą pavadinimą.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="143"/>
+        <source>An error occurred when cloning session file.</source>
+        <translation>Dubliuojant seanso failą, įvyko klaida.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="148"/>
+        <source>An error occurred when renaming session file.</source>
+        <translation>Pervadinant seanso failą, įvyko klaida.</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="161"/>
+        <source>Save Session</source>
+        <translation>Įrašyti seansą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="162"/>
+        <source>Please enter a name to save session:</source>
+        <translation>Norėdami įrašyti seansą, įveskite pavadinimą:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="163"/>
+        <source>Saved Session (%1)</source>
+        <translation>Įrašytas seansas (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="180"/>
+        <source>Restore Backup</source>
+        <translation>Atkurti atsarginę kopiją</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="180"/>
+        <source>Are you sure you want to replace current session?</source>
+        <translation>Ar tikrai norite pakeisti esamą seansą?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="199"/>
+        <source>Delete Session</source>
+        <translation>Ištrinti seansą</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="199"/>
+        <source>Are you sure you want to delete session &apos;%1&apos;?</source>
+        <translation>Ar tikrai norite ištrinti seansą &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="209"/>
+        <source>New Session</source>
+        <translation>Naujas seansas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="210"/>
+        <source>Please enter a name to create new session:</source>
+        <translation>Norėdami sukurti naują seansą, įveskite pavadinimą:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="211"/>
+        <source>New Session (%1)</source>
+        <translation>Naujas seansas (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="243"/>
+        <source>Backup 1</source>
+        <translation>Atsarginė kopija 1</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="250"/>
+        <source>Backup 2</source>
+        <translation>Atsarginė kopija 2</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="290"/>
+        <source>Default Session</source>
+        <translation>Numatytasis seansas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="393"/>
+        <source>Please select the startup session:</source>
+        <translation>Pasirinkite paleidžiamą seansą:</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanager.cpp" line="412"/>
+        <source>%1 (last session)</source>
+        <translation>%1 (paskutinis seansas)</translation>
+    </message>
+</context>
+<context>
+    <name>SessionManagerDialog</name>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="14"/>
+        <source>Session Manager</source>
+        <translation>Seansų tvarkytuvė</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="24"/>
+        <source>Session</source>
+        <translation>Seansas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="29"/>
+        <source>Last Modified</source>
+        <translation>Paskutinį kartą keistas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="39"/>
+        <source>New</source>
+        <translation>Naujas</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="46"/>
+        <source>Rename</source>
+        <translation>Pervadinti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="53"/>
+        <source>Clone</source>
+        <translation>Dubliuoti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="60"/>
+        <source>Delete</source>
+        <translation>Ištrinti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.ui" line="67"/>
+        <source>Switch to</source>
+        <translation>Perjungti į</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.cpp" line="140"/>
+        <source>Restore</source>
+        <translation>Atkurti</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/session/sessionmanagerdialog.cpp" line="140"/>
+        <source>Switch To</source>
+        <translation>Perjungti į</translation>
     </message>
 </context>
 <context>
     <name>SideBar</name>
     <message>
         <location filename="../src/lib/sidebar/sidebar.cpp" line="65"/>
-        <location filename="../src/lib/sidebar/sidebar.cpp" line="100"/>
+        <location filename="../src/lib/sidebar/sidebar.cpp" line="107"/>
         <source>Bookmarks</source>
         <translation>Adresynas</translation>
     </message>
     <message>
         <location filename="../src/lib/sidebar/sidebar.cpp" line="72"/>
-        <location filename="../src/lib/sidebar/sidebar.cpp" line="106"/>
+        <location filename="../src/lib/sidebar/sidebar.cpp" line="114"/>
         <source>History</source>
         <translation>Žurnalas</translation>
     </message>
@@ -4809,17 +5134,17 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>SpeedDial</name>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="290"/>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="286"/>
         <source>Image files</source>
         <translation>Paveikslų failai</translation>
     </message>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="291"/>
-        <source>Select image...</source>
-        <translation>Pasirinkite paveikslą...</translation>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="287"/>
+        <source>Click to select image...</source>
+        <translation>Spustelėkite, norėdami pasirinkti paveikslą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/plugins/speeddial.cpp" line="346"/>
+        <location filename="../src/lib/plugins/speeddial.cpp" line="342"/>
         <source>Unable to load</source>
         <translation>Nepavyksta įkelti</translation>
     </message>
@@ -4843,118 +5168,146 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="133"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="143"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="153"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="62"/>
+        <source>Don&apos;t ask again</source>
+        <translation>Daugiau nebeklausti</translation>
+    </message>
+</context>
+<context>
+    <name>TabContextMenu</name>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="79"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="90"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="101"/>
         <source>Close Tabs</source>
         <translation>Užverti korteles</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="133"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="79"/>
         <source>Do you really want to close other tabs?</source>
         <translation>Ar tikrai norite užverti visas kitas korteles?</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="143"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="87"/>
         <source>Do you really want to close all tabs to the right?</source>
-        <translation>Ar tikrai norite užverti visas iš dešinės esančias korteles?</translation>
+        <translation>Ar tikrai norite užverti visas dešinėje esančias korteles?</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="153"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="88"/>
+        <source>Do you really want to close all tabs to the bottom?</source>
+        <translation>Ar tikrai norite užverti visas apačioje esančias korteles?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="98"/>
         <source>Do you really want to close all tabs to the left?</source>
-        <translation>Ar tikrai norite užverti visas iš kairės esančias korteles?</translation>
+        <translation>Ar tikrai norite užverti visas kairėje esančias korteles?</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="336"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="99"/>
+        <source>Do you really want to close all tabs to the top?</source>
+        <translation>Ar tikrai norite užverti visas viršuje esančias korteles?</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="115"/>
         <source>&amp;Stop Tab</source>
         <translation>&amp;Stabdyti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="339"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="118"/>
         <source>&amp;Reload Tab</source>
-        <translation>Iš nau&amp;jo įkelti kortelę</translation>
+        <translation>Įkelti kortelę iš nau&amp;jo</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="342"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="121"/>
         <source>&amp;Duplicate Tab</source>
         <translation>&amp;Dubliuoti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="345"/>
-        <source>D&amp;etach Tab</source>
-        <translation>At&amp;skirti kortelę</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="348"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="123"/>
         <source>Un&amp;pin Tab</source>
         <translation>Atse&amp;gti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="348"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="123"/>
         <source>&amp;Pin Tab</source>
         <translation>&amp;Prisegti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="349"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="124"/>
         <source>Un&amp;mute Tab</source>
         <translation>Įjungti kortelės &amp;garsą</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="349"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="124"/>
         <source>&amp;Mute Tab</source>
         <translation>&amp;Nutildyti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="351"/>
-        <source>Re&amp;load All Tabs</source>
-        <translation>Iš naujo įkelti &amp;visas korteles</translation>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="127"/>
+        <source>Unload Tab</source>
+        <translation>Iškelti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="352"/>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="364"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="131"/>
+        <source>Re&amp;load All Tabs</source>
+        <translation>Įkelti &amp;visas korteles iš naujo</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="132"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="148"/>
         <source>Bookmark &amp;All Tabs</source>
         <translation>Įtraukti visas k&amp;orteles į adresyną</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="354"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="136"/>
         <source>Close Ot&amp;her Tabs</source>
         <translation>Užverti k&amp;itas korteles</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="355"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="137"/>
         <source>Close Tabs To The Right</source>
         <translation>Užverti korteles iš dešinės</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="356"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="137"/>
+        <source>Close Tabs To The Bottom</source>
+        <translation>Užverti korteles iš apačios</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="138"/>
         <source>Close Tabs To The Left</source>
         <translation>Užverti korteles iš kairės</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="359"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="138"/>
+        <source>Close Tabs To The Top</source>
+        <translation>Užverti korteles iš viršaus</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="143"/>
         <source>Cl&amp;ose Tab</source>
         <translation>Už&amp;verti kortelę</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="361"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="145"/>
         <source>&amp;New tab</source>
         <translation>&amp;Nauja kortelė</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabbar.cpp" line="363"/>
+        <location filename="../src/lib/tabwidget/tabcontextmenu.cpp" line="147"/>
         <source>Reloa&amp;d All Tabs</source>
-        <translation>Iš naujo įkelti &amp;visas korteles</translation>
+        <translation>Įkelti visas k&amp;orteles iš naujo</translation>
     </message>
 </context>
 <context>
     <name>TabIcon</name>
     <message>
-        <location filename="../src/lib/tabwidget/tabicon.cpp" line="152"/>
+        <location filename="../src/lib/tabwidget/tabicon.cpp" line="156"/>
         <source>Unmute Tab</source>
         <translation>Įjungti kortelės garsą</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabicon.cpp" line="152"/>
+        <location filename="../src/lib/tabwidget/tabicon.cpp" line="156"/>
         <source>Mute Tab</source>
         <translation>Nutildyti kortelę</translation>
     </message>
@@ -4967,37 +5320,32 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
         <translation>Nauja kortelė</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="161"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="129"/>
         <source>Closed tabs</source>
         <translation>Užvertos kortelės</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="172"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="140"/>
         <source>List of tabs</source>
         <translation>Kortelių sąrašas</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="313"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="274"/>
         <source>Empty</source>
         <translation>Tuščia</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="317"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="278"/>
         <source>Restore All Closed Tabs</source>
         <translation>Atkurti visas užvertas korteles</translation>
     </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="318"/>
+        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="279"/>
         <source>Clear list</source>
         <translation>Išvalyti sąrašą</translation>
     </message>
-    <message numerus="yes">
-        <location filename="../src/lib/tabwidget/tabwidget.cpp" line="460"/>
-        <source>Currently you have %n opened tab(s)</source>
-        <translation><numerusform>Šiuo metu yra %n atverta kortelė</numerusform><numerusform>Šiuo metu yra %n atvertos kortelės</numerusform><numerusform>Šiuo metu yra %n atvertų kortelių</numerusform></translation>
-    </message>
     <message>
-        <location filename="../src/lib/tabwidget/tabwidget.h" line="102"/>
+        <location filename="../src/lib/tabwidget/tabwidget.h" line="100"/>
         <source>New tab</source>
         <translation>Nauja kortelė</translation>
     </message>
@@ -5005,7 +5353,7 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>TabbedWebView</name>
     <message>
-        <location filename="../src/lib/webtab/tabbedwebview.cpp" line="211"/>
+        <location filename="../src/lib/webtab/tabbedwebview.cpp" line="203"/>
         <source>Inspect Element</source>
         <translation>Tirti elementą</translation>
     </message>
@@ -5013,22 +5361,22 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="35"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="51"/>
         <source>&lt;b&gt;Name:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Pavadinimas:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="45"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="61"/>
         <source>&lt;b&gt;Author:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Autorius:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="68"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="84"/>
         <source>&lt;b&gt;Description:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Aprašas:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/thememanager.ui" line="112"/>
+        <location filename="../src/lib/preferences/thememanager.ui" line="128"/>
         <source>License</source>
         <translation>Licencija</translation>
     </message>
@@ -5094,22 +5442,22 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
         <translation>Redaguoti</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="95"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="99"/>
         <source>Add new site</source>
         <translation>Pridėti naują svetainę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="133"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="137"/>
         <source>Edit site</source>
         <translation>Redaguoti svetainę</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="211"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="216"/>
         <source>Site domain: </source>
         <translation>Svetainės sritis:</translation>
     </message>
     <message>
-        <location filename="../src/lib/preferences/useragentdialog.cpp" line="212"/>
+        <location filename="../src/lib/preferences/useragentdialog.cpp" line="217"/>
         <source>User Agent: </source>
         <translation>Naudotojo agentas:</translation>
     </message>
@@ -5117,58 +5465,58 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="281"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="277"/>
         <source>QupZilla cannot handle &lt;b&gt;%1:&lt;/b&gt; links. The requested link is &lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;Do you want QupZilla to try open this link in system application?</source>
         <translation>QupZilla negali apdoroti &lt;b&gt;%1:&lt;/b&gt; nuorodų. Užklausta nuoroda yra &lt;ul&gt;&lt;li&gt;%2&lt;/li&gt;&lt;/ul&gt;Ar norite, kad QupZilla pabandytų atverti šią nuorodą sistemos programoje?</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="286"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="282"/>
         <source>Remember my choice for this protocol</source>
         <translation>Prisiminti mano pasirinkimą šiam protokolui</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="287"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="283"/>
         <source>External Protocol Request</source>
         <translation>Išorinio protokolo užklausa</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="382"/>
-        <location filename="../src/lib/webengine/webpage.cpp" line="383"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="363"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="364"/>
         <source>Failed loading page</source>
         <translation>Puslapio įkėlimas nepavyko</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="384"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="365"/>
         <source>Something went wrong while loading this page.</source>
         <translation>Kažkas nutiko, įkeliant šį puslapį.</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="385"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="366"/>
         <source>Try reloading the page or closing some tabs to make more memory available.</source>
         <translation>Pabandykite iš naujo įkelti puslapį arba užverti kai kurias korteles, kad atlaisvintumėte daugiau prieinamos atminties.</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="386"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="367"/>
         <source>Reload page</source>
         <translation>Iš naujo įkelti puslapį</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="421"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="435"/>
         <source>Choose file...</source>
         <translation>Pasirinkite failą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="425"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="439"/>
         <source>Choose files...</source>
         <translation>Pasirinkti failus...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="562"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="549"/>
         <source>JavaScript alert</source>
         <translation>JavaScript įspėjimas</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webpage.cpp" line="570"/>
+        <location filename="../src/lib/webengine/webpage.cpp" line="558"/>
         <source>Prevent this page from creating additional dialogs</source>
         <translation>Neleisti šiam puslapiui kurti papildomų dialogų</translation>
     </message>
@@ -5176,27 +5524,27 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>WebSearchBar</name>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="98"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="99"/>
         <source>Paste And &amp;Search</source>
         <translation>Įdėti ir i&amp;eškoti</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="124"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="125"/>
         <source>Add %1 ...</source>
         <translation>Pridėti %1 ...</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="128"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="129"/>
         <source>Manage Search Engines</source>
         <translation>Tvarkyti paieškos sistemas</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="257"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="258"/>
         <source>Show suggestions</source>
         <translation>Rodyti pasiūlymus</translation>
     </message>
     <message>
-        <location filename="../src/lib/navigation/websearchbar.cpp" line="262"/>
+        <location filename="../src/lib/navigation/websearchbar.cpp" line="263"/>
         <source>Search when engine changed</source>
         <translation>Ieškoti, kai sistema pasikeitė</translation>
     </message>
@@ -5204,12 +5552,12 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>WebTab</name>
     <message>
-        <location filename="../src/lib/webtab/webtab.cpp" line="437"/>
+        <location filename="../src/lib/webtab/webtab.cpp" line="441"/>
         <source>Loading...</source>
         <translation>Įkeliama...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webtab/webtab.cpp" line="453"/>
+        <location filename="../src/lib/webtab/webtab.cpp" line="461"/>
         <source>%1 - QupZilla</source>
         <translation>%1 - QupZilla</translation>
     </message>
@@ -5217,252 +5565,257 @@ Galbūt programos paleidimas iš naujo administratoriaus teisėmis, padarys jums
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="124"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="129"/>
         <source>Empty Page</source>
         <translation>Tuščias puslapis</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="663"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="386"/>
+        <source>QupZilla %1 (%2)</source>
+        <translation>QupZilla %1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/webengine/webview.cpp" line="665"/>
         <source>No suggestions</source>
         <translation>Nėra pasiūlymų</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="715"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="716"/>
         <source>&amp;Back</source>
         <translation>&amp;Atgal</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="719"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="720"/>
         <source>&amp;Forward</source>
         <translation>&amp;Pirmyn</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="726"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="727"/>
         <source>&amp;Add New Page</source>
         <translation>Pri&amp;dėti naują puslapį</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="727"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="728"/>
         <source>&amp;Configure Speed Dial</source>
         <translation>&amp;Konfigūruoti spartųjį rinkimą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="729"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="730"/>
         <source>Reload All Dials</source>
         <translation>Iš naujo įkelti visus rinkimus</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="748"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="749"/>
         <source>Book&amp;mark page</source>
         <translation>Įtra&amp;ukti puslapį į adresyną</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="749"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="750"/>
         <source>&amp;Save page as...</source>
         <translation>Į&amp;rašyti puslapį kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="750"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="751"/>
         <source>&amp;Copy page link</source>
         <translation>&amp;Kopijuoti puslapio nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="751"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="752"/>
         <source>Send page link...</source>
         <translation>Siųsti puslapio nuorodą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="753"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="754"/>
         <source>Select &amp;all</source>
         <translation>Pažymėti &amp;viską</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="758"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="759"/>
         <source>Validate page</source>
         <translation>Patikrinti puslapį</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="762"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="763"/>
         <source>Translate page</source>
         <translation>Versti puslapį</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="766"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="767"/>
         <source>Show so&amp;urce code</source>
         <translation>Rodyti &amp;pirminį tekstą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="769"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="770"/>
         <source>Show info ab&amp;out site</source>
         <translation>Rodyti svetainės &amp;informaciją</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="775"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="776"/>
         <source>Open link in new &amp;tab</source>
         <translation>Atverti nuorodą naujoje &amp;kortelėje</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="780"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="781"/>
         <source>Open link in new &amp;window</source>
         <translation>Atverti nuorodą naujame lan&amp;ge</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="781"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="782"/>
         <source>Open link in &amp;private window</source>
         <translation>Atverti nuorodą &amp;privačiame lange</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="786"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="787"/>
         <source>B&amp;ookmark link</source>
         <translation>Į&amp;traukti nuorodą į adresyną</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="788"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="789"/>
         <source>&amp;Save link as...</source>
         <translation>Į&amp;rašyti nuorodą kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="789"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="790"/>
         <source>Send link...</source>
         <translation>Siųsti nuorodą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="790"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="791"/>
         <source>&amp;Copy link address</source>
         <translation>&amp;Kopijuoti nuorodos adresą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="802"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="803"/>
         <source>Show i&amp;mage</source>
         <translation>Rodyti paveiks&amp;lą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="807"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="808"/>
         <source>Copy image</source>
         <translation>Kopijuoti paveikslą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="808"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="809"/>
         <source>Copy image ad&amp;dress</source>
         <translation>Kopijuoti paveikslo a&amp;dresą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="810"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="811"/>
         <source>&amp;Save image as...</source>
         <translation>Įrašyti pa&amp;veikslą kaip...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="811"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="812"/>
         <source>Send image...</source>
         <translation>Siųsti paveikslą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="830"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="831"/>
         <source>Send text...</source>
         <translation>Siųsti tekstą...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="835"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="836"/>
         <source>Google Translate</source>
         <translation>Google vertėjas</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="841"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="842"/>
         <source>Dictionary</source>
         <translation>Žodynas</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="856"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="857"/>
         <source>Go to &amp;web address</source>
         <translation>Eiti &amp;tinklalapio adresu</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="870"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="871"/>
         <source>Search &quot;%1 ..&quot; with %2</source>
         <translation>Ieškoti &quot;%1 ..&quot;, naudojant %2</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="876"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="877"/>
         <source>Search with...</source>
         <translation>Ieškoti, naudojant...</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="897"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
         <source>&amp;Play</source>
         <translation>&amp;Groti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="897"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
         <source>&amp;Pause</source>
         <translation>Prista&amp;bdyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="899"/>
         <source>Un&amp;mute</source>
         <translation>Į&amp;jungti garsą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="898"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="899"/>
         <source>&amp;Mute</source>
         <translation>&amp;Nutildyti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="900"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="901"/>
         <source>&amp;Copy Media Address</source>
         <translation>&amp;Kopijuoti medijos adresą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="901"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="902"/>
         <source>&amp;Send Media Address</source>
         <translation>&amp;Siųsti medijos adresą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="902"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="903"/>
         <source>Save Media To &amp;Disk</source>
         <translation>Įrašyti mediją į &amp;diską</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="921"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="922"/>
         <source>Create Search Engine</source>
         <translation>Sukurti paieškos sistemą</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="962"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="963"/>
         <source>&amp;Undo</source>
         <translation>&amp;Atšaukti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="968"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="969"/>
         <source>&amp;Redo</source>
         <translation>&amp;Grąžinti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="974"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="975"/>
         <source>&amp;Cut</source>
         <translation>&amp;Iškirpti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="980"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="981"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopijuoti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="986"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="987"/>
         <source>&amp;Paste</source>
         <translation>Į&amp;dėti</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="992"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="993"/>
         <source>Select All</source>
         <translation>Pažymėti viską</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="998"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="999"/>
         <source>&amp;Reload</source>
         <translation>Įke&amp;lti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/lib/webengine/webview.cpp" line="1002"/>
+        <location filename="../src/lib/webengine/webview.cpp" line="1003"/>
         <source>S&amp;top</source>
         <translation>S&amp;tabdyti</translation>
     </message>

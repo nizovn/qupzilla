@@ -145,6 +145,10 @@ int main(int argc, char* argv[])
         argv = args;
     }
 
+    QSslConfiguration _sslConf = QSslConfiguration::defaultConfiguration();
+    _sslConf.setCaCertificates(QSslConfiguration::systemCaCertificates());
+    QSslConfiguration::setDefaultConfiguration(_sslConf);
+
     MainApplication app(argc, argv);
 
     if (app.isClosing())
